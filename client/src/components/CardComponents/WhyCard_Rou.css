@@ -1,0 +1,62 @@
+.why-card-rou-content{
+    display: flex;
+    flex-direction: column;
+    width: 374px;
+    height: 400px;
+}
+.why-card-rou-main{
+    position: relative;
+}
+.why-card-rou-main-img{
+    position: relative;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: #C4C4C4;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.why-card-side{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+     
+    right: 50px;
+    bottom: 0px;
+
+    border-radius: 50%;
+    border: 1px solid #FEA25F;
+}
+.why-card-rou-side-img{
+    position: absolute;
+    width: 83px;
+    height: 83px;
+    background: white;
+
+    right: 8.5px;
+    bottom: 8.5px;
+
+    border-radius: 50%;
+}
+.why-card-rou-title{
+    height: 23px;
+    font-family: Rounded Mplus 1c;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: #B62F05;
+    margin-top: 12px;
+    margin-bottom: 0px;
+}
+.why-card-rou-detail{
+    height: 66px;
+    font-family: Rounded Mplus 1c;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    color: rgba(0, 0, 0, 0.7);
+    margin-top: 8px;
+    margin-bottom: 0px;
+}

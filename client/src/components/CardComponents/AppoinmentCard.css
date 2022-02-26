@@ -1,0 +1,35 @@
+.appoinment-card-content{
+    width: 555px;
+    height: 100px;
+    border-radius: 10px;
+    background-color: rgb(126, 126, 126);
+    display: flex;
+}
+.appoinment-card-center{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.appoinment-card-icon-content{
+    width: 72px;
+    height: 72px;
+    border-radius: 10px;
+    background-color: #41A9F3;
+    margin: auto 15px;
+}
+.appoinment-card-icon{
+
+}
+.appoinment-card-detail{
+    width: 400px;
+    font-family: Rounded Mplus 1c;
+    font-size: 14px;
+    line-height: 21px;
+    color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: left center;
+    margin-left: 15px;
+    white-space: pre-wrap;
+
+}

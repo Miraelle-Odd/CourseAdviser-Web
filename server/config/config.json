@@ -2,7 +2,7 @@
     "development": {
         "username": "root",
         "password": null,
-        "database": "da1_courseadviser",
+        "database": "ooap_hhm",
         "host": "localhost",
         "dialect": "mysql"
     },
