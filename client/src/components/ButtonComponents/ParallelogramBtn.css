@@ -1,0 +1,61 @@
+.parallelogram-card-link{
+    text-decoration: none;
+}
+.parallelogram-card-content{
+    display: flex;
+    padding-left: 100px;
+}
+
+.parallelogram-card-content .parallelogram-card-button{
+    width: 236.14px;
+    height: 493.16px;
+  
+    transform: skew(-10deg);
+
+    color: white;
+
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+ 
+}
+.parallelogram-card-button .parallelogram-card-modal{
+    width: 236.14px;
+    height: 493.16px;
+  
+    position: absolute;
+    background-color: #EF761E;
+    opacity: 80%;
+    display: none;
+}
+.parallelogram-card-button .parallelogram-card-name{
+    width: 176px;
+    height: 88px;
+    font-family: Rounded Mplus 1c;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 45px;
+
+    z-index: 10;
+}
+.parallelogram-card-button .parallelogram-card-des{
+    width: 190px;
+    height: 127px;
+    display: none;
+}
+.parallelogram-card-content .parallelogram-card-button:hover .parallelogram-card-name{
+    display: flex;
+    z-index: 10;
+}
+
+.parallelogram-card-content .parallelogram-card-button:hover .parallelogram-card-des{
+    display: flex;
+    z-index: 10;
+}
+
+.parallelogram-card-content .parallelogram-card-button:hover .parallelogram-card-modal{
+    display: flex;
+}

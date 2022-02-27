@@ -1,0 +1,29 @@
+.learn-btn-link{
+    text-decoration: none;
+}
+
+.learn-btn-content .learn-btn-button{
+    width: 303px;
+    height: 90px;
+    border: none;
+    background-color: #EE751D;
+    border-radius: 50px;
+    box-shadow: 0px 4px 4px rgba(0,0,0, 0.25);
+    color: white;
+    font-family: Rounded Mplus 1c;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 45px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.learn-btn-content .learn-btn-line{
+    margin: 0 10px;
+}
+
+.learn-btn-content .learn-btn-button:hover{
+    background-color: #FFAB6F;
+}

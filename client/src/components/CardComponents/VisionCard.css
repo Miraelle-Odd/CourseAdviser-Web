@@ -1,0 +1,40 @@
+.vision-card-content{
+    width: 400px;
+    height: 450px;
+
+}
+.vision-card-content-inner{
+    width: 340px;
+    margin: auto auto;
+    padding-top: 10px;
+}
+.vision-card-img{
+    width: 360px;
+    height: 239px;
+    background: rgba(0,0,0,1);
+
+}
+.vision-card-title{
+    width: 124px;
+    height: 34px;
+    font-family: Rounded Mplus 1c;
+    font-size: 24px;
+    line-height: 36px;
+    color: rgb(0,0,0);
+    text-align: left;
+    margin: 0 0;
+}
+.vision-card-line{
+    width: 80px;
+    height: 3px;
+    background-color: #FFAB6F;
+}
+.vision-card-detail{
+    height: 83px;
+    font-family: Rounded Mplus 1c;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(0,0,0,0.7);
+    max-lines: 3;
+    text-align: left;
+}
