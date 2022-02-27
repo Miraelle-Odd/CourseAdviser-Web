@@ -1,4 +1,11 @@
 import React, { useRef, useEffect } from 'react'
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link,
+    NavLink
+  } from 'react-router-dom';
 
 import './DraftCom.css'
 
@@ -6,17 +13,10 @@ import defaultIcon from '../../assets/icons/draft.png'
 
 const DraftCom = props => {
     return (
-        <div className='draft'>            
-            {
-                props.icon ? <img src={props.icon}></img> : <img src={defaultIcon}></img>
-            }
-            {
-                props.title ? <h1 className="title">{props.title}</h1> : ''
-            }
-            {
-                props.content ? <p className="content">{props.content}</p> : ''
-            }
-        </div>
+        <header>
+            <NavLink to="/aaa" activeClassName="active">Trang A</NavLink>
+            <NavLink to="/bbb" activeClassName="active">Trang B</NavLink>
+        </header>
     )
 }
 

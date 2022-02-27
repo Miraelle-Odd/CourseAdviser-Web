@@ -9,12 +9,12 @@ export default function LearnBtn(props) {
     return (
         <Fragment>
             <div className="learn-btn-content">
-                <a href = '#' className='learn-btn-link'>
+                <Link to = '/temp' className='learn-btn-link'>
                     <button className='learn-btn-button'>{props.name}                   
                         <img className='learn-btn-line' src={line}></img>
                         <img className='learn-btn-arrow' src={arrow_icon}></img>
                     </button>
-                </a>
+                </Link>
             </div>
         </Fragment>
     )
