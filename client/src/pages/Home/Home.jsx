@@ -5,7 +5,7 @@ import "../../index.css"
 
 import DraftCom from '../../components/DraftComponent/DraftCom'
 import ArchivementCard_Rec from '../../components/CardComponents/ArchivementCard_Rec'
-import piggy from '../../assets/icons/piggy-bank.png'
+
 import LearnBtn from '../../components/ButtonComponents/LearnBtn'
 import FloatBtn from '../../components/ButtonComponents/FloatBtn'
 import ParallelogramBtn from '../../components/ButtonComponents/ParallelogramBtn'
@@ -20,7 +20,7 @@ import WhyCard_Rou from '../../components/CardComponents/WhyCard_Rou'
 import FeedbackCard from '../../components/CardComponents/FeedbackCard'
 import VisionCard from '../../components/CardComponents/VisionCard'
 import AppoinmentCard from '../../components/CardComponents/AppoinmentCard'
-import location from "../../assets/icons/location.png"
+
 import LocationLayout from '../../components/LayoutComponents/LocationLayout'
 import MethodSwitch from '../../components/SwitchComponents/MethodSwitch'
 import MethodLayout from '../../components/LayoutComponents/MethodLayout'
@@ -29,6 +29,8 @@ import AboutWhyLayout from '../../components/LayoutComponents/AboutWhyLayout'
 import AboutFeedbackLayout from '../../components/LayoutComponents/AboutFeedbackLayout'
 import AboutVisonLayout from '../../components/LayoutComponents/AboutVisionLayout'
 import HomeWhyLayout from '../../components/LayoutComponents/HomeWhyLayout'
+import AppoinmentLayout from '../../components/LayoutComponents/AppoinmentLayout'
+import HomeArchiLayout from '../../components/LayoutComponents/HomeArchiLayout'
 
 
 
@@ -42,13 +44,10 @@ const Home = props => {
     return (
         <div className='home'>
             <div>Đây là Homepage</div>
-            <ArchivementCard_Rec
-                icon={piggy}
-                title="Scholarship"
-                content="Over 3000000 VND"
-            ></ArchivementCard_Rec>
+
+            <HomeArchiLayout></HomeArchiLayout>
             <LearnBtn
-                name="Learn more">               
+                name="Learn more">
             </LearnBtn>
             <FloatBtn
                 icon={calendar}
@@ -61,27 +60,27 @@ const Home = props => {
             </ParallelogramBtn>
 
             <HomeWhyLayout> </HomeWhyLayout>
-            
+
             <FacilityCard_Img
-            // type: small | large-hor | large-ver
+                // type: small | large-hor | large-ver
                 img={TKB_HK2}
-                type="small">        
+                type="small">
             </FacilityCard_Img>
 
-            <AboutVisonLayout></AboutVisonLayout>
+            <AboutVisonLayout> </AboutVisonLayout>
 
             <AboutArchiLayout> </AboutArchiLayout>
 
             <AboutWhyLayout> </AboutWhyLayout>
 
             <AboutFeedbackLayout> </AboutFeedbackLayout>
-            <AppoinmentCard
-                icon={location}
-                content1= "CN1: XX Đường Đường Đường, phường A, quận BB, TP. HHH"
-                content2= "CN2: XX Đường Đường Đường, phường A, quận BB, TP. HHH">
-            </AppoinmentCard>
-            <LocationLayout></LocationLayout>
-            <MethodLayout></MethodLayout>
+
+            <AppoinmentLayout> </AppoinmentLayout>
+
+            <LocationLayout> </LocationLayout>
+
+            <MethodLayout> </MethodLayout>
+
             <h2>Dưới đây là test get từ db</h2>
             {
                 listOfTest.map((value, key) => {
