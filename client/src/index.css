@@ -1,0 +1,67 @@
+@font-face {
+    font-family: "Roboto Thin";
+    src: local("Roboto Thin"),
+     url("./fonts/Roboto-Thin.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Roboto Light";
+    src: local("Roboto Light"),
+     url("./fonts/Roboto-Light.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Roboto Regular";
+    src: local("Roboto Regular"),
+     url("./fonts/Roboto-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Roboto Medium";
+    src: local("Roboto Medium"),
+     url("./fonts/Roboto-Medium.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Roboto Bold";
+    src: local("Roboto Bold"),
+     url("./fonts/Roboto-Bold.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Roboto Black";
+    src: local("Roboto Black"),
+     url("./fonts/Roboto-Black.ttf") format("truetype");
+}
+
+
+@font-face {
+    font-family: "Rounded Mplus 1c Thin";
+    src: local("Rounded Mplus 1c Thin"),
+     url("./fonts/MPLUSRounded1c-Thin.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Rounded Mplus 1c Light";
+    src: local("Rounded Mplus 1c Light"),
+     url("./fonts/MPLUSRounded1c-Light.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Rounded Mplus 1c Regular";
+    src: local("Rounded Mplus 1c Regular"),
+     url("./fonts/MPLUSRounded1c-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Rounded Mplus 1c Medium";
+    src: local("Rounded Mplus 1c Medium"),
+     url("./fonts/MPLUSRounded1c-Medium.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Rounded Mplus 1c Bold";
+    src: local("Rounded Mplus 1c Bold"),
+     url("./fonts/MPLUSRounded1c-Bold.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Rounded Mplus 1c Extra Bold";
+    src: local("Rounded Mplus 1c Extra Bold"),
+     url("./fonts/MPLUSRounded1c-ExtraBold.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Rounded Mplus 1c Black";
+    src: local("Rounded Mplus 1c Black"),
+     url("./fonts/MPLUSRounded1c-Black.ttf") format("truetype");
+}

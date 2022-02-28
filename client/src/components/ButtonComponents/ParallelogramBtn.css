@@ -34,7 +34,7 @@
 .parallelogram-card-button .parallelogram-card-name{
     width: 176px;
     height: 88px;
-    font-family: Rounded Mplus 1c;
+    font-family: "Rounded Mplus 1c Extra Bold";
     font-weight: 800;
     font-size: 30px;
     line-height: 45px;
@@ -43,8 +43,12 @@
 }
 .parallelogram-card-button .parallelogram-card-des{
     width: 190px;
-    height: 127px;
+    /* height: 127px; */
     display: none;
+    font-size: 16px;
+    font-family: "Rounded Mplus 1c Regular";
+    text-align: justify;
+    margin: 0px 0px;
 }
 .parallelogram-card-content .parallelogram-card-button:hover .parallelogram-card-name{
     display: flex;
