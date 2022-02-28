@@ -1,0 +1,36 @@
+.method-switch-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.method-switch-content{
+    width: 509px;
+    height: 95px;
+    background-color: white;
+    box-shadow: 4px 0px 4px rgba(0,0,0,0.25);
+    border-radius: 30px 30px 0 0;
+    margin-left: 33px;
+    margin-top: 15px;
+}
+.method-switch-content .method-switch-name{
+    font-family: "Rounded Mplus 1c Extra Bold";
+    color: #B62F05;
+    font-size: 40px;
+    line-height: 60px;
+}
+
+.method-switch-content-active{
+    width: 509px;
+    height: 110px;
+    background-color: #B62F05;
+    box-shadow: 5px 0px 4px rgba(0,0,0,0.4);
+    border-radius: 30px 30px 0 0;
+    margin-left: 33px;
+}
+.method-switch-content-active .method-switch-name-active{
+    font-family: "Rounded Mplus 1c Extra Bold";
+    color:white;
+    font-size: 50px;
+    line-height: 75px;
+}

@@ -1,6 +1,6 @@
 .vision-card-content{
-    width: 400px;
-    height: 450px;
+    width: 420px;
+    height: 380px;
 
 }
 .vision-card-content .vision-card-content-inner{
@@ -15,7 +15,7 @@
 
 }
 .vision-card-content-inner .vision-card-title{
-    width: 124px;
+    width: 180px;
     height: 34px;
     font-family: "Rounded Mplus 1c Regular";
     font-size: 24px;
@@ -30,11 +30,17 @@
     background-color: #FFAB6F;
 }
 .vision-card-content-inner .vision-card-detail{
-    height: 83px;
+    /* height: 83px; */
     font-family: "Rounded Mplus 1c Regular";
     font-size: 16px;
     line-height: 24px;
     color: rgba(0,0,0,0.7);
-    max-lines: 3;
     text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 20px;
+
 }

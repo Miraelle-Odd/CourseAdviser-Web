@@ -1,0 +1,42 @@
+.about-why-layout-content{
+    width: 100%;
+    height: 937px;
+    background-color: white;
+    display: block;
+}
+.about-why-layout-content .about-why-layout-title{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.about-why-layout-title .about-why-layout-line{
+    position: relative;
+    width: 100%;
+    height: 3px;
+    background-color: rgba(0,0,0,0.2);
+    top: 70px;
+}
+.about-why-layout-title .about-why-layout-detail{
+    position: absolute;
+    width: 658px;
+    height: 74px;
+
+    font-family: "Rounded Mplus 1c Extra Bold";
+    font-size: 40px;
+    color: #EE751D;
+    background-color: white;
+    top:38px;
+    margin: 0px auto;
+    text-align: center;
+}
+.about-why-layout-content .about-why-layout-row{  
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: auto;
+    margin-right: auto;
+}
+.row-1{
+    margin-top: 130px;
+}

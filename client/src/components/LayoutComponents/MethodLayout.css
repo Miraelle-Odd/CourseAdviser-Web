@@ -1,0 +1,8 @@
+.method-layout-content .method-layout-switch{
+    display: flex;
+}
+.method-layout-content .method-layout-line{
+    width: 100%;
+    height: 12px;
+    background-color: #B62F05;
+}
