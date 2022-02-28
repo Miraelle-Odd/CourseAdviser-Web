@@ -4,10 +4,10 @@
     width: 374px;
     height: 400px;
 }
-.why-card-rou-main{
+.why-card-rou-content .why-card-rou-main{
     position: relative;
 }
-.why-card-rou-main-img{
+.why-card-rou-main .why-card-rou-main-img{
     position: relative;
     width: 240px;
     height: 240px;
@@ -18,7 +18,7 @@
     right: 0;
     bottom: 0;
 }
-.why-card-side{
+.why-card-rou-main .why-card-side{
     position: absolute;
     width: 100px;
     height: 100px;
@@ -29,7 +29,7 @@
     border-radius: 50%;
     border: 1px solid #FEA25F;
 }
-.why-card-rou-side-img{
+.why-card-side .why-card-rou-side-img{
     position: absolute;
     width: 83px;
     height: 83px;
@@ -40,9 +40,9 @@
 
     border-radius: 50%;
 }
-.why-card-rou-title{
+.why-card-rou-content .why-card-rou-title{
     height: 23px;
-    font-family: Rounded Mplus 1c;
+    font-family: "Rounded Mplus 1c Regular";
     font-weight: 400;
     font-size: 18px;
     line-height: 27px;
@@ -50,13 +50,16 @@
     margin-top: 12px;
     margin-bottom: 0px;
 }
-.why-card-rou-detail{
+.why-card-rou-content .why-card-rou-detail{
+    width: 327px;
     height: 66px;
-    font-family: Rounded Mplus 1c;
+    font-family: "Rounded Mplus 1c Regular";
     font-weight: normal;
     font-size: 14px;
     line-height: 21px;
     color: rgba(0, 0, 0, 0.7);
     margin-top: 8px;
     margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
 }

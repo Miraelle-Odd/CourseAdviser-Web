@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import axios from 'axios'
 import './Home.css'
+import "../../index.css"
 
 import DraftCom from '../../components/DraftComponent/DraftCom'
 import ArchivementCard_Rec from '../../components/CardComponents/ArchivementCard_Rec'
@@ -21,6 +22,7 @@ import FeedbackCard from '../../components/CardComponents/FeedbackCard'
 import VisionCard from '../../components/CardComponents/VisionCard'
 import AppoinmentCard from '../../components/CardComponents/AppoinmentCard'
 import location from "../../assets/icons/location.png"
+
 const Home = props => {
     const [listOfTest, setListOfTest] = useState([])
     useEffect(() => {

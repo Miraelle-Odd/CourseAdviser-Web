@@ -35,7 +35,7 @@
     color: #332396;
     font-size: 34px;
     line-height: 40px;
-    font-family: Roboto;
+    font-family: "Roboto Bold";
 }
 .archivement-card-rou-content .archivement-card-rou-detail{
     height: 60px;
@@ -43,7 +43,7 @@
     color: rgba(0, 0, 0, 0.8);
     font-size: 20px;
     line-height: 23px;
-    font-family: Roboto;
+    font-family: "Roboto Bold";
     margin-top: auto;
     margin-bottom: auto;
 }
