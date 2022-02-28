@@ -1,19 +1,19 @@
 .parallelogram-card-link{
     text-decoration: none;
+    transform: skew(-10deg);
 }
 .parallelogram-card-content{
     display: flex;
-    padding-left: 100px;
+    padding-left: 100px;   
 }
 
 .parallelogram-card-content .parallelogram-card-button{
     width: 236.14px;
     height: 493.16px;
-  
-    transform: skew(-10deg);
 
     color: white;
-
+    cursor: pointer;
+    
     border: none;
     display: flex;
     flex-direction: column;

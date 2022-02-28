@@ -1,7 +1,9 @@
 .learn-btn-link{
     text-decoration: none;
 }
-
+.learn-btn-content{
+    display: flex;
+}
 .learn-btn-content .learn-btn-button{
     width: 303px;
     height: 90px;
@@ -14,6 +16,7 @@
     font-weight: 800;
     font-size: 30px;
     line-height: 45px;
+    cursor: pointer;
 
     display: flex;
     align-items: center;

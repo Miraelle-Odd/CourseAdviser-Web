@@ -2,7 +2,7 @@ import React from 'react'
 import './WhyCard_Rec.css'
 import { Fragment } from 'react/cjs/react.production.min';
 
-export default function WhyCard(props) {
+export default function WhyCard_Rec(props) {
     return (
         <Fragment>
             <div className="why-card-content why-card-center">

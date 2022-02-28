@@ -1,0 +1,32 @@
+.about-archi-layout-center{
+    align-items: center;
+
+}
+.about-archi-layout-content{
+    width: 100%;
+    height: 811px;
+    background-image: url("../../assets/icons/bg-about-archivement.png");
+    background-repeat: no-repeat;
+}
+.about-archi-layout-content .about-archi-layout-title{
+    width: 658px;
+    height: 88px;
+
+    font-family: "Rounded Mplus 1c Extra Bold";
+    font-size: 50px;
+    color: #004E7A;
+    margin: 0 auto;
+    padding: 38px 0;
+}
+.about-archi-layout-content .about-archi-layout-row-1{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.about-archi-layout-content .about-archi-layout-row-2{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 auto;
+}

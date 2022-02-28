@@ -12,7 +12,6 @@ import ParallelogramBtn from '../../components/ButtonComponents/ParallelogramBtn
 import ielts_img from '../../assets/icons/course_ielts.png'
 import calendar from '../../assets/icons/calendar-check.png'
 import WhyCard_Rec from '../../components/CardComponents/WhyCard_Rec'
-import graduation_cap from '../../assets/icons/graduation-cap.png'
 import FacilityCard_Img from '../../components/CardComponents/FacilityCard_Img'
 import ArchivementCard_Rou from '../../components/CardComponents/ArchivementCard_Rou'
 import about_toeic from "../../assets/icons/about-TOEIC.png"
@@ -22,6 +21,16 @@ import FeedbackCard from '../../components/CardComponents/FeedbackCard'
 import VisionCard from '../../components/CardComponents/VisionCard'
 import AppoinmentCard from '../../components/CardComponents/AppoinmentCard'
 import location from "../../assets/icons/location.png"
+import LocationLayout from '../../components/LayoutComponents/LocationLayout'
+import MethodSwitch from '../../components/SwitchComponents/MethodSwitch'
+import MethodLayout from '../../components/LayoutComponents/MethodLayout'
+import AboutArchiLayout from '../../components/LayoutComponents/AboutArchiLayout'
+import AboutWhyLayout from '../../components/LayoutComponents/AboutWhyLayout'
+import AboutFeedbackLayout from '../../components/LayoutComponents/AboutFeedbackLayout'
+import AboutVisonLayout from '../../components/LayoutComponents/AboutVisionLayout'
+import HomeWhyLayout from '../../components/LayoutComponents/HomeWhyLayout'
+
+
 
 const Home = props => {
     const [listOfTest, setListOfTest] = useState([])
@@ -50,43 +59,29 @@ const Home = props => {
                 name="Luyện thi IELTS"
                 des="test test test. Course luyen thi IELTS, test hover, test length text. Khoong biet vieets cai vao day het tron, lam sao de no dai ra day nhi, da da da da da daayyy gau gau bruh bruh meow">
             </ParallelogramBtn>
-            <WhyCard_Rec
-                icon={graduation_cap}
-                title="Cam kết chất lượng đầu ra"
-                content="Học viên được phép học lại khóa học miễn phí nếu không đạt chuẩn đầu ra theo cam kết từ hợp đồng đào tạo của trung tâm">
-            </WhyCard_Rec>
+
+            <HomeWhyLayout> </HomeWhyLayout>
+            
             <FacilityCard_Img
             // type: small | large-hor | large-ver
                 img={TKB_HK2}
                 type="small">        
             </FacilityCard_Img>
-            <ArchivementCard_Rou
-                icon={about_toeic}
-                title="119/120"
-                content="Giáo viên Việt Nam và bản xứ giàu kinh nghiệm">
-            </ArchivementCard_Rou>
-            <WhyCard_Rou
-                main_img={ielts_img}
-                side_img={TKB_HK2}
-                title="Personalized Study Routes"
-                content="Chuyên gia ngôn ngữ tư vấn trực tiếp, phân tích kỹ lưỡng và đưa ra lộ trình học tập phù hợp với từng cá nhân"
-            ></WhyCard_Rou>
-            <FeedbackCard
-                img={TKB_HK2}
-                name="Student's Name"
-                place="- Workplace/School"
-                text="`I love this center so much that I can learn English at any other ones, I dont't wanna get graduated and just have to stay hear forever. Mual Mual`">
-            </FeedbackCard>
-            <VisionCard
-                img={TKB_HK2}
-                title="Tầm nhìn"
-                content="This is Vision. bla bla max 3 lines fakjsbadbámnd đaina,dam">
-            </VisionCard>
+
+            <AboutVisonLayout></AboutVisonLayout>
+
+            <AboutArchiLayout> </AboutArchiLayout>
+
+            <AboutWhyLayout> </AboutWhyLayout>
+
+            <AboutFeedbackLayout> </AboutFeedbackLayout>
             <AppoinmentCard
                 icon={location}
                 content1= "CN1: XX Đường Đường Đường, phường A, quận BB, TP. HHH"
                 content2= "CN2: XX Đường Đường Đường, phường A, quận BB, TP. HHH">
             </AppoinmentCard>
+            <LocationLayout></LocationLayout>
+            <MethodLayout></MethodLayout>
             <h2>Dưới đây là test get từ db</h2>
             {
                 listOfTest.map((value, key) => {

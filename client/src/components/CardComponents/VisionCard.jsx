@@ -10,7 +10,7 @@ export default function VisionCard(props) {
                 <div className="vision-card-content-inner">
                     <p className="vision-card-title">{props.title}</p>
                     <div className='vision-card-line'></div> 
-                    <p className="vision-card-detail">{props.content}</p>
+                    <div className="vision-card-detail">{props.content}</div>
                 </div>
             </div>
         </Fragment>
