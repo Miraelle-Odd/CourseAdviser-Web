@@ -1,10 +1,11 @@
 import React from 'react'
 import './HomeWhyLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
-import person from "../../assets/icons/street-view.png"
-import group from "../../assets/icons/users.png"
-import graduation_cap from '../../assets/icons/graduation-cap.png'
-import WhyCard_Rec from '../CardComponents/WhyCard_Rec';
+import person from "../../../assets/icons/street-view.png"
+import group from "../../../assets/icons/users.png"
+import graduation_cap from '../../../assets/icons/graduation-cap.png'
+import WhyCard_Rec from '../../CardComponents/HomePage/WhyCard_Rec';
+
 
 export default function HomeWhyLayout() {
     return (

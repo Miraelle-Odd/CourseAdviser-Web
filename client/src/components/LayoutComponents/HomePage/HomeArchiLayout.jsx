@@ -1,10 +1,11 @@
 import React from 'react'
 import './HomeArchiLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
-import ArchivementCard_Rec from '../CardComponents/ArchivementCard_Rec';
-import piggy from '../../assets/icons/home-piggy-bank.png'
-import trophy from "../../assets/icons/home-trophy.png"
-import cap from "../../assets/icons/home-graduation-cap.png"
+
+import piggy from '../../../assets/icons/home-piggy-bank.png'
+import trophy from "../../../assets/icons/home-trophy.png"
+import cap from "../../../assets/icons/home-graduation-cap.png"
+import ArchivementCard_Rec from '../../CardComponents/HomePage/ArchivementCard_Rec';
 
 export default function HomeArchiLayout(props) {
     return (

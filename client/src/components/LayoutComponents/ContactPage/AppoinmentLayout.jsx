@@ -1,10 +1,10 @@
 import React from 'react'
 import './AppoinmentLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
-import location from "../../assets/icons/location.png"
-import AppoinmentCard from '../CardComponents/AppoinmentCard';
-import phone from "../../assets/icons/phone.png";
-import mail from "../../assets/icons/envelope-open-text.png"
+import location from "../../../assets/icons/location.png"
+import phone from "../../../assets/icons/phone.png";
+import mail from "../../../assets/icons/envelope-open-text.png"
+import AppoinmentCard from '../../CardComponents/ContactPage/AppoinmentCard';
 
 
 export default function AppoinmentLayout() {

@@ -4,33 +4,24 @@ import './Home.css'
 import "../../index.css"
 
 import DraftCom from '../../components/DraftComponent/DraftCom'
-import ArchivementCard_Rec from '../../components/CardComponents/ArchivementCard_Rec'
-
+import HomeIntroLayout from '../../components/LayoutComponents/HomePage/HomeIntroLayout'
 import LearnBtn from '../../components/ButtonComponents/LearnBtn'
 import FloatBtn from '../../components/ButtonComponents/FloatBtn'
-import ParallelogramBtn from '../../components/ButtonComponents/ParallelogramBtn'
-import ielts_img from '../../assets/icons/course_ielts.png'
-import calendar from '../../assets/icons/calendar-check.png'
-import WhyCard_Rec from '../../components/CardComponents/WhyCard_Rec'
-import FacilityCard_Img from '../../components/CardComponents/FacilityCard_Img'
-import ArchivementCard_Rou from '../../components/CardComponents/ArchivementCard_Rou'
-import about_toeic from "../../assets/icons/about-TOEIC.png"
-import TKB_HK2 from "../../assets/icons/TKB_HK2.PNG"
-import WhyCard_Rou from '../../components/CardComponents/WhyCard_Rou'
-import FeedbackCard from '../../components/CardComponents/FeedbackCard'
-import VisionCard from '../../components/CardComponents/VisionCard'
-import AppoinmentCard from '../../components/CardComponents/AppoinmentCard'
+import ParallelogramBtn from '../../components/ButtonComponents/HomePage/ParallelogramBtn'
+import HomeWhyLayout from '../../components/LayoutComponents/HomePage/HomeWhyLayout'
+import FacilityCard_Img from '../../components/CardComponents/AboutPage/FacilityCard_Img'
+import AboutVisonLayout from '../../components/LayoutComponents/AboutPage/AboutVisionLayout'
+import AboutArchiLayout from '../../components/LayoutComponents/AboutPage/AboutArchiLayout'
+import AboutWhyLayout from '../../components/LayoutComponents/AboutPage/AboutWhyLayout'
+import AboutFeedbackLayout from '../../components/LayoutComponents/AboutPage/AboutFeedbackLayout'
+import AppoinmentLayout from '../../components/LayoutComponents/ContactPage/AppoinmentLayout'
+import LocationLayout from '../../components/LayoutComponents/AboutPage/LocationLayout'
+import MethodLayout from '../../components/LayoutComponents/AboutPage/MethodLayout'
 
-import LocationLayout from '../../components/LayoutComponents/LocationLayout'
-import MethodSwitch from '../../components/SwitchComponents/MethodSwitch'
-import MethodLayout from '../../components/LayoutComponents/MethodLayout'
-import AboutArchiLayout from '../../components/LayoutComponents/AboutArchiLayout'
-import AboutWhyLayout from '../../components/LayoutComponents/AboutWhyLayout'
-import AboutFeedbackLayout from '../../components/LayoutComponents/AboutFeedbackLayout'
-import AboutVisonLayout from '../../components/LayoutComponents/AboutVisionLayout'
-import HomeWhyLayout from '../../components/LayoutComponents/HomeWhyLayout'
-import AppoinmentLayout from '../../components/LayoutComponents/AppoinmentLayout'
-import HomeArchiLayout from '../../components/LayoutComponents/HomeArchiLayout'
+import calendar from '../../assets/icons/calendar-check.png'
+import ielts_img from '../../assets/icons/course_ielts.png'
+import TKB_HK2 from '../../assets/icons/TKB_HK2.PNG'
+
 
 
 
@@ -45,7 +36,7 @@ const Home = props => {
         <div className='home'>
             <div>Đây là Homepage</div>
 
-            <HomeArchiLayout></HomeArchiLayout>
+            <HomeIntroLayout> </HomeIntroLayout>
             <LearnBtn
                 name="Learn more">
             </LearnBtn>

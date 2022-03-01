@@ -2,8 +2,8 @@ import React from 'react'
 import './LocationLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { useState } from 'react';
+import LocationSwitch from '../../SwitchComponents/AboutPage/LocationSwitch';
 
-import LocationSwitch from '../SwitchComponents/LocationSwitch.jsx';
 
 export default function LocationLayout() {
 

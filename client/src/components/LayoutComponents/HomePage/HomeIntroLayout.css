@@ -1,0 +1,19 @@
+.home-intro-layout-content{
+    width: 100%;
+    height: 800px;
+    background-color: #FAEEDF;
+}
+
+.home-intro-layout-background{
+    width: 100%;
+    height: 640px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 0px 300px;
+    background-image: url("../../../assets/icons/bg-home-intro.png");
+}
+.home-intro-layout-archi{
+    margin-top: -81px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}

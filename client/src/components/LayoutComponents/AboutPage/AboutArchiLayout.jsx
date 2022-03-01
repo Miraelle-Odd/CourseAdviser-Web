@@ -2,12 +2,13 @@ import React from 'react'
 import './AboutArchiLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { useState } from 'react';
-import ArchivementCard_Rou from '../CardComponents/ArchivementCard_Rou';
-import about_user from '../../assets/icons/about-users.png';
-import about_cap from '../../assets/icons/about-graduation-cap.png';
-import about_piggy from '../../assets/icons/about-piggy-bank.png';
-import about_ielts from '../../assets/icons/about-IELTS.png';
-import about_toeic from '../../assets/icons/about-TOEIC.png';
+
+import about_user from '../../../assets/icons/about-users.png';
+import about_cap from '../../../assets/icons/about-graduation-cap.png';
+import about_piggy from '../../../assets/icons/about-piggy-bank.png';
+import about_ielts from '../../../assets/icons/about-IELTS.png';
+import about_toeic from '../../../assets/icons/about-TOEIC.png';
+import ArchivementCard_Rou from '../../CardComponents/AboutPage/ArchivementCard_Rou';
 
 export default function AboutArchiLayout() {
     return (

@@ -1,8 +1,9 @@
 import React from 'react'
 import './AboutVisionLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
-import TKB_HK2 from "../../assets/icons/TKB_HK2.PNG"
-import VisionCard from '../CardComponents/VisionCard';
+import TKB_HK2 from "../../../assets/icons/TKB_HK2.PNG"
+import VisionCard from '../../CardComponents/AboutPage/VisionCard';
+
 
 export default function AboutVisonLayout() {
     return (
