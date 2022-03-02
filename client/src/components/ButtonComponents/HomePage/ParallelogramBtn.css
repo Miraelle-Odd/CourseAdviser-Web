@@ -3,8 +3,9 @@
     transform: skew(-10deg);
 }
 .parallelogram-card-content{
-    display: flex;
-    padding-left: 100px;   
+    display: flex; 
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .parallelogram-card-content .parallelogram-card-button{

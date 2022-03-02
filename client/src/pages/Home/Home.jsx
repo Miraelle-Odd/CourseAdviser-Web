@@ -10,7 +10,7 @@ import FloatBtn from '../../components/ButtonComponents/FloatBtn'
 import ParallelogramBtn from '../../components/ButtonComponents/HomePage/ParallelogramBtn'
 import HomeWhyLayout from '../../components/LayoutComponents/HomePage/HomeWhyLayout'
 import FacilityCard_Img from '../../components/CardComponents/AboutPage/FacilityCard_Img'
-import AboutVisonLayout from '../../components/LayoutComponents/AboutPage/AboutVisionLayout'
+import AboutVisionLayout from '../../components/LayoutComponents/AboutPage/AboutVisionLayout'
 import AboutArchiLayout from '../../components/LayoutComponents/AboutPage/AboutArchiLayout'
 import AboutWhyLayout from '../../components/LayoutComponents/AboutPage/AboutWhyLayout'
 import AboutFeedbackLayout from '../../components/LayoutComponents/AboutPage/AboutFeedbackLayout'
@@ -21,6 +21,9 @@ import MethodLayout from '../../components/LayoutComponents/AboutPage/MethodLayo
 import calendar from '../../assets/icons/calendar-check.png'
 import ielts_img from '../../assets/icons/course_ielts.png'
 import TKB_HK2 from '../../assets/icons/TKB_HK2.PNG'
+import HomeCourseLayout from '../../components/LayoutComponents/HomePage/HomeCourseLayout'
+import Footer from '../../components/LayoutComponents/Footer/Footer'
+import AboutCenterLayout from '../../components/LayoutComponents/AboutPage/AboutCenterLayout'
 
 
 
@@ -35,8 +38,6 @@ const Home = props => {
     return (
         <div className='home'>
             <div>Đây là Homepage</div>
-
-            <HomeIntroLayout> </HomeIntroLayout>
             <LearnBtn
                 name="Learn more">
             </LearnBtn>
@@ -44,21 +45,20 @@ const Home = props => {
                 icon={calendar}
                 name={"Đặt lịch tư vấn"}>
             </FloatBtn>
-            <ParallelogramBtn
-                img={ielts_img}
-                name="Luyện thi IELTS"
-                des="test test test. Course luyen thi IELTS, test hover, test length text. Khoong biet vieets cai vao day het tron, lam sao de no dai ra day nhi, da da da da da daayyy gau gau bruh bruh meow">
-            </ParallelogramBtn>
+            <HomeIntroLayout> </HomeIntroLayout>
+
+            <HomeCourseLayout> </HomeCourseLayout>
 
             <HomeWhyLayout> </HomeWhyLayout>
 
-            <FacilityCard_Img
-                // type: small | large-hor | large-ver
-                img={TKB_HK2}
-                type="small">
-            </FacilityCard_Img>
+            <AppoinmentLayout> </AppoinmentLayout>
 
-            <AboutVisonLayout> </AboutVisonLayout>
+            <Footer> </Footer>
+
+
+            <AboutVisionLayout> </AboutVisionLayout>
+
+            <AboutCenterLayout> </AboutCenterLayout>
 
             <AboutArchiLayout> </AboutArchiLayout>
 
@@ -66,7 +66,7 @@ const Home = props => {
 
             <AboutFeedbackLayout> </AboutFeedbackLayout>
 
-            <AppoinmentLayout> </AppoinmentLayout>
+            
 
             <LocationLayout> </LocationLayout>
 
