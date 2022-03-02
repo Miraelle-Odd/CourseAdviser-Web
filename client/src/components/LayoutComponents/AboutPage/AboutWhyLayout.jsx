@@ -2,9 +2,10 @@ import React from 'react'
 import './AboutWhyLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { useState } from 'react';
-import WhyCard_Rou from '../CardComponents/WhyCard_Rou';
-import ielts_img from '../../assets/icons/course_ielts.png'
-import TKB_HK2 from "../../assets/icons/TKB_HK2.PNG"
+
+import ielts_img from '../../../assets/icons/course_ielts.png'
+import TKB_HK2 from "../../../assets/icons/TKB_HK2.PNG"
+import WhyCard_Rou from '../../CardComponents/AboutPage/WhyCard_Rou';
 
 export default function AboutWhyLayout() {
     return (

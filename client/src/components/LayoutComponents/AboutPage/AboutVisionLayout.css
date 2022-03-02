@@ -10,4 +10,6 @@
 }
 .about-vision-layout-content .about-vision-layout-row {
     display: flex;
+    width: 100%;
+    justify-content: center;
 }

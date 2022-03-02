@@ -1,5 +1,5 @@
 .home-why-layout-content{
-
+    padding-bottom: 50px;
 }
 .home-why-layout-content .home-why-layout-title{
     position: relative;
@@ -29,6 +29,6 @@
 }
 .home-why-layout-content .home-why-layout-row{
     display: flex;
-    margin-top: 80px;
+    margin-top: 100px;
     justify-content: center;
 }

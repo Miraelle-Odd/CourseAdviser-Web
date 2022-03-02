@@ -1,9 +1,9 @@
 import React from 'react'
 import './LocationSwitch.css'
 import { Fragment } from 'react/cjs/react.production.min';
-import { useState } from 'react';
-import caret_right from "../../assets/icons/caret-right.png"
-import pause from "../../assets/icons/pause.png"
+
+import caret_right from "../../../assets/icons/caret-right.png"
+import pause from "../../../assets/icons/pause.png"
 
 export default function LocationSwitch(props) {
     return (

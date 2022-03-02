@@ -3,7 +3,7 @@ import './MethodLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { useState } from 'react';
 
-import MethodSwitch from '../SwitchComponents/MethodSwitch';
+import MethodSwitch from '../../SwitchComponents/AboutPage/MethodSwitch';
 
 export default function MethodLayout() {
 

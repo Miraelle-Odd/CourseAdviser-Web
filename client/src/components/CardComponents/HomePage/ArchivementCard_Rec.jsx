@@ -2,7 +2,7 @@ import React from 'react'
 import './ArchivementCard_Rec.css'
 import { Fragment } from 'react/cjs/react.production.min';
 
-export default function ArchivementCard(props) {
+export default function ArchivementCard_Rec(props) {
     return (
         <Fragment>
             <div className="archivement-card-rec-content">

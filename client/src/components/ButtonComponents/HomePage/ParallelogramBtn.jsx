@@ -4,7 +4,7 @@ import { Fragment } from 'react/cjs/react.production.min';
 import { useState } from 'react';
 import {Link} from 'react-router-dom';
 
-export default function ParallelogramCard(props) {
+export default function ParallelogramBtn(props) {
     return (
         <Fragment>
             <div className="parallelogram-card-content">

@@ -1,8 +1,9 @@
 import React from 'react'
 import './AboutFeedbackLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
-import TKB_HK2 from "../../assets/icons/TKB_HK2.PNG"
-import FeedbackCard from '../CardComponents/FeedbackCard';
+import TKB_HK2 from "../../../assets/icons/TKB_HK2.PNG"
+import FeedbackCard from '../../CardComponents/AboutPage/FeedbackCard';
+
 
 export default function AboutFeedbackLayout() {
     return (
