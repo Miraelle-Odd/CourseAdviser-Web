@@ -2,7 +2,10 @@ import React from 'react'
 import './HomeCourseLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import ParallelogramBtn from '../../ButtonComponents/HomePage/ParallelogramBtn';
-import ielts_img from '../../../assets/icons/course_ielts.png'
+import ielts_img from '../../../assets/icons/course-ielts.png'
+import toeic_img from '../../../assets/icons/course-toeic.png'
+import aldut_img from '../../../assets/icons/course-aldut.png'
+import kid_img from '../../../assets/icons/course-kid.png'
 import book from '../../../assets/icons/home-course-book.png'
 import tea from '../../../assets/icons/home-course-tea.png'
 import glass from '../../../assets/icons/home-course-glass.png'
@@ -37,18 +40,18 @@ export default function HomeCourseLayout(props) {
                             des="test test test. Course luyen thi IELTS, test hover, test length text. Khoong biet vieets cai vao day het tron, lam sao de no dai ra day nhi, da da da da da daayyy gau gau bruh bruh meow">
                         </ParallelogramBtn>
                         <ParallelogramBtn
-                            img={ielts_img}
-                            name="Luyện thi IELTS"
+                            img={toeic_img}
+                            name="Luyện thi TOEIC"
                             des="test test test. Course luyen thi IELTS, test hover, test length text. Khoong biet vieets cai vao day het tron, lam sao de no dai ra day nhi, da da da da da daayyy gau gau bruh bruh meow">
                         </ParallelogramBtn>
                         <ParallelogramBtn
-                            img={ielts_img}
-                            name="Luyện thi IELTS"
+                            img={aldut_img}
+                            name="Tiếng anh cho người đi làm"
                             des="test test test. Course luyen thi IELTS, test hover, test length text. Khoong biet vieets cai vao day het tron, lam sao de no dai ra day nhi, da da da da da daayyy gau gau bruh bruh meow">
                         </ParallelogramBtn>
                         <ParallelogramBtn
-                            img={ielts_img}
-                            name="Luyện thi IELTS"
+                            img={kid_img}
+                            name="Tiếng anh cho bé"
                             des="test test test. Course luyen thi IELTS, test hover, test length text. Khoong biet vieets cai vao day het tron, lam sao de no dai ra day nhi, da da da da da daayyy gau gau bruh bruh meow">
                         </ParallelogramBtn>
                     </div>

@@ -19,13 +19,18 @@ import LocationLayout from '../../components/LayoutComponents/AboutPage/Location
 import MethodLayout from '../../components/LayoutComponents/AboutPage/MethodLayout'
 
 import calendar from '../../assets/icons/calendar-check.png'
-import ielts_img from '../../assets/icons/course_ielts.png'
+import ielts_img from '../../assets/icons/course-ielts.png'
 import TKB_HK2 from '../../assets/icons/TKB_HK2.PNG'
 import HomeCourseLayout from '../../components/LayoutComponents/HomePage/HomeCourseLayout'
 import Footer from '../../components/LayoutComponents/Footer/Footer'
 import AboutCenterLayout from '../../components/LayoutComponents/AboutPage/AboutCenterLayout'
+import AboutIntroLayout from '../../components/LayoutComponents/AboutPage/AboutIntroLayout'
+import StaffCard from '../../components/CardComponents/StaffPage/StaffCard'
 
-
+import paimon from '../../assets/icons/staff-img.png'
+import StaffManagerLayout from '../../components/LayoutComponents/StaffPage/StaffManagerLayout'
+import StaffEmployeeLayout from '../../components/LayoutComponents/StaffPage/StaffEmployeeLayout'
+import StaffTeacherLayout from '../../components/LayoutComponents/StaffPage/StaffTeacherLayout'
 
 
 const Home = props => {
@@ -38,13 +43,6 @@ const Home = props => {
     return (
         <div className='home'>
             <div>Đây là Homepage</div>
-            <LearnBtn
-                name="Learn more">
-            </LearnBtn>
-            <FloatBtn
-                icon={calendar}
-                name={"Đặt lịch tư vấn"}>
-            </FloatBtn>
             <HomeIntroLayout> </HomeIntroLayout>
 
             <HomeCourseLayout> </HomeCourseLayout>
@@ -55,8 +53,11 @@ const Home = props => {
 
             <Footer> </Footer>
 
-
+            <AboutIntroLayout> </AboutIntroLayout>
+            
             <AboutVisionLayout> </AboutVisionLayout>
+            
+            <MethodLayout> </MethodLayout>
 
             <AboutCenterLayout> </AboutCenterLayout>
 
@@ -66,12 +67,19 @@ const Home = props => {
 
             <AboutFeedbackLayout> </AboutFeedbackLayout>
 
-            
+            <StaffManagerLayout> </StaffManagerLayout>
 
-            <LocationLayout> </LocationLayout>
+            <StaffEmployeeLayout> </StaffEmployeeLayout>
 
-            <MethodLayout> </MethodLayout>
+            <StaffTeacherLayout> </StaffTeacherLayout>
 
+            <LearnBtn
+                name="Learn more">
+            </LearnBtn>
+            <FloatBtn
+                icon={calendar}
+                name={"Đặt lịch tư vấn"}>
+            </FloatBtn>
             <h2>Dưới đây là test get từ db</h2>
             {
                 listOfTest.map((value, key) => {

@@ -3,7 +3,7 @@ import './AboutWhyLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { useState } from 'react';
 
-import ielts_img from '../../../assets/icons/course_ielts.png'
+import ielts_img from '../../../assets/icons/course-ielts.png'
 import TKB_HK2 from "../../../assets/icons/TKB_HK2.PNG"
 import WhyCard_Rou from '../../CardComponents/AboutPage/WhyCard_Rou';
 
