@@ -31,6 +31,10 @@ import paimon from '../../assets/icons/staff-img.png'
 import StaffManagerLayout from '../../components/LayoutComponents/StaffPage/StaffManagerLayout'
 import StaffEmployeeLayout from '../../components/LayoutComponents/StaffPage/StaffEmployeeLayout'
 import StaffTeacherLayout from '../../components/LayoutComponents/StaffPage/StaffTeacherLayout'
+import PostCard from '../../components/CardComponents/PostPage/PostCard'
+import PostSpecialLayout from '../../components/LayoutComponents/PostPage/PostSpecialLayout'
+import PostCourseBtn from '../../components/ButtonComponents/PostPage/PostCourseBtn'
+import PostSliderLayout from '../../components/LayoutComponents/PostPage/PostSliderLayout'
 
 
 const Home = props => {
@@ -67,11 +71,44 @@ const Home = props => {
 
             <AboutFeedbackLayout> </AboutFeedbackLayout>
 
+            <Footer> </Footer>
+
             <StaffManagerLayout> </StaffManagerLayout>
 
             <StaffEmployeeLayout> </StaffEmployeeLayout>
 
             <StaffTeacherLayout> </StaffTeacherLayout>
+
+            <Footer> </Footer>
+            
+            <PostSliderLayout> </PostSliderLayout>
+            <PostSpecialLayout
+            type="post">
+            </PostSpecialLayout>
+            <PostSpecialLayout
+            type="event">
+            </PostSpecialLayout>
+            <PostSpecialLayout
+            type="post">
+            </PostSpecialLayout>
+
+            <Footer> </Footer>
+
+            <PostCourseBtn
+            img={TKB_HK2}
+            title="Title of Post"
+            content="Description Description aa aaaa aaa aaaaa aa aaaa aaaa aaa aaaa aa aaaaaa aaaa aaaaaaa aaaaaaaa aaaa aaa aaaaa aaaaa a aaaa aaa aa aaaa aa aaa vvv vvv vvvv vvvvv vvvvv vv vvvvvv vvv vvv vvv vvvv vvvvvv vvv vvmm mm mm mmmm mmm m mm mmmm m mmm mmm mmm mmmmm mmmm mmmm mm mmmmm mmmm mmmm mmm mm mmm mmm mm mmmmm mmm mmmm mmmmv vvvv vvvvaa aaa aass ss saa Description Description Description Description Description Description aaaa"
+            datetime="Upload Time"
+            author="Author's Name">
+            </PostCourseBtn>
+            <PostCourseBtn
+            img={TKB_HK2}
+            title="Title of Post"
+            content="Description Description aa aaaa aaa aaaaa aa aaaa aaaa aaa aaaa aa aaaaaa aaaa aaaaaaa aaaaaaaa aaaa aaa aaaaa aaaaa a aaaa aaa aa aaaa aa aaa vvv vvv vvvv vvvvv vvvvv vv vvvvvv vvv vvv vvv vvvv vvvvvv vvv vvmm mm mm mmmm mmm m mm mmmm m mmm mmm mmm mmmmm mmmm mmmm mm mmmmm mmmm mmmm mmm mm mmm mmm mm mmmmm mmm mmmm mmmmv vvvv vvvvaa aaa aass ss saa Description Description Description Description Description Description aaaa"
+            datetime="Upload Time"
+            author="Author's Name"
+            typeblue={true}>
+            </PostCourseBtn>
 
             <LearnBtn
                 name="Learn more">

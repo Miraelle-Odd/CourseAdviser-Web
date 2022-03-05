@@ -1,0 +1,28 @@
+.post-slider-content{
+    width: 100%;
+    height: 600px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-image: url('../../../assets/icons/post-bg-slider.png');
+}
+.post-slider-content .post-slider{
+    width:80%;
+    height: 600px;
+    
+    z-index: 10;
+    background: #C0C0C0;
+}
+.post-slider-content .post-slider-bg{
+    width:100%;
+    height: 600px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 10.69%, rgba(0, 0, 0, 0.1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.post-slider-bg .no-fit{
+    object-fit: none;
+}
