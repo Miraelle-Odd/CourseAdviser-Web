@@ -65,3 +65,6 @@
     src: local("Rounded Mplus 1c Black"),
      url("./fonts/MPLUSRounded1c-Black.ttf") format("truetype");
 }
+body{
+    margin: 0px 0px;
+}

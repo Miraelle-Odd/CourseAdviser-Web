@@ -32,7 +32,7 @@
     margin-left: 0px;
     margin-right: 70px;
 }
-.post-special-info .post-special-title{
+.post-special-title{
     width: 362px;
     height: 54px;
     
@@ -59,6 +59,9 @@
     margin: 10px 0px 20px 0;
     color: #000000;
 }
+.post-special-info .post-special-link{
+    text-decoration:none;
+}
 .post-special-info .post-special-seeall{
     display: flex;
     margin-left: 20px;
@@ -77,6 +80,6 @@
     margin: auto 0px auto 15px;
     color: #EE751D;
 }
-.blue-context{
+.post-special-seeall .blue-context{
     color: #0191FA;
 }

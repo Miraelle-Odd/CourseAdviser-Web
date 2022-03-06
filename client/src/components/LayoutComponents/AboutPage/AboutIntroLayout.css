@@ -30,11 +30,12 @@
 .about-intro-content .about-intro-img{
     position: absolute;
     top: 20px;
+    right: 12%;
     background: linear-gradient(to top, rgba(255,255,255,0) 80%, rgba(255, 255, 255,1) 80%);
 }
 .about-intro-content .about-intro-detail{
     position: absolute;
-    width: 1045px;
+    width: 70%;
     height: 360px;
     left: 169px;
     top: 135px;
