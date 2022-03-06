@@ -3,8 +3,9 @@ import './StaffTeacherLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import paimon from '../../../assets/icons/staff-img.png'
 import StaffCard from '../../CardComponents/StaffPage/StaffCard';
+import StaffCardLayout from './StaffCardLayout';
 
-export default function StaffTeacherLayout() {
+export default function StaffTeacherLayout(props) {
     return (
         <Fragment>
             <div className="staff-teacher-content">
@@ -12,60 +13,13 @@ export default function StaffTeacherLayout() {
                     <p className='staff-teacher-title staff-teacher-center'>Đội ngũ giảng dạy uyên bác</p>
                 </div>
                 <div className='staff-teacher-border staff-teacher-center'>
-                    <div className='staff-teacher-card'>
-                        <StaffCard
-                            img={paimon}
-                            title="EMERGENCY FOOD"
-                            subtitle="- IELTS reading 9.0 -"
-                            content={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !`}
-                            more={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !
-blahblah balh dád đá dfd fdf
-blahasldgfg gfgfgg vcvcvcvcv vvv
-dádasdsdsdsdadsdasdsdad đasdasdsdsd
-đasadasdadasdsdas`}
-                        > </StaffCard>
-                        <StaffCard
-                            img={paimon}
-                            title="EMERGENCY FOOD"
-                            subtitle="- IELTS reading 9.0 -"
-                            content={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !`}
-                            more={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !
-blahblah balh dád đá dfd fdf
-blahasldgfg gfgfgg vcvcvcvcv vvv
-dádasdsdsdsdadsdasdsdad đasdasdsdsd
-đasadasdadasdsdas`}
-                        > </StaffCard>
-                        <StaffCard
-                            img={paimon}
-                            title="EMERGENCY FOOD"
-                            subtitle="- IELTS reading 9.0 -"
-                            content={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !`}
-                            more={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !
-blahblah balh dád đá dfd fdf
-blahasldgfg gfgfgg vcvcvcvcv vvv
-dádasdsdsdsdadsdasdsdad đasdasdsdsd
-đasadasdadasdsdas`}
-                        > </StaffCard>
-                        <StaffCard
-                            img={paimon}
-                            title="EMERGENCY FOOD"
-                            subtitle="- IELTS reading 9.0 -"
-                            content={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !`}
-                            more={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !
-blahblah balh dád đá dfd fdf
-blahasldgfg gfgfgg vcvcvcvcv vvv
-dádasdsdsdsdadsdasdsdad đasdasdsdsd
-đasadasdadasdsdas`}
-                        > </StaffCard>
-                    </div>
+                    <StaffCardLayout
+                        img={props.img}
+                        title={props.title}
+                        subtitle={props.subtitle}
+                        content={props.content}
+                        more={props.more}>
+                    </StaffCardLayout>
                     <div className='staff-teacher-indi'></div>
                 </div>
             </div>

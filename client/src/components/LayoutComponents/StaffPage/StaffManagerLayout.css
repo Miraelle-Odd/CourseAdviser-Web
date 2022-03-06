@@ -40,14 +40,12 @@
     height: 470px;
     background-image: url("../../../assets/icons/staff-bg-2.png");
 }
-.staff-manager-content .staff-manager-card{
-    width: 80%;
+
+.staff-manager-card-layout{
+    margin-top: 50px;
+    position: absolute;
+    width: 100%;
     height: 420px;
     display: flex;
-    position: absolute;
-    justify-content: space-evenly;
-    border: 1px dashed #EE751D;
-    border-radius: 5px;
-    padding: 20px 5px;
-    margin-top: 50px;
+    justify-content: center;
 }

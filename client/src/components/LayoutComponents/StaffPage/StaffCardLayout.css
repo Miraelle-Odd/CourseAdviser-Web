@@ -1,0 +1,11 @@
+.staff-card-layout{
+    width: 80%;
+    height: 420px;
+    display: flex;
+    position: absolute;
+    justify-content: space-evenly;
+    border: 1px dashed #EE751D;
+    border-radius: 5px;
+    padding: 20px 5px;
+    /* margin-top: 50px; */
+}

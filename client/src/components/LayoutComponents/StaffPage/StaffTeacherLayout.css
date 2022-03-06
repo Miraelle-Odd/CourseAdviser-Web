@@ -34,17 +34,7 @@
     display: flex;
     flex-direction: column;
 }
-.staff-teacher-card{
-    width: 80%;
-    height: 420px;
-    display: flex;
 
-    justify-content: space-evenly;
-    border: 1px dashed #EE751D;
-    border-radius: 5px;
-    padding: 20px 5px;
-    /* margin-top: 50px; */
-}
 .staff-teacher-indi{
     width: 328px;
     height: 38px;
