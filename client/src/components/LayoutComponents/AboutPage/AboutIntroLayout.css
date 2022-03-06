@@ -1,0 +1,61 @@
+.about-intro-content{
+    width: 100%;
+    height: 600px;
+    position: relative;
+}
+.about-intro-content .about-intro-line{
+    width: 100%;
+    height: 12px;
+    background: #D15C06;
+    position: absolute;
+    top: 90px;
+}
+.about-intro-content .about-intro-title{
+    position: absolute;
+    width: 357px;
+    height: 89px;
+    top: 30px;
+    left: 170px;
+
+    font-family: "Rounded Mplus 1c Extra Bold";
+    font-size: 60px;
+    line-height: 89px;
+    text-align: center;
+    background: white;
+
+    margin: 0 0;
+    color: #000000;
+
+}
+.about-intro-content .about-intro-img{
+    position: absolute;
+    top: 20px;
+    right: 12%;
+    background: linear-gradient(to top, rgba(255,255,255,0) 80%, rgba(255, 255, 255,1) 80%);
+}
+.about-intro-content .about-intro-detail{
+    position: absolute;
+    width: 70%;
+    height: 360px;
+    left: 169px;
+    top: 135px;
+
+    background: #FFAB6F;
+    border-radius: 50px 180px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.about-intro-detail .about-intro-text{
+    width: 650px;
+    height: 298.19px;
+
+    font-family: "Rounded Mplus 1c Extra Bold";
+    font-size: 18px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0;
+    color: #FFFFFF;
+}

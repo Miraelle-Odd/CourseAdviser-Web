@@ -19,13 +19,22 @@ import LocationLayout from '../../components/LayoutComponents/AboutPage/Location
 import MethodLayout from '../../components/LayoutComponents/AboutPage/MethodLayout'
 
 import calendar from '../../assets/icons/calendar-check.png'
-import ielts_img from '../../assets/icons/course_ielts.png'
+import ielts_img from '../../assets/icons/course-ielts.png'
 import TKB_HK2 from '../../assets/icons/TKB_HK2.PNG'
 import HomeCourseLayout from '../../components/LayoutComponents/HomePage/HomeCourseLayout'
 import Footer from '../../components/LayoutComponents/Footer/Footer'
 import AboutCenterLayout from '../../components/LayoutComponents/AboutPage/AboutCenterLayout'
+import AboutIntroLayout from '../../components/LayoutComponents/AboutPage/AboutIntroLayout'
+import StaffCard from '../../components/CardComponents/StaffPage/StaffCard'
 
-
+import paimon from '../../assets/icons/staff-img.png'
+import StaffManagerLayout from '../../components/LayoutComponents/StaffPage/StaffManagerLayout'
+import StaffEmployeeLayout from '../../components/LayoutComponents/StaffPage/StaffEmployeeLayout'
+import StaffTeacherLayout from '../../components/LayoutComponents/StaffPage/StaffTeacherLayout'
+import PostSpecialLayout from '../../components/LayoutComponents/PostPage/PostSpecialLayout'
+import PostItemBtn from '../../components/ButtonComponents/PostPage/PostItemBtn'
+import PostSliderLayout from '../../components/LayoutComponents/PostPage/PostSliderLayout'
+import PostListLayout from '../../components/LayoutComponents/PostPage/PostListLayout'
 
 
 const Home = props => {
@@ -38,13 +47,6 @@ const Home = props => {
     return (
         <div className='home'>
             <div>Đây là Homepage</div>
-            <LearnBtn
-                name="Learn more">
-            </LearnBtn>
-            <FloatBtn
-                icon={calendar}
-                name={"Đặt lịch tư vấn"}>
-            </FloatBtn>
             <HomeIntroLayout> </HomeIntroLayout>
 
             <HomeCourseLayout> </HomeCourseLayout>
@@ -55,8 +57,11 @@ const Home = props => {
 
             <Footer> </Footer>
 
+            <AboutIntroLayout> </AboutIntroLayout>
 
             <AboutVisionLayout> </AboutVisionLayout>
+
+            <MethodLayout> </MethodLayout>
 
             <AboutCenterLayout> </AboutCenterLayout>
 
@@ -66,12 +71,99 @@ const Home = props => {
 
             <AboutFeedbackLayout> </AboutFeedbackLayout>
 
-            
+            <Footer> </Footer>
 
-            <LocationLayout> </LocationLayout>
+            <StaffManagerLayout> </StaffManagerLayout>
 
-            <MethodLayout> </MethodLayout>
+            <StaffEmployeeLayout> </StaffEmployeeLayout>
 
+            <StaffTeacherLayout> </StaffTeacherLayout>
+
+            <Footer> </Footer>
+
+            <AppoinmentLayout> </AppoinmentLayout>
+
+            <Footer> </Footer>
+
+            <PostSliderLayout> </PostSliderLayout>
+
+            <PostSpecialLayout
+                type="post"
+                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
+                title="Title only 1 line so let use ellipse"
+                context="Subtitle cds sdsd dsds dsdsd max 3 lines ddd ddddd dddd dddd ddd dd dd dd ee rrrr ttt dsa"
+                datetime="DD-MM-YYYY - hh:mm:ss"
+                author="Author Name">
+            </PostSpecialLayout>
+            <PostSpecialLayout
+                type="event"
+                img={TKB_HK2}
+                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
+                title="Title only 1 line so let use ellipse"
+                context="Subtitle cds sdsd dsds dsdsd max 3 lines ddd ddddd dddd dddd ddd dd dd dd ee rrrr ttt dsa"
+                datetime="DD-MM-YYYY - hh:mm:ss"
+                author="Author Name">
+            </PostSpecialLayout>
+            <PostSpecialLayout
+                type="post"
+                img={TKB_HK2}
+                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
+                title="Title only 1 line so let use ellipse"
+                context="Subtitle cds sdsd dsds dsdsd max 3 lines ddd ddddd dddd dddd ddd dd dd dd ee rrrr ttt dsa"
+                datetime="DD-MM-YYYY - hh:mm:ss"
+                author="Author Name">
+            </PostSpecialLayout>
+
+            <Footer> </Footer>
+
+            <PostSpecialLayout
+                type="post"
+                img={TKB_HK2}
+                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
+                title="Title only 1 line so let use ellipse"
+                context="Subtitle cds sdsd dsds dsdsd max 3 lines ddd ddddd dddd dddd ddd dd dd dd ee rrrr ttt dsa"
+                datetime="DD-MM-YYYY - hh:mm:ss"
+                author="Author Name">
+            </PostSpecialLayout>
+
+            <PostListLayout
+                img={TKB_HK2}
+                title="Title of Post"
+                content="Description Description aa aaaa aaa aaaaa aa aaaa aaaa aaa aaaa aa aaaaaa aaaa aaaaaaa aaaaaaaa aaaa aaa aaaaa aaaaa a aaaa aaa aa aaaa aa aaa vvv vvv vvvv vvvvv vvvvv vv vvvvvv vvv vvv vvv vvvv vvvvvv vvv vvmm mm mm mmmm mmm m mm mmmm m mmm mmm mmm mmmmm mmmm mmmm mm mmmmm mmmm mmmm mmm mm mmm mmm mm mmmmm mmm mmmm mmmmv vvvv vvvvaa aaa aass ss saa Description Description Description Description Description Description aaaa"
+                datetime="Upload Time"
+                author="Author's Name">
+            </PostListLayout>
+
+            <Footer> </Footer>
+
+            <PostSpecialLayout
+                type="event"
+                img={TKB_HK2}
+                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
+                title="Title only 1 line so let use ellipse"
+                context="Subtitle cds sdsd dsds dsdsd max 3 lines ddd ddddd dddd dddd ddd dd dd dd ee rrrr ttt dsa"
+                datetime="DD-MM-YYYY - hh:mm:ss"
+                author="Author Name">
+            </PostSpecialLayout>
+
+            <PostListLayout
+                typeblue={true}
+                img={TKB_HK2}
+                title="Title of Post"
+                content="Description Description aa aaaa aaa aaaaa aa aaaa aaaa aaa aaaa aa aaaaaa aaaa aaaaaaa aaaaaaaa aaaa aaa aaaaa aaaaa a aaaa aaa aa aaaa aa aaa vvv vvv vvvv vvvvv vvvvv vv vvvvvv vvv vvv vvv vvvv vvvvvv vvv vvmm mm mm mmmm mmm m mm mmmm m mmm mmm mmm mmmmm mmmm mmmm mm mmmmm mmmm mmmm mmm mm mmm mmm mm mmmmm mmm mmmm mmmmv vvvv vvvvaa aaa aass ss saa Description Description Description Description Description Description aaaa"
+                datetime="Upload Time"
+                author="Author's Name">
+            </PostListLayout>
+
+            <Footer> </Footer>
+
+            <LearnBtn
+                name="Learn more">
+            </LearnBtn>
+            <FloatBtn
+                icon={calendar}
+                name={"Đặt lịch tư vấn"}>
+            </FloatBtn>
             <h2>Dưới đây là test get từ db</h2>
             {
                 listOfTest.map((value, key) => {

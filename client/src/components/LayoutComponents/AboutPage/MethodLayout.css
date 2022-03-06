@@ -1,8 +1,76 @@
-.method-layout-content .method-layout-switch{
-    display: flex;
+.method-layout-content {
+    width: 100%;
+    height: 775px;
+    background: 
+    linear-gradient(180deg, #DCF3FF 50%, #343332 50%);
+    position: relative;
 }
-.method-layout-content .method-layout-line{
+.method-layout-content .method-layout-header{
+    width: 100%;
+    position: absolute;
+    z-index: 20;
+}
+.method-layout-header .method-layout-switch{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.method-layout-header .method-layout-line{
     width: 100%;
     height: 12px;
     background-color: #B62F05;
+}
+.method-layout-content .method-layout-black-bg{
+    width: 100%;
+    height: 600px;
+    background-color: #343332;
+
+    position: absolute;
+    bottom: 53px;
+}
+.method-layout-black-bg .method-layout-white-bg{
+    width: 98%;
+    height: 550px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 100px 0px;   
+    display: flex;
+    justify-content: end;
+    position: absolute;
+}
+.method-layout-white-bg .method-layout-main-img{
+    width: 607px;
+    height: 461px;
+    display: flex;
+    margin: auto 100px auto 0px;
+}
+.method-layout-content .method-layout-left-content{
+    width: 800px;
+    height: 775px;
+    display: flex;
+    align-items: center;
+}
+.method-layout-left-content .method-layout-rectangle{
+    width: 440px;
+    height: 775px;
+
+    position: absolute;
+
+    background: #343332;
+    box-shadow: 50px 0px 4px #F5D494;
+    border-radius: 0px 500px 0px 0px;
+}
+.method-layout-left-content .method-layout-shadow{
+    /* width: 763.06px;
+    height: 536.21px; */
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+}
+.method-layout-left-content .method-layout-side-img{
+    width: 653px;
+    height: 495px;
+    position: absolute;
+    bottom: 0;
+    left: 100px;
 }

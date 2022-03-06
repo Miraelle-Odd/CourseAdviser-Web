@@ -1,0 +1,56 @@
+.staff-teacher-content{
+    width: 100%;
+    height: 826px;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-image: url("../../../assets/icons/staff-bg-4.png");
+}
+.staff-teacher-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.staff-teacher-header{
+    width: 100%;
+    height: 96px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.staff-teacher-title{
+    width: 658px;
+    height: 74px;
+    
+    font-family: "Rounded Mplus 1c Black";
+    font-size: 40px;
+    line-height: 59px;
+
+    margin: 0 0;
+    color: #B62F05;
+}
+.staff-teacher-border{
+    width: 100%;
+    height: 684px;
+    display: flex;
+    flex-direction: column;
+}
+.staff-teacher-card{
+    width: 80%;
+    height: 420px;
+    display: flex;
+
+    justify-content: space-evenly;
+    border: 1px dashed #EE751D;
+    border-radius: 5px;
+    padding: 20px 5px;
+    /* margin-top: 50px; */
+}
+.staff-teacher-indi{
+    width: 328px;
+    height: 38px;
+
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 19px;
+    margin-top: 50px;
+}

@@ -39,12 +39,12 @@ export default function Footer(props) {
 
                     </div>
                     <div className="footer-row-4">
-                    <p className='footer-title'>LIÊN HỆ</p>
-                    <p className='footer-detail'>CN1: XX Đường Đường Đường, phường A, quận BB, TP. HHH</p>
-                    <p className='footer-detail'>CN2: XX Đường Đường Đường, phường A, quận BB, TP. HHH</p>
-                    <p className='footer-detail'>Hotline: (+82) XXX XXX XXX</p>
-                    <p className='footer-detail'>Email: email@gmail.com</p>
-                    <p className='footer-detail'>Website: XXXX.com.vn</p>
+                        <p className='footer-title'>LIÊN HỆ</p>
+                        <p className='footer-detail'>CN1: XX Đường Đường Đường, phường A, quận BB, TP. HHH</p>
+                        <p className='footer-detail'>CN2: XX Đường Đường Đường, phường A, quận BB, TP. HHH</p>
+                        <p className='footer-detail'>Hotline: (+82) XXX XXX XXX</p>
+                        <p className='footer-detail'>Email: email@gmail.com</p>
+                        <p className='footer-detail'>Website: XXXX.com.vn</p>
                     </div>
                 </div>
                 <div className="footer-line"></div>
