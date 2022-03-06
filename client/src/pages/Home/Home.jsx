@@ -35,6 +35,7 @@ import PostSpecialLayout from '../../components/LayoutComponents/PostPage/PostSp
 import PostItemBtn from '../../components/ButtonComponents/PostPage/PostItemBtn'
 import PostSliderLayout from '../../components/LayoutComponents/PostPage/PostSliderLayout'
 import PostListLayout from '../../components/LayoutComponents/PostPage/PostListLayout'
+import StaffCardLayout from '../../components/LayoutComponents/StaffPage/StaffCardLayout'
 
 
 const Home = props => {
@@ -73,11 +74,48 @@ const Home = props => {
 
             <Footer> </Footer>
 
-            <StaffManagerLayout> </StaffManagerLayout>
 
-            <StaffEmployeeLayout> </StaffEmployeeLayout>
+            <StaffManagerLayout
+                img={paimon}
+                title="EMERGENCY FOOD Ver 1.0"
+                subtitle="- IELTS reading 9.0 -"
+                content={`Paimon is not EMERGENCY FOOD !
+EHE te nandayo !`}
+                more={`Paimon is not EMERGENCY FOOD !
+EHE te nandayo !
+blahblah balh dád đá dfd fdf
+blahasldgfg gfgfgg vcvcvcvcv vvv
+dádasdsdsdsdadsdasdsdad đasdasdsdsd
+đasadasdadasdsdas`}>
+            </StaffManagerLayout>
 
-            <StaffTeacherLayout> </StaffTeacherLayout>
+            <StaffEmployeeLayout
+                img={paimon}
+                title="PAIMON PAIMON 2"
+                subtitle="- IELTS reading 9.0 -"
+                content={`Paimon is not EMERGENCY FOOD !
+EHE te nandayo !`}
+                more={`Paimon is not EMERGENCY FOOD !
+EHE te nandayo !
+blahblah balh dád đá dfd fdf
+blahasldgfg gfgfgg vcvcvcvcv vvv
+dádasdsdsdsdadsdasdsdad đasdasdsdsd
+đasadasdadasdsdas`}>
+            </StaffEmployeeLayout>
+
+            <StaffTeacherLayout
+                img={paimon}
+                title="TEST LAYOUT 3"
+                subtitle="- IELTS reading 9.0 -"
+                content={`Paimon is not EMERGENCY FOOD !
+EHE te nandayo !`}
+                more={`Paimon is not EMERGENCY FOOD !
+EHE te nandayo !
+blahblah balh dád đá dfd fdf
+blahasldgfg gfgfgg vcvcvcvcv vvv
+dádasdsdsdsdadsdasdsdad đasdasdsdsd
+đasadasdadasdsdas`}>
+            </StaffTeacherLayout>
 
             <Footer> </Footer>
 

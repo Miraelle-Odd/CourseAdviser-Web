@@ -6,12 +6,12 @@
     position: relative;
     display: flex;
 }
-.staff-card-img{
+.staff-card-content .staff-card-img{
     position: absolute;
     left: 0;
     top: 0;
 }
-.staff-card-info{
+.staff-card-content .staff-card-info{
     position: absolute;
     
     width: 280px;
@@ -21,20 +21,22 @@
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px 10px 0px 0px;    
 }
-.staff-card-border{
+.staff-card-info .staff-card-border{
     position: relative;
 }
-.staff-card-title-1{
+.staff-card-border .staff-card-title-1{
     width: 201px;
     height: 26px;
     
     font-family: "Roboto Bold";
     font-size: 20px;
     line-height: 23px;
-    margin: 20px 0 0 10px;
+    margin: 20px 0px 0px 20px;
     color: #000000;
+    text-align: left;
+    overflow: hidden;
 }
-.staff-card-title-2{
+.staff-card-border .staff-card-title-2{
     width: 166px;
     height: 26px;
 
@@ -44,7 +46,7 @@
     margin: 0px 0px 4px 10px;
     color: #EE751D;
 }
-.staff-card-detail{
+.staff-card-border .staff-card-detail{
     position: relative;
     width: 280px;
     height: 110px;
