@@ -1,13 +1,15 @@
-.why-card-rou-content{
+.why-card-rou-content {
     display: flex;
     flex-direction: column;
     width: 374px;
     height: 400px;
 }
-.why-card-rou-content .why-card-rou-main{
+
+.why-card-rou-content .why-card-rou-main {
     position: relative;
 }
-.why-card-rou-main .why-card-rou-main-img{
+
+.why-card-rou-main .why-card-rou-main-img {
     position: relative;
     width: 240px;
     height: 240px;
@@ -18,29 +20,33 @@
     right: 0;
     bottom: 0;
 }
-.why-card-rou-main .why-card-side{
+
+.why-card-rou-main .why-card-rou-side-out {
     position: absolute;
     width: 100px;
     height: 100px;
-     
     right: 50px;
     bottom: 0px;
-
     border-radius: 50%;
     border: 1px solid #FEA25F;
 }
-.why-card-side .why-card-rou-side-img{
+
+.why-card-rou-side-out .why-card-rou-side-in {
     position: absolute;
     width: 83px;
     height: 83px;
     background: white;
-
+    color: #FEA25F;
+    font-size: 50px;
     right: 8.5px;
     bottom: 8.5px;
-
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.why-card-rou-content .why-card-rou-title{
+
+.why-card-rou-content .why-card-rou-title {
     height: 23px;
     font-family: "Rounded Mplus 1c Regular";
     font-weight: 400;
@@ -50,7 +56,8 @@
     margin-top: 12px;
     margin-bottom: 0px;
 }
-.why-card-rou-content .why-card-rou-detail{
+
+.why-card-rou-content .why-card-rou-detail {
     width: 327px;
     height: 66px;
     font-family: "Rounded Mplus 1c Regular";

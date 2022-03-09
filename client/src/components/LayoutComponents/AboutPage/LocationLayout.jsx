@@ -5,7 +5,7 @@ import { useState } from 'react';
 import LocationSwitch from '../../SwitchComponents/AboutPage/LocationSwitch';
 import TKB_HK2 from "../../../assets/icons/TKB_HK2.PNG"
 import course from "../../../assets/icons/course-ielts.png"
-import location from "../../../assets/icons/about-location.png"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default function LocationLayout() {
 
     const [activeButton, setActiveButton] = useState('Chi Nhánh 1');
@@ -24,7 +24,7 @@ export default function LocationLayout() {
                                 {activeButton === "Chi Nhánh 1" ? "Chi Nhánh 1" : "Chi Nhánh 2"}
                             </p>
                             <div className='location-switch-left-border location-switch-center'>
-                                <img className='location-switch-left-icon' src={location}></img>
+                                <FontAwesomeIcon className='location-switch-left-icon' icon={['fas', 'location-dot']}></FontAwesomeIcon>
                             </div>
                             <p className='location-switch-left-address'>
                                 Địa chỉ

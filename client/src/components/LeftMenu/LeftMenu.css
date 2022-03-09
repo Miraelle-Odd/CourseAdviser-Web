@@ -1,0 +1,136 @@
+.hide {
+    display: none;
+}
+
+.menu-option {
+    height: 52px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+
+.menu-option:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #0191FA;
+}
+
+.menu-option .icon {
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.menu-option .name {
+    margin-right: 50px;
+    margin-left: 10px;
+    text-align: left;
+    font-family: "Rounded Mplus 1c Medium";
+    font-size: 16px;
+}
+
+.left-menu-container {
+    height: 100vh;
+    width: 240px;
+    background-color: rgba(10, 9, 61, 0.7);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index: 10;
+}
+
+.left-menu-decoration {
+    background-image: url('../../assets/icons/left-menu-deco.png');
+    position: absolute;
+    width: 234px;
+    height: 468px;
+    top: 172.19px;
+    left: 6px;
+}
+
+.left-menu-header {
+    margin-bottom: 5.2vh;
+    margin-top: 5.6vh;
+    height: 7.8vh;
+    min-height: 44px;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.left-menu-header .logo {
+    height: 40px;
+    width: 40px;
+    background-size: contain;
+    background-image: url(../../assets/icons/app-logo.png);
+    cursor: pointer;
+}
+
+.left-menu-header .icon {
+    transform: rotate(-180deg);
+    color: #fff;
+    font-size: 20px;
+    height: 40px;
+}
+
+.left-menu-content {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-menu-content .section {}
+
+.left-menu-content .space {
+    flex: 1;
+}
+
+.left-menu-content .seperator {
+    width: 200px;
+    border: 0px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.left-menu-user-info {
+    margin-top: 20px;
+    width: 100%;
+    height: 8.4vh;
+    min-height: 50px;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+}
+
+.left-menu-user-info .avatar {
+    border-radius: 50%;
+    object-fit: cover;
+    height: 44px;
+    width: 44px;
+    margin-left: 23px;
+}
+
+.left-menu-user-info .content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 9px;
+    text-align: left;
+    color: #fff;
+}
+
+.content .content-main {
+    font-size: 14px;
+    font-family: "Rounded Mplus 1c Medium";
+}
+
+.content .content-sub {
+    font-size: 12px;
+    font-family: "Rounded Mplus 1c Light";
+}

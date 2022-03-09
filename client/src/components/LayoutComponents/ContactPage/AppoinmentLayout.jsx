@@ -1,9 +1,6 @@
 import React from 'react'
 import './AppoinmentLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
-import location from "../../../assets/icons/location.png"
-import phone from "../../../assets/icons/phone.png";
-import mail from "../../../assets/icons/envelope-open-text.png"
 import AppoinmentCard from '../../CardComponents/ContactPage/AppoinmentCard';
 
 
@@ -15,16 +12,16 @@ export default function AppoinmentLayout() {
                     <div className="appoinment-layout-form-content"></div>
                     <div className="appoinment-layout-info">
                         <AppoinmentCard
-                            icon={location}
+                            icon={['fas', 'map-location-dot']}
                             content1="CN1: XX Đường Đường Đường, phường A, quận BB, TP. HHH"
                             content2="CN2: XX Đường Đường Đường, phường A, quận BB, TP. HHH">
                         </AppoinmentCard>
                         <AppoinmentCard
-                            icon={phone}
+                            icon={['fas', 'phone']}
                             content1="(+84)XXX XXX XXX">
                         </AppoinmentCard>
                         <AppoinmentCard
-                            icon={mail}
+                            icon={['fas', 'envelope-open-text']}
                             content1="email@gmail.com">
                         </AppoinmentCard>
                     </div>
