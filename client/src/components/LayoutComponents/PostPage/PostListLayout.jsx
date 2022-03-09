@@ -1,10 +1,8 @@
 import React from 'react'
 import './PostListLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
-import TKB_HK2 from '../../../assets/icons/TKB_HK2.PNG'
 import PostItemBtn from '../../ButtonComponents/PostPage/PostItemBtn';
 import ReactPaginate from 'react-paginate';
-import piggy from '../../../assets/icons/post-piggy.png';
 
 export default function PostListLayout(props) {
     return (
@@ -16,85 +14,37 @@ export default function PostListLayout(props) {
                 </div>
                 {
                     props.typeblue === true ?
-                        <div className='post-list-card post-list-center'>
-                            <PostItemBtn
-                                img={props.img}
-                                title={props.title}
-                                content={props.content}
-                                datetime={props.datetime}
-                                author={props.author}
-                                typeblue={true}>
-                            </PostItemBtn>
-                            <PostItemBtn
-                                img={props.img}
-                                title={props.title}
-                                content={props.content}
-                                datetime={props.datetime}
-                                author={props.author}
-                                typeblue={true}>
-                            </PostItemBtn>
-                            <PostItemBtn
-                                img={props.img}
-                                title={props.title}
-                                content={props.content}
-                                datetime={props.datetime}
-                                author={props.author}
-                                typeblue={true}>
-                            </PostItemBtn>
-                            <PostItemBtn
-                                img={props.img}
-                                title={props.title}
-                                content={props.content}
-                                datetime={props.datetime}
-                                author={props.author}
-                                typeblue={true}>
-                            </PostItemBtn>
-                            <PostItemBtn
-                                img={props.img}
-                                title={props.title}
-                                content={props.content}
-                                datetime={props.datetime}
-                                author={props.author}
-                                typeblue={true}>
-                            </PostItemBtn>
+                        <div className='post-list-card post-list-items-center'>
+                            {
+                                props.items.map((item, index) => {
+                                    return (
+                                        <PostItemBtn
+                                            thumbnail={item.thumbnail}
+                                            title={item.title}
+                                            content={item.content}
+                                            datetime={item.datetime}
+                                            author={item.author}
+                                            typeblue={true}>
+                                        </PostItemBtn>
+                                    )
+                                })
+                            }
                         </div>
                         :
-                        <div className='post-list-card post-list-center'>
-                            <PostItemBtn
-                                img={props.img}
-                                title={props.title}
-                                content={props.content}
-                                datetime={props.datetime}
-                                author={props.author}>
-                            </PostItemBtn>
-                            <PostItemBtn
-                                img={props.img}
-                                title={props.title}
-                                content={props.content}
-                                datetime={props.datetime}
-                                author={props.author}>
-                            </PostItemBtn>
-                            <PostItemBtn
-                                img={props.img}
-                                title={props.title}
-                                content={props.content}
-                                datetime={props.datetime}
-                                author={props.author}>
-                            </PostItemBtn>
-                            <PostItemBtn
-                                img={props.img}
-                                title={props.title}
-                                content={props.content}
-                                datetime={props.datetime}
-                                author={props.author}>
-                            </PostItemBtn>
-                            <PostItemBtn
-                                img={props.img}
-                                title={props.title}
-                                content={props.content}
-                                datetime={props.datetime}
-                                author={props.author}>
-                            </PostItemBtn>
+                        <div className='post-list-card post-list-items-center'>
+                            {
+                                props.items.map((item, index) => {
+                                    return (
+                                        <PostItemBtn
+                                            thumbnail={item.thumbnail}
+                                            title={item.title}
+                                            content={item.content}
+                                            datetime={item.datetime}
+                                            author={item.author}>
+                                        </PostItemBtn>
+                                    )
+                                })
+                            }
                         </div>
                 }
 

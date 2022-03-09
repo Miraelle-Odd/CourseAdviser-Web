@@ -18,8 +18,6 @@ import AppoinmentLayout from '../../components/LayoutComponents/ContactPage/Appo
 import LocationLayout from '../../components/LayoutComponents/AboutPage/LocationLayout'
 import MethodLayout from '../../components/LayoutComponents/AboutPage/MethodLayout'
 
-import calendar from '../../assets/icons/calendar-check.png'
-import ielts_img from '../../assets/icons/course-ielts.png'
 import TKB_HK2 from '../../assets/icons/TKB_HK2.PNG'
 import HomeCourseLayout from '../../components/LayoutComponents/HomePage/HomeCourseLayout'
 import Footer from '../../components/LayoutComponents/Footer/Footer'
@@ -37,6 +35,45 @@ import PostSliderLayout from '../../components/LayoutComponents/PostPage/PostSli
 import PostListLayout from '../../components/LayoutComponents/PostPage/PostListLayout'
 import StaffCardLayout from '../../components/LayoutComponents/StaffPage/StaffCardLayout'
 
+const postSpecialBtn = [
+    {
+        img: paimon,
+        title: "Btn Title 1",
+        context: "Subtitle cds sdsd dsds dsdsd max 3 lines .ddddddddddddddddd..",
+        datetime: "DD-MM-YYYY - hh:mm:ss",
+        author: "NA",
+    },
+    {
+        img: paimon,
+        title: "Btn Title 1",
+        context: "Subtitle cds sdsd dsds dsdsd max 3 lines .ddddddddddddddddd..",
+        datetime: "DD-MM-YYYY - hh:mm:ss",
+        author: "NA",
+    }
+]
+const postListItem = [
+    {
+        thumbnail: TKB_HK2,
+        title: "Title of Post",
+        content: "Description Description Description Description Description Description Description Description aaaa",
+        datetime: "DD/MM/YYYY hh:mm:ss",
+        author: "Author Name"
+    },
+    {
+        thumbnail: TKB_HK2,
+        title: "Title of Post",
+        content: "Description Description Description Description Description Description Description Description aaaa",
+        datetime: "DD/MM/YYYY hh:mm:ss",
+        author: "Author Name"
+    },
+    {
+        thumbnail: TKB_HK2,
+        title: "Title of Post",
+        content: "Description Description Description Description Description Description Description Description aaaa",
+        datetime: "DD/MM/YYYY hh:mm:ss",
+        author: "Author Name"
+    },
+]
 
 const Home = props => {
     const [listOfTest, setListOfTest] = useState([])
@@ -126,71 +163,55 @@ dádasdsdsdsdadsdasdsdad đasdasdsdsd
             <PostSliderLayout> </PostSliderLayout>
 
             <PostSpecialLayout
-                type="post"
+                type="blue"
+                btn={postSpecialBtn}
                 description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="Title only 1 line so let use ellipse"
-                context="Subtitle cds sdsd dsds dsdsd max 3 lines ddd ddddd dddd dddd ddd dd dd dd ee rrrr ttt dsa"
-                datetime="DD-MM-YYYY - hh:mm:ss"
-                author="Author Name">
+                title="academic posts"
+                icon={['fas', 'graduation-cap']}>
             </PostSpecialLayout>
             <PostSpecialLayout
-                type="event"
-                img={TKB_HK2}
+                type="origin"
+                btn={postSpecialBtn}
                 description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="Title only 1 line so let use ellipse"
-                context="Subtitle cds sdsd dsds dsdsd max 3 lines ddd ddddd dddd dddd ddd dd dd dd ee rrrr ttt dsa"
-                datetime="DD-MM-YYYY - hh:mm:ss"
-                author="Author Name">
+                title="special events"
+                icon={['fas', 'star']}>
             </PostSpecialLayout>
             <PostSpecialLayout
-                type="post"
-                img={TKB_HK2}
+                type="blue"
+                btn={postSpecialBtn}
                 description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="Title only 1 line so let use ellipse"
-                context="Subtitle cds sdsd dsds dsdsd max 3 lines ddd ddddd dddd dddd ddd dd dd dd ee rrrr ttt dsa"
-                datetime="DD-MM-YYYY - hh:mm:ss"
-                author="Author Name">
+                title="discounts"
+                icon={['fas', 'piggy-bank']}>
             </PostSpecialLayout>
 
             <Footer> </Footer>
 
             <PostSpecialLayout
-                type="post"
-                img={TKB_HK2}
+                type="blue"
+                btn={postSpecialBtn}
                 description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="Title only 1 line so let use ellipse"
-                context="Subtitle cds sdsd dsds dsdsd max 3 lines ddd ddddd dddd dddd ddd dd dd dd ee rrrr ttt dsa"
-                datetime="DD-MM-YYYY - hh:mm:ss"
-                author="Author Name">
+                title="ACADEMIC POSTS"
+            >
             </PostSpecialLayout>
 
             <PostListLayout
                 img={TKB_HK2}
-                title="Title of Post"
-                content="Description Description aa aaaa aaa aaaaa aa aaaa aaaa aaa aaaa aa aaaaaa aaaa aaaaaaa aaaaaaaa aaaa aaa aaaaa aaaaa a aaaa aaa aa aaaa aa aaa vvv vvv vvvv vvvvv vvvvv vv vvvvvv vvv vvv vvv vvvv vvvvvv vvv vvmm mm mm mmmm mmm m mm mmmm m mmm mmm mmm mmmmm mmmm mmmm mm mmmmm mmmm mmmm mmm mm mmm mmm mm mmmmm mmm mmmm mmmmv vvvv vvvvaa aaa aass ss saa Description Description Description Description Description Description aaaa"
-                datetime="Upload Time"
-                author="Author's Name">
+                items={postListItem}>
             </PostListLayout>
 
             <Footer> </Footer>
 
             <PostSpecialLayout
-                type="event"
-                img={TKB_HK2}
+                type="origin"
+                btn={postSpecialBtn}
                 description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="Title only 1 line so let use ellipse"
-                context="Subtitle cds sdsd dsds dsdsd max 3 lines ddd ddddd dddd dddd ddd dd dd dd ee rrrr ttt dsa"
-                datetime="DD-MM-YYYY - hh:mm:ss"
-                author="Author Name">
+                title="SPECIAL EVENTS"
+            >
             </PostSpecialLayout>
 
             <PostListLayout
                 typeblue={true}
-                img={TKB_HK2}
-                title="Title of Post"
-                content="Description Description aa aaaa aaa aaaaa aa aaaa aaaa aaa aaaa aa aaaaaa aaaa aaaaaaa aaaaaaaa aaaa aaa aaaaa aaaaa a aaaa aaa aa aaaa aa aaa vvv vvv vvvv vvvvv vvvvv vv vvvvvv vvv vvv vvv vvvv vvvvvv vvv vvmm mm mm mmmm mmm m mm mmmm m mmm mmm mmm mmmmm mmmm mmmm mm mmmmm mmmm mmmm mmm mm mmm mmm mm mmmmm mmm mmmm mmmmv vvvv vvvvaa aaa aass ss saa Description Description Description Description Description Description aaaa"
-                datetime="Upload Time"
-                author="Author's Name">
+                items={postListItem}>
             </PostListLayout>
 
             <Footer> </Footer>
@@ -199,9 +220,10 @@ dádasdsdsdsdadsdasdsdad đasdasdsdsd
                 name="Learn more">
             </LearnBtn>
             <FloatBtn
-                icon={calendar}
+                icon={['far', 'calendar-check']}
                 name={"Đặt lịch tư vấn"}>
             </FloatBtn>
+
             <h2>Dưới đây là test get từ db</h2>
             {
                 listOfTest.map((value, key) => {

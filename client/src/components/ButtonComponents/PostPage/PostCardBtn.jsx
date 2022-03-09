@@ -2,8 +2,7 @@ import React from 'react'
 import './PostCardBtn.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import img from '../../../assets/icons/post_image.png';
-import icon_1 from '../../../assets/icons/post_calendar_1.png'
-import icon_2 from '../../../assets/icons/post_calendar_2.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Link} from 'react-router-dom';
 
 export default function PostCardBtn(props) {
@@ -20,8 +19,8 @@ export default function PostCardBtn(props) {
                             <p className={props.bluecard === true ? 'post-card-title blue-title' : 'post-card-title'}>{props.title}</p>
                             <p className='post-card-text'>{props.context}</p>
                             <div className='post-card-footer'>
-                                <img className='post-card-icon' src={props.bluecard === true ? icon_2 : icon_1}></img>
-                                <p className={props.bluecard === true ? 'post-card-datetime blue-datetime' : 'post-card-datetime'}>{props.datetime}</p>
+                                <FontAwesomeIcon className={props.bluecard === true? 'post-card-icon-blue':'post-card-icon-orange'} icon={['fas', 'calendar']}></FontAwesomeIcon>
+                                <span className={props.bluecard === true ? 'post-card-datetime blue-datetime' : 'post-card-datetime'}>{props.datetime}</span>
                             </div>
                         </div>
                     </div>

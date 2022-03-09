@@ -1,39 +1,42 @@
-.float-btn-link{
+.float-btn-link {
     text-decoration: none;
 }
-.float-btn-content{
+
+.float-btn-content {
     display: flex;
 }
 
-.float-btn-content .float-btn-button{
+.float-btn-content .float-btn-button {
     width: 128px;
     height: 109px;
     border: none;
     background-color: #D15C06;
     border-radius: 30px 0px 0px 30px;
-    box-shadow: 0px 4px 4px rgba(0,0,0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: white;
+    font-size: 40px;
     cursor: pointer;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     justify-content: center;
 }
-.float-btn-content .float-btn-name{
+
+.float-btn-content .float-btn-name {
     width: 70px;
     height: 28px;
     font-family: "Roboto Medium";
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 19px;
 }
-.float-btn-content .float-btn-icon{
+
+.float-btn-content .float-btn-icon {
     margin-top: -10px;
     margin-bottom: 5px;
 }
 
-.float-btn-content .float-btn-button:hover{
+.float-btn-content .float-btn-button:hover {
     background-color: #FFAB6F;
 }

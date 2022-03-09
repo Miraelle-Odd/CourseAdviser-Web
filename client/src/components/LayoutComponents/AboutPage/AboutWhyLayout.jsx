@@ -4,7 +4,6 @@ import { Fragment } from 'react/cjs/react.production.min';
 import { useState } from 'react';
 
 import ielts_img from '../../../assets/icons/course-ielts.png'
-import TKB_HK2 from "../../../assets/icons/TKB_HK2.PNG"
 import WhyCard_Rou from '../../CardComponents/AboutPage/WhyCard_Rou';
 
 export default function AboutWhyLayout() {
@@ -19,19 +18,19 @@ export default function AboutWhyLayout() {
                 <div className="about-why-layout-row row-1">
                     <WhyCard_Rou
                         main_img={ielts_img}
-                        side_img={TKB_HK2}
+                        icon={['fas', 'street-view']}
                         title="Personalized Study Routes"
                         content="Chuyên gia ngôn ngữ tư vấn trực tiếp, phân tích kỹ lưỡng và đưa ra lộ trình học tập phù hợp với từng cá nhân">
                     </WhyCard_Rou>
                     <WhyCard_Rou
                         main_img={ielts_img}
-                        side_img={TKB_HK2}
+                        icon={['fas', 'street-view']}
                         title="Personalized Study Routes"
                         content="Chuyên gia ngôn ngữ tư vấn trực tiếp, phân tích kỹ lưỡng và đưa ra lộ trình học tập phù hợp với từng cá nhân">
                     </WhyCard_Rou>
                     <WhyCard_Rou
                         main_img={ielts_img}
-                        side_img={TKB_HK2}
+                        icon={['fas', 'street-view']}
                         title="Personalized Study Routes"
                         content="Chuyên gia ngôn ngữ tư vấn trực tiếp, phân tích kỹ lưỡng và đưa ra lộ trình học tập phù hợp với từng cá nhân">
                     </WhyCard_Rou>
@@ -39,19 +38,19 @@ export default function AboutWhyLayout() {
                 <div className="about-why-layout-row">
                     <WhyCard_Rou
                         main_img={ielts_img}
-                        side_img={TKB_HK2}
+                        icon={['fas', 'street-view']}
                         title="Personalized Study Routes"
                         content="Chuyên gia ngôn ngữ tư vấn trực tiếp, phân tích kỹ lưỡng và đưa ra lộ trình học tập phù hợp với từng cá nhân">
                     </WhyCard_Rou>
                     <WhyCard_Rou
                         main_img={ielts_img}
-                        side_img={TKB_HK2}
+                        icon={['fas', 'street-view']}
                         title="Personalized Study Routes"
                         content="Chuyên gia ngôn ngữ tư vấn trực tiếp, phân tích kỹ lưỡng và đưa ra lộ trình học tập phù hợp với từng cá nhân">
                     </WhyCard_Rou>
                     <WhyCard_Rou
                         main_img={ielts_img}
-                        side_img={TKB_HK2}
+                        icon={['fas', 'street-view']}
                         title="Personalized Study Routes"
                         content="Chuyên gia ngôn ngữ tư vấn trực tiếp, phân tích kỹ lưỡng và đưa ra lộ trình học tập phù hợp với từng cá nhân">
                     </WhyCard_Rou>

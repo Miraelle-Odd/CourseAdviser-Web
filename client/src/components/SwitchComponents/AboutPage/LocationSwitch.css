@@ -1,55 +1,63 @@
-.location-card-center{
+.location-card-center {
     display: flex;
     align-items: center;
 }
-.location-card-content{
+
+.location-card-content {
     width: 494px;
     height: 56px;
     background: #5305B6;
     display: flex;
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 28px 0 0 28px;
     margin-left: 124px;
     margin-top: 25px;
     cursor: pointer;
 }
-.location-card-content .location-card-border{
-    width: 43px;
-    height: 43px;
+
+.location-card-content .location-card-border {
+    width: 40px;
+    height: 40px;
     border: 3px solid white;
     border-radius: 50% 50%;
     margin-left: 8px;
     justify-content: center;
 }
-.location-card-border .location-card-icon{
+
+.location-card-border .location-card-icon {
     width: 15px;
     height: 25px;
+    color: #fff;
+    font-size: 30px;
 }
-.location-card-content .location-card-name{
+
+.location-card-content .location-card-name {
     width: 295px;
     height: 46px;
     font-family: "Rounded Mplus 1c Extra Bold";
     font-weight: 800;
     font-size: 30px;
     line-height: 44.55px;
-
     color: white;
     margin: 0px 0px 0px 55px;
     text-align: left;
 }
 
+
 /* For active class */
-.location-card-content-active{
+
+.location-card-content-active {
     width: 618px;
     height: 90px;
     background: #0081C9;
     display: flex;
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 45px 0 0 45px;
     margin-top: 25px;
     cursor: pointer;
 }
-.location-card-content-active .location-card-border-active{
+
+.location-card-content-active .location-card-border-active {
     width: 69px;
     height: 69px;
     border: 3px solid white;
@@ -57,19 +65,21 @@
     margin-left: 11px;
     justify-content: center;
 }
-.location-card-border-active .location-card-icon-active{
+
+.location-card-border-active .location-card-icon-active {
     width: 30px;
     height: 40px;
+    color: #fff;
+    font-size: 30px;
 }
-.location-card-content-active .location-card-name-active{
+
+.location-card-content-active .location-card-name-active {
     width: 295px;
     height: 46px;
     font-family: "Rounded Mplus 1c Extra Bold";
     font-weight: 800;
     font-size: 40px;
-
     color: white;
-    margin: 0px 0px 0px 20px ;
+    margin: 0px 0px 0px 20px;
     text-align: left;
-
 }

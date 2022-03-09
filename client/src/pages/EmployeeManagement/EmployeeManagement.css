@@ -1,0 +1,12 @@
+.userpage-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: #0A093D;
+}
+
+.workplace-container {
+    margin-left: 240px;
+    background-color: #E6E9EB;
+    height: 100vh;
+    border-top-left-radius: 30px;
+}
