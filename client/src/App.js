@@ -16,6 +16,7 @@ import AccountSetting from "./pages/AccountSetting/AccountSetting"
 import PostManagement from "./pages/PostManagement/PostManagement"
 import ChatbotManagement from "./pages/ChatbotManagement/ChatbotManagement"
 import TestAva from "./assets/icons/staff-img.png"
+import NavigationBar from './components/Header/NavigationBar';
 
 
 const history = createBrowserHistory();
@@ -40,7 +41,7 @@ function App() {
                 // email="kurocrea@gmail.com"
               ></LeftMenu>
               :
-              <DraftCom></DraftCom>
+              <NavigationBar></NavigationBar>
           }
           <Routes>
             <Route path="/home" element={<HomePage></HomePage>} exact={true} />

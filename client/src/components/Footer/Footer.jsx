@@ -1,7 +1,7 @@
 import React from 'react'
 import './Footer.css'
 import { Fragment } from 'react/cjs/react.production.min';
-import logo from "../../../assets/icons/app-logo.png"
+import logo from "../../assets/icons/app-logo.png"
 import { Link } from 'react-router-dom';
 
 export default function Footer(props) {

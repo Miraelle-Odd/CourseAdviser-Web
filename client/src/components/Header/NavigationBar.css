@@ -1,0 +1,267 @@
+.header-sticky{
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+.header-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.header-for-home{
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+.change-state{
+    background-color: #FFAB6F;
+}
+.header-container ul {
+    list-style-type: none;
+}
+
+.header-container{
+    position: absolute;
+    width: 100%;
+    height:  100px !important;
+    background: #FFAB6F;
+    color: #B62F05;
+    font-family: "Rounded Mplus 1c Extra Bold";
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    align-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.header-navbar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 30px 0px 105px;
+    padding: 0 0;
+}
+.header-navbar .navbar-logo-container{
+    margin-right: 20%;
+}
+.no-decoration{
+    text-decoration: none;
+    color: #B62F05;
+}
+.navbar-logo-container .navbar-logo{
+    width: 77px;
+    height: 84px;
+    object-fit: contain;
+}
+.navbar-logo-container .title-for-home{
+    color: #B62F05 !important;
+}
+.navbar-logo-container .navbar-title{
+    width: 128px;
+    height: 84px;
+    font-family: "Roboto Medium";
+    color: white;
+    font-size: 28px;
+    line-height: 33px;
+}
+.header-navbar .line{
+    width: 2px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.5);
+}
+.header-navbar .navbar-item{
+    width: 150px;
+    height: 60px;
+    flex-direction: column;
+    margin: 0 10px;
+}
+
+
+.navbar-item .active{
+    width: 150px;
+    height: 60px;
+    background: #EE751D !important;
+    border-radius: 30px;
+    color: white !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.item-button{
+    background-color: transparent;
+    border: none; 
+    width: 150px;
+    height: 60px;
+    color: #B62F05;
+    font-family: "Rounded Mplus 1c Extra Bold";
+    font-size: 20px;
+    line-height: 30px;
+    cursor: pointer;
+    z-index: 100;
+    position: absolute;
+    padding: 0 0;
+}
+.item-click-dropdown{
+    position: absolute;
+    border-radius: 30px;
+    top: 70px;
+    width: 200px;
+    background: rgb(255, 255, 255);
+    height: max-content;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+
+    font-family: "Rounded Mplus 1c Medium";
+    z-index: 999;
+    font-size: 16px;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.navbar-user-contain:hover{
+    background-color: #eeeeee;
+}
+.item-button:hover{
+    background-color: #FFD3B3;
+    width: 150px;
+    height: 60px;
+    border-radius: 30px;
+}
+.disable-link{
+    pointer-events: none;
+}
+.dropdown-item{
+    padding: 10px 30px;
+    font-family: "Rounded Mplus 1c Medium";
+    font-size: 16px;
+    line-height: 24px;
+}
+.dropdown-item:hover{
+    border-radius: 30px;
+    background-color: #EFEBEB;
+}
+.item-button:focus .item-click-dropdown, .item-click-dropdown:hover{
+    display: flex;
+}
+
+
+.login-for-home{
+    color: #B62F05;
+    border: 2px solid #B62F05;
+}
+.item-login{
+    background-color: white;
+    border-radius: 30px;
+    margin-left: 7%;
+}
+.item-login:hover{
+    background-color: #eeeeee;
+}
+
+
+.item-user-button{
+    width: 213px;
+    height: 68px;
+    border-radius: 40px;
+    padding: 0 0;
+    background-color: #FFAB6F;
+    border: none;
+    margin-left: 2%;
+}
+.item-user-button .user-button{
+    border: none;
+    padding: 0 0;
+    border-radius: 40px;
+    cursor: pointer;
+}
+.user-button .navbar-user-contain{
+    width: 213px;
+    height: 68px;
+    border: 2px solid #B62F05;
+    border-radius: 40px;
+    background-color: white;
+}
+.user-avatar{
+    width: 51px;
+    height: 51px;
+    border-radius: 50%;
+    background-color: #C4C4C4;
+}
+.user-name{
+    width: 92px;
+    height: 50px;
+    font-family: 'Rounded Mplus 1c Extra Bold';
+    font-size: 16px;
+    line-height: 24px;
+    color: #B62F05;
+    overflow: hidden;
+}
+
+.user-button .user-dropdown{
+    width: 300px;
+    top: 100px;
+    padding: 10px 0 0 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.user-dropdown li:hover{
+    border-radius: 0;
+}
+.no-border{
+    width: 215px;
+    height: 70px;
+    border: none;
+}
+.dropdown-avatar{
+    width: 80px;
+    height: 80px;
+}
+.dropdown-name{
+    width: 260px;
+    height: fit-content;
+    font-size: 18px;
+    line-height: 27px;
+    font-family: 'Rounded Mplus 1c Medium';
+    overflow: hidden;
+    white-space: nowrap;
+    color: #000000;
+}
+.dropdown-email{
+    width: 240px;
+    height: 21px;
+    font-family: 'Rounded Mplus 1c Medium';
+    font-size: 14px;
+    line-height: 21px;
+    overflow: hidden;
+    white-space: nowrap;
+    color: rgba(0, 0, 0, 0.58);
+}
+.float-right{
+    display: flex;
+    justify-content: right;
+    float: right;
+}
+.user-dropdown-contain{
+    width: 300px;
+    height: 150px;
+    flex-direction: column;
+}
+
+.user-button:focus .item-click-dropdown, .item-click-dropdown:hover{
+    display: flex;
+}
+.dropdown-line{
+    width: 300px;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.dropdown-logout{
+    width: 90px;
+    height: 46px;
+
+    font-family: 'Rounded Mplus 1c Extra Bold';
+    font-size: 16px;
+    line-height: 24px;
+    
+    color: #B62F05;
+}
