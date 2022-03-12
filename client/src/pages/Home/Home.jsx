@@ -188,8 +188,8 @@ dádasdsdsdsdadsdasdsdad đasdasdsdsd
                 type="blue"
                 btn={postSpecialBtn}
                 description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="ACADEMIC POSTS"
-            >
+                title="academic posts"
+                icon={['fas', 'graduation-cap']}>
             </PostSpecialLayout>
 
             <PostListLayout
@@ -203,8 +203,8 @@ dádasdsdsdsdadsdasdsdad đasdasdsdsd
                 type="origin"
                 btn={postSpecialBtn}
                 description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="SPECIAL EVENTS"
-            >
+                title="special events"
+                icon={['fas', 'star']}>
             </PostSpecialLayout>
 
             <PostListLayout
