@@ -20,7 +20,7 @@ import MethodLayout from '../../components/LayoutComponents/AboutPage/MethodLayo
 
 import TKB_HK2 from '../../assets/icons/TKB_HK2.PNG'
 import HomeCourseLayout from '../../components/LayoutComponents/HomePage/HomeCourseLayout'
-import Footer from '../../components/LayoutComponents/Footer/Footer'
+
 import AboutCenterLayout from '../../components/LayoutComponents/AboutPage/AboutCenterLayout'
 import AboutIntroLayout from '../../components/LayoutComponents/AboutPage/AboutIntroLayout'
 import StaffCard from '../../components/CardComponents/StaffPage/StaffCard'
@@ -34,6 +34,7 @@ import PostItemBtn from '../../components/ButtonComponents/PostPage/PostItemBtn'
 import PostSliderLayout from '../../components/LayoutComponents/PostPage/PostSliderLayout'
 import PostListLayout from '../../components/LayoutComponents/PostPage/PostListLayout'
 import StaffCardLayout from '../../components/LayoutComponents/StaffPage/StaffCardLayout'
+import Footer from '../../components/Footer/Footer'
 
 const postSpecialBtn = [
     {
@@ -84,7 +85,6 @@ const Home = props => {
     }, [])
     return (
         <div className='home'>
-            <div>Đây là Homepage</div>
             <HomeIntroLayout> </HomeIntroLayout>
 
             <HomeCourseLayout> </HomeCourseLayout>
@@ -93,7 +93,7 @@ const Home = props => {
 
             <AppoinmentLayout> </AppoinmentLayout>
 
-            <Footer> </Footer>
+            <Footer></Footer>     
 
             <AboutIntroLayout> </AboutIntroLayout>
 
@@ -109,8 +109,7 @@ const Home = props => {
 
             <AboutFeedbackLayout> </AboutFeedbackLayout>
 
-            <Footer> </Footer>
-
+            <Footer></Footer>
 
             <StaffManagerLayout
                 img={paimon}
@@ -154,11 +153,11 @@ dádasdsdsdsdadsdasdsdad đasdasdsdsd
 đasadasdadasdsdas`}>
             </StaffTeacherLayout>
 
-            <Footer> </Footer>
+            <Footer></Footer>
 
             <AppoinmentLayout> </AppoinmentLayout>
 
-            <Footer> </Footer>
+            <Footer></Footer>
 
             <PostSliderLayout> </PostSliderLayout>
 
@@ -183,8 +182,7 @@ dádasdsdsdsdadsdasdsdad đasdasdsdsd
                 title="discounts"
                 icon={['fas', 'piggy-bank']}>
             </PostSpecialLayout>
-
-            <Footer> </Footer>
+            <Footer></Footer>
 
             <PostSpecialLayout
                 type="blue"
@@ -214,7 +212,7 @@ dádasdsdsdsdadsdasdsdad đasdasdsdsd
                 items={postListItem}>
             </PostListLayout>
 
-            <Footer> </Footer>
+            <Footer></Footer>
 
             <LearnBtn
                 name="Learn more">
