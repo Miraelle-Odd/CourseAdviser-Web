@@ -46,7 +46,7 @@ export default function HomeCourseLayout(props) {
                         </ParallelogramBtn>
                         <ParallelogramBtn
                             img={aldut_img}
-                            name="Tiếng anh cho người đi làm"
+                            name="Tiếng anh giao tiếp"
                             des="test test test. Course luyen thi IELTS, test hover, test length text. Khoong biet vieets cai vao day het tron, lam sao de no dai ra day nhi, da da da da da daayyy gau gau bruh bruh meow">
                         </ParallelogramBtn>
                         <ParallelogramBtn

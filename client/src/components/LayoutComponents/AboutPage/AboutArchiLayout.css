@@ -7,6 +7,7 @@
     height: 811px;
     background-image: url("../../../assets/icons/bg-about-archivement.png");
     background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 .about-archi-layout-content .about-archi-layout-title{
     width: 658px;

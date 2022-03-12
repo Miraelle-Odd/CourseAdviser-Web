@@ -4,6 +4,7 @@
     background: white; 
     background-image: url("../../../assets/icons/bg-contact.png");
     background-repeat: no-repeat;
+    background-size: contain;
 }
 .appoinment-layout-content .appoinment-layout-detail{
     height: 769px;

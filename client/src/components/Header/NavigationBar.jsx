@@ -125,7 +125,7 @@ export default function NavigationBar() {
         return (
             <li className="item-user-button" >
                 <button className='user-button float-right'>
-                    <div className={position ==="/" && navbar ? "navbar-user-contain header-center" : "navbar-user-contain no-border header-center" }>
+                    <div className={position === "/" && navbar ? "navbar-user-contain header-center" : "no-border navbar-user-contain header-center"}>
                         <img className="user-avatar" src={image} alt="" ></img>
                         <span className="user-name">{name}</span>
                         {/* <i className="fas fa-angle-down margin8"></i> */}
@@ -159,19 +159,21 @@ export default function NavigationBar() {
                     </ul>
                 </button>
             </li>
+
+
         )
     }
     const clickedButtonHandler = (e, t) => {
         t === 1 ? setActiveButton_1(e) : setActiveButton_2(e)
     };
-    const [navbar,setNavbar] = useState(false);
-    useEffect(()=>{
+    const [navbar, setNavbar] = useState(false);
+    useEffect(() => {
         changeBackground();
         window.addEventListener('scroll', changeBackground);
     }, [])
     const changeBackground = () => {
-        
-        if(window.pageYOffset >= 200){
+
+        if (window.pageYOffset >= 100) {
             setNavbar(false);
         } else {
             setNavbar(true);
@@ -180,12 +182,12 @@ export default function NavigationBar() {
     const position = useLocation().pathname;
     return (
         <header className='header-sticky'>
-            <div className= {position ==="/" && navbar ? 'header-for-home header-container' : "header-container"}>
+            <div className={position === "/" && navbar ? 'header-for-home header-container' : "header-container"}>
                 <ul className="header-navbar">
                     <li className="navbar-logo-container">
                         <Link to="/" className='header-center no-decoration'>
                             <img src={logo} className="navbar-logo" alt="logo" />
-                            <span className={position ==="/" && navbar ? 'title-for-home navbar-title header-center':'navbar-title header-center'}>English Center</span>
+                            <span className={position === "/" && navbar ? 'title-for-home navbar-title header-center' : 'navbar-title header-center'}>English Center</span>
                         </Link>
                     </li>
                     {navbarItems.map((item, index) => {
@@ -211,7 +213,7 @@ export default function NavigationBar() {
                     {
                         !isLogin ?
                             (<li className="navbar-item header-center">
-                                <button className={position ==="/" && navbar ? "item-button header-center login-for-home item-login":'item-button header-center item-login'}>
+                                <button className={position === "/" && navbar ? "item-button header-center login-for-home item-login" : 'item-button header-center item-login'}>
                                     Login
                                 </button>
                             </li>) :

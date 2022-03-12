@@ -10,6 +10,9 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 0px 0px 0px 300px;
     background-image: url("../../../assets/icons/bg-home-intro.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 .home-intro-layout-archi{
     margin-top: -81px;
