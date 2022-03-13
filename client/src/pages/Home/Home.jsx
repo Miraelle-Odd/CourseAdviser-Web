@@ -35,7 +35,6 @@ import PostSliderLayout from '../../components/LayoutComponents/PostPage/PostSli
 import PostListLayout from '../../components/LayoutComponents/PostPage/PostListLayout'
 import StaffCardLayout from '../../components/LayoutComponents/StaffPage/StaffCardLayout'
 import Footer from '../../components/Footer/Footer'
-
 const postSpecialBtn = [
     {
         img: paimon,
@@ -95,142 +94,24 @@ const Home = props => {
 
             <Footer></Footer>     
 
-            <AboutIntroLayout> </AboutIntroLayout>
 
-            <AboutVisionLayout> </AboutVisionLayout>
-
-            <MethodLayout> </MethodLayout>
-
-            <AboutCenterLayout> </AboutCenterLayout>
-
-            <AboutArchiLayout> </AboutArchiLayout>
-
-            <AboutWhyLayout> </AboutWhyLayout>
-
-            <AboutFeedbackLayout> </AboutFeedbackLayout>
-
-            <Footer></Footer>
-
-            <StaffManagerLayout
-                img={paimon}
-                title="EMERGENCY FOOD Ver 1.0"
-                subtitle="- IELTS reading 9.0 -"
-                content={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !`}
-                more={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !
-blahblah balh dád đá dfd fdf
-blahasldgfg gfgfgg vcvcvcvcv vvv
-dádasdsdsdsdadsdasdsdad đasdasdsdsd
-đasadasdadasdsdas`}>
-            </StaffManagerLayout>
-
-            <StaffEmployeeLayout
-                img={paimon}
-                title="PAIMON PAIMON 2"
-                subtitle="- IELTS reading 9.0 -"
-                content={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !`}
-                more={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !
-blahblah balh dád đá dfd fdf
-blahasldgfg gfgfgg vcvcvcvcv vvv
-dádasdsdsdsdadsdasdsdad đasdasdsdsd
-đasadasdadasdsdas`}>
-            </StaffEmployeeLayout>
-
-            <StaffTeacherLayout
-                img={paimon}
-                title="TEST LAYOUT 3"
-                subtitle="- IELTS reading 9.0 -"
-                content={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !`}
-                more={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !
-blahblah balh dád đá dfd fdf
-blahasldgfg gfgfgg vcvcvcvcv vvv
-dádasdsdsdsdadsdasdsdad đasdasdsdsd
-đasadasdadasdsdas`}>
-            </StaffTeacherLayout>
-
-            <Footer></Footer>
-
-            <AppoinmentLayout> </AppoinmentLayout>
-
-            <Footer></Footer>
-
-            <PostSliderLayout> </PostSliderLayout>
-
-            <PostSpecialLayout
-                type="blue"
-                btn={postSpecialBtn}
-                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="academic posts"
-                icon={['fas', 'graduation-cap']}>
-            </PostSpecialLayout>
-            <PostSpecialLayout
-                type="origin"
-                btn={postSpecialBtn}
-                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="special events"
-                icon={['fas', 'star']}>
-            </PostSpecialLayout>
-            <PostSpecialLayout
-                type="blue"
-                btn={postSpecialBtn}
-                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="discounts"
-                icon={['fas', 'piggy-bank']}>
-            </PostSpecialLayout>
-            <Footer></Footer>
-
-            <PostSpecialLayout
-                type="blue"
-                btn={postSpecialBtn}
-                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="academic posts"
-                icon={['fas', 'graduation-cap']}>
-            </PostSpecialLayout>
-
-            <PostListLayout
-                img={TKB_HK2}
-                items={postListItem}>
-            </PostListLayout>
-
-            <Footer> </Footer>
-
-            <PostSpecialLayout
-                type="origin"
-                btn={postSpecialBtn}
-                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="special events"
-                icon={['fas', 'star']}>
-            </PostSpecialLayout>
-
-            <PostListLayout
-                typeblue={true}
-                items={postListItem}>
-            </PostListLayout>
-
-            <Footer></Footer>
-
-            <LearnBtn
+            {/* <LearnBtn
                 name="Learn more">
             </LearnBtn>
             <FloatBtn
                 icon={['far', 'calendar-check']}
                 name={"Đặt lịch tư vấn"}>
-            </FloatBtn>
+            </FloatBtn> */}
 
-            <h2>Dưới đây là test get từ db</h2>
-            {
+  
+            {/* {
                 listOfTest.map((value, key) => {
                     return <DraftCom
                         title={value.title}
                         content={value.text}
                     ></DraftCom>
                 })
-            }
+            } */}
         </div>
     )
 }

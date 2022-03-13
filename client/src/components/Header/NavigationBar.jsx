@@ -16,11 +16,11 @@ const homeLink = "/";
 const courseIeltsLink = "/IELTS";
 const courseToeicLink = "/TOEIC";
 const courseAdultLink = "/English-For-Adult";
-const courseKidLink = "/English-For-Kid";
-const postLink = "/Post";
-const aboutUsLink = "/AboutUs";
-const aboutStaffLink = "/AboutStaff";
-const aboutContactLink = "/Contact";
+const courseKidLink = "/english-for-kid";
+const postLink = "/main-post";
+const aboutUsLink = "/about-us";
+const aboutStaffLink = "/about-staff";
+const aboutContactLink = "/contact";
 let navbarItems = [
     {
         displayName: "Home",
