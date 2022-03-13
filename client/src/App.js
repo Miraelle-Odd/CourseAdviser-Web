@@ -17,7 +17,13 @@ import PostManagement from "./pages/PostManagement/PostManagement"
 import ChatbotManagement from "./pages/ChatbotManagement/ChatbotManagement"
 import TestAva from "./assets/icons/staff-img.png"
 import NavigationBar from './components/Header/NavigationBar';
-
+import AboutStaff from './pages/About/AboutStaff/AboutStaff';
+import AboutUs from './pages/About/AboutUs/AboutUs';
+import Contact from './pages/About/Contact/Contact';
+import MainPost from './pages/Post/MainPost/MainPost';
+import AcademicPosts from './pages/Post/PostLists/AcademicPosts';
+import SpecialEvents from './pages/Post/PostLists/SpecialEvents';
+import Discounts from './pages/Post/PostLists/Discounts';
 
 const history = createBrowserHistory();
 const AAA = () => (
@@ -26,6 +32,7 @@ const AAA = () => (
 const BBB = () => (
   <div>BBB</div>
 )
+
 
 function App() {
   return (
@@ -46,6 +53,14 @@ function App() {
           <Routes>
             <Route path="/home" element={<HomePage></HomePage>} exact={true} />
             <Route exact path="/" element={<HomePage></HomePage>} />
+            <Route path="/main-post" element={<MainPost></MainPost>} />
+            <Route path="/academic-posts" element={<AcademicPosts></AcademicPosts>}/>
+            <Route path="/special-events" element={<SpecialEvents></SpecialEvents>}/>
+            <Route path="/discounts" element={<Discounts></Discounts>}/>
+            <Route path="/about-staff" element={<AboutStaff></AboutStaff>} />
+            <Route path="/about-us" element={<AboutUs></AboutUs>}/>
+            <Route path="/contact" element={<Contact></Contact>}/>
+            
             <Route path="/aaa" element={<AAA></AAA>} />
             <Route path="/bbb" element={<BBB></BBB>} />
             <Route path="/workplace/employee-management" element={<EmployeeManagement></EmployeeManagement>} />

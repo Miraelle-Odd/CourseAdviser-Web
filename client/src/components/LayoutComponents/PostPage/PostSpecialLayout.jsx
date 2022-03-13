@@ -29,13 +29,13 @@ export default function PostSpecialLayout(props) {
                         <div className='post-special-info'>
                             <p className='post-special-title'>{props.title}</p>
                             <p className='post-special-text'>{props.description}</p>
-                            <Link to="/temp" className='post-special-link'>
+                            {props.link ? <Link to={props.link} className='post-special-link'>
                                 <div className='post-special-seeall'>
                                     <FontAwesomeIcon className='orange-context' icon={props.icon}></FontAwesomeIcon>
                                     <p className='post-special-context orange-context'>See all {props.title}</p>
                                     <FontAwesomeIcon className='orange-context' icon={['fas', 'chevron-right']}></FontAwesomeIcon>
                                 </div>
-                            </Link>
+                            </Link> : ""}
                         </div>
                     </div>
                 </div>
@@ -51,13 +51,13 @@ export default function PostSpecialLayout(props) {
                         <div className='post-special-info post-type'>
                             <p className='post-special-title blue-title'>{props.title}</p>
                             <p className='post-special-text'>{props.description}</p>
-                            <Link to="/temp" className='post-special-link'>
+                            {props.link ? <Link to={props.link} className='post-special-link'>
                                 <div className='post-special-seeall'>
                                     <FontAwesomeIcon className='blue-context' icon={props.icon}></FontAwesomeIcon>
                                     <p className='post-special-context blue-context'>See all {props.title}</p>
                                     <FontAwesomeIcon className='blue-context' icon={['fas', 'chevron-right']}></FontAwesomeIcon>
                                 </div>
-                            </Link>
+                            </Link> : ""}
                         </div>
                         <div className='post-special-card'>
                             {props.btn.map((item, index) => {
