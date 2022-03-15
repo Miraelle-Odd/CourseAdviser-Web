@@ -1,8 +1,5 @@
 import React, { useRef, useEffect } from 'react'
 import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
     Link,
     NavLink,
     useLocation
@@ -13,14 +10,14 @@ import logo from "../../assets/icons/app-logo.png";
 import TKB_HK2 from "../../assets/icons/TKB_HK2.PNG";
 
 const homeLink = "/";
-const courseIeltsLink = "/IELTS";
-const courseToeicLink = "/TOEIC";
-const courseAdultLink = "/English-For-Adult";
-const courseKidLink = "/english-for-kid";
+const courseIeltsLink = "/courses/IELTS";
+const courseToeicLink = "/courses/TOEIC";
+const courseAdultLink = "/courses/english-for-adult";
+const courseKidLink = "/courses/english-for-kid";
 const postLink = "/main-post";
-const aboutUsLink = "/about-us";
-const aboutStaffLink = "/about-staff";
-const aboutContactLink = "/contact";
+const aboutUsLink = "/about/us";
+const aboutStaffLink = "/about/staff";
+const aboutContactLink = "/about/contact";
 let navbarItems = [
     {
         displayName: "Home",
@@ -29,7 +26,7 @@ let navbarItems = [
     },
     {
         displayName: "Courses",
-        link: "/no-change-1",
+        link: "/courses",
         dropDownItems: [
             {
                 displayName: "Luyện thi IELTS",
@@ -56,7 +53,7 @@ let navbarItems = [
     },
     {
         displayName: "About",
-        link: "/no-change-2",
+        link: "/about",
         dropDownItems: [
             {
                 displayName: "Về chúng tôi",
@@ -100,13 +97,13 @@ let employeeDropdownItems = [
 
 export default function NavigationBar() {
     const [isLogin, setIsLogin] = useState(true);
-    const [activeButton_1, setActiveButton_1] = useState('/no-change-1');
-    const [activeButton_2, setActiveButton_2] = useState('/no-change-2');
-    const renderItemNavbar_WithDropdown = (actionButton, type, item) => (
+    const renderItemNavbar_WithDropdown = (actionButton, item) => (
         <button className='item-button header-center'>
             <ul className="item-click-dropdown">
                 {item.dropDownItems.map((subItem, index) => subItem.displayName != null && (
-                    <Link className="no-decoration" to={subItem.link} onClick={() => clickedButtonHandler(subItem.link, type)}>
+                    <Link
+                        className="no-decoration" to={subItem.link}
+                    >
                         <li className="dropdown-item" key={index}>
                             {subItem.displayName}
                         </li>
@@ -163,9 +160,6 @@ export default function NavigationBar() {
 
         )
     }
-    const clickedButtonHandler = (e, t) => {
-        t === 1 ? setActiveButton_1(e) : setActiveButton_2(e)
-    };
     const [navbar, setNavbar] = useState(false);
     useEffect(() => {
         changeBackground();
@@ -193,18 +187,15 @@ export default function NavigationBar() {
                     {navbarItems.map((item, index) => {
                         return (
                             <li className="navbar-item header-center" key={index}>
-                                {item.link === "/no-change-1" ?
-                                    renderItemNavbar_WithDropdown(activeButton_1, 1, item)
+                                {item.link === "/courses" || item.link === "/about" ?
+                                    renderItemNavbar_WithDropdown(item.link, item)
                                     :
-                                    item.link === "/no-change-2" ?
-                                        renderItemNavbar_WithDropdown(activeButton_2, 2, item)
-                                        :
-                                        <NavLink
-                                            exact
-                                            to={item.link}
-                                            className="no-decoration item-button header-center">
-                                            {item.displayName}
-                                        </NavLink>
+                                    <NavLink
+                                        exact
+                                        to={item.link}
+                                        className="no-decoration item-button header-center">
+                                        {item.displayName}
+                                    </NavLink>
                                 }
                             </li>
                         );

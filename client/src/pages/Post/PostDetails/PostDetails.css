@@ -1,0 +1,64 @@
+.post-details-bg {
+    display: flex;
+    width: 100%;
+    min-height: 1555px;
+    height: max-content;
+    background: linear-gradient(332.88deg, rgba(17, 44, 137, 0.5) 7.63%, rgba(157, 191, 231, 0.1) 22.48%), linear-gradient(343.75deg, rgba(255, 171, 111, 0.5) 17.85%, rgba(255, 171, 111, 0.1) 38.2%), linear-gradient(153.49deg, #FFF2E8 14.93%, rgba(244, 234, 228, 0.713727) 24.87%, #FFFFFF 40.86%);
+}
+
+.post-details-bg .decoration {
+    width: 100%;
+    min-height: 1555px;
+    height: max-content;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-image: url('../../../assets/icons/city-decoration.png');
+}
+
+.post-details-container {
+    margin-top: 237px;
+    margin-bottom: 147px;
+    margin-left: 192px;
+    width: 75.1%;
+    height: max-content;
+    justify-content: space-between;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.post-details-main {
+    width: 730px;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-details-main .back-bar {
+    margin-bottom: 13px;
+    background-color: #fff;
+    height: 60px;
+    width: 100%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-family: 'Rounded Mplus 1c Extra Bold';
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.post-details-main .back-bar:hover {
+    cursor: pointer;
+    background-color: #f5f5f5;
+}
+
+.back-bar .back-icon {
+    color: rgba(0, 0, 0, 0.7);
+    margin-left: 26px;
+    margin-right: 50px;
+}
+
+.post-details-latest-list {
+    width: 322px;
+    display: flex;
+    flex-direction: column;
+}

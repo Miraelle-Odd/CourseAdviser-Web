@@ -16,6 +16,8 @@ export default function PostSpecialLayout(props) {
                             {props.btn.map((item, index) => {
                                 return (
                                     <PostCardBtn
+                                        id={item.id}
+                                        category={props.category}
                                         img={item.img}
                                         title={item.title}
                                         context={item.context}
@@ -63,6 +65,8 @@ export default function PostSpecialLayout(props) {
                             {props.btn.map((item, index) => {
                                 return (
                                     <PostCardBtn
+                                        id={item.id}
+                                        category={props.category}
                                         bluecard={true}
                                         img={item.img}
                                         title={item.title}

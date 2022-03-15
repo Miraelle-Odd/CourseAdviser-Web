@@ -9,7 +9,6 @@ import {
 import { createBrowserHistory } from "history";
 import "./assets/fontawesome/fontawesome"
 import HomePage from "./pages/Home/Home";
-import DraftCom from './components/DraftComponent/DraftCom';
 import LeftMenu from './components/LeftMenu/LeftMenu';
 import EmployeeManagement from "./pages/EmployeeManagement/EmployeeManagement"
 import AccountSetting from "./pages/AccountSetting/AccountSetting"
@@ -17,22 +16,13 @@ import PostManagement from "./pages/PostManagement/PostManagement"
 import ChatbotManagement from "./pages/ChatbotManagement/ChatbotManagement"
 import TestAva from "./assets/icons/staff-img.png"
 import NavigationBar from './components/Header/NavigationBar';
-import AboutStaff from './pages/About/AboutStaff/AboutStaff';
-import AboutUs from './pages/About/AboutUs/AboutUs';
-import Contact from './pages/About/Contact/Contact';
 import MainPost from './pages/Post/MainPost/MainPost';
-import AcademicPosts from './pages/Post/PostLists/AcademicPosts';
-import SpecialEvents from './pages/Post/PostLists/SpecialEvents';
-import Discounts from './pages/Post/PostLists/Discounts';
+import PostDetails from './pages/Post/PostDetails/PostDetails';
+import PostListHolder from './pages/Post/PostLists/PostListHolder';
+import AboutHolder from './pages/About/AboutHolder';
+import CourseHolder from './pages/Courses/CourseHolder';
 
 const history = createBrowserHistory();
-const AAA = () => (
-  <div>AAA - <Link to="/ ">Home</Link></div>
-)
-const BBB = () => (
-  <div>BBB</div>
-)
-
 
 function App() {
   return (
@@ -53,16 +43,13 @@ function App() {
           <Routes>
             <Route path="/home" element={<HomePage></HomePage>} exact={true} />
             <Route exact path="/" element={<HomePage></HomePage>} />
-            <Route path="/main-post" element={<MainPost></MainPost>} />
-            <Route path="/academic-posts" element={<AcademicPosts></AcademicPosts>}/>
-            <Route path="/special-events" element={<SpecialEvents></SpecialEvents>}/>
-            <Route path="/discounts" element={<Discounts></Discounts>}/>
-            <Route path="/about-staff" element={<AboutStaff></AboutStaff>} />
-            <Route path="/about-us" element={<AboutUs></AboutUs>}/>
-            <Route path="/contact" element={<Contact></Contact>}/>
-            
-            <Route path="/aaa" element={<AAA></AAA>} />
-            <Route path="/bbb" element={<BBB></BBB>} />
+            <Route path='/course/:courseType' element={<CourseHolder></CourseHolder>}/>
+            <Route path="/main-post/" element={<MainPost></MainPost>}></Route>
+            <Route path="/main-post/:postType" element={<PostListHolder></PostListHolder>}/>
+            <Route path="/main-post/:postType/post-details/:id" element={<PostDetails></PostDetails>}/>            
+            <Route path="/post-details" element={<PostDetails></PostDetails>}/>
+            <Route path="/about" element={<div></div>}/>
+            <Route path="/about/:aboutType" element={<AboutHolder></AboutHolder>} />            
             <Route path="/workplace/employee-management" element={<EmployeeManagement></EmployeeManagement>} />
             <Route path="/workplace/account-setting" element={<AccountSetting></AccountSetting>} />
             <Route path="/workplace/post-management" element={<PostManagement></PostManagement>} />

@@ -1,0 +1,98 @@
+.post-menu-container {
+    box-sizing: border-box;
+    width: 322px;
+    height: max-content;
+    background-color: #fff;
+    border-radius: 10px 50px 0 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.post-menu-header {
+    height: 47px;
+    background: rgba(245, 212, 148, 0.2);
+    box-shadow: 0px 2px 0px #FFAB6F;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    font-family: 'Rounded Mplus 1c Extra Bold';
+    font-size: 24px;
+    color: #EE751D;
+}
+
+.post-menu-list {
+    width: 100%;
+    height: max-content;
+    padding: 14px 10px 16px;
+    box-sizing: border-box;
+}
+
+.list-item-container {
+    display: flex;
+    padding: 10px 6px;
+    align-items: center;
+    text-decoration: none;
+}
+
+.list-item-container:hover {
+    background-color: rgb(245, 245, 245);
+    cursor: pointer;
+}
+
+.list-item-container .item-thumbnail {
+    width: 90px;
+    height: 94px;
+    object-fit: cover;
+}
+
+.list-item-container .item-info {
+    text-decoration: none;
+    margin-left: 28px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: calc(100% - 118px);
+}
+
+.list-item-container .item-title {
+    color: #B62F05;
+    font-family: 'Rounded Mplus 1c Extra Bold';
+    font-size: 16px;
+    margin-bottom: 4px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list-item-container .item-title .author {
+    margin-left: 4px;
+    font-size: 14px;
+    font-family: 'Rounded Mplus 1c Regular';
+}
+
+.list-item-container .item-subtitle {
+    flex: 1;
+    font-size: 14px;
+    font-family: 'Rounded Mplus 1c Medium';
+    align-items: center;
+    display: flex;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.list-item-container .item-upload-time {
+    color: #626262;
+    font-family: 'Rounded Mplus 1c Light';
+    font-style: italic;
+    font-size: 14px;
+    margin-top: 4px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
