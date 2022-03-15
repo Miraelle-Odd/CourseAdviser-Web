@@ -9,7 +9,7 @@ export default function PostCardBtn(props) {
     return (
         <Fragment>
             <div className="post-card-content">
-                <Link to="/temp" className='post-card-link'>
+                <Link to={"/main-post/" + props.category + "/post-details/" + props.id} className='post-card-link'>
                     <div className='post-card-main'>
                         <div className='post-card-border'>
                             <img className={props.img ? 'post-card-img' : "post-card-img noimg"} src={props.img ? props.img : img}></img>

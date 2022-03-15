@@ -19,6 +19,8 @@ export default function PostListLayout(props) {
                                 props.items.map((item, index) => {
                                     return (
                                         <PostItemBtn
+                                            id={item.id}
+                                            category={props.category}
                                             thumbnail={item.thumbnail}
                                             title={item.title}
                                             content={item.content}
@@ -36,6 +38,8 @@ export default function PostListLayout(props) {
                                 props.items.map((item, index) => {
                                     return (
                                         <PostItemBtn
+                                            id={item.id}
+                                            category={props.category}
                                             thumbnail={item.thumbnail}
                                             title={item.title}
                                             content={item.content}

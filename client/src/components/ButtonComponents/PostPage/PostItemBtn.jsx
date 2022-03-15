@@ -5,7 +5,7 @@ import img from '../../../assets/icons/post_image.png';
 import {Link} from 'react-router-dom';
 export default function PostItemBtn(props) {
     return (
-        <Fragment><Link to="/temp" className='post-item-link'>
+        <Fragment><Link to={"/main-post/" + props.category + "/post-details/" + props.id} className='post-item-link'>
             <div className={props.typeblue === true ? 'post-item-content type-blue post-item-center' : 'post-item-content post-item-center'}>
                     <img className={props.typeblue === true ?
                         props.thumbnail ? 'post-item-thumble thumble-blue' : 'post-item-thumble thumble-blue no-fit' :
