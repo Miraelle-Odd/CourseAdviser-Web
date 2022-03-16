@@ -8,6 +8,9 @@ import { useState } from 'react';
 import './NavigationBar.css'
 import logo from "../../assets/icons/app-logo.png";
 import TKB_HK2 from "../../assets/icons/TKB_HK2.PNG";
+import Popup from 'reactjs-popup';
+import Login from '../PopupComponents/Login/Login';
+import ForgotPassword from '../PopupComponents/ForgotPassword/ForgotPassword';
 
 const homeLink = "/";
 const courseIeltsLink = "/courses/IELTS";
@@ -96,7 +99,22 @@ let employeeDropdownItems = [
 ]
 
 export default function NavigationBar() {
-    const [isLogin, setIsLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState(false);
+    const [isShowLogin, setIsShowLogin] = useState(false);
+    const [isShowForgot, setIsShowForgot] = useState(false);
+    const handleLogin = () => {
+        setIsShowLogin(true);
+    }
+    const handleForgot = () => {
+        setIsShowForgot(true);
+        setIsShowLogin(false);
+    }
+    const handleLoginClose = () => {
+        setIsShowLogin(false);
+    }
+    const handleForgotClose = () => {
+        setIsShowForgot(false);
+    }
     const renderItemNavbar_WithDropdown = (actionButton, item) => (
         <button className='item-button header-center'>
             <ul className="item-click-dropdown">
@@ -204,9 +222,21 @@ export default function NavigationBar() {
                     {
                         !isLogin ?
                             (<li className="navbar-item header-center">
-                                <button className={position === "/" && navbar ? "item-button header-center login-for-home item-login" : 'item-button header-center item-login'}>
+                                <button className={position === "/" && navbar ? "item-button header-center login-for-home item-login" : 'item-button header-center item-login'}
+                                    onClick={handleLogin}>
                                     Login
                                 </button>
+                                <Popup open={isShowLogin} onClose={() => setIsShowLogin(false)} modal nested closeOnDocumentClick={false}>
+                                    <Login
+                                        setIsShowLogin={handleLoginClose}
+                                        handleForgotOpen={handleForgot}>
+                                    </Login>
+                                </Popup>
+                                <Popup open={isShowForgot} onClose={() => setIsShowForgot(false)} modal nested closeOnDocumentClick={false}>
+                                    <ForgotPassword
+                                        setIsShowForgot={handleForgotClose}>
+                                    </ForgotPassword>
+                                </Popup>
                             </li>) :
                             (
                                 renderUserToggle("User Full Name", TKB_HK2, 'gmail@gmail.com', managerDropdownItems)
