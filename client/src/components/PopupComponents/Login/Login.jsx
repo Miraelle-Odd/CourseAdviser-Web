@@ -8,7 +8,7 @@ export default function Login({ setIsShowLogin, handleForgotOpen}) {
     const [inputUsername, setInputUsername] = useState();
     const [inputPassword, setInputPassword] = useState();
     const [cbRemember, setCbRemember] = useState(false);
-    const [toggleEye, setToggleEye] = useState(['fas', 'eye']);
+    const [toggleEye, setToggleEye] = useState(['fas', 'eye-slash']);
     const [inputType, setInputType] = useState("password");
     const [cbChecked, setCbChecked] = useState(['fas', 'checked']);
 
