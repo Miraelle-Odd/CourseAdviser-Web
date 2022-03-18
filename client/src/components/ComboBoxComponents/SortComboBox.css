@@ -1,0 +1,17 @@
+.sort {
+    height: 40px;
+    width: 245px;
+    background: #FAFBFC;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: 'Rounded Mplus 1c Medium';
+    font-size: 16px;
+    color: #959595;
+    outline: none;
+    padding: 8px 12px;
+    -webkit-appearance: none;
+    background-image: url(../../assets/icons/sort-arrow-down.png);
+    background-repeat: no-repeat;
+    background-position: 95%;
+}
