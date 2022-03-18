@@ -49,7 +49,7 @@ const MenuOption = props => {
 
 const LeftMenu = props => {
     return (
-        <div className={props.hide ? "hide" : ""}>
+        <div className={props.hide ? "hide" : "no-overflow"}>
             <div className='left-menu-decoration'></div>
             <div className='left-menu-container'>
 
