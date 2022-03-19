@@ -14,7 +14,7 @@ export default function EditForm(props) {
         <Fragment>
             <div className='edit-form-contain'>
                 <div className='edit-form-close'>
-                    <FontAwesomeIcon className='edit-form-icon' icon={['fas', 'xmark']} />
+                    <FontAwesomeIcon className='edit-form-close-icon' icon={['fas', 'xmark']} />
                 </div>
                 <div className='edit-form-body'>
                     <p className='edit-form-title'>{props.title}</p>
