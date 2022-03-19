@@ -11,7 +11,7 @@ import TKB_HK2 from "../../assets/icons/TKB_HK2.PNG";
 import Popup from 'reactjs-popup';
 import Login from '../PopupComponents/Login/Login';
 import ForgotPassword from '../PopupComponents/ForgotPassword/ForgotPassword';
-import AuthenForm from '../PopupComponents/AuthenForm/AuthenForm';
+import AuthenForm from '../PopupComponents/FormComponents/AuthenForm/AuthenForm';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
