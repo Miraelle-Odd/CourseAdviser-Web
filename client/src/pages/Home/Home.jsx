@@ -35,6 +35,7 @@ import PostSliderLayout from '../../components/LayoutComponents/PostPage/PostSli
 import PostListLayout from '../../components/LayoutComponents/PostPage/PostListLayout'
 import StaffCardLayout from '../../components/LayoutComponents/StaffPage/StaffCardLayout'
 import Footer from '../../components/Footer/Footer'
+import AuthenForm from '../../components/PopupComponents/AuthenForm/AuthenForm'
 const postSpecialBtn = [
     {
         img: paimon,
@@ -92,8 +93,7 @@ const Home = props => {
 
             <AppoinmentLayout> </AppoinmentLayout>
 
-            <Footer></Footer>     
-
+            <Footer></Footer>
 
             {/* <LearnBtn
                 name="Learn more">
@@ -103,7 +103,7 @@ const Home = props => {
                 name={"Đặt lịch tư vấn"}>
             </FloatBtn> */}
 
-  
+
             {/* {
                 listOfTest.map((value, key) => {
                     return <DraftCom

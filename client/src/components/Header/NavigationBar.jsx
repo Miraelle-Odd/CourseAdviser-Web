@@ -11,8 +11,11 @@ import TKB_HK2 from "../../assets/icons/TKB_HK2.PNG";
 import Popup from 'reactjs-popup';
 import Login from '../PopupComponents/Login/Login';
 import ForgotPassword from '../PopupComponents/ForgotPassword/ForgotPassword';
+import AuthenForm from '../PopupComponents/AuthenForm/AuthenForm';
 
 const homeLink = "/";
+const courseLink = "/courses";
+const aboutLink = "/about";
 const courseIeltsLink = "/courses/IELTS";
 const courseToeicLink = "/courses/TOEIC";
 const courseAdultLink = "/courses/english-for-adult";
@@ -21,6 +24,13 @@ const postLink = "/main-post";
 const aboutUsLink = "/about/us";
 const aboutStaffLink = "/about/staff";
 const aboutContactLink = "/about/contact";
+
+const adminManageAccount = "/admin-manage-account";
+const adminManageChatbot = "/admin-manage-chatbot";
+const adminManagePost = "/admin-manage-post";
+const adminManageQa = "/admin-manage-qa";
+const userSetting = "/user-setting";
+
 let navbarItems = [
     {
         displayName: "Home",
@@ -29,7 +39,7 @@ let navbarItems = [
     },
     {
         displayName: "Courses",
-        link: "/courses",
+        link: courseLink,
         dropDownItems: [
             {
                 displayName: "Luyện thi IELTS",
@@ -40,7 +50,7 @@ let navbarItems = [
                 link: courseToeicLink,
             },
             {
-                displayName: "Tiếng Anh cho người đi làm",
+                displayName: "Tiếng Anh giao tiếp",
                 link: courseAdultLink,
             },
             {
@@ -56,7 +66,7 @@ let navbarItems = [
     },
     {
         displayName: "About",
-        link: "/about",
+        link: aboutLink,
         dropDownItems: [
             {
                 displayName: "Về chúng tôi",
@@ -76,43 +86,46 @@ let navbarItems = [
 let managerDropdownItems = [
     {
         displayName: "Quản lý tài khoản",
-        link: "/admin-manage-account"
+        link: adminManageAccount
     },
     {
         displayName: "Quản lý ChatBot",
-        link: "/admin-manage-chatbot"
+        link: adminManageChatbot
     },
     {
         displayName: "Cài đặt tài khoản",
-        link: "/user-setting"
+        link: userSetting
     },
 ]
 let employeeDropdownItems = [
     {
         displayName: "Quản lý bài viết",
-        link: "/admin-manage-post"
+        link: adminManagePost
+    },
+    {
+        displayName: "Quản lý hỏi đáp",
+        link: adminManageQa
     },
     {
         displayName: "Cài đặt tài khoản",
-        link: "/user-setting"
+        link: userSetting
     },
 ]
 
 export default function NavigationBar() {
     const [isLogin, setIsLogin] = useState(false);
+
     const [isShowLogin, setIsShowLogin] = useState(false);
     const [isShowForgot, setIsShowForgot] = useState(false);
-    const handleLogin = () => {
+    const handleLoginOpen = () => {
         setIsShowLogin(true);
     }
-    const handleForgot = () => {
+    const handleForgotOpen = () => {
+        setIsShowLogin(false);
         setIsShowForgot(true);
-        setIsShowLogin(false);
     }
-    const handleLoginClose = () => {
+    const handleFormClose = () => {
         setIsShowLogin(false);
-    }
-    const handleForgotClose = () => {
         setIsShowForgot(false);
     }
     const renderItemNavbar_WithDropdown = (actionButton, item) => (
@@ -223,10 +236,10 @@ export default function NavigationBar() {
                         !isLogin ?
                             (<li className="navbar-item header-center">
                                 <button className={position === "/" && navbar ? "item-button header-center login-for-home item-login" : 'item-button header-center item-login'}
-                                    onClick={handleLogin}>
+                                    onClick={handleLoginOpen}>
                                     Login
                                 </button>
-                                <Popup open={isShowLogin} onClose={() => setIsShowLogin(false)} modal nested closeOnDocumentClick={false}>
+                                {/* <Popup open={isShowLogin} onClose={() => setIsShowLogin(false)} modal nested closeOnDocumentClick={false}>
                                     <Login
                                         setIsShowLogin={handleLoginClose}
                                         handleForgotOpen={handleForgot}>
@@ -235,6 +248,17 @@ export default function NavigationBar() {
                                 <Popup open={isShowForgot} onClose={() => setIsShowForgot(false)} modal nested closeOnDocumentClick={false}>
                                     <ForgotPassword
                                         setIsShowForgot={handleForgotClose}>
+                                    </ForgotPassword>
+                                </Popup> */}
+                                <Popup open={isShowLogin} onClose={() => setIsShowLogin(false)} modal nested closeOnDocumentClick={false}>
+                                    <Login
+                                        handleFormClose={() => handleFormClose()}
+                                        handleForgotFormOpen={handleForgotOpen}>
+                                    </Login>
+                                </Popup>
+                                <Popup open={isShowForgot} onClose={() => setIsShowForgot(false)} modal nested closeOnDocumentClick={false}>
+                                    <ForgotPassword
+                                        handleFormClose={() => handleFormClose()}>
                                     </ForgotPassword>
                                 </Popup>
                             </li>) :
