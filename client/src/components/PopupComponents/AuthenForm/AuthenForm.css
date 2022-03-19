@@ -1,0 +1,170 @@
+.authen-form-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+.authen-form-contain{
+    width: 326px;
+    height: 636px;
+
+    background: rgba(219, 219, 219, 0.5);
+    backdrop-filter: blur(30px);
+    padding: 10px 40px;
+}
+.authen-form-contain .authen-form-exit{
+    width: 108%;
+    display: flex;
+    justify-content: right;
+}
+.authen-form-contain .authen-form-header-contain{
+    width: 100%;
+    margin-top: 50px;
+}
+
+.authen-form-line{
+    height: 2px;
+    background: rgba(255, 255, 255, 0.6);
+    margin: 5px 0;
+}
+.authen-form-header-contain .authen-form-header-context{
+    height: 27px;
+
+    font-family: 'Rounded Mplus 1c Medium';
+
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    justify-content: right;
+
+    color: #FFFFFF;
+    margin: 0 0;
+}
+.authen-form-input-border{
+    width: 95%;
+    height: 50px;
+
+    background: rgba(49, 97, 154, 0.8);
+    border-radius: 25px;
+    margin: 20px 0;
+    overflow: hidden;
+    padding-left: 5%;
+}
+.authen-form-input-border .authen-form-input{
+    width: 100%;
+    height: 50px;
+    border: none;
+    padding: 0 0 0 15px;
+    background-color: transparent;
+    font-family: 'Rounded Mplus 1c Regular';
+    font-size: 18px;
+    line-height: 27px;
+    color: #FFFFFF;
+}
+.authen-form-input::placeholder{
+    color: #FFFFFF;
+}
+.authen-form-input:focus{
+    outline: none;
+}
+.authen-form-icon{
+    width: 25px;
+    height: 25px;
+
+    color: #FFFFFF;
+}
+.exit-icon-login{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.authen-form-input-border .authen-form-right-eye{
+    width: 100px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.authen-form-contain .authen-form-checkbox-contain{
+    margin-top: 15px;
+    position: relative;
+    display: flex;
+    justify-content: right;
+}
+
+.authen-form-checkbox-contain .authen-form-checkbox-text{
+    width: max-content;
+    font-family: 'Roboto Light';
+    font-style: italic;
+
+    font-size: 18px;
+    line-height: 21px;
+    color: #FFFFFF;
+    margin-left: 15px;
+    margin-right: 40px;
+}
+.authen-form-checkbox-contain .authen-form-custom{
+    display: flex;
+    justify-content: right;
+}
+.authen-form-custom .authen-form-checkbox{
+    display: none;
+    margin: 0 0;
+}
+.authen-form-custom .checkbox-custom{
+    width: 20px;
+    height: 20px;
+
+    z-index: 10;
+    background-color: rgba(49, 97, 154, 0.8);
+    cursor: pointer;
+}
+.checkbox-custom .authen-form-checkbox-checked{
+    width: 15px;
+    height: 15px;
+    color: #FFFFFF;
+}
+.authen-form-button{
+    width: 111px;
+    height: 40px;
+    border: none;
+    background: #173151;
+    border-radius: 20px;
+    font-family: 'Roboto Bold';
+    font-style: italic;
+
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.authen-form-contain .authen-form-footer-contain{
+    width: 100%;
+    margin-top: 10px;
+}
+.authen-form-footer-contain .authen-form-footer-context{
+    width: 123px;
+
+    font-family: 'Rounded Mplus 1c Extra Bold';
+    font-size: 12px;
+    line-height: 18px;
+
+    color: #FFFFFF;
+}
+.authen-form-footer-contain .authen-form-footer-button{
+    width: 36px;
+    height: 24px;
+
+    border: none;
+    background: rgba(59, 103, 155, 0.5);
+    border-radius: 12px;
+
+    font-family: 'Roboto Bold';
+    font-style: italic;
+    font-size: 12px;
+    
+    padding: 0 0;
+    color: #FFFFFF;
+    cursor: pointer;
+}
