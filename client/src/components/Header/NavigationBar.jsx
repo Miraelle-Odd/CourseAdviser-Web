@@ -13,6 +13,7 @@ import Login from '../PopupComponents/Login/Login';
 import ForgotPassword from '../PopupComponents/ForgotPassword/ForgotPassword';
 import AuthenForm from '../PopupComponents/AuthenForm/AuthenForm';
 import Modal from 'react-modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const homeLink = "/";
 const courseLink = "/courses";
@@ -86,7 +87,7 @@ let navbarItems = [
 ];
 let managerDropdownItems = [
     {
-        displayName: "Quản lý tài khoản",
+        displayName: "Quản lý tài khoản nội bộ",
         link: adminManageAccount
     },
     {
@@ -115,7 +116,7 @@ let employeeDropdownItems = [
 
 export default function NavigationBar() {
     const [navbar, setNavbar] = useState(false);
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
     const position = useLocation().pathname;
 
     const [isShowLogin, setIsShowLogin] = useState(false);
@@ -173,7 +174,7 @@ export default function NavigationBar() {
                     <div className={position === "/" && navbar ? "navbar-user-contain header-center" : "no-border navbar-user-contain header-center"}>
                         <img className="user-avatar" src={image} alt="" ></img>
                         <span className="user-name">{name}</span>
-                        {/* <i className="fas fa-angle-down margin8"></i> */}
+                        <FontAwesomeIcon className='navbar-icon ' icon={['fas','chevron-down']}></FontAwesomeIcon>
                     </div>
                     <ul className="item-click-dropdown user-dropdown">
                         <li>
@@ -181,24 +182,25 @@ export default function NavigationBar() {
                                 <img className="user-avatar dropdown-avatar" src={image} alt="" ></img>
                                 <span className="user-name dropdown-name">{name}</span>
                                 <span className='dropdown-email'>{email}</span>
-                                {/* <i className="fas fa-angle-down margin8"></i> */}
                             </div>
                         </li>
                         <li><div className='dropdown-line'></div>
                         </li>
                         {listItem.map((subItem, index) => subItem.displayName != null && (
                             <Link className="no-decoration" to={subItem.link}>
-                                <li className="dropdown-item" key={index}>
+                                <li className="dropdown-item dropdown-item-with-icon header-center" key={index}>
                                     {subItem.displayName}
+                                    <FontAwesomeIcon className='dropdown-item-icon' icon={['fas','chevron-right']}></FontAwesomeIcon>
                                 </li>
+                                
                             </Link>
                         ))}
                         <li><div className='dropdown-line'></div>
                         </li>
-                        <li className="dropdown-item">
-                            <div className="dropdown-footer">
+                        <li className="dropdown-item no-decoration">
+                            <div className="dropdown-footer  header-center">
                                 <span className='dropdown-logout'>Đăng xuất</span>
-                                {/* <i className="fas fa-angle-down margin8"></i> */}
+                                <FontAwesomeIcon className='dropdown-logout-icon' icon={['fas','right-from-bracket']}></FontAwesomeIcon>
                             </div>
                         </li>
                     </ul>
