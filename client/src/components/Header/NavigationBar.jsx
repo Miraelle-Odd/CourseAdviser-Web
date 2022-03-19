@@ -12,13 +12,14 @@ import Popup from 'reactjs-popup';
 import Login from '../PopupComponents/Login/Login';
 import ForgotPassword from '../PopupComponents/ForgotPassword/ForgotPassword';
 import AuthenForm from '../PopupComponents/AuthenForm/AuthenForm';
+import Modal from 'react-modal';
 
 const homeLink = "/";
 const courseLink = "/courses";
 const aboutLink = "/about";
 const courseIeltsLink = "/courses/IELTS";
 const courseToeicLink = "/courses/TOEIC";
-const courseAdultLink = "/courses/english-for-adult";
+const courseSpeakingLink = "/courses/english-for-speaking";
 const courseKidLink = "/courses/english-for-kid";
 const postLink = "/main-post";
 const aboutUsLink = "/about/us";
@@ -51,7 +52,7 @@ let navbarItems = [
             },
             {
                 displayName: "Tiếng Anh giao tiếp",
-                link: courseAdultLink,
+                link: courseSpeakingLink,
             },
             {
                 displayName: "Tiếng Anh cho bé",
@@ -113,7 +114,9 @@ let employeeDropdownItems = [
 ]
 
 export default function NavigationBar() {
+    const [navbar, setNavbar] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
+    const position = useLocation().pathname;
 
     const [isShowLogin, setIsShowLogin] = useState(false);
     const [isShowForgot, setIsShowForgot] = useState(false);
@@ -128,6 +131,20 @@ export default function NavigationBar() {
         setIsShowLogin(false);
         setIsShowForgot(false);
     }
+    
+    useEffect(() => {
+        changeBackground();
+        window.addEventListener('scroll', changeBackground);
+    }, [])
+
+    const changeBackground = () => {
+        if (window.pageYOffset >= 100) {
+            setNavbar(false);
+        } else {
+            setNavbar(true);
+        }
+    }
+    
     const renderItemNavbar_WithDropdown = (actionButton, item) => (
         <button className='item-button header-center'>
             <ul className="item-click-dropdown">
@@ -191,20 +208,6 @@ export default function NavigationBar() {
 
         )
     }
-    const [navbar, setNavbar] = useState(false);
-    useEffect(() => {
-        changeBackground();
-        window.addEventListener('scroll', changeBackground);
-    }, [])
-    const changeBackground = () => {
-
-        if (window.pageYOffset >= 100) {
-            setNavbar(false);
-        } else {
-            setNavbar(true);
-        }
-    }
-    const position = useLocation().pathname;
     return (
         <header className='header-sticky'>
             <div className={position === "/" && navbar ? 'header-for-home header-container' : "header-container"}>
@@ -239,28 +242,27 @@ export default function NavigationBar() {
                                     onClick={handleLoginOpen}>
                                     Login
                                 </button>
-                                {/* <Popup open={isShowLogin} onClose={() => setIsShowLogin(false)} modal nested closeOnDocumentClick={false}>
-                                    <Login
-                                        setIsShowLogin={handleLoginClose}
-                                        handleForgotOpen={handleForgot}>
-                                    </Login>
-                                </Popup>
-                                <Popup open={isShowForgot} onClose={() => setIsShowForgot(false)} modal nested closeOnDocumentClick={false}>
-                                    <ForgotPassword
-                                        setIsShowForgot={handleForgotClose}>
-                                    </ForgotPassword>
-                                </Popup> */}
-                                <Popup open={isShowLogin} onClose={() => setIsShowLogin(false)} modal nested closeOnDocumentClick={false}>
+                                <Modal
+                                    isOpen={isShowLogin}
+                                    onRequestClose={() => handleFormClose()}
+                                    className="popup-modal"
+                                    overlayClassName="popup-overlay"
+                                    shouldCloseOnOverlayClick={false}>
                                     <Login
                                         handleFormClose={() => handleFormClose()}
                                         handleForgotFormOpen={handleForgotOpen}>
                                     </Login>
-                                </Popup>
-                                <Popup open={isShowForgot} onClose={() => setIsShowForgot(false)} modal nested closeOnDocumentClick={false}>
+                                </Modal>
+                                <Modal
+                                    isOpen={isShowForgot}
+                                    onRequestClose={() => handleFormClose()}
+                                    className="popup-modal"
+                                    overlayClassName="popup-overlay"
+                                    shouldCloseOnOverlayClick={false}>
                                     <ForgotPassword
                                         handleFormClose={() => handleFormClose()}>
                                     </ForgotPassword>
-                                </Popup>
+                                </Modal>
                             </li>) :
                             (
                                 renderUserToggle("User Full Name", TKB_HK2, 'gmail@gmail.com', managerDropdownItems)
