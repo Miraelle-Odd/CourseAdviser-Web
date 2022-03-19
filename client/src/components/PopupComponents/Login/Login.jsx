@@ -3,7 +3,7 @@ import './Login.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom';
-import AuthenForm from '../AuthenForm/AuthenForm';
+import AuthenForm from '../FormComponents/AuthenForm/AuthenForm';
 
 export default function Login(props) {
     return (

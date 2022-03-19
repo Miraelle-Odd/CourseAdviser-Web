@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './ForgotPassword.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import AuthenForm from '../AuthenForm/AuthenForm';
+import AuthenForm from '../FormComponents/AuthenForm/AuthenForm';
 
 export default function ForgotPassword(props) {
     return (
