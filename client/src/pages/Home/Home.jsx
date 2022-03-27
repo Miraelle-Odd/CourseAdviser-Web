@@ -3,91 +3,19 @@ import axios from 'axios'
 import './Home.css'
 import "../../index.css"
 
-import DraftCom from '../../components/DraftComponent/DraftCom'
 import HomeIntroLayout from '../../components/LayoutComponents/HomePage/HomeIntroLayout'
-import LearnBtn from '../../components/ButtonComponents/LearnBtn'
-import FloatBtn from '../../components/ButtonComponents/FloatBtn'
-import ParallelogramBtn from '../../components/ButtonComponents/HomePage/ParallelogramBtn'
 import HomeWhyLayout from '../../components/LayoutComponents/HomePage/HomeWhyLayout'
-import FacilityCard_Img from '../../components/CardComponents/AboutPage/FacilityCard_Img'
-import AboutVisionLayout from '../../components/LayoutComponents/AboutPage/AboutVisionLayout'
-import AboutArchiLayout from '../../components/LayoutComponents/AboutPage/AboutArchiLayout'
-import AboutWhyLayout from '../../components/LayoutComponents/AboutPage/AboutWhyLayout'
-import AboutFeedbackLayout from '../../components/LayoutComponents/AboutPage/AboutFeedbackLayout'
 import AppoinmentLayout from '../../components/LayoutComponents/ContactPage/AppoinmentLayout'
-import LocationLayout from '../../components/LayoutComponents/AboutPage/LocationLayout'
-import MethodLayout from '../../components/LayoutComponents/AboutPage/MethodLayout'
-
-import TKB_HK2 from '../../assets/icons/TKB_HK2.PNG'
 import HomeCourseLayout from '../../components/LayoutComponents/HomePage/HomeCourseLayout'
-
-import AboutCenterLayout from '../../components/LayoutComponents/AboutPage/AboutCenterLayout'
-import AboutIntroLayout from '../../components/LayoutComponents/AboutPage/AboutIntroLayout'
-import StaffCard from '../../components/CardComponents/StaffPage/StaffCard'
-
-import paimon from '../../assets/icons/staff-img.png'
-import StaffManagerLayout from '../../components/LayoutComponents/StaffPage/StaffManagerLayout'
-import StaffEmployeeLayout from '../../components/LayoutComponents/StaffPage/StaffEmployeeLayout'
-import StaffTeacherLayout from '../../components/LayoutComponents/StaffPage/StaffTeacherLayout'
-import PostSpecialLayout from '../../components/LayoutComponents/PostPage/PostSpecialLayout'
-import PostItemBtn from '../../components/ButtonComponents/PostPage/PostItemBtn'
-import PostSliderLayout from '../../components/LayoutComponents/PostPage/PostSliderLayout'
-import PostListLayout from '../../components/LayoutComponents/PostPage/PostListLayout'
-import StaffCardLayout from '../../components/LayoutComponents/StaffPage/StaffCardLayout'
 import Footer from '../../components/Footer/Footer'
-import EditForm from '../../components/PopupComponents/FormComponents/EditForm/EditForm'
-const postSpecialBtn = [
-    {
-        img: paimon,
-        title: "Btn Title 1",
-        context: "Subtitle cds sdsd dsds dsdsd max 3 lines .ddddddddddddddddd..",
-        datetime: "DD-MM-YYYY - hh:mm:ss",
-        author: "NA",
-    },
-    {
-        img: paimon,
-        title: "Btn Title 1",
-        context: "Subtitle cds sdsd dsds dsdsd max 3 lines .ddddddddddddddddd..",
-        datetime: "DD-MM-YYYY - hh:mm:ss",
-        author: "NA",
-    }
-]
-const postListItem = [
-    {
-        thumbnail: TKB_HK2,
-        title: "Title of Post",
-        content: "Description Description Description Description Description Description Description Description aaaa",
-        datetime: "DD/MM/YYYY hh:mm:ss",
-        author: "Author Name"
-    },
-    {
-        thumbnail: TKB_HK2,
-        title: "Title of Post",
-        content: "Description Description Description Description Description Description Description Description aaaa",
-        datetime: "DD/MM/YYYY hh:mm:ss",
-        author: "Author Name"
-    },
-    {
-        thumbnail: TKB_HK2,
-        title: "Title of Post",
-        content: "Description Description Description Description Description Description Description Description aaaa",
-        datetime: "DD/MM/YYYY hh:mm:ss",
-        author: "Author Name"
-    },
-]
-const editListItem = [
-    {
-        title: "Họ và tên",
-        icon: ['fa-regular', 'fa-user']
-    },
-    {
-        isGenderSelect: true
-    },
-    {
-        title: "Họ và tên",
-        icon: ['fa-regular', 'fa-user']
-    }
-]
+import CreateAccount from '../../components/PopupComponents/CreateAccount/CreateAccount'
+import UpdateGeneral from '../../components/PopupComponents/UpdateGeneral/UpdateGeneral'
+import UpdateSelfContact from '../../components/PopupComponents/UpdateSelfContact/UpdateSelfContact'
+import UpdateSelfInfo from '../../components/PopupComponents/UpdateSelfInfo/UpdateSelfInfo'
+import UpdatePassword from '../../components/PopupComponents/UpdatePassword/UpdatePassword'
+import AlertSuccess from '../../components/PopupComponents/AlertSuccess/AlertSuccess'
+import AlertFail from '../../components/PopupComponents/AlertFail/AlertFail'
+import AlertConfirm from '../../components/PopupComponents/AlertConfirm/AlertConfirm'
 
 const Home = props => {
     const [listOfTest, setListOfTest] = useState([])
@@ -108,12 +36,16 @@ const Home = props => {
 
             <Footer></Footer>
 
-            <EditForm
-            title="Cập nhật thông tin"
-            listItem={editListItem}
-            confirmText="Cập nhật"
-            ></EditForm>
+            <UpdatePassword></UpdatePassword>
+            <UpdateSelfContact></UpdateSelfContact>
+            <UpdateSelfInfo></UpdateSelfInfo>
+            
+            <CreateAccount></CreateAccount>
+            <UpdateGeneral></UpdateGeneral>
 
+            <AlertSuccess></AlertSuccess>
+            <AlertFail></AlertFail>
+            <AlertConfirm></AlertConfirm>
             {/* <LearnBtn
                 name="Learn more">
             </LearnBtn>
@@ -121,7 +53,6 @@ const Home = props => {
                 icon={['far', 'calendar-check']}
                 name={"Đặt lịch tư vấn"}>
             </FloatBtn> */}
-
 
             {/* {
                 listOfTest.map((value, key) => {

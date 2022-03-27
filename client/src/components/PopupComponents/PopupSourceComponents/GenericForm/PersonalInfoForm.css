@@ -1,0 +1,70 @@
+.personal-info-contain{
+    width: 727px;
+    height: 502px;
+
+    background-image: url("../../../../assets/icons/personal_form_bg.png");
+    border-radius: 30px;
+}
+.personal-info-contain .personal-info-body{
+    padding: 0px 45px;
+}
+.personal-info-body .personal-info-header{
+    display: flex;
+    margin-top: 5px;
+}
+.personal-info-header .personal-info-header-left{
+    width: 55%;
+}
+.personal-info-header-left .personal-info-title{
+    font-family: 'Rounded Mplus 1c Black';
+
+    font-size: 24px;
+    line-height: 36px;
+
+    text-align: left;
+    color: #000000;
+    margin: 10px 0 0 0;
+}
+.personal-info-header-left .personal-info-text{
+    font-family: 'Rounded Mplus 1c Regular';
+
+    font-size: 12px;
+    line-height: 18px;
+
+    text-align: left;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 10px;
+}
+.personal-info-header .personal-info-avatar-right{
+    width: 40%;
+    display: flex;
+    justify-content: right;
+}
+.personal-info-avatar-right .personal-info-avatar{
+    width: 90px;
+    height: 90px;
+}
+.personal-info-body .personal-info-main{
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.personal-info-main .personal-info-col-left{
+    width: 45%;
+    height: 300px;
+    padding: 25px 0px;
+}
+.personal-info-main .personal-info-col-right{
+    width: 45%;
+    height: 300px;
+}
+.personal-info-item{
+    margin: 10px 0 !important;
+}
+.personal-info-body .personal-info-confirm-contain{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    margin-top: 10px;
+}
