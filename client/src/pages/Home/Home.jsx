@@ -35,6 +35,7 @@ import PostSliderLayout from '../../components/LayoutComponents/PostPage/PostSli
 import PostListLayout from '../../components/LayoutComponents/PostPage/PostListLayout'
 import StaffCardLayout from '../../components/LayoutComponents/StaffPage/StaffCardLayout'
 import Footer from '../../components/Footer/Footer'
+import EditForm from '../../components/PopupComponents/FormComponents/EditForm/EditForm'
 const postSpecialBtn = [
     {
         img: paimon,
@@ -74,6 +75,19 @@ const postListItem = [
         author: "Author Name"
     },
 ]
+const editListItem = [
+    {
+        title: "Họ và tên",
+        icon: ['fa-regular', 'fa-user']
+    },
+    {
+        isGenderSelect: true
+    },
+    {
+        title: "Họ và tên",
+        icon: ['fa-regular', 'fa-user']
+    }
+]
 
 const Home = props => {
     const [listOfTest, setListOfTest] = useState([])
@@ -92,8 +106,13 @@ const Home = props => {
 
             <AppoinmentLayout> </AppoinmentLayout>
 
-            <Footer></Footer>     
+            <Footer></Footer>
 
+            <EditForm
+            title="Cập nhật thông tin"
+            listItem={editListItem}
+            confirmText="Cập nhật"
+            ></EditForm>
 
             {/* <LearnBtn
                 name="Learn more">
@@ -103,7 +122,7 @@ const Home = props => {
                 name={"Đặt lịch tư vấn"}>
             </FloatBtn> */}
 
-  
+
             {/* {
                 listOfTest.map((value, key) => {
                     return <DraftCom

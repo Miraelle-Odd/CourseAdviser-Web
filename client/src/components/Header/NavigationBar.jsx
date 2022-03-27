@@ -11,16 +11,28 @@ import TKB_HK2 from "../../assets/icons/TKB_HK2.PNG";
 import Popup from 'reactjs-popup';
 import Login from '../PopupComponents/Login/Login';
 import ForgotPassword from '../PopupComponents/ForgotPassword/ForgotPassword';
+import AuthenForm from '../PopupComponents/FormComponents/AuthenForm/AuthenForm';
+import Modal from 'react-modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const homeLink = "/";
+const courseLink = "/courses";
+const aboutLink = "/about";
 const courseIeltsLink = "/courses/IELTS";
 const courseToeicLink = "/courses/TOEIC";
-const courseAdultLink = "/courses/english-for-adult";
+const courseSpeakingLink = "/courses/english-for-speaking";
 const courseKidLink = "/courses/english-for-kid";
 const postLink = "/main-post";
 const aboutUsLink = "/about/us";
 const aboutStaffLink = "/about/staff";
 const aboutContactLink = "/about/contact";
+
+const adminManageAccount = "/admin-manage-account";
+const adminManageChatbot = "/admin-manage-chatbot";
+const adminManagePost = "/admin-manage-post";
+const adminManageQa = "/admin-manage-qa";
+const userSetting = "/user-setting";
+
 let navbarItems = [
     {
         displayName: "Home",
@@ -29,7 +41,7 @@ let navbarItems = [
     },
     {
         displayName: "Courses",
-        link: "/courses",
+        link: courseLink,
         dropDownItems: [
             {
                 displayName: "Luyện thi IELTS",
@@ -40,8 +52,8 @@ let navbarItems = [
                 link: courseToeicLink,
             },
             {
-                displayName: "Tiếng Anh cho người đi làm",
-                link: courseAdultLink,
+                displayName: "Tiếng Anh giao tiếp",
+                link: courseSpeakingLink,
             },
             {
                 displayName: "Tiếng Anh cho bé",
@@ -56,7 +68,7 @@ let navbarItems = [
     },
     {
         displayName: "About",
-        link: "/about",
+        link: aboutLink,
         dropDownItems: [
             {
                 displayName: "Về chúng tôi",
@@ -75,46 +87,65 @@ let navbarItems = [
 ];
 let managerDropdownItems = [
     {
-        displayName: "Quản lý tài khoản",
-        link: "/admin-manage-account"
+        displayName: "Quản lý tài khoản nội bộ",
+        link: adminManageAccount
     },
     {
         displayName: "Quản lý ChatBot",
-        link: "/admin-manage-chatbot"
+        link: adminManageChatbot
     },
     {
         displayName: "Cài đặt tài khoản",
-        link: "/user-setting"
+        link: userSetting
     },
 ]
 let employeeDropdownItems = [
     {
         displayName: "Quản lý bài viết",
-        link: "/admin-manage-post"
+        link: adminManagePost
+    },
+    {
+        displayName: "Quản lý hỏi đáp",
+        link: adminManageQa
     },
     {
         displayName: "Cài đặt tài khoản",
-        link: "/user-setting"
+        link: userSetting
     },
 ]
 
 export default function NavigationBar() {
-    const [isLogin, setIsLogin] = useState(false);
+    const [navbar, setNavbar] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
+    const position = useLocation().pathname;
+
     const [isShowLogin, setIsShowLogin] = useState(false);
     const [isShowForgot, setIsShowForgot] = useState(false);
-    const handleLogin = () => {
+    const handleLoginOpen = () => {
         setIsShowLogin(true);
     }
-    const handleForgot = () => {
+    const handleForgotOpen = () => {
+        setIsShowLogin(false);
         setIsShowForgot(true);
-        setIsShowLogin(false);
     }
-    const handleLoginClose = () => {
+    const handleFormClose = () => {
         setIsShowLogin(false);
-    }
-    const handleForgotClose = () => {
         setIsShowForgot(false);
     }
+    
+    useEffect(() => {
+        changeBackground();
+        window.addEventListener('scroll', changeBackground);
+    }, [])
+
+    const changeBackground = () => {
+        if (window.pageYOffset >= 100) {
+            setNavbar(false);
+        } else {
+            setNavbar(true);
+        }
+    }
+    
     const renderItemNavbar_WithDropdown = (actionButton, item) => (
         <button className='item-button header-center'>
             <ul className="item-click-dropdown">
@@ -143,7 +174,7 @@ export default function NavigationBar() {
                     <div className={position === "/" && navbar ? "navbar-user-contain header-center" : "no-border navbar-user-contain header-center"}>
                         <img className="user-avatar" src={image} alt="" ></img>
                         <span className="user-name">{name}</span>
-                        {/* <i className="fas fa-angle-down margin8"></i> */}
+                        <FontAwesomeIcon className='navbar-icon ' icon={['fas','chevron-down']}></FontAwesomeIcon>
                     </div>
                     <ul className="item-click-dropdown user-dropdown">
                         <li>
@@ -151,24 +182,25 @@ export default function NavigationBar() {
                                 <img className="user-avatar dropdown-avatar" src={image} alt="" ></img>
                                 <span className="user-name dropdown-name">{name}</span>
                                 <span className='dropdown-email'>{email}</span>
-                                {/* <i className="fas fa-angle-down margin8"></i> */}
                             </div>
                         </li>
                         <li><div className='dropdown-line'></div>
                         </li>
                         {listItem.map((subItem, index) => subItem.displayName != null && (
                             <Link className="no-decoration" to={subItem.link}>
-                                <li className="dropdown-item" key={index}>
+                                <li className="dropdown-item dropdown-item-with-icon header-center" key={index}>
                                     {subItem.displayName}
+                                    <FontAwesomeIcon className='dropdown-item-icon' icon={['fas','chevron-right']}></FontAwesomeIcon>
                                 </li>
+                                
                             </Link>
                         ))}
                         <li><div className='dropdown-line'></div>
                         </li>
-                        <li className="dropdown-item">
-                            <div className="dropdown-footer">
+                        <li className="dropdown-item no-decoration">
+                            <div className="dropdown-footer  header-center">
                                 <span className='dropdown-logout'>Đăng xuất</span>
-                                {/* <i className="fas fa-angle-down margin8"></i> */}
+                                <FontAwesomeIcon className='dropdown-logout-icon' icon={['fas','right-from-bracket']}></FontAwesomeIcon>
                             </div>
                         </li>
                     </ul>
@@ -178,20 +210,6 @@ export default function NavigationBar() {
 
         )
     }
-    const [navbar, setNavbar] = useState(false);
-    useEffect(() => {
-        changeBackground();
-        window.addEventListener('scroll', changeBackground);
-    }, [])
-    const changeBackground = () => {
-
-        if (window.pageYOffset >= 100) {
-            setNavbar(false);
-        } else {
-            setNavbar(true);
-        }
-    }
-    const position = useLocation().pathname;
     return (
         <header className='header-sticky'>
             <div className={position === "/" && navbar ? 'header-for-home header-container' : "header-container"}>
@@ -223,20 +241,30 @@ export default function NavigationBar() {
                         !isLogin ?
                             (<li className="navbar-item header-center">
                                 <button className={position === "/" && navbar ? "item-button header-center login-for-home item-login" : 'item-button header-center item-login'}
-                                    onClick={handleLogin}>
+                                    onClick={handleLoginOpen}>
                                     Login
                                 </button>
-                                <Popup open={isShowLogin} onClose={() => setIsShowLogin(false)} modal nested closeOnDocumentClick={false}>
+                                <Modal
+                                    isOpen={isShowLogin}
+                                    onRequestClose={() => handleFormClose()}
+                                    className="popup-modal"
+                                    overlayClassName="popup-overlay"
+                                    shouldCloseOnOverlayClick={false}>
                                     <Login
-                                        setIsShowLogin={handleLoginClose}
-                                        handleForgotOpen={handleForgot}>
+                                        handleFormClose={() => handleFormClose()}
+                                        handleForgotFormOpen={handleForgotOpen}>
                                     </Login>
-                                </Popup>
-                                <Popup open={isShowForgot} onClose={() => setIsShowForgot(false)} modal nested closeOnDocumentClick={false}>
+                                </Modal>
+                                <Modal
+                                    isOpen={isShowForgot}
+                                    onRequestClose={() => handleFormClose()}
+                                    className="popup-modal"
+                                    overlayClassName="popup-overlay"
+                                    shouldCloseOnOverlayClick={false}>
                                     <ForgotPassword
-                                        setIsShowForgot={handleForgotClose}>
+                                        handleFormClose={() => handleFormClose()}>
                                     </ForgotPassword>
-                                </Popup>
+                                </Modal>
                             </li>) :
                             (
                                 renderUserToggle("User Full Name", TKB_HK2, 'gmail@gmail.com', managerDropdownItems)
