@@ -1,0 +1,42 @@
+.create-form-contain{
+    width: 386px;
+    height: 611px;
+    background-image: url("../../../../assets/icons/create_form_bg.png");
+    border-radius: 30px;
+}
+.create-form-contain .create-form-body{
+    padding: 0 45px;
+}
+.create-form-header .create-form-title{
+    font-family: 'Rounded Mplus 1c Black';
+
+    font-size: 24px;
+    line-height: 36px;
+
+    text-align: left;
+    color: #000000;
+    margin: 10px 0 0 0;
+}
+.create-form-header .create-form-text{
+    width: 191px;
+    font-family: 'Rounded Mplus 1c Regular';
+
+    font-size: 12px;
+    line-height: 18px;
+
+    text-align: left;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 20px;
+}
+.create-form-item{
+    margin: 13px 0;
+}
+.create-form-item-position{
+    margin-bottom: 10px;
+}
+.create-form-contain .create-form-confirm-contain{
+    width: 94%;
+    margin-top: 35px;
+    display: flex;
+    justify-content: right;
+}

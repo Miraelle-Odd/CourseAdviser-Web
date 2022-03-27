@@ -15,3 +15,21 @@
     background-repeat: no-repeat;
     background-position: 95%;
 }
+.sort-position{
+    width: 284px;
+    height: 37px;
+    background: #FFFFFF;
+    border: 1px solid #4C83C5;
+    box-sizing: border-box;
+    border-radius: 20px;
+    font-family: 'Rounded Mplus 1c Light';
+    font-size: 14px;
+
+    color: rgba(0, 0, 0, 0.4);
+    outline: none;
+    padding: 8px 12px;
+    -webkit-appearance: none;
+    background-image: url(../../assets/icons/sort-arrow-down.png);
+    background-repeat: no-repeat;
+    background-position: 95%;
+}

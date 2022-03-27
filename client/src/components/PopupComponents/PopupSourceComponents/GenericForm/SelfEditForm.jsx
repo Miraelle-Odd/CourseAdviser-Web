@@ -1,15 +1,24 @@
 import React, { useState } from 'react'
-import './EditForm.css'
+import './SelfEditForm.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import PostItemBtn from '../../../ButtonComponents/PostPage/PostItemBtn';
 
-
-export default function EditForm(props) {
+export default function SelfEditForm(props) {
     const [inputValue, setInputValue] = useState();
     const [cbValue, setCbValue] = useState("female");
-    const [selectGenderFemale, setSelectGenderFemale] = useState(true);
-    const [selectGenderMale, setSelectGenderMale] = useState(false);
+    const [toggleEye, setToggleEye] = useState(['fas', 'eye-slash']);
+    const [inputType, setInputType] = useState("password");
+
+    let changeVisibilityHandler = () => {   
+        if (toggleEye[1] === 'eye') {
+            setToggleEye(['fas', 'eye-slash']);
+            setInputType("password");
+        }
+        if (toggleEye[1] === 'eye-slash') {
+            setToggleEye(['fas', 'eye']);
+            setInputType("text");
+        }
+    };
     return (
         <Fragment>
             <div className='edit-form-contain'>
@@ -21,13 +30,29 @@ export default function EditForm(props) {
                     {props.listItem.map((item, index) => !item.isGenderSelect ? (
                         <div className='edit-form-item'>
                             <p className='edit-form-item-title'>{item.title}</p>
-                            <div className='edit-form-input-contain'>
-                                <input
-                                    className='edit-form-input'
-                                    value={inputValue}
-                                    placeholder="Hint" />
-                                <FontAwesomeIcon className='edit-form-input-icon' icon={item.icon} />
-                            </div>
+                            {!item.isPasswordInput ?
+                                <div className='edit-form-input-contain'>
+
+                                    <input
+                                        className='edit-form-input'
+                                        value={inputValue}
+                                        placeholder={item.inputHint}
+                                        type={item.isPasswordInput ? inputType : "text"} />
+
+                                    <FontAwesomeIcon className='edit-form-input-icon' icon={item.icon} />
+                                </div>
+                                :
+                                <div className='edit-form-input-contain'>
+                                    <input
+                                        className='edit-form-input'
+                                        value={inputValue}
+                                        placeholder={item.inputHint}
+                                        type={inputType} />
+                                    <button className="edit-form-right-eye" onClick={changeVisibilityHandler}>
+                                        <FontAwesomeIcon className='edit-form-input-icon' icon={toggleEye} />
+                                    </button>
+                                </div>
+                            }
                         </div>
                     ) : (
                         <div className='edit-form-item'>
@@ -51,7 +76,7 @@ export default function EditForm(props) {
                         </div>
                     ))}
                     <div className='edit-form-confirm-contain'>
-                        <button className='authen-form-confirm-button'>{props.confirmText}</button>
+                        <button className='edit-form-confirm-button'>{props.confirmText}</button>
                     </div>
                 </div>
             </div>

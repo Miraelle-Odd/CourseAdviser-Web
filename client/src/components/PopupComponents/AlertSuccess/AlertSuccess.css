@@ -1,0 +1,11 @@
+.alert-form-success{
+    width: 200px;
+    height: 40px;
+    
+    background: #67EF67;
+    border-radius: 20px;
+    color: white;
+    font-family: 'Rounded Mplus 1c Extra Bold';
+    cursor: pointer;
+    border: none;
+}

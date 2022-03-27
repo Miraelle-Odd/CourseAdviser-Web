@@ -11,7 +11,6 @@ import TKB_HK2 from "../../assets/icons/TKB_HK2.PNG";
 import Popup from 'reactjs-popup';
 import Login from '../PopupComponents/Login/Login';
 import ForgotPassword from '../PopupComponents/ForgotPassword/ForgotPassword';
-import AuthenForm from '../PopupComponents/FormComponents/AuthenForm/AuthenForm';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -116,7 +115,7 @@ let employeeDropdownItems = [
 
 export default function NavigationBar() {
     const [navbar, setNavbar] = useState(false);
-    const [isLogin, setIsLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState(false);
     const position = useLocation().pathname;
 
     const [isShowLogin, setIsShowLogin] = useState(false);
