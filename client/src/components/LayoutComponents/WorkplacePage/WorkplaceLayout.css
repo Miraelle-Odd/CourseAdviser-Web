@@ -4,10 +4,11 @@
     min-width: 700px;
     width: calc(83.7%);
     border-top-left-radius: 30px;
-    float: right
+    float: right;
+    position: relative;
 }
 
-@media screen and (max-width: 836px) {
+@media screen and (max-width: 848px) {
     .workplace-container {
         float: left;
         margin-left: 136px;
@@ -36,7 +37,7 @@
     position: absolute;
     z-index: 10;
     height: 75px;
-    width: 48.4%;
+    width: 56%;
     right: 0px;
     top: 48px;
     display: flex;
@@ -112,4 +113,12 @@
 
 .decoration-no-toolbar {
     background-image: url(../../../assets/icons/fluid1-decoration.png);
+}
+
+.workplace-body {
+    width: 100%;
+    height: calc(100vh - 104px);
+    position: absolute;
+    z-index: 10;
+    display: flex;
 }

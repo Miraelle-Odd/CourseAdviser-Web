@@ -1,0 +1,26 @@
+.status-switch {
+    height: 26px;
+    width: 84px;
+    border-radius: 13px;
+    font-family: 'Roboto Bold';
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.on {
+    background-color: #D1EAD2;
+    color: #7AC47D;
+}
+
+.off {
+    background-color: #F5CFCC;
+    color: #E06055;
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import SortComboBox from '../../ComboBoxComponents/SortComboBox';
 import './WorkplaceLayout.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Footer from '../../Footer/Footer';
 
 const sortItems = [
     {
