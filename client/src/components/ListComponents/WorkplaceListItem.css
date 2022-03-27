@@ -1,0 +1,98 @@
+.workplace-li {
+    box-sizing: border-box;
+    display: flex;
+    width: 95.4%;
+    background: #FFFFFF;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 7px 8px;
+    padding-right: 0px;
+    align-items: center;
+    font-family: 'Rounded Mplus 1c Bold';
+    font-size: 13px;
+}
+
+.is-header {
+    height: 50px;
+    color: #9D9D9D;
+    font-family: 'Rounded Mplus 1c Medium';
+    font-size: 14px;
+    align-items: flex-end;
+    padding-bottom: 0px;
+}
+
+.center-cell {
+    justify-content: center;
+}
+
+.workplace-li .cell {
+    margin: 0 8px;
+    display: flex;
+    align-items: center;
+    height: 42px;
+    min-width: 96px;
+}
+
+.workplace-li .width116 {
+    width: 120px;
+}
+
+.workplace-li .width120 {
+    width: 120px;
+}
+
+.workplace-li .width160 {
+    width: 160px;
+}
+
+.workplace-li .width103 {
+    width: 103px;
+}
+
+.workplace-li .remain-space {
+    flex: 1;
+}
+
+.workplace-li .no-wrap {
+    min-width: 130px;
+    overflow: hidden;
+}
+
+.workplace-li .no-right-margin {
+    margin-right: 0px;
+}
+
+.action-otps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-otp {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #fff;
+    color: #36ADEF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    font-size: 16px;
+}
+
+.action-otp:hover {
+    background-color: #F6F6F6;
+}
+
+@media screen and (max-width: 1190px) {
+    .will-disappear {
+        display: none!important;
+    }
+}
+
+.photo {
+    object-fit: cover;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+}

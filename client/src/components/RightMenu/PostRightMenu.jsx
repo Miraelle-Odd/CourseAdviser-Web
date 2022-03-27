@@ -1,7 +1,6 @@
 import React from 'react'
 import './PostRightMenu.css'
 import placeholder from '../../assets/icons/post-thumb-placeholder.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link, useParams } from 'react-router-dom'
 
 const PostRightMenu = props => {

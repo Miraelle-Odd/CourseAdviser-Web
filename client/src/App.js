@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Navigate,
   Link,
 } from 'react-router-dom';
 import { createBrowserHistory } from "history";
@@ -41,19 +42,26 @@ function App() {
               <NavigationBar></NavigationBar>
           }
           <Routes>
-            <Route path="/home" element={<HomePage></HomePage>} exact={true} />
             <Route exact path="/" element={<HomePage></HomePage>} />
             <Route path='/course/:courseType' element={<CourseHolder></CourseHolder>}/>
             <Route path="/main-post/" element={<MainPost></MainPost>}></Route>
             <Route path="/main-post/:postType" element={<PostListHolder></PostListHolder>}/>
             <Route path="/main-post/:postType/post-details/:id" element={<PostDetails></PostDetails>}/>            
             <Route path="/post-details" element={<PostDetails></PostDetails>}/>
-            <Route path="/about" element={<div></div>}/>
             <Route path="/about/:aboutType" element={<AboutHolder></AboutHolder>} />            
-            <Route path="/workplace/employee-management" element={<EmployeeManagement></EmployeeManagement>} />
+
+            <Route path="/workplace/employee-management/:category/:page" element={<EmployeeManagement></EmployeeManagement>}></Route>
             <Route path="/workplace/account-setting" element={<AccountSetting></AccountSetting>} />
-            <Route path="/workplace/post-management" element={<PostManagement></PostManagement>} />
+            <Route path="/workplace/post-management/:category/:page" element={<PostManagement></PostManagement>} />
             <Route path="/workplace/chatbot-management" element={<ChatbotManagement></ChatbotManagement>} />
+
+
+            {/* Redirect Links */}
+            <Route path="/workplace" element={<Navigate to="/workplace/employee-management/all/1"></Navigate>} />
+            <Route path="/workplace/employee-management" element={<Navigate to="/workplace/employee-management/all/1"></Navigate>} />
+            <Route path="/workplace/post-management" element={<Navigate to="/workplace/post-management/all/1"></Navigate>} />
+            <Route path="/workplace/employee-management/:category" element= {<Navigate to="/workplace/employee-management/:category/1"></Navigate>}/>
+        
           </Routes>
         </React.Suspense>
       </Router>
