@@ -10,15 +10,19 @@ const WorkplaceList = props => {
     return (
         <div className="workplace-list">
             <WorkplaceListItem isHeader fieldFormat={props.fieldFormat}></WorkplaceListItem>
-            {props.data.map((item, index) => {
-                return (
-                    <WorkplaceListItem
-                        fieldFormat={props.fieldFormat}
-                        data={item}
-                    ></WorkplaceListItem>
-                )
+            {
+                props.data? props.data.map((item, index) => {
+                    return (
+                        <WorkplaceListItem
+                            fieldFormat={props.fieldFormat}
+                            data={item}
+                        ></WorkplaceListItem>
+                    )
 
-            })}
+                })
+                :
+                ""
+            }
         </div>
     )
 }

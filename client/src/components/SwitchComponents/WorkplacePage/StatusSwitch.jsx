@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./StatusSwitch.css";
 
 const StatusSwitch = props => {
-    const [status, setStatus] = useState(props.active);
+    const [status, setStatus] = useState(props.on);
     const showAlert = () => {
         status ?
         console.log("Wanna disable ?")
