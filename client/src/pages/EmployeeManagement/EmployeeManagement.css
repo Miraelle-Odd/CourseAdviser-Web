@@ -1,20 +1,91 @@
-.userpage-container {
-    height: 100vh;
-    min-height: 444px;
-    width: 100%;
-    background-color: #0A093D;
-    min-width: 836px;
-}
-
-.aaaa {
-    display: flex;
-    width: 100%;
-}
-
-.statistics-menu {
-    height: 85.6%;
-    width: 18.75%;
-    background-color: #fff;
-    margin-left: 30px;
-    align-self: end;
-}
+    .userpage-container {
+        height: 100vh;
+        min-height: 444px;
+        width: 100%;
+        background-color: #0A093D;
+        min-width: 836px;
+    }
+    
+    .emp-man-body {
+        display: flex;
+        width: 100%;
+    }
+    
+    .statistics-menu {
+        height: 85.6%;
+        width: 18.75%;
+        background-color: #fff;
+        margin-left: 30px;
+        align-self: end;
+    }
+    
+    .wp-list-pagination {
+        list-style: none;
+        height: 30px;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .wp-list-pagination-container {
+        position: absolute;
+        left: 66%;
+        top: 30px;
+    }
+    
+    .wp-list-pagination .prev-next {
+        height: 24px;
+        width: 24px;
+        left: 0px;
+        top: 2px;
+        border-radius: 5px;
+        background-color: #4C83C5;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: flex;
+    }
+    
+    .wp-list-pagination .prev {
+        background-image: url(../../assets/icons/pagination-prev.png);
+        margin-right: 50px;
+    }
+    
+    .wp-list-pagination .next {
+        background-image: url(../../assets/icons/pagination-next.png);
+        margin-left: 50px;
+    }
+    
+    .wp-list-pagination .prev-next:hover {
+        background-color: #71A4E1;
+        cursor: pointer;
+    }
+    
+    .prev-next-disabled {
+        background-color: #6E89AA!important;
+        cursor: default!important;
+    }
+    
+    .wp-li-pagination {
+        background-color: #4C83C5;
+        height: 24px;
+        width: 24px;
+    }
+    
+    .wp-link-pagination {
+        height: 24px;
+        width: 24px;
+    }
+    
+    .page-hidden {
+        display: none;
+    }
+    
+    .wp-list-pagination-input {
+        height: 30px;
+        width: 30px;
+        border-radius: 3px;
+        border: none;
+        outline: none;
+        position: absolute;
+        top: 0;
+    }

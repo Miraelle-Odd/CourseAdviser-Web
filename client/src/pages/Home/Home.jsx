@@ -36,7 +36,7 @@ const Home = props => {
 
             <Footer></Footer>
 
-            <UpdatePassword></UpdatePassword>
+            {/* <UpdatePassword></UpdatePassword>
             <UpdateSelfContact></UpdateSelfContact>
             <UpdateSelfInfo></UpdateSelfInfo>
             
@@ -45,7 +45,7 @@ const Home = props => {
 
             <AlertSuccess></AlertSuccess>
             <AlertFail></AlertFail>
-            <AlertConfirm></AlertConfirm>
+            <AlertConfirm></AlertConfirm> */}
             {/* <LearnBtn
                 name="Learn more">
             </LearnBtn>
