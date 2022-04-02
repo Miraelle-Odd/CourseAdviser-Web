@@ -6,16 +6,17 @@ import Footer from '../../components/Footer/Footer'
 import WorkplaceLayout from '../../components/LayoutComponents/WorkplacePage/WorkplaceLayout'
 import WorkplaceList from '../../components/ListComponents/WorkplaceList'
 import ava1 from "../../assets/icons/staff-img.png"
-import WorkplaceListCategory from '../../components/ListComponents/WorkplaceListCategory'
 import aManager from "../../assets/icons/active-manager.png"
 import aStaff from "../../assets/icons/active-staff.png"
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Link,
-} from 'react-router-dom';
 
+const onOpenClickHandle = () => {
+    alert("Open Sesame")
+
+}
+
+const onEditClickHandle = () => {
+    alert("Edit Sesame")
+}
 
 const empListFormat = [
     {
@@ -115,64 +116,36 @@ const lcItems = [
     },
 ]
 
+const statisticItems = [
+    {
+        fieldName: "Tổng cộng",
+        fieldValue: 21
+    },
+    {
+        fieldName: "Hoạt động",
+        fieldValue: 20
+    },
+    {
+        fieldName: "Khóa",
+        fieldValue: 1
+    },
+]
 
 const EmployeeManagement = props => {
-    const itemsPerPage = 2
-    const [currentItems, setCurrentItems] = useState(null);
-    const [pageCount, setPageCount] = useState(0);
-    const [itemOffset, setItemOffset] = useState(0);
-
-    let navigate = useNavigate();
-    let {page} = useParams();
-
-    useEffect(() => {
-        // Fetch items from another resources.
-        const endOffset = itemOffset + itemsPerPage;
-        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-        setCurrentItems(empData.slice(itemOffset, endOffset));
-        console.log(currentItems)
-        console.log(empData)
-        setPageCount(Math.ceil(empData.length / itemsPerPage));
-    }, [itemOffset, itemsPerPage]);
 
     const renderEmpManament = () => {
-        const handlePageClick = (event) => {
-            const newOffset = event.selected * itemsPerPage % empData.length;
-            console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
-            setItemOffset(newOffset);
-            navigate("/workplace/employee-management/all/" + (event.selected + 1))
-        }
+
         return (
             <div className='emp-man-body'>
-                <WorkplaceListCategory
-                    items={lcItems}
-                ></WorkplaceListCategory>
-                <div className='wp-list-pagination-container'>
-                    <ReactPaginate
-                        pageCount={pageCount}
-                        pageRangeDisplayed={2}
-                        marginPagesDisplayed={2}
-                        className="wp-list-pagination"
-                        pageClassName="wp-li-pagination page-hidden"
-                        pageLinkClassName="wp-link-pagination"
-                        previousClassName="prev-next prev"
-                        previousLinkClassName="wp-link-pagination"
-                        previousLabel=""
-                        nextClassName="prev-next next"
-                        nextLinkClassName="wp-link-pagination"
-                        nextLabel=""
-                        disabledClassName="prev-next-disabled"
-                        onPageChange={handlePageClick}
-                        renderOnZeroPageCount={null}
-                        activeClassName="active"
-                    ></ReactPaginate>
-                    <input type="text" className='wp-list-pagination-input' value={page}></input>
-                </div>
                 <WorkplaceList
+                    listName="employee-management"
                     fieldFormat={empListFormat}
-                    data={currentItems}
+                    data={empData}
+                    categoryItems={lcItems}
+                    statisticItems={statisticItems}
+                    openAction={onOpenClickHandle}
+                    editAction={onEditClickHandle}
                 ></WorkplaceList>
-                <div className="statistics-menu"></div>
             </div>
         )
     }

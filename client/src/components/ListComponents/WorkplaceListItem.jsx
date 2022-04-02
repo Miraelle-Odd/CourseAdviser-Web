@@ -2,7 +2,7 @@ import React from "react";
 import StatusSwitch from "../SwitchComponents/WorkplacePage/StatusSwitch";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./WorkplaceListItem.css"
-import UserPlaceHolder from "../../assets/icons/black-gray-user-holder.png"
+import PlaceHolder from "../../assets/icons/black-gray-li-holder.png"
 
 const WorkplaceListItem = props => {
 
@@ -27,6 +27,9 @@ const WorkplaceListItem = props => {
         )
     else {
         var data = props.data
+        const onOpenClick = (e) => {
+            console.log(e.target)
+        }
         return (
             <div className="workplace-li">
                 {props.fieldFormat.map((item, index) => {
@@ -40,21 +43,21 @@ const WorkplaceListItem = props => {
                                 (item.noRightMargin ? " no-right-margin" : "")
                             }>
                             {item.photo ?
-                                <img className="photo" src={data.avatar ? data.avatar : data.thumbnail ? data.thumbnail : UserPlaceHolder}></img>
+                                <img className="photo" src={data.avatar ? data.avatar : data.thumbnail ? data.thumbnail : PlaceHolder}></img>
                                 :
                                 item.actionCell ?
                                     <span className="action-otps">
-                                        <div className="action-otp">
+                                        <div className="action-otp" onClick={props.openFun}>
                                             <FontAwesomeIcon icon={['fas', 'book-open']}></FontAwesomeIcon>
                                         </div>
-                                        <div className="action-otp">
+                                        <div className="action-otp" onClick={props.editFun}>
                                             <FontAwesomeIcon icon={['fas', 'pen']}></FontAwesomeIcon>
                                         </div>
                                     </span>
                                     :
                                     item.statusCell ?
                                         <StatusSwitch
-                                        on = {data.active}
+                                            on={data.active}
                                         ></StatusSwitch>
                                         :
                                         Object.entries(data).filter(function ([key, value]) {
@@ -70,7 +73,7 @@ const WorkplaceListItem = props => {
                         </span>
                     )
                 })}
-                
+
             </div>
         )
     }

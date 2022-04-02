@@ -1,0 +1,54 @@
+    .userpage-container {
+        height: 100vh;
+        min-height: 444px;
+        width: 100%;
+        background-color: #0A093D;
+        min-width: 836px;
+    }
+    
+    .acc-set-body {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+    
+    .acc-set-line {
+        display: flex;
+        margin-bottom: 37px;
+        width: 100%;
+    }
+    
+    .trays-container {
+        display: flex;
+        flex-direction: column;
+        margin: 3.2% 0;
+        margin-left: 5.4%;
+        margin-right: 7.6%;
+    }
+    
+    .basic-tray-container {
+        margin-right: 24px;
+        width: 48.3%;
+    }
+    
+    .contract-tray-container {
+        flex: 1;
+    }
+    
+    .account-tray-container {
+        flex: 1;
+    }
+    
+    @media screen and (max-width: 1250px) {
+        .acc-set-line {
+            flex-direction: column;
+        }
+        .basic-tray-container {
+            width: 100%;
+            margin-bottom: 37px;
+        }
+        .contract-tray-container {
+            width: 100%;
+        }
+    }

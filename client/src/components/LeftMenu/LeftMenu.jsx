@@ -11,14 +11,19 @@ const menuOption = [
         icon: ['fas', 'users']
     },
     {
+        link: "/workplace/chatbot-management",
+        btnName: "Quản lý Chatbot",
+        icon: ['fas', 'robot']
+    },
+    {
         link: "/workplace/post-management",
         btnName: "Quản lý bài viết",
         icon: ['fas', 'newspaper']
     },
     {
-        link: "/workplace/chatbot-management",
-        btnName: "Quản lý Chatbot",
-        icon: ['fas', 'robot']
+        link: "/workplace/q-and-a-management",
+        btnName: "Quản lý Q & A",
+        icon: ['fas', 'comments']
     },
 ]
 
@@ -51,8 +56,7 @@ const LeftMenu = props => {
     return (
         <div className={props.hide ? "hide" : "no-overflow"}>
             <div className='left-menu-decoration'></div>
-            <div className='left-menu-container'>
-
+            <div className={'left-menu-container'}>
                 <div className='left-menu-header'>
                     <a href='/' className='logo'></a>
                     <div className='icon'>

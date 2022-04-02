@@ -1,0 +1,54 @@
+.statistics-menu {
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.statistics-menu .title {
+    font-family: "Rounded Mplus 1c Extra Bold";
+    color: #414141;
+    font-size: 20px;
+    height: 71px;
+    width: 81.25%;
+    display: flex;
+    align-items: center;
+}
+
+.statistics-menu .field-container {
+    height: 67px;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.statistics-menu .field {
+    font-family: "Rounded Mplus 1c Medium";
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    margin-top: 9px;
+    margin-left: 32px;
+    width: 98px;
+    text-align: left;
+}
+
+.statistics-menu .value {
+    font-family: "Rounded Mplus 1c Extra Bold";
+    font-size: 24px;
+    margin-top: 28px;
+}
+
+.statistics-menu .line {
+    width: 81.25%;
+    border: none;
+    border-bottom: 2px solid rgba(16, 16, 16, 0.2);
+    margin-top: 45px;
+}
+
+@media screen and (max-width: 1024px) {
+    .statistics-menu {
+        display: none!important;
+    }
+}

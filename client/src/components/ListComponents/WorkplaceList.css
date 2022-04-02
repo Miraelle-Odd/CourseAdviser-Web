@@ -1,12 +1,17 @@
+.workplace-list-container {
+    margin-left: 24px;
+    display: flex;
+    width: 100%;
+}
+
 .workplace-list {
     height: 85.6%;
-    width: 76%;
+    flex: 1;
     min-width: 640px;
     background-color: #fff;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-left: 30px;
     align-self: end;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -16,4 +21,120 @@
     height: 50px;
     display: flex;
     align-items: center;
+}
+
+.statistics-container {
+    height: 85.6%;
+    width: 18.75%;
+    margin-left: 30px;
+    align-self: end;
+}
+
+.wp-list-pagination-container {
+    position: absolute;
+    left: 66%;
+    top: 40px;
+}
+
+.wp-list-pagination {
+    list-style: none;
+    height: 30px;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.wp-list-pagination .prev-next {
+    height: 24px;
+    width: 24px;
+    left: 0px;
+    top: 2px;
+    border-radius: 5px;
+    background-color: #4C83C5;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+}
+
+.wp-list-pagination .prev {
+    background-image: url(../../assets/icons/pagination-prev.png);
+    margin-right: 50px;
+}
+
+.wp-list-pagination .next {
+    background-image: url(../../assets/icons/pagination-next.png);
+    margin-left: 50px;
+}
+
+.wp-list-pagination .prev-next:hover {
+    background-color: #71A4E1;
+    cursor: pointer;
+}
+
+.prev-next-disabled {
+    background-color: #6E89AA!important;
+    cursor: default!important;
+}
+
+.wp-li-pagination {
+    background-color: #4C83C5;
+    height: 24px;
+    width: 24px;
+}
+
+.wp-link-pagination {
+    height: 24px;
+    width: 24px;
+}
+
+.page-hidden {
+    display: none;
+}
+
+.wp-list-pagination-input {
+    height: 30px;
+    width: 30px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    position: absolute;
+    top: 0;
+    left: 33px;
+    font-family: 'Rounded Mplus 1c Medium';
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #4C83C5;
+}
+
+.wp-list-pagination-max {
+    top: 5px;
+    right: 33px;
+    height: 24px;
+    position: absolute;
+    font-family: 'Rounded Mplus 1c Medium';
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.create-btn {
+    position: absolute;
+    top: 32px;
+    right: 50px;
+    height: 40px;
+    width: 133px;
+    color: #fff;
+    font-family: 'Rounded Mplus 1c Extra Bold';
+    background-color: #4C83C5;
+    outline: none;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+.create-btn:hover {
+    cursor: pointer;
+    background-color: #669BD9;
 }
