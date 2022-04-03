@@ -44,7 +44,7 @@ function App() {
           }
           <Routes>
             <Route exact path="/" element={<HomePage></HomePage>} />
-            <Route path='/course/:courseType' element={<CourseHolder></CourseHolder>}/>
+            <Route path='/courses/:courseType' element={<CourseHolder></CourseHolder>}/>
             <Route path="/main-post/" element={<MainPost></MainPost>}></Route>
             <Route path="/main-post/:postType" element={<PostListHolder></PostListHolder>}/>
             <Route path="/main-post/:postType/post-details/:id" element={<PostDetails></PostDetails>}/>            

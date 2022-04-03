@@ -67,7 +67,7 @@ const WorkplaceList = props => {
                 }
 
             </div>
-            <button className="create-btn" >
+            <button className="create-btn" onClick={props.onCreateClick}>
                 + Thêm mới
             </button>
             <div className="workplace-list">

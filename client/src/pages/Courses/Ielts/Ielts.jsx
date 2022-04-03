@@ -1,11 +1,12 @@
-import { Fragment } from "react/cjs/react.production.min";
+import TuitionCheckbox from "../../../components/SwitchComponents/CoursePage/TuitionCheckbox";
 import './Ielts.css'
 
 const Ielts = props => {
     return (
-        <Fragment>
+        <div className="course-page-container">
             Đây là trang IELTS
-        </Fragment>
+            <TuitionCheckbox></TuitionCheckbox>
+        </div>
     )
 }
 

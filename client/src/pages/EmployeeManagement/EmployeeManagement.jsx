@@ -11,11 +11,14 @@ import aStaff from "../../assets/icons/active-staff.png"
 
 const onOpenClickHandle = () => {
     alert("Open Sesame")
-
 }
 
 const onEditClickHandle = () => {
     alert("Edit Sesame")
+}
+
+const onCreateClick =() => {
+    alert("Create")
 }
 
 const empListFormat = [
@@ -145,6 +148,7 @@ const EmployeeManagement = props => {
                     statisticItems={statisticItems}
                     openAction={onOpenClickHandle}
                     editAction={onEditClickHandle}
+                    onCreateClick={onCreateClick}
                 ></WorkplaceList>
             </div>
         )
