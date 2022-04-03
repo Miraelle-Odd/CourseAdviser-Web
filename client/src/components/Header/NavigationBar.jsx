@@ -149,17 +149,15 @@ export default function NavigationBar() {
         <button className='item-button header-center'>
             <ul className="item-click-dropdown">
                 {item.dropDownItems.map((subItem, index) => subItem.displayName != null && (
-                    <Link
-                        className="no-decoration" to={subItem.link}
-                    >
-                        <li className="dropdown-item" key={index}>
+                    <Link className="no-decoration" to={subItem.link} key={index}>
+                        <li className="dropdown-item" >
                             {subItem.displayName}
                         </li>
                     </Link>
                 ))}
             </ul>
             <NavLink
-                exact
+                exact="true"
                 to={actionButton}
                 className="no-decoration disable-link">
                 {item.displayName}
@@ -186,8 +184,8 @@ export default function NavigationBar() {
                         <li><div className='dropdown-line'></div>
                         </li>
                         {listItem.map((subItem, index) => subItem.displayName != null && (
-                            <Link className="no-decoration" to={subItem.link}>
-                                <li className="dropdown-item dropdown-item-with-icon header-center" key={index}>
+                            <Link className="no-decoration" to={subItem.link} key={index}>
+                                <li className="dropdown-item dropdown-item-with-icon header-center" >
                                     {subItem.displayName}
                                     <FontAwesomeIcon className='dropdown-item-icon' icon={['fas','chevron-right']}></FontAwesomeIcon>
                                 </li>
@@ -226,7 +224,7 @@ export default function NavigationBar() {
                                     renderItemNavbar_WithDropdown(item.link, item)
                                     :
                                     <NavLink
-                                        exact
+                                        exact="true"
                                         to={item.link}
                                         className="no-decoration item-button header-center">
                                         {item.displayName}

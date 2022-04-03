@@ -14,7 +14,6 @@ export default function PostCardBtn(props) {
                         <div className='post-card-border'>
                             <img className={props.img ? 'post-card-img' : "post-card-img noimg"} src={props.img ? props.img : img}></img>
                         </div>
-
                         <div className='post-card-detail post-card-center'>
                             <p className={props.bluecard === true ? 'post-card-title blue-title' : 'post-card-title'}>{props.title}</p>
                             <p className='post-card-text'>{props.context}</p>

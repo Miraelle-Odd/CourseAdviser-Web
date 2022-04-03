@@ -6,16 +6,19 @@ import SelfEditForm from '../PopupSourceComponents/GenericForm/SelfEditForm';
 
 const editListItem = [
     {
+        display: 0,
         title: "Mật khẩu hiện tại",
         inputHint: "Nhập mật khẩu hiện tại",
         isPasswordInput: true
     },
     {
+        display: 1,
         title: "Mật khẩu mới",
         inputHint: "Nhập mật khẩu mới",
         isPasswordInput: true
     },
     {
+        display: 2,
         title: "Xác nhận mật khẩu mới",
         inputHint: "Nhập lại mật khẩu mới",
         isPasswordInput: true

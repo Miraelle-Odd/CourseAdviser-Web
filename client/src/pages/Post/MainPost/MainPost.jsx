@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './MainPost.css'
 import { Fragment } from 'react/cjs/react.production.min'
@@ -25,16 +25,40 @@ const postSpecialBtn = [
     }
 ]
 export default function MainPost(props) {
+    const [listOfAcademic, setListOfAcademic] = useState([])
+    const [listOfEvent, setListOfEvent] = useState([])
+    const [listOfDiscount, setListOfDiscount] = useState([])
+    useEffect(() => {
+        const getListAcademics = async () => {
+            const result = await axios.get("http://localhost:8080/Posts/Academic/Top2")
+            setListOfAcademic(result.data)
+        }
+        getListAcademics().catch(console.error)
+        
+        const getListEvents = async () => {
+            const result = await axios.get("http://localhost:8080/Posts/Event/Top2")
+            setListOfEvent(result.data)
+        }
+        getListEvents().catch(console.error)
 
+        const getListDiscount = async () => {
+            const result = await axios.get("http://localhost:8080/Posts/Discount/Top2")
+            setListOfDiscount(result.data)
+        }
+        getListDiscount().catch(console.error)
+    }, [])
+
+    console.log("academic", listOfAcademic)
+    console.log("event", listOfEvent)
+    console.log("discount", listOfDiscount)
     return (
         <Fragment>
 
             <PostSliderLayout> </PostSliderLayout>
 
             <PostSpecialLayout
-                category="academic-posts"
                 type="blue"
-                btn={postSpecialBtn}
+                listItem={listOfAcademic}
                 description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
                 title="academic posts"
                 icon={['fas', 'graduation-cap']}
@@ -42,9 +66,8 @@ export default function MainPost(props) {
             </PostSpecialLayout>
 
             <PostSpecialLayout
-                category="special-events"
                 type="origin"
-                btn={postSpecialBtn}
+                listItem={listOfEvent}
                 description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
                 title="special events"
                 icon={['fas', 'star']}
@@ -52,9 +75,8 @@ export default function MainPost(props) {
             </PostSpecialLayout>
 
             <PostSpecialLayout
-                category="discounts"
                 type="blue"
-                btn={postSpecialBtn}
+                listItem={listOfDiscount}
                 description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
                 title="discounts"
                 icon={['fas', 'piggy-bank']}

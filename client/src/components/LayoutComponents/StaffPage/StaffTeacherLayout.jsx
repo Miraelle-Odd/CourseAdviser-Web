@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import './StaffTeacherLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
-import paimon from '../../../assets/icons/staff-img.png'
-import StaffCard from '../../CardComponents/StaffPage/StaffCard';
 import StaffCardLayout from './StaffCardLayout';
 
-export default function StaffTeacherLayout(props) {
+export default function StaffTeacherLayout() {
+    const [listOfStaffs, setListOfStaffs] = useState([])
+    useEffect(() => {
+        const getListStaffs = async () => {
+            const result = await axios.get("http://localhost:8080/Staffs/Teacher/Top4")
+            setListOfStaffs(result.data)
+        }
+        getListStaffs().catch(console.error)
+        
+    }, [])
+
+    console.log(listOfStaffs)
     return (
         <Fragment>
             <div className="staff-teacher-content">
@@ -14,11 +24,7 @@ export default function StaffTeacherLayout(props) {
                 </div>
                 <div className='staff-teacher-border staff-teacher-center'>
                     <StaffCardLayout
-                        img={props.img}
-                        title={props.title}
-                        subtitle={props.subtitle}
-                        content={props.content}
-                        more={props.more}>
+                        listItem={listOfStaffs}>
                     </StaffCardLayout>
                     <div className='staff-teacher-indi'></div>
                 </div>

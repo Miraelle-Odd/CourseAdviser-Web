@@ -3,30 +3,32 @@ import './PostSpecialLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { Link } from 'react-router-dom';
 import PostCardBtn from '../../ButtonComponents/PostPage/PostCardBtn';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import moment from "moment";
 
 export default function PostSpecialLayout(props) {
+
     if (props.type == "origin") {
         return (
             <Fragment>
                 <div className='post-special-bg-org'>
                     <div className="post-special-content">
                         <div className='post-special-card'>
-                            {props.btn.map((item, index) => {
+                            {props.listItem ? props.listItem.map((item, index) => {
+                                var time = moment(item.updatedAt).format("YYYY-MM-DD HH-mm A");
                                 return (
-                                    <PostCardBtn
-                                        id={item.id}
-                                        category={props.category}
-                                        img={item.img}
-                                        title={item.title}
-                                        context={item.context}
-                                        datetime={item.datetime}
-                                        author={item.author}>
+                                    <PostCardBtn key={index}
+                                        id={item.post_id}
+                                        category={item.post_type}
+                                        img={item.post_img}
+                                        title={item.post_title}
+                                        context={item.post_content}
+                                        datetime={time}
+                                        author={item.author_id}>
                                     </PostCardBtn>
                                 )
-
-                            })}
+                            }) : null
+                            }
                         </div>
                         <div className='post-special-info'>
                             <p className='post-special-title'>{props.title}</p>
@@ -62,21 +64,22 @@ export default function PostSpecialLayout(props) {
                             </Link> : ""}
                         </div>
                         <div className='post-special-card'>
-                            {props.btn.map((item, index) => {
+                            {props.listItem ? props.listItem.map((item, index) => {
+                                var time = moment(item.updatedAt).format("YYYY-MM-DD HH-mm A");
                                 return (
-                                    <PostCardBtn
-                                        id={item.id}
-                                        category={props.category}
+                                    <PostCardBtn key={index}
+                                        id={item.post_id}
+                                        category={item.post_type}
                                         bluecard={true}
-                                        img={item.img}
-                                        title={item.title}
-                                        context={item.context}
-                                        datetime={item.datetime}
-                                        author={item.author}>
+                                        img={item.post_img}
+                                        title={item.post_title}
+                                        context={item.post_content}
+                                        datetime={time}
+                                        author={item.author_id}>
                                     </PostCardBtn>
                                 )
-
-                            })}
+                            }) : null
+                            }
                         </div>
                     </div>
                 </div>

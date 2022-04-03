@@ -19,6 +19,23 @@ export default function SelfEditForm(props) {
             setInputType("text");
         }
     };
+
+    // const changeVisibilityHandler = index => {
+    //     // // console.log('index: ' + index);
+    //     // // console.log('property name: '+ e.target.name);
+    //     let newArr = [...toggleEye]; // copying the old datas array
+    //     let aa = [...inputType];
+    //     if (newArr[index] == 'eye') {
+    //         newArr[index] = 'eye-slash'
+    //         aa[index] = "password"
+    //     }
+    //     if (newArr[index] == 'eye-slash') {
+    //         newArr[index] =  'eye'
+    //         aa[index] = "text"
+    //     }
+    //     setToggleEye(newArr);
+    //     setInputType(aa);
+    // }
     return (
         <Fragment>
             <div className='edit-form-contain'>
