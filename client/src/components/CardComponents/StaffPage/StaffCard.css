@@ -11,6 +11,10 @@
     position: absolute;
     left: 0;
     top: 0;
+    overflow: hidden;
+    width: 280px;
+    height: 329px;
+    object-fit: cover;
 }
 .staff-card-content .staff-card-info{
     position: absolute;
@@ -38,14 +42,15 @@
     overflow: hidden;
 }
 .staff-card-border .staff-card-title-2{
-    width: 166px;
     height: 26px;
 
     font-family: "Roboto Medium";
     font-size: 16px;
     line-height: 19px;
-    margin: 0px 0px 4px 10px;
+    margin: 0px 0px 4px 30px;
     color: #EE751D;
+    text-align: left;
+
 }
 .staff-card-border .staff-card-detail{
     position: relative;

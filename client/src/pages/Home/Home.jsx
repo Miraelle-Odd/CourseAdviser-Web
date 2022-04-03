@@ -36,13 +36,13 @@ const Home = props => {
 
             <Footer></Footer>
 
-            {/* <UpdatePassword></UpdatePassword>
-            <UpdateSelfContact></UpdateSelfContact>
+            <UpdatePassword></UpdatePassword>
+            {/* <UpdateSelfContact></UpdateSelfContact>
             <UpdateSelfInfo></UpdateSelfInfo>
             
             <CreateAccount></CreateAccount>
-            <UpdateGeneral></UpdateGeneral>
-
+            <UpdateGeneral></UpdateGeneral> */}
+{/* 
             <AlertSuccess></AlertSuccess>
             <AlertFail></AlertFail>
             <AlertConfirm></AlertConfirm> */}

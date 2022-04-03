@@ -21,8 +21,10 @@ const PORT = process.env.PORT || 8080;
 // Routers
 const testRouter = require("./routes/TestRoute");
 app.use("/tests", testRouter);
-const teacher = require("./routes/Teachers");
-app.use("/teachers", teacher);
+const staff = require("./routes/Staffs");
+app.use("/staffs", staff);
+const post = require("./routes/Posts");
+app.use("/posts", post);
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
