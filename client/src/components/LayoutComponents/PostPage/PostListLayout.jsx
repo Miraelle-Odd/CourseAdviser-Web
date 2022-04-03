@@ -3,8 +3,27 @@ import './PostListLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import PostItemBtn from '../../ButtonComponents/PostPage/PostItemBtn';
 import ReactPaginate from 'react-paginate';
+import { useNavigate } from 'react-router-dom';
+
+
 
 export default function PostListLayout(props) {
+    let navigate = useNavigate();
+    const handlePageClick = (event) => {
+        navigate("/main-post/" + props.category + "/" + (event.selected + 1))
+    }
+
+    var paginateColor = "post-li-pagination"
+    var paginatePrev = " prev"
+    var paginateNext = " next"
+    var paginateActive = "post-li-active"
+    if (props.typeblue !== true) {
+        paginateColor = "post-li-pagination orange"
+        paginatePrev = " prev-orange"
+        paginateNext = " next-orange"
+        paginateActive = "post-li-active-orange"
+    }
+
     return (
         <Fragment>
             <div className={props.typeblue === true ? 'post-list-content for-pg-blue' : 'post-list-content for-pg-org'}>
@@ -52,19 +71,30 @@ export default function PostListLayout(props) {
                         </div>
                 }
 
-
-                {/* <div className="post-list-pagination">
+                <div className="post-list-pagination">
                     <ReactPaginate
-                        breakLabel="..."
-                        // nextLabel={piggy}
-                        pageRangeDisplayed={5}
                         pageCount={10}
-                        // previousLabel={piggy}
+                        pageRangeDisplayed={3}
+                        marginPagesDisplayed={2}
+                        breakLabel="..."
+                        breakClassName={paginateColor}
+                        breakLinkClassName="post-link-pagination"
+                        className="post-list-pagination"
+                        pageClassName={paginateColor}
+                        pageLinkClassName="post-link-pagination"
+                        nextLabel=""
+                        nextClassName={paginateColor + paginateNext}
+                        nextLinkClassName="post-link-pagination"
+                        previousLabel=""
+                        previousClassName={paginateColor + paginatePrev}
+                        previousLinkClassName="post-link-pagination"
+                        activeClassName={paginateActive}
+                        disabledClassName="disabled"
+                        onPageChange={handlePageClick}
                         renderOnZeroPageCount={null}
-                        activeClassName="active"
                         forcePage={0}
                     />
-                </div> */}
+                </div>
 
             </div>
         </Fragment>

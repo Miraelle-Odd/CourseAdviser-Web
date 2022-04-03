@@ -63,3 +63,75 @@
     align-items: center;
     margin-top: 18px;
 }
+
+.post-list-pagination {
+    display: flex;
+    list-style: none;
+    margin: 68px 0 87px 0;
+    padding: 0;
+}
+
+.post-li-pagination {
+    height: 49px;
+    width: 49px;
+    background-color: #FFFFFF;
+    border: 1px solid #0191FA;
+    border-radius: 10px;
+    margin: 0 6px;
+    cursor: pointer;
+    color: #5155B6;
+    font-family: 'Rounded Mplus 1c Extra Bold';
+    font-size: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+}
+
+.post-list-pagination .prev {
+    background-image: url(../../../assets/icons/blue-pagination-prev.png);
+}
+
+.post-list-pagination .next {
+    background-image: url(../../../assets/icons/blue-pagination-next.png);
+}
+
+.post-list-pagination .post-li-active {
+    background-color: #5155B6;
+    color: #fff;
+    border: none;
+    height: 50px;
+    width: 50px;
+}
+
+.disabled {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.post-link-pagination {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-list-pagination .orange {
+    border: 1px solid #B62F05;
+    color: #B62F05;
+}
+
+.post-list-pagination .prev-orange {
+    background-image: url(../../../assets/icons/orange-pagination-prev.png);
+}
+
+.post-list-pagination .next-orange {
+    background-image: url(../../../assets/icons/orange-pagination-next.png);
+}
+
+.post-list-pagination .post-li-active-orange {
+    background-color: #B62F05;
+    color: #fff;
+    border: none;
+    height: 50px;
+    width: 50px;
+}

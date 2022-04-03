@@ -46,7 +46,7 @@ function App() {
             <Route exact path="/" element={<HomePage></HomePage>} />
             <Route path='/courses/:courseType' element={<CourseHolder></CourseHolder>}/>
             <Route path="/main-post/" element={<MainPost></MainPost>}></Route>
-            <Route path="/main-post/:postType" element={<PostListHolder></PostListHolder>}/>
+            <Route path="/main-post/:postType/:page" element={<PostListHolder></PostListHolder>}/>
             <Route path="/main-post/:postType/post-details/:id" element={<PostDetails></PostDetails>}/>            
             <Route path="/post-details" element={<PostDetails></PostDetails>}/>
             <Route path="/about/:aboutType" element={<AboutHolder></AboutHolder>} />            
