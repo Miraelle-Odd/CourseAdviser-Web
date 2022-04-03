@@ -12,7 +12,7 @@ const renderBotManagement = () => {
 const ChatbotManagement = props => {
     return (
         <div className='userpage-container'>
-            <WorkplaceLayout title="Quản lý Chatbot" toolbar
+            <WorkplaceLayout title="Quản lý Chatbot"
                 renderBody={renderBotManagement()}
             ></WorkplaceLayout>
             <Footer></Footer>

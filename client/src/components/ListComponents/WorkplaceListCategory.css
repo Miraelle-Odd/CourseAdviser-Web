@@ -1,6 +1,6 @@
 .workplace-list-categories {
     position: absolute;
-    left: 30px;
+    left: 24px;
     top: 22px;
     display: flex;
     width: max-content;
@@ -41,6 +41,7 @@
 
 .workplace-list-categories .active {
     color: black;
+    border-bottom: 2px solid #0191FA;
 }
 
 .workplace-list-categories .active .icon {
