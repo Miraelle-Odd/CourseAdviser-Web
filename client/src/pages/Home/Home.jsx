@@ -16,6 +16,7 @@ import UpdatePassword from '../../components/PopupComponents/UpdatePassword/Upda
 import AlertSuccess from '../../components/PopupComponents/AlertSuccess/AlertSuccess'
 import AlertFail from '../../components/PopupComponents/AlertFail/AlertFail'
 import AlertConfirm from '../../components/PopupComponents/AlertConfirm/AlertConfirm'
+import QaForm from '../../components/PopupComponents/PopupSourceComponents/QaForm/QaForm'
 
 const Home = props => {
     const [listOfTest, setListOfTest] = useState([])
@@ -36,12 +37,16 @@ const Home = props => {
 
             <Footer></Footer>
 
-            <UpdatePassword></UpdatePassword>
+            {/* <UpdatePassword></UpdatePassword> */}
             {/* <UpdateSelfContact></UpdateSelfContact>
             <UpdateSelfInfo></UpdateSelfInfo>
             
             <CreateAccount></CreateAccount>
             <UpdateGeneral></UpdateGeneral> */}
+            <QaForm
+            title="Tạo hỏi đáp mới"
+            subTitle="Nhập thông tin câu hỏi và trả lời để tạo mục giải đáp mới"
+            confirmText="Đăng"></QaForm>
 {/* 
             <AlertSuccess></AlertSuccess>
             <AlertFail></AlertFail>
