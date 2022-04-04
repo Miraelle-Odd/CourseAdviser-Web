@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import './SelfEditForm.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import EyeSwitch from '../../../SwitchComponents/PasswordPopup/EyeSwitch';
 export default function SelfEditForm(props) {
     const [inputValue, setInputValue] = useState();
     const [cbValue, setCbValue] = useState("female");
     const [toggleEye, setToggleEye] = useState(['fas', 'eye-slash']);
     const [inputType, setInputType] = useState("password");
 
-    let changeVisibilityHandler = () => {   
+    let changeVisibilityHandler = () => {
         if (toggleEye[1] === 'eye') {
             setToggleEye(['fas', 'eye-slash']);
             setInputType("password");
@@ -19,23 +19,6 @@ export default function SelfEditForm(props) {
             setInputType("text");
         }
     };
-
-    // const changeVisibilityHandler = index => {
-    //     // // console.log('index: ' + index);
-    //     // // console.log('property name: '+ e.target.name);
-    //     let newArr = [...toggleEye]; // copying the old datas array
-    //     let aa = [...inputType];
-    //     if (newArr[index] == 'eye') {
-    //         newArr[index] = 'eye-slash'
-    //         aa[index] = "password"
-    //     }
-    //     if (newArr[index] == 'eye-slash') {
-    //         newArr[index] =  'eye'
-    //         aa[index] = "text"
-    //     }
-    //     setToggleEye(newArr);
-    //     setInputType(aa);
-    // }
     return (
         <Fragment>
             <div className='edit-form-contain'>
@@ -59,16 +42,10 @@ export default function SelfEditForm(props) {
                                     <FontAwesomeIcon className='edit-form-input-icon' icon={item.icon} />
                                 </div>
                                 :
-                                <div className='edit-form-input-contain'>
-                                    <input
-                                        className='edit-form-input'
-                                        value={inputValue}
-                                        placeholder={item.inputHint}
-                                        type={inputType} />
-                                    <button className="edit-form-right-eye" onClick={changeVisibilityHandler}>
-                                        <FontAwesomeIcon className='edit-form-input-icon' icon={toggleEye} />
-                                    </button>
-                                </div>
+                                <EyeSwitch
+                                    inputValue={inputValue}
+                                    inputHint={item.inputHint}>
+                                </EyeSwitch>
                             }
                         </div>
                     ) : (
