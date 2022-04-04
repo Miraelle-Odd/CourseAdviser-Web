@@ -116,7 +116,7 @@ module.exports = (sequelize, DataTypes) => {
             staff_img: "https://i.imgur.com/D4HxnWf.png",
         },
         {
-            staff_name: "Anna Alson",
+            staff_name: "Nguyễn Cẩm Quỳnh",
             staff_title: "TOEIC speaking",
             staff_introduction: "Lorem Ipsum è un testo segnaposto utilizzato nel",
             staff_archievement: "Lorem Ipsum è un testo segnaposto utilizzato nel settore",
@@ -125,13 +125,13 @@ module.exports = (sequelize, DataTypes) => {
             staff_img: "https://i.imgur.com/X3VZMnf.jpg",
         },
         {
-            staff_name: "Nguyễn Cẩm Quỳnh",
+            staff_name: "Anna Alson",
             staff_title: "TOEIC reading - listening",
             staff_introduction: "Lorem Ipsum è un testo segnaposto utilizzato nel",
             staff_archievement: "Lorem Ipsum è un testo segnaposto utilizzato nel settore",
             staff_type: "teacher",
             assigned_course: "TOEIC",
-            staff_img: "https://i.imgur.com/zDd8Njc.jpg",
+            staff_img: "https://i.imgur.com/i1qDVyK.jpg",
         },
         {
             staff_name: "Trần Thị Minh Nguyệt",
@@ -149,7 +149,7 @@ module.exports = (sequelize, DataTypes) => {
             staff_archievement: "Lorem Ipsum è un testo segnaposto utilizzato nel settore",
             staff_type: "teacher",
             assigned_course: "Speaking",
-            staff_img: "https://i.imgur.com/i1qDVyK.jpg",
+            staff_img: "https://i.imgur.com/zDd8Njc.jpg",
         },
         {
             staff_name: "Hilton Alwot",

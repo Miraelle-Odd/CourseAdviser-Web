@@ -9,48 +9,47 @@ import Footer from '../../../components/Footer/Footer'
 import paimon from '../../../assets/icons/staff-img.png'
 
 export default function AboutStaff(props) {
+    const [listOfAdvisers, setListOfAdvisers] = useState([])
+    const [listOfManagers, setListOfManagers] = useState([])
+    const [listOfTeachers, setListOfTeachers] = useState([])
+    useEffect(() => {
+        const getListManagers = async () => {
+            const result = await axios.get("http://localhost:8080/Staffs/course/IELTS/Top4")
+            setListOfManagers(result.data)
+        }
+        getListManagers().catch(console.error)
+
+        const getListAdvisers = async () => {
+            const result = await axios.get("http://localhost:8080/Staffs/course/TOEIC/Top4")
+            setListOfAdvisers(result.data)
+        }
+        getListAdvisers().catch(console.error)
+
+        const getListTeachers = async () => {
+            const result = await axios.get("http://localhost:8080/Staffs/course/Speaking/Top4")
+            setListOfTeachers(result.data)
+        }
+        getListTeachers().catch(console.error)
+    }, [])
+
+    console.log("aa",listOfAdvisers)
+    console.log("bb",listOfTeachers)
+    console.log("c",listOfManagers)
     return (
         <Fragment>
             <StaffManagerLayout
-                img={paimon}
-                title="EMERGENCY FOOD Ver 1.0"
-                subtitle="- IELTS reading 9.0 -"
-                content={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !`}
-                more={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !
-blahblah balh dád đá dfd fdf
-blahasldgfg gfgfgg vcvcvcvcv vvv
-dádasdsdsdsdadsdasdsdad đasdasdsdsd
-đasadasdadasdsdas`}>
+                title="Ban tư vấn nhiệt tình"
+                listItem={listOfManagers}>
             </StaffManagerLayout>
 
             <StaffEmployeeLayout
-                img={paimon}
-                title="PAIMON PAIMON 2"
-                subtitle="- IELTS reading 9.0 -"
-                content={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !`}
-                more={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !
-blahblah balh dád đá dfd fdf
-blahasldgfg gfgfgg vcvcvcvcv vvv
-dádasdsdsdsdadsdasdsdad đasdasdsdsd
-đasadasdadasdsdas`}>
+                title="Đội ngũ quản lý tâm huyết"
+                listItem={listOfAdvisers}>
             </StaffEmployeeLayout>
 
             <StaffTeacherLayout
-                img={paimon}
-                title="TEST LAYOUT 3"
-                subtitle="- IELTS reading 9.0 -"
-                content={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !`}
-                more={`Paimon is not EMERGENCY FOOD !
-EHE te nandayo !
-blahblah balh dád đá dfd fdf
-blahasldgfg gfgfgg vcvcvcvcv vvv
-dádasdsdsdsdadsdasdsdad đasdasdsdsd
-đasadasdadasdsdas`}>
+                title="Đội ngũ giảng dạy uyên bác"
+                listItem={listOfTeachers}>
             </StaffTeacherLayout>
 
             <Footer></Footer>
