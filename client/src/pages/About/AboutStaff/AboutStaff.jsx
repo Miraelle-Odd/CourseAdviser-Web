@@ -14,27 +14,27 @@ export default function AboutStaff(props) {
     const [listOfTeachers, setListOfTeachers] = useState([])
     useEffect(() => {
         const getListManagers = async () => {
-            const result = await axios.get("http://localhost:8080/Staffs/course/IELTS/Top4")
+            const result = await axios.get("http://localhost:8080/Staffs/type/Manager/Top4")
             setListOfManagers(result.data)
         }
         getListManagers().catch(console.error)
 
         const getListAdvisers = async () => {
-            const result = await axios.get("http://localhost:8080/Staffs/course/TOEIC/Top4")
+            const result = await axios.get("http://localhost:8080/Staffs/type/Adviser/Top4")
             setListOfAdvisers(result.data)
         }
         getListAdvisers().catch(console.error)
 
         const getListTeachers = async () => {
-            const result = await axios.get("http://localhost:8080/Staffs/course/Speaking/Top4")
+            const result = await axios.get("http://localhost:8080/Staffs/type/Teacher/Top4")
             setListOfTeachers(result.data)
         }
         getListTeachers().catch(console.error)
     }, [])
 
-    console.log("aa",listOfAdvisers)
-    console.log("bb",listOfTeachers)
-    console.log("c",listOfManagers)
+    // console.log("aa",listOfAdvisers)
+    // console.log("bb",listOfTeachers)
+    // console.log("c",listOfManagers)
     return (
         <Fragment>
             <StaffManagerLayout

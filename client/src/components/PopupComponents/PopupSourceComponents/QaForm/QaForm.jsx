@@ -14,7 +14,7 @@ const sortItems_Topic = [
         displayText: "Trung tâm"
     }
 ]
-const sortItems_Sub1 = [
+const sortItems_Sub1_0 = [
     {
         value: 0,
         displayText: "IELTS"
@@ -30,6 +30,24 @@ const sortItems_Sub1 = [
     {
         value: 3,
         displayText: "Kids"
+    }
+]
+const sortItems_Sub1_1 = [
+    {
+        value: 0,
+        displayText: "Giới thiệu"
+    },
+    {
+        value: 1,
+        displayText: "Lịch sử"
+    },
+    {
+        value: 2,
+        displayText: "Giảng dạy"
+    },
+    {
+        value: 3,
+        displayText: "Thành tích"
     }
 ]
 const sortItems_Sub2 = [
@@ -50,14 +68,20 @@ const sortItems_Sub2Null = [
 ]
 export default function QaForm(props) {
     const [inputValue, setInputValue] = useState();
+    const [sub1, setSub1] = useState(sortItems_Sub1_0);
     const [sub2, setSub2] = useState(sortItems_Sub2);
+
     const sortHandler_Main = (e) => {
         console.log(e.target.value);
         //Handle chosen sort option code
-        if (e.target.value == 1)
+        if (e.target.value == 1) {
+            setSub1(sortItems_Sub1_1)
             setSub2(sortItems_Sub2Null)
-        else
+        } else {
+            setSub1(sortItems_Sub1_0)
             setSub2(sortItems_Sub2)
+        }
+
     }
     const sortHandler_Sub = (e) => {
         console.log(e.target.value);
@@ -67,7 +91,7 @@ export default function QaForm(props) {
         <Fragment>
             <div className='qa-form-contain'>
                 <div className='edit-form-close qa-form-close' >
-                    <FontAwesomeIcon className='edit-form-close-icon' icon={['fas', 'xmark']} onClick={props.handleFormClose}/>
+                    <FontAwesomeIcon className='edit-form-close-icon' icon={['fas', 'xmark']} onClick={props.handleFormClose} />
                 </div>
                 <div className='qa-form-title-contain'>
                     <p className='qa-form-title'>{props.title}</p>
@@ -88,7 +112,7 @@ export default function QaForm(props) {
                             <SortComboBox
                                 onChange={sortHandler_Sub}
                                 customClassName="sort-position margin-right-63 sort-qa"
-                                items={sortItems_Sub1}>
+                                items={sub1}>
                             </SortComboBox>
                         </div>
                         <div className='edit-form-item create-form-item'>
