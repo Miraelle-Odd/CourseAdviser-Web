@@ -15,7 +15,7 @@
     width: 95%;
     display: flex;
     justify-content: right;
-    margin-top: 15px;
+    padding-top: 10px;
 }
 .edit-form-close .edit-form-close-icon{
     width: 30px;
@@ -118,4 +118,8 @@
 .edit-form-checkbox{
     display: none;
     margin: 0 0;
+}
+.edit-form-gender-contain{
+    display: flex;
+    justify-content: center;
 }

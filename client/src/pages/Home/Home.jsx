@@ -37,16 +37,6 @@ const Home = props => {
 
             <Footer></Footer>
 
-            {/* <UpdatePassword></UpdatePassword> */}
-            {/* <UpdateSelfContact></UpdateSelfContact>
-            <UpdateSelfInfo></UpdateSelfInfo>
-            
-            <CreateAccount></CreateAccount>
-            <UpdateGeneral></UpdateGeneral> */}
-            <QaForm
-            title="Tạo hỏi đáp mới"
-            subTitle="Nhập thông tin câu hỏi và trả lời để tạo mục giải đáp mới"
-            confirmText="Đăng"></QaForm>
 {/* 
             <AlertSuccess></AlertSuccess>
             <AlertFail></AlertFail>

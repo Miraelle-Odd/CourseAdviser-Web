@@ -44,6 +44,7 @@ export default function UpdateGeneral(props) {
         <Fragment>
             <PersonalInfoForm
                 title="Thông tin tài khoản"
+                handleFormClose={props.handleFormClose}
                 listItemLeft={personalListItemLeft}
                 listItemRight={personalListItemRight}>
             </PersonalInfoForm>

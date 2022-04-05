@@ -73,6 +73,7 @@
     width: 2px;
     height: 80px;
     background: rgba(255, 255, 255, 0.5);
+    margin: 0 15px;
 }
 .header-navbar .navbar-item{
     width: 150px;
@@ -154,6 +155,13 @@
 .login-for-home{
     color: #B62F05;
     border: 2px solid #B62F05;
+}
+@media only screen and (max-width: 1600px) {
+    .item-login{
+        background-color: white;
+        border-radius: 30px;
+        margin-left: 0 !important;
+    }
 }
 .item-login{
     background-color: white;

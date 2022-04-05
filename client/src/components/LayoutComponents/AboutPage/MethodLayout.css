@@ -43,7 +43,7 @@
         width: 607px;
         height: 461px;
         display: flex;
-        margin: auto 7% auto 0px;
+        margin: auto 7% auto 0px !important;
     }
 }
 .method-layout-white-bg .method-layout-main-img{

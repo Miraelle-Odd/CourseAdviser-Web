@@ -4,6 +4,9 @@
     background-image: url("../../../../assets/icons/qa_popup_bg.png");
     border-radius: 30px;
 }
+.qa-form-close{
+    width: 97%;
+}
 .qa-form-body{
     display: flex;
     justify-content: space-between;
@@ -15,6 +18,8 @@
     line-height: 36px;
    
     color: #000000; 
+    display: flex;
+    justify-content: center;
     margin: 0 0;
 }
 .qa-form-subtitle{
@@ -23,6 +28,8 @@
     line-height: 18px;
 
     color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
     margin: 10px 0;
 }
 .qa-form-left-contain{

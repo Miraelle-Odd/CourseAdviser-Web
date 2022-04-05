@@ -37,8 +37,8 @@ export default function AuthenForm(props) {
     return (
         <Fragment>
             <div className='authen-form-contain'>
-                <div className='authen-form-exit' onClick={props.handleFormClose}>
-                    <FontAwesomeIcon className='authen-form-icon exit-icon-login' icon={['fas', 'xmark']} />
+                <div className='authen-form-exit' >
+                    <FontAwesomeIcon className='authen-form-icon exit-icon-login' icon={['fas', 'xmark']} onClick={props.handleFormClose}/>
                 </div>
                 <div className='authen-form-header-contain'>
                     <p className={props.titleStyle}>{props.title}</p>

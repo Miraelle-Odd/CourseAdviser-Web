@@ -31,7 +31,8 @@ export default function UpdatePassword(props) {
             <SelfEditForm
                 title="Đổi mật khẩu"
                 listItem={editListItem}
-                confirmText="Xác nhận">
+                confirmText="Xác nhận"
+                handleFormClose={props.handleFormClose}>
             </SelfEditForm>
         </Fragment>
     )

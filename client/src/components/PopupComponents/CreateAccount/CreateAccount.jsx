@@ -33,6 +33,7 @@ export default function CreateAccount(props) {
     return (
         <Fragment>
             <CreateForm
+                handleFormClose={props.handleFormClose}
                 listItem={createListItem}>
             </CreateForm>
         </Fragment>

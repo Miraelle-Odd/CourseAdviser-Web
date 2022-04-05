@@ -66,8 +66,8 @@ export default function QaForm(props) {
     return (
         <Fragment>
             <div className='qa-form-contain'>
-                <div className='edit-form-close'>
-                    <FontAwesomeIcon className='edit-form-close-icon' icon={['fas', 'xmark']} />
+                <div className='edit-form-close qa-form-close' >
+                    <FontAwesomeIcon className='edit-form-close-icon' icon={['fas', 'xmark']} onClick={props.handleFormClose}/>
                 </div>
                 <div className='qa-form-title-contain'>
                     <p className='qa-form-title'>{props.title}</p>
