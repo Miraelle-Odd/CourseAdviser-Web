@@ -26,8 +26,8 @@ export default function PersonalInfoForm(props) {
     return (
         <Fragment>
             <div className='personal-info-contain'>
-                <div className='edit-form-close'>
-                    <FontAwesomeIcon className='edit-form-close-icon' icon={['fas', 'xmark']} />
+                <div className='edit-form-close qa-form-close' >
+                    <FontAwesomeIcon className='edit-form-close-icon' icon={['fas', 'xmark']} onClick={props.handleFormClose} />
                 </div>
                 <div className='personal-info-body'>
                     <div className='personal-info-header'>

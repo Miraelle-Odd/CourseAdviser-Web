@@ -25,8 +25,8 @@ export default function CreateForm(props) {
     return (
         <Fragment>
             <div className='create-form-contain'>
-                <div className='edit-form-close'>
-                    <FontAwesomeIcon className='edit-form-close-icon' icon={['fas', 'xmark']} />
+                <div className='edit-form-close' >
+                    <FontAwesomeIcon className='edit-form-close-icon' icon={['fas', 'xmark']} onClick={props.handleFormClose}/>
                 </div>
                 <div className='create-form-body'>
                     <div className='create-form-header'>

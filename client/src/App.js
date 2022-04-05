@@ -15,14 +15,13 @@ import EmployeeManagement from "./pages/EmployeeManagement/EmployeeManagement"
 import AccountSetting from "./pages/AccountSetting/AccountSetting"
 import PostManagement from "./pages/PostManagement/PostManagement"
 import ChatbotManagement from "./pages/ChatbotManagement/ChatbotManagement"
-import TestAva from "./assets/icons/staff-img.png"
 import NavigationBar from './components/Header/NavigationBar';
 import MainPost from './pages/Post/MainPost/MainPost';
 import PostDetails from './pages/Post/PostDetails/PostDetails';
 import PostListHolder from './pages/Post/PostLists/PostListHolder';
 import AboutHolder from './pages/About/AboutHolder';
 import CourseHolder from './pages/Courses/CourseHolder';
-import QAndAManagement from './pages/QAndAManagement/QAndAManagement';
+import QaManagement from './pages/QaManagement/QaManagement';
 
 const history = createBrowserHistory();
 
@@ -55,7 +54,7 @@ function App() {
             <Route path="/workplace/employee-management/:category/:page" element={<EmployeeManagement></EmployeeManagement>}></Route>
             <Route path="/workplace/chatbot-management" element={<ChatbotManagement></ChatbotManagement>} />
             <Route path="/workplace/post-management/:category/:page" element={<PostManagement></PostManagement>} />
-            <Route path='/workplace/q-and-a-management/:category/:page' element={<QAndAManagement></QAndAManagement>}></Route>
+            <Route path='/workplace/q-and-a-management/:category/:page' element={<QaManagement></QaManagement>}></Route>
             
 
             {/* Redirect Links */}

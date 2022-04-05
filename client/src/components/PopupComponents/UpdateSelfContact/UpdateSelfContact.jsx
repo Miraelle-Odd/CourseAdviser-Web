@@ -23,7 +23,8 @@ export default function UpdateSelfContact(props) {
             <SelfEditForm
                 title="Cập nhật thông tin"
                 listItem={editListItem}
-                confirmText="Cập nhật">
+                confirmText="Cập nhật"
+                handleFormClose={props.handleFormClose}>
             </SelfEditForm>
         </Fragment>
     )

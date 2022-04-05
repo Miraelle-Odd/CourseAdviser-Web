@@ -8,6 +8,9 @@ import WorkplaceList from '../../components/ListComponents/WorkplaceList'
 import ava1 from "../../assets/icons/staff-img.png"
 import aManager from "../../assets/icons/active-manager.png"
 import aStaff from "../../assets/icons/active-staff.png"
+import Modal from 'react-modal';
+import CreateAccount from '../../components/PopupComponents/CreateAccount/CreateAccount';
+import UpdateGeneral from '../../components/PopupComponents/UpdateGeneral/UpdateGeneral';
 
 const onOpenClickHandle = () => {
     alert("Open Sesame")
@@ -17,9 +20,7 @@ const onEditClickHandle = () => {
     alert("Edit Sesame")
 }
 
-const onCreateClick =() => {
-    alert("Create")
-}
+
 
 const empListFormat = [
     {
@@ -135,9 +136,21 @@ const statisticItems = [
 ]
 
 const EmployeeManagement = props => {
+    const [isShowCreate, setIsShowCreate] = useState(false);
+    const [isShowUpdate, setIsShowUpdate] = useState(false);
+
+    const onCreateClick = () => {
+        setIsShowCreate(true);
+    }
+    const onUpdateClick = () => {
+        setIsShowUpdate(true);
+    }
+    const handleFormClose = () => {
+        setIsShowCreate(false);
+        setIsShowUpdate(false);
+    }
 
     const renderEmpManament = () => {
-
         return (
             <div className='emp-man-body'>
                 <WorkplaceList
@@ -147,9 +160,10 @@ const EmployeeManagement = props => {
                     categoryItems={lcItems}
                     statisticItems={statisticItems}
                     openAction={onOpenClickHandle}
-                    editAction={onEditClickHandle}
+                    editAction={onUpdateClick}
                     onCreateClick={onCreateClick}
                 ></WorkplaceList>
+
             </div>
         )
     }
@@ -160,6 +174,36 @@ const EmployeeManagement = props => {
                 renderBody={renderEmpManament()}
             ></WorkplaceLayout>
             <Footer></Footer>
+            <Modal
+                isOpen={isShowCreate}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}>
+                <CreateAccount
+                    handleFormClose={() => handleFormClose()}>
+                </CreateAccount>
+            </Modal>
+            <Modal
+                isOpen={isShowUpdate}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}>
+                <UpdateGeneral
+                    handleFormClose={() => handleFormClose()}>
+                </UpdateGeneral>
+            </Modal>
+            <Modal
+                isOpen={isShowCreate}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}>
+                <CreateAccount
+                    handleFormClose={() => handleFormClose()}>
+                </CreateAccount>
+            </Modal>
         </div>
     )
 }

@@ -24,6 +24,7 @@ export default function UpdateSelfInfo(props) {
     return (
         <Fragment>
             <SelfEditForm
+                handleFormClose={props.handleFormClose}
                 title="Cập nhật thông tin"
                 listItem={editListItem}
                 confirmText="Cập nhật">
