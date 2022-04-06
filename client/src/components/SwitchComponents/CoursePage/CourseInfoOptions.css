@@ -1,0 +1,91 @@
+.course-info-option {
+    display: flex;
+    width: 295px;
+    height: 60px;
+    background-color: #fff;
+    align-items: center;
+    border-radius: 30px 20px 20px 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.course-info-option .icon {
+    height: 68px;
+    width: 68px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #36ADEF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.course-info-option .display-text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-align: right;
+    margin-right: 26px;
+}
+
+.course-info-option .title {
+    font-family: "Rounded Mplus 1c Medium";
+    font-size: 20px;
+}
+
+.course-info-option .long-title {
+    font-size: 14px;
+}
+
+.course-info-option .subtitle {
+    font-family: "Rounded Mplus 1c Light";
+    font-size: 12px;
+}
+
+.course-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reversed {
+    flex-direction: row-reverse;
+}
+
+.course-info .options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.course-info .switch-title {
+    color: #9A2D0B;
+    font-family: 'Rounded Mplus 1c Black';
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.white-title {
+    color: #fff!important;
+}
+
+.course-info .options .group-opts {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+}
+
+.course-info .info-display {
+    width: 718px;
+    min-height: 550px;
+    height: max-content;
+    background-color: rgba(39, 39, 39, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(16px);
+    border-radius: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+}
