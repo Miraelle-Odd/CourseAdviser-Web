@@ -79,7 +79,7 @@ export default function PersonalInfoForm(props) {
                             ) : (
                                 <div className='edit-form-item'>
                                     <p className='edit-form-item-title'>Giới tính:</p>
-                                    <div>
+                                    <div className='edit-form-gender-contain'>
                                         <input className='edit-form-checkbox'
                                             value={cbValue}
                                             type={"checkbox"} />
