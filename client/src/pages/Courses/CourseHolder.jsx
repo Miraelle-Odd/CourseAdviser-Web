@@ -19,7 +19,7 @@ export default function CourseHolder(props) {
                 courseType=="TOEIC"?
                 <Toeic></Toeic>
                 :
-                courseType=="english-for-adults"?
+                courseType=="english-for-speaking"?
                 <EngForAdults></EngForAdults>
                 :
                 <EngForChildren></EngForChildren>

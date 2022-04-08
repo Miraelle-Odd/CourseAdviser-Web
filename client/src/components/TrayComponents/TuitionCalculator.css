@@ -1,0 +1,68 @@
+.tuition-calculator {
+    width: 977px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(215, 241, 255, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.dark {
+    background: rgba(48, 57, 62, 0.4);
+}
+
+.tuition-calculator .row-title {
+    width: 100%;
+    height: 48px;
+    background-color: #fff;
+    display: flex;
+    font-family: 'Rounded Mplus 1c Regular';
+    font-size: 20px;
+    padding-left: 30px;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.tuition-calculator .dark-row-title {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+    ;
+}
+
+.tuition-calculator .row-content {
+    box-sizing: border-box;
+    padding: 20px 50px;
+    border-bottom: 2px solid rgba(85, 113, 129, 0.7);
+    display: flex;
+    justify-content: space-between;
+}
+
+.tuition-calculator .cell-content {
+    display: flex;
+    justify-content: center;
+}
+
+.tuition-calculator .row-content-2 {
+    padding: 20px 368px 20px 50px;
+}
+
+.tuition-calculator .no-padding {
+    padding: 0px;
+}
+
+.tuition-calculator .result-display {
+    height: 71px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-family: 'Rounded Mplus 1c Medium';
+    font-size: 24px;
+    color: #005D92;
+    margin-right: 64px;
+}
+
+.tuition-calculator .white-result {
+    color: #fff;
+}

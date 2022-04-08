@@ -1,0 +1,16 @@
+.course-page-container {
+    padding-top: 100px;
+}
+
+.kid-introduction {
+    background-image: url(../../../assets/icons/Kid-introduction.png);
+    width: 100%;
+    height: 600px;
+}
+
+.kid .course-info-layout {
+    padding: 103px 180px 60px 148px;
+    background-image: url(../../../assets/icons/teacher-and-kid-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
