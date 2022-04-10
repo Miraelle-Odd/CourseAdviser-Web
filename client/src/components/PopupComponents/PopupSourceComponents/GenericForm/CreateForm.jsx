@@ -41,7 +41,8 @@ export default function CreateForm(props) {
                                     <input
                                         className='edit-form-input'
                                         value={inputValue}
-                                        placeholder={item.inputHint} />
+                                        placeholder={item.inputHint}
+                                        onChange={item.onChange} />
                                     <FontAwesomeIcon className='edit-form-input-icon' icon={item.icon} />
                                 </div>
                             </div>

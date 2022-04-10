@@ -3,11 +3,19 @@ import './CreateAccount.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import CreateForm from '../PopupSourceComponents/GenericForm/CreateForm';
 
+
+export default function CreateAccount(props) {
+    const [fullname, setFullname] = useState("")
+
+    const setTemp = (e) => {
+
+    }
 const createListItem = [
     {
         title: "Họ và tên",
         inputHint: "Nhập họ tên nhân viên",
-        icon: ['far', 'fa-user']
+        icon: ['far', 'fa-user'],
+        onChange: (e)=>console.log(e.target.value)
     },
     {
         title: "Tên tài khoản",
@@ -29,7 +37,6 @@ const createListItem = [
     }
 ]
 
-export default function CreateAccount(props) {
     return (
         <Fragment>
             <CreateForm

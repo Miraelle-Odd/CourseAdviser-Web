@@ -3,8 +3,9 @@ import {NavLink} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './LeftMenu.css'
 import avatarPlaceholder from '../../assets/icons/circle-placeholder.png'
+import cookies from 'js-cookie'
 
-const menuOption = [
+const menuManOption = [
     {
         link: "/workplace/employee-management",
         btnName: "Quản lý tài khoản nhân viên",
@@ -14,7 +15,9 @@ const menuOption = [
         link: "/workplace/chatbot-management",
         btnName: "Quản lý Chatbot",
         icon: ['fas', 'robot']
-    },
+    }
+]
+const menuEmpOption = [
     {
         link: "/workplace/post-management",
         btnName: "Quản lý bài viết",
@@ -27,6 +30,10 @@ const menuOption = [
     },
 ]
 
+const onLogout = () =>{
+    cookies.remove("accessToken")
+}
+
 const MenuOption = props => {
 
     return (
@@ -35,6 +42,7 @@ const MenuOption = props => {
                 <a
                     href={props.link}
                     className="menu-option"
+                    onClick={props.onClick}
                 >
                     <FontAwesomeIcon className='icon' icon={props.icon}></FontAwesomeIcon>
                     <span className='name'>{props.btnName}</span>
@@ -67,7 +75,7 @@ const LeftMenu = props => {
                 <div className='left-menu-content'>
                     <div className='section'>
                         {
-                            menuOption.map((item, index) => {
+                            (props.position == "manager" ? menuManOption : menuEmpOption).map((item, index) => {
                                 return (
                                     <MenuOption
                                         link={item.link}
@@ -90,6 +98,7 @@ const LeftMenu = props => {
                             reload
                             link="/"
                             icon={['fas', 'right-from-bracket']}
+                            onClick={onLogout}
                             btnName="Đăng xuất"
                         ></MenuOption>
                     </div>

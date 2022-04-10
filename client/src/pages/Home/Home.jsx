@@ -21,9 +21,7 @@ import QaForm from '../../components/PopupComponents/PopupSourceComponents/QaFor
 const Home = props => {
     const [listOfTest, setListOfTest] = useState([])
     useEffect(() => {
-        axios.get("http://localhost:8080/tests").then((response) => {
-            setListOfTest(response.data)
-        })
+        
     }, [])
     return (
         <div className='home'>

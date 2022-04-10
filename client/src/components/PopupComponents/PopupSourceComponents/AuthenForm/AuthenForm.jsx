@@ -26,11 +26,16 @@ export default function AuthenForm(props) {
         if (cbRemember === false) {
             setCbChecked(['fas', 'checked']);
             setCbRemember(true);
+            props.onRemember()
+
         }
         if (cbRemember === true) {
             setCbChecked(null);
             setCbRemember(false);
+            props.onNotRemember()
         }
+        
+       
     }
 
 
@@ -46,20 +51,23 @@ export default function AuthenForm(props) {
                     <p className='authen-form-header-context'>{props.subtilte}</p>
                 </div>
                 <div className={props.inputContainStyle}>
+                    <span className='error-display'>{props.error}</span>
                     <div className='authen-form-input-border authen-form-center'>
                         <FontAwesomeIcon className='authen-form-icon' icon={props.hintIcon} />
                         <input className='authen-form-input'
-                            value={inputValue}
-                            placeholder={props.hintInput} />
+                            value={props.inputValue ? props.inputValue : inputValue}
+                            placeholder={props.hintInput}
+                            onChange={props.onInputChange} />
                     </div>
                     {
                         props.isLoginForm ?
                             <div className='authen-form-input-border authen-form-center'>
                                 <FontAwesomeIcon className='authen-form-icon' icon={['fas', 'key']} />
                                 <input className='authen-form-input'
-                                    value={inputPassword}
+                                    value={props.inputPassword? props.inputPassword : inputPassword}
                                     placeholder="Password"
-                                    type={inputType} />
+                                    type={inputType} 
+                                    onChange={props.onPwChange}/>
                                 <button className="authen-form-right-eye" onClick={changeVisibilityHandler}>
                                     <FontAwesomeIcon className='authen-form-icon' icon={toggleEye} />
                                 </button>
@@ -71,8 +79,9 @@ export default function AuthenForm(props) {
                         <div className='authen-form-checkbox-contain'>
                             <div className='authen-form-custom'>
                                 <input className='authen-form-checkbox'
-                                    value={cbRemember}
-                                    type={"checkbox"} />
+                                    checked={cbRemember}
+                                    type={"checkbox"} 
+                                />
                                 <div className='checkbox-custom authen-form-center' onClick={changeCheckboxStatus}>
                                     <FontAwesomeIcon className='authen-form-checkbox-checked' icon={cbRemember === true ? ['fas', 'check'] : ''} />
                                 </div>
@@ -82,7 +91,7 @@ export default function AuthenForm(props) {
                 }
 
                 <div className={props.buttonContainStyle}>
-                    <button className='authen-form-button'>{props.textConfirm}</button>
+                    <button className='authen-form-button' onClick={props.onConfirm}>{props.textConfirm}</button>
                 </div>
                 <div className='authen-form-line'></div>
                 {

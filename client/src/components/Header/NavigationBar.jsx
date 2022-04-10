@@ -8,11 +8,11 @@ import { useState } from 'react';
 import './NavigationBar.css'
 import logo from "../../assets/icons/app-logo.png";
 import TKB_HK2 from "../../assets/icons/TKB_HK2.PNG";
-import Popup from 'reactjs-popup';
 import Login from '../PopupComponents/Login/Login';
 import ForgotPassword from '../PopupComponents/ForgotPassword/ForgotPassword';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import cookies from 'js-cookie'
 
 const homeLink = "/";
 const courseLink = "/courses";
@@ -31,6 +31,7 @@ const adminManageChatbot = "/admin-manage-chatbot";
 const adminManagePost = "/admin-manage-post";
 const adminManageQa = "/admin-manage-qa";
 const userSetting = "/user-setting";
+
 
 let navbarItems = [
     {
@@ -113,13 +114,18 @@ let employeeDropdownItems = [
     },
 ]
 
-export default function NavigationBar() {
+export default function NavigationBar(props) {
     const [navbar, setNavbar] = useState(false);
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(props.isLogin);
     const position = useLocation().pathname;
 
     const [isShowLogin, setIsShowLogin] = useState(false);
     const [isShowForgot, setIsShowForgot] = useState(false);
+
+    const onLogout = () => {
+        cookies.remove("accessToken")
+        window.location.reload()
+    }
     const handleLoginOpen = () => {
         setIsShowLogin(true);
     }
@@ -195,7 +201,7 @@ export default function NavigationBar() {
                         <li><div className='dropdown-line'></div>
                         </li>
                         <li className="dropdown-item no-decoration">
-                            <div className="dropdown-footer  header-center">
+                            <div className="dropdown-footer  header-center" onClick={onLogout}>
                                 <span className='dropdown-logout'>Đăng xuất</span>
                                 <FontAwesomeIcon className='dropdown-logout-icon' icon={['fas','right-from-bracket']}></FontAwesomeIcon>
                             </div>
@@ -264,7 +270,7 @@ export default function NavigationBar() {
                                 </Modal>
                             </li>) :
                             (
-                                renderUserToggle("User Full Name", TKB_HK2, 'gmail@gmail.com', managerDropdownItems)
+                                renderUserToggle(props.userFullname, props.userAvatar, props.userEmail, managerDropdownItems)
                             )
                     }
                 </ul>

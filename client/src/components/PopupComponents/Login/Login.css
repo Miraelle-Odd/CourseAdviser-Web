@@ -1,21 +1,22 @@
-.login-button-contain{
+.login-button-contain {
     width: 98%;
     display: flex;
     justify-content: right;
     margin-top: 30px;
     margin-bottom: 90px;
 }
-.login-header-title{
+
+.login-header-title {
     width: max-content;
     height: 66px;
-
     font-family: 'Rounded Mplus 1c Extra Bold';
     font-size: 50px;
     line-height: 74px;
-
     color: #FFFFFF;
     margin: 0 0 0 10px;
 }
-.login-input-contain{
+
+.login-input-contain {
     margin-top: 80px;
+    position: relative;
 }

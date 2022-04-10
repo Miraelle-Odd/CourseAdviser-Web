@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 // parse requests of content-type - application/json
@@ -8,7 +9,15 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    credentials: true
+}));
+
+
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // simple route
 // app.get("/", (req, res) => {
@@ -23,6 +32,8 @@ const staff = require("./routes/Staffs");
 app.use("/staffs", staff);
 const post = require("./routes/Posts");
 app.use("/posts", post);
+const accounts = require("./routes/Accounts");
+app.use("/accounts", accounts)
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
