@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     const list = [
         {
             username: 'man0000001',
-            password:'$2y$10$rX6klaekaVkaPtf7CZrZkuMmm8rapqdfTkP8KXhgd43Ov5DcdSQIC',
+            password:'$2a$04$zFgKajsYE7s7a8qwT8HV0OqaaxwjH/trLKXUb75UA0/X1dlwBsPo6',
             position:'manager',
             email:'mailaaa@gmail.com',
             token:'activated',
@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             username: 'man0000002',
-            password:'$2y$10$/a2dEAaelZcLBfGRA4gSBuBiaIyxpzekqurVApfpfV9tmC77bwAAe',
+            password:'$2a$04$zFgKajsYE7s7a8qwT8HV0OqaaxwjH/trLKXUb75UA0/X1dlwBsPo6',
             position:'employee',
             email:'emptester@gmail.com',
             token:'activated',
@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             username: 'man0000003',
-            password:'$2y$10$iOoCreOSi6LmDr3QyPNfKeShuFEWaNN1jgpYBLfvVWizrw0uP2Z0u',
+            password:'$2a$04$zFgKajsYE7s7a8qwT8HV0OqaaxwjH/trLKXUb75UA0/X1dlwBsPo6',
             position:'manager',
             email:'mantester@gmail.com',
             token:'activated',
@@ -62,7 +62,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             username: 'man0000004',
-            password:'$2y$10$79KY8k5rrx/0FwznU96QPOZAlLQ3fkVegM.gQl1aRlplHHLMKNmC2',
+            password:'$2a$04$zFgKajsYE7s7a8qwT8HV0OqaaxwjH/trLKXUb75UA0/X1dlwBsPo6',
             position:'employee',
             email:'emptester2@gmail.com',
             token:'activated',
@@ -70,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             username: 'test',
-            password:'$2y$10$sg3QPostatL3XXU9TaWJXOQ1ldWzAaK4vGbZhs7KoKr5Xi/hhvsVS',
+            password:'$2a$04$zFgKajsYE7s7a8qwT8HV0OqaaxwjH/trLKXUb75UA0/X1dlwBsPo6',
             position:'employee',
             email:'kurocrea@gmail.com',
             token:'activated',
@@ -78,7 +78,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             username: 'aa',
-            password:'$2y$10$FGrfbJXAzNd2TmHVkukJge/NrHy0TwhBb6V4Fes14B/tveleMZQoa',
+            password:'$2a$04$zFgKajsYE7s7a8qwT8HV0OqaaxwjH/trLKXUb75UA0/X1dlwBsPo6',
             position:'employee',
             email:'test@gmail.com',
             token:'activated',

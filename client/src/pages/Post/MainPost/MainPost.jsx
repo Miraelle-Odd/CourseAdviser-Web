@@ -6,24 +6,7 @@ import Footer from '../../../components/Footer/Footer'
 import paimon from '../../../assets/icons/staff-img.png'
 import PostSliderLayout from '../../../components/LayoutComponents/PostPage/PostSliderLayout'
 import PostSpecialLayout from '../../../components/LayoutComponents/PostPage/PostSpecialLayout'
-const postSpecialBtn = [
-    {
-        id: "1",
-        img: paimon,
-        title: "Btn Title 1",
-        context: "Subtitle cds sdsd dsds dsdsd max 3 lines .ddddddddddddddddd..",
-        datetime: "DD-MM-YYYY - hh:mm:ss",
-        author: "NA",
-    },
-    {
-        id: "2",
-        img: paimon,
-        title: "Btn Title 1",
-        context: "Subtitle cds sdsd dsds dsdsd max 3 lines .ddddddddddddddddd..",
-        datetime: "DD-MM-YYYY - hh:mm:ss",
-        author: "NA",
-    }
-]
+
 export default function MainPost(props) {
     const [listOfAcademic, setListOfAcademic] = useState([])
     const [listOfEvent, setListOfEvent] = useState([])
