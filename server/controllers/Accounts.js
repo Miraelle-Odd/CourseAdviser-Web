@@ -6,15 +6,15 @@ const { response } = require("express");
 const { sign, verify } = require("jsonwebtoken")
 
 const fetchedDataValidate = async (res) => {
-    return res.body.account_id &&
-        res.body.username &&
-        res.body.password &&
-        res.body.position &&
-        res.body.email &&
-        res.body.token &&
-        res.body.status &&
-        res.body.createdAt &&
-        res.body.updatedAt
+    return res.account_id &&
+        res.username &&
+        res.password &&
+        res.position &&
+        res.email &&
+        res.token &&
+        res.status &&
+        res.createdAt &&
+        res.updatedAt
 }
 
 const findAccount = async (req, res) => {

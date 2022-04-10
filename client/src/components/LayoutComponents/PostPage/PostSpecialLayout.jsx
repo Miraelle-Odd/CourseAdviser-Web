@@ -24,7 +24,7 @@ export default function PostSpecialLayout(props) {
                                         title={item.post_title}
                                         context={item.post_content}
                                         datetime={time}
-                                        author={item.author_id}>
+                                        author={item.name}>
                                     </PostCardBtn>
                                 )
                             }) : null
@@ -75,7 +75,7 @@ export default function PostSpecialLayout(props) {
                                         title={item.post_title}
                                         context={item.post_content}
                                         datetime={time}
-                                        author={item.author_id}>
+                                        author={item.name}>
                                     </PostCardBtn>
                                 )
                             }) : null
