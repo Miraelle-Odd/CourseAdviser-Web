@@ -120,7 +120,7 @@ const PostManagement = props => {
         navigate("/workplace/post-management/post-create")
     }
     const onViewClick = () => {
-        navigate("/workplace/post-management/post-view")
+        navigate("/workplace/post-management/post-view/1")
     }
     const onUpdateClick = () => {
         navigate("/workplace/post-management/post-update/1")

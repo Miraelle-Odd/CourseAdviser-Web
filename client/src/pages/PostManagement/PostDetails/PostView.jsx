@@ -31,7 +31,7 @@ const statisticItems = [
 const PostView = props => {
     let navigate = useNavigate()
     const onUpdateClick = () => {
-        navigate("/workplace/post-management/post-create")
+        navigate("/workplace/post-management/post-update/1")
     }
     const renderPostView = () => {
         return (
