@@ -15,7 +15,7 @@ const StatusSwitch = props => {
     }
     return (
         <div className={status ? "status-switch on" : "status-switch off"}
-            onClick = {clickHandler}
+            onClick = {props.onClick ? props.onClick : clickHandler}
         >
             {status ? (props.customOn? props.customOn : "Active") : (props.customOff ? props.customOff :"Inactive")}
         </div>
