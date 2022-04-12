@@ -6,3 +6,14 @@
 .body {
     margin: 0px 0px !important;
 }
+
+.float-btn-container {
+    position: fixed;
+    top: 370px;
+    right: 0px;
+    z-index: 999;
+    height: 225px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

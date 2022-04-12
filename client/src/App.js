@@ -37,7 +37,7 @@ function App() {
 
   var workplace = "post-management"
   var currentUser = null
-  
+
   if (cookies.get('accessToken')) {
     currentUser = jwt_decode(cookies.get('accessToken'))
     if (currentUser.account.position == "manager")
@@ -67,6 +67,8 @@ function App() {
                 userEmail={currentUser != null ? currentUser.account.email : ""}
                 userAvatar={currentUser != null ? (currentUser.account.avatar ? currentUser.account.avatar : placeholder) : ""}
               ></NavigationBar>
+
+
           }
           <Routes>
             <Route exact path="/" element={<HomePage></HomePage>} />
