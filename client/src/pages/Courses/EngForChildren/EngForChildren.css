@@ -1,16 +1,58 @@
-.course-page-container {
-    padding-top: 100px;
-}
-
-.kid-introduction {
-    background-image: url(../../../assets/icons/Kid-introduction.png);
-    width: 100%;
-    height: 600px;
-}
-
-.kid .course-info-layout {
-    padding: 103px 180px 60px 148px;
-    background-image: url(../../../assets/icons/teacher-and-kid-bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+    .course-page-container {
+        padding-top: 100px;
+    }
+    
+    .kid-introduction {
+        background-image: url(../../../assets/icons/Kid-introduction.png);
+        width: 100%;
+        height: 600px;
+    }
+    
+    .kid .course-info-layout {
+        padding: 103px 180px 60px 148px;
+        background-image: url(../../../assets/icons/teacher-and-kid-bg.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .kid .beginning-layout {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 662px;
+    }
+    
+    .kid .beginning-layout .begining-desciption {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        margin-right: 166px;
+        text-align: left;
+    }
+    
+    .kid .beginning-layout .title {
+        font-family: 'Rounded Mplus 1c Extra Bold';
+        font-size: 32px;
+    }
+    
+    .kid .beginning-layout .paragraph {
+        font-family: 'Rounded Mplus 1c Regular';
+        font-size: 20px;
+    }
+    
+    .kid .benefits-layout {
+        background-image: url(../../../assets/icons/kid-galaxy-bg.png);
+        display: flex;
+        flex-direction: column;
+        padding: 27px 125px 85px 125px;
+        box-sizing: border-box;
+    }
+    
+    .kid .benefits-layout .benefit-container {
+        display: flex;
+    }
+    
+    .kid .benefits-layout .right {
+        justify-content: flex-end;
+        margin-top: 58px;
+    }
