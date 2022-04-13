@@ -6,6 +6,7 @@ import PostDetailsCard from '../../../components/CardComponents/PostDetailsPage/
 import PostRightMenu from '../../../components/RightMenu/PostRightMenu'
 import Footer from '../../../components/Footer/Footer'
 import { useNavigate, useParams } from "react-router-dom";
+import FloatBtn from '../../../components/ButtonComponents/FloatBtn';
 
 const latestPosts = [
     {
@@ -30,9 +31,22 @@ const latestPosts = [
 
 const PostDetails = props => {
     let navigate = useNavigate();
-    let {postType} = useParams();
+    let { postType } = useParams();
     return (
         <div>
+            <div className='float-btn-container'>
+                <FloatBtn
+                    link="/about/contact"
+                    icon="calendar-check"
+                    name="Đặt lịch tư vấn"
+                ></FloatBtn>
+
+                <FloatBtn
+                    chatbot
+                    icon="robot"
+                    name="Chatbot tư vấn"
+                ></FloatBtn>
+            </div>
             <div className='post-details-bg'>
                 <div className='decoration'>
                     <div className='post-details-container'>

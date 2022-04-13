@@ -1,0 +1,71 @@
+.cake-card {
+    position: relative;
+    display: flex;
+}
+
+.cake-card .cake-body {
+    width: 635px;
+    height: 364px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 80px #2176B9, 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    margin-top: 128px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 75px 42px;
+    box-sizing: border-box;
+}
+
+.cake-body .cake-desciption {
+    display: flex;
+    flex-direction: column;
+    height: 148px;
+}
+
+.cake-body .subtitle {
+    font-family: 'Rounded Mplus 1c Extra Bold';
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+    line-height: 31px;
+    margin-top: 13px;
+}
+
+.cake-body .title {
+    font-family: 'Rounded Mplus 1c Black';
+    font-size: 22px;
+}
+
+.cake-body .content {
+    font-family: 'Rounded Mplus 1c Regular';
+    font-size: 16px;
+    max-height: 71px;
+    margin-top: 8px;
+}
+
+.cake-card .cake-img {
+    position: absolute;
+    top: 0px;
+    left: 63px;
+    object-fit: fill;
+    width: 510px;
+    height: 300px;
+    filter: drop-shadow(0px 4px 40px rgba(0, 0, 0, 0.3));
+    border-radius: 20px;
+}
+
+.cake-card .body-reversed {
+    margin-top: 0px;
+    margin-bottom: 80px;
+    justify-content: flex-start;
+}
+
+.cake-card .img-reversed {
+    top: auto;
+    bottom: -48px!important;
+}
+
+.cake-card .description-reversed {
+    margin-top: 13px;
+}

@@ -19,6 +19,8 @@
         background-image: url(../../../assets/icons/possible-bg.png);
         background-repeat: no-repeat;
         background-size: cover;
+        box-sizing: border-box;
+        height: 820px;
     }
     
     .IELTS .tuition-calculator-layout {
@@ -34,4 +36,78 @@
         font-family: 'Rounded Mplus 1c Black';
         font-size: 40px;
         margin-bottom: 40px;
+    }
+    
+    .info-sections {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .info-section {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .info-section .title {
+        font-family: 'Rounded Mplus 1c Extra Bold';
+        font-size: 14px;
+        text-align: left;
+        color: #fff;
+        display: flex;
+        display: flex;
+        align-items: center;
+    }
+    
+    .info-section .bullet-content {
+        margin: 8px 0px 37px 0px;
+        display: flex;
+        padding-left: 16px;
+        justify-content: space-between;
+        width: 520px;
+    }
+    
+    .info-section .paragraph {
+        font-family: 'Rounded Mplus 1c Medium';
+        font-size: 16px;
+        text-align: justify;
+        margin: 8px 0 16px 0;
+        padding-left: 16px;
+        color: #fff;
+    }
+    
+    .columns {
+        flex-direction: row!important;
+        width: 578px;
+        justify-content: space-between;
+    }
+    
+    .info-section .column {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .info-section .list {
+        text-align: left;
+        font-family: 'Rounded Mplus 1c Medium';
+        font-size: 16px;
+        margin: -16px 0 0 0;
+        color: #fff;
+    }
+    
+    .info-section .parameter {
+        padding-left: 16px;
+        color: #fff;
+        font-family: 'Rounded Mplus 1c Medium';
+        font-size: 20px;
+        text-align: right;
+        margin-bottom: 8px;
+    }
+    
+    .info-section .width235 {
+        width: 235px!important;
+    }
+    
+    .section-more-margin {
+        margin: 30px 0!important;
     }

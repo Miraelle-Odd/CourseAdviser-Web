@@ -17,14 +17,29 @@ import AlertSuccess from '../../components/PopupComponents/AlertSuccess/AlertSuc
 import AlertFail from '../../components/PopupComponents/AlertFail/AlertFail'
 import AlertConfirm from '../../components/PopupComponents/AlertConfirm/AlertConfirm'
 import QaForm from '../../components/PopupComponents/PopupSourceComponents/QaForm/QaForm'
+import FloatBtn from '../../components/ButtonComponents/FloatBtn'
+import Chatbot from '../../components/Chatbot/Chatbot'
 
 const Home = props => {
     const [listOfTest, setListOfTest] = useState([])
     useEffect(() => {
-        
+
     }, [])
     return (
         <div className='home'>
+            <div className='float-btn-container'>
+                <FloatBtn
+                    link="/about/contact"
+                    icon="calendar-check"
+                    name="Đặt lịch tư vấn"
+                ></FloatBtn>
+
+                <FloatBtn
+                    chatbot
+                    icon="robot"
+                    name="Chatbot tư vấn"
+                ></FloatBtn>
+            </div>
             <HomeIntroLayout> </HomeIntroLayout>
 
             <HomeCourseLayout> </HomeCourseLayout>
@@ -35,7 +50,7 @@ const Home = props => {
 
             <Footer></Footer>
 
-{/* 
+            {/* 
             <AlertSuccess></AlertSuccess>
             <AlertFail></AlertFail>
             <AlertConfirm></AlertConfirm> */}

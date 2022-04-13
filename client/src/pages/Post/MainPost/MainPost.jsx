@@ -6,6 +6,7 @@ import Footer from '../../../components/Footer/Footer'
 import paimon from '../../../assets/icons/staff-img.png'
 import PostSliderLayout from '../../../components/LayoutComponents/PostPage/PostSliderLayout'
 import PostSpecialLayout from '../../../components/LayoutComponents/PostPage/PostSpecialLayout'
+import FloatBtn from '../../../components/ButtonComponents/FloatBtn'
 
 export default function MainPost(props) {
     const [listOfAcademic, setListOfAcademic] = useState([])
@@ -17,7 +18,7 @@ export default function MainPost(props) {
             setListOfAcademic(result.data)
         }
         getListAcademics().catch(console.error)
-        
+
         const getListEvents = async () => {
             const result = await axios.get("http://localhost:8080/Posts/Event/Top2")
             setListOfEvent(result.data)
@@ -36,7 +37,19 @@ export default function MainPost(props) {
     console.log("discount", listOfDiscount)
     return (
         <Fragment>
+            <div className='float-btn-container'>
+                <FloatBtn
+                    link="/about/contact"
+                    icon="calendar-check"
+                    name="Đặt lịch tư vấn"
+                ></FloatBtn>
 
+                <FloatBtn
+                    chatbot
+                    icon="robot"
+                    name="Chatbot tư vấn"
+                ></FloatBtn>
+            </div>
             <PostSliderLayout> </PostSliderLayout>
 
             <PostSpecialLayout

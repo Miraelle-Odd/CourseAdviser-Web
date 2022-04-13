@@ -19,6 +19,8 @@
     background-image: url(../../../assets/icons/hand-typing-bg.png);
     background-repeat: no-repeat;
     background-size: cover;
+    box-sizing: border-box;
+    height: 820px;
 }
 
 .TOEIC .tuition-calculator-layout {
