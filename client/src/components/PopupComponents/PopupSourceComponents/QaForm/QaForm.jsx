@@ -4,16 +4,7 @@ import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SortComboBox from '../../../ComboBoxComponents/SortComboBox';
 
-const sortItems_Topic = [
-    {
-        value: 0,
-        displayText: "Khóa học"
-    },
-    {
-        value: 1,
-        displayText: "Trung tâm"
-    }
-]
+
 const sortItems_Sub1_0 = [
     {
         value: 0,
@@ -70,6 +61,8 @@ export default function QaForm(props) {
     const [inputValue, setInputValue] = useState();
     const [sub1, setSub1] = useState(sortItems_Sub1_0);
     const [sub2, setSub2] = useState(sortItems_Sub2);
+    const [question, setQuestion] = useState(props.question);
+    const [answer, setAnswer] = useState(props.answer);
 
     const sortHandler_Main = (e) => {
         console.log(e.target.value);
@@ -101,50 +94,87 @@ export default function QaForm(props) {
                     <div className='qa-form-left-contain'>
                         <div className='edit-form-item create-form-item'>
                             <p className='edit-form-item-title create-form-item-position'>Chủ đề chính</p>
-                            <SortComboBox
-                                onChange={sortHandler_Main}
-                                customClassName="sort-position margin-right-63 sort-qa"
-                                items={sortItems_Topic}>
-                            </SortComboBox>
+                            {
+                                props.isView ?
+                                    <div className='qa-form-view'>{props.sortItems_Topic}</div>
+                                    :
+                                    <SortComboBox
+                                        onChange={sortHandler_Main}
+                                        customClassName="sort-position margin-right-63 sort-qa"
+                                        items={props.sortItems_Topic}>
+                                    </SortComboBox>
+                            }
+
                         </div>
                         <div className='edit-form-item create-form-item'>
                             <p className='edit-form-item-title create-form-item-position'>Chủ đề phụ 1</p>
-                            <SortComboBox
-                                onChange={sortHandler_Sub}
-                                customClassName="sort-position margin-right-63 sort-qa"
-                                items={sub1}>
-                            </SortComboBox>
+                            {
+                                props.isView ?
+                                    <div className='qa-form-view'>{props.sortItems_Sub1}</div>
+                                    :
+                                    <SortComboBox
+                                        onChange={sortHandler_Sub}
+                                        customClassName="sort-position margin-right-63 sort-qa"
+                                        items={sub1}>
+                                    </SortComboBox>
+                            }
+
                         </div>
                         <div className='edit-form-item create-form-item'>
                             <p className='edit-form-item-title create-form-item-position'>Chủ đề phụ 2</p>
-                            <SortComboBox
-                                onChange={sortHandler_Sub}
-                                customClassName="sort-position margin-right-63 sort-qa"
-                                items={sub2}>
-                            </SortComboBox>
+                            {
+                                props.isView ?
+                                    <div className='qa-form-view'>{props.sortItems_Sub2}</div>
+                                    :
+                                    <SortComboBox
+                                        onChange={sortHandler_Sub}
+                                        customClassName="sort-position margin-right-63 sort-qa"
+                                        items={sub2}>
+                                    </SortComboBox>
+                            }
                         </div>
                     </div>
                     <div className='qa-form-right-contain'>
                         <div className='edit-form-item create-form-item'>
                             <p className='edit-form-item-title create-form-item-position'>Câu hỏi</p>
-                            <textarea
-                                className='qa-form-input'
-                                placeholder='XXX xxx XXX'>
-                            </textarea>
+                            {
+                                props.isView ?
+                                    <div className='qa-form-view-text'> {question} </div>
+                                    :
+                                    <textarea
+                                        className='qa-form-input'
+                                        placeholder='XXX xxx XXX'
+                                        value={question}
+                                        onChange={e => { setQuestion(e.target.value); }}>
+                                    </textarea>
+                            }
+
                         </div>
                         <div className='edit-form-item create-form-item'>
                             <p className='edit-form-item-title create-form-item-position'>Trả lời</p>
-                            <textarea
-                                className='qa-form-input'
-                                placeholder='XXX xxx XXX'>
-                            </textarea>
+                            {
+                                props.isView ?
+                                    <div className='qa-form-view-text'> {answer} </div>
+                                    :
+                                    <textarea
+                                        className='qa-form-input'
+                                        placeholder='XXX xxx XXX'
+                                        value={answer}
+                                        onChange={e => { setAnswer(e.target.value); }}>
+                                    </textarea>
+                            }
                         </div>
                     </div>
 
                 </div>
-                <div className='qa-form-confirm-contain'>
-                    <button className='edit-form-confirm-button'>{props.confirmText}</button>
-                </div>
+                {
+                    props.isView ? ""
+                        :
+                        <div className='qa-form-confirm-contain'>
+                            <button className='edit-form-confirm-button'>{props.confirmText}</button>
+                        </div>
+                }
+
             </div>
         </Fragment>
     )

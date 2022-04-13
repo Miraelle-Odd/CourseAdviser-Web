@@ -5,7 +5,11 @@ import { useParams } from 'react-router-dom'
 import AboutUs from './AboutUs/AboutUs'
 import AboutStaff from './AboutStaff/AboutStaff'
 import Contact from './Contact/Contact'
+
 import FloatBtn from '../../components/ButtonComponents/FloatBtn'
+
+import QaLayout from '../../components/LayoutComponents/QaPage/QaLayout'
+
 
 export default function AboutHolder(props) {
     let {aboutType} = useParams();
@@ -30,6 +34,9 @@ export default function AboutHolder(props) {
                 :
                 aboutType=="staff"?
                 <AboutStaff></AboutStaff>
+                :
+                aboutType=="qa"?
+                <QaLayout></QaLayout>
                 :
                 <Contact></Contact>
             }

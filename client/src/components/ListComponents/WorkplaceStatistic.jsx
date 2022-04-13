@@ -11,7 +11,7 @@ const WorkplaceStatistic = props => {
                     return (
                         <div className="field-container">
                             <span className="field">{item.fieldName} : </span>
-                            <span className="value">{item.fieldValue < 10 ? "0" + item.fieldValue : item.fieldValue}</span>
+                            <span className={props.customValue ? props.customValue : "value"}>{item.fieldValue < 10 ? "0" + item.fieldValue : item.fieldValue}</span>
                         </div>
                     )
                 }) : ""

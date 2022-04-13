@@ -6,6 +6,7 @@ import WorkplaceList from '../../components/ListComponents/WorkplaceList'
 import Modal from 'react-modal';
 import CreateQa from '../../components/PopupComponents/CreateQa/CreateQa'
 import UpdateQa from '../../components/PopupComponents/UpdateQa/UpdateQa'
+import ViewQa from '../../components/PopupComponents/ViewQa/ViewQa'
 
 const onOpenClickHandle = () => {
     alert("Open Sesame")
@@ -89,6 +90,7 @@ const statisticItems = [
 const QaManagement = props => {
     const [isShowCreate, setIsShowCreate] = useState(false);
     const [isShowUpdate, setIsShowUpdate] = useState(false);
+    const [isShowView, setIsShowView] = useState(false);
 
     const onCreateClick = () => {
         setIsShowCreate(true);
@@ -96,25 +98,29 @@ const QaManagement = props => {
     const onUpdateClick = () => {
         setIsShowUpdate(true);
     }
+    const onViewClick = () => {
+        setIsShowView(true);
+    }
     const handleFormClose = () => {
         setIsShowCreate(false);
         setIsShowUpdate(false);
+        setIsShowView(false);
     }
 
     const renderQaManagement = () => {
-        return(
+        return (
             <div className='qa-man-body'>
-                    <WorkplaceList
-                        listName="q-and-a-management"
-                        fieldFormat={qaListFormat}
-                        data={qaData}
-                        categoryItems={lcItems}
-                        statisticItems={statisticItems}
-                        openAction={onOpenClickHandle}
-                        editAction={onUpdateClick}
-                        onCreateClick={onCreateClick}
-                    ></WorkplaceList>
-                </div>
+                <WorkplaceList
+                    listName="q-and-a-management"
+                    fieldFormat={qaListFormat}
+                    data={qaData}
+                    categoryItems={lcItems}
+                    statisticItems={statisticItems}
+                    openAction={onViewClick}
+                    editAction={onUpdateClick}
+                    onCreateClick={onCreateClick}
+                ></WorkplaceList>
+            </div>
         )
     }
     return (
@@ -140,8 +146,22 @@ const QaManagement = props => {
                 overlayClassName="popup-overlay"
                 shouldCloseOnOverlayClick={false}>
                 <UpdateQa
+                    question="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+                    answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
                     handleFormClose={() => handleFormClose()}>
                 </UpdateQa>
+            </Modal>
+            <Modal
+                isOpen={isShowView}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}>
+                <ViewQa
+                    question="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+                    answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+                    handleFormClose={() => handleFormClose()}>
+                </ViewQa>
             </Modal>
         </div>
     )

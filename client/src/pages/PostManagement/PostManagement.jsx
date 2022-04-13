@@ -4,15 +4,7 @@ import Footer from '../../components/Footer/Footer'
 import WorkplaceLayout from '../../components/LayoutComponents/WorkplacePage/WorkplaceLayout'
 import WorkplaceList from '../../components/ListComponents/WorkplaceList'
 import thumb1 from "../../assets/icons/draft.png"
-
-const onOpenClickHandle = () => {
-    alert("Open Sesame")
-
-}
-
-const onEditClickHandle = () => {
-    alert("Edit Sesame")
-}
+import { useNavigate } from 'react-router-dom'
 
 const postListFormat = [
     {
@@ -121,22 +113,35 @@ const postData = [
     },
 ]
 
-const renderPostManagement = () => {
-    return (
-        <div className='post-man-body'>
-            <WorkplaceList
-                listName="post-management"
-                fieldFormat={postListFormat}
-                categoryItems={lcItems}
-                statisticItems={statisticItems}
-                data={postData}
-                openAction={onOpenClickHandle}
-                editAction={onEditClickHandle}
-            ></WorkplaceList>
-        </div>
-    )
-}
+
 const PostManagement = props => {
+    let navigate = useNavigate()
+    const onCreateClick = () => {
+        navigate("/workplace/post-management/post-create")
+    }
+    const onViewClick = () => {
+        navigate("/workplace/post-management/post-view/1")
+    }
+    const onUpdateClick = () => {
+        navigate("/workplace/post-management/post-update/1")
+    }
+    const renderPostManagement = () => {
+        return (
+            <div className='post-man-body'>
+                <WorkplaceList
+                    listName="post-management"
+                    fieldFormat={postListFormat}
+                    categoryItems={lcItems}
+                    statisticItems={statisticItems}
+                    data={postData}
+                    openAction={onViewClick}
+                    editAction={onUpdateClick}
+                    onCreateClick={onCreateClick}
+                ></WorkplaceList>
+            </div>
+        )
+    }
+
     return (
         <div className='userpage-container'>
             <WorkplaceLayout title="Quản lý bài viết"
