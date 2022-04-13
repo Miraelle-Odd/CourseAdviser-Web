@@ -45,6 +45,18 @@ const Chatbot = (props) => {
             setMessage("")
         }
     }
+    const addBotMessage = async (props) => {
+        if (message.trim() != "") {
+            await setMessageList(messageList.concat(
+                <ChatBubble
+                chatbot
+                    chat={props.message}
+                ></ChatBubble>
+            ))
+            scrollToBottom()
+            setMessage("")
+        }
+    }
 
     return (
         <Modal className="chatbox" isOpen={props.isOpen} overlayClassName="chatbot-overlay">

@@ -132,7 +132,7 @@
 
 .chat-view {
     height: 405px;
-    overflow-y: scroll;
+    overflow-y: auto;
     display: flex;
 }
 
