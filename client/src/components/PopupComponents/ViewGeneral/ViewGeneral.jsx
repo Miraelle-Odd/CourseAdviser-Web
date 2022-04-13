@@ -60,7 +60,8 @@ export default function ViewGeneral(props) {
                 listItemLeft={personalListItemLeft}
                 listItemRight={personalListItemRight}
                 avatar="https://picsum.photos/200/300"
-                gender="female">
+                gender="female"
+                isView={true}>
             </PersonalInfoForm>
         </Fragment>
     )

@@ -28,6 +28,7 @@ import axios from 'axios';
 import cookies from 'js-cookie'
 import PostView from './pages/PostManagement/PostDetails/PostView';
 import PostUpdate from './pages/PostManagement/PostDetails/PostUpdate';
+import QaLayout from './components/LayoutComponents/QaPage/QaLayout';
 
 const history = createBrowserHistory();
 

@@ -110,9 +110,15 @@ export default function PersonalInfoForm(props) {
                             ))}
                         </div>
                     </div>
-                    <div className='personal-info-confirm-contain'>
-                        <button className='edit-form-confirm-button'>Cập nhật</button>
-                    </div>
+                    {
+                        props.isView ?
+                            ""
+                            :
+                            <div className='personal-info-confirm-contain'>
+                                <button className='edit-form-confirm-button'>Cập nhật</button>
+                            </div>
+                    }
+
                 </div>
             </div>
         </Fragment>
