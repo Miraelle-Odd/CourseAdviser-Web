@@ -298,15 +298,16 @@
     right: auto;
     bottom: auto;
     margin-right: -50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+    outline: none;
 }
 
 .popup-overlay {
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background-color: rgba(15, 15, 15, 0.5);
-z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(15, 15, 15, 0.5);
+    z-index: 1000;
 }

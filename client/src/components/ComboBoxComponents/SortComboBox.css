@@ -37,3 +37,23 @@
     width: 234px;
     height: 40px;
 }
+.sort-post{
+    width: 180px;
+    height: 35px;
+    background: #FFFFFF;
+    border: none;
+    border-bottom: 1px solid black;
+
+    font-family: 'Rounded Mplus 1c Light';
+    font-size: 14px;
+
+    color: rgba(0, 0, 0, 0.4);
+    outline: none;
+    padding: 8px 12px;
+    -webkit-appearance: none;
+    background-image: url(../../assets/icons/sort-arrow-down.png);
+    background-repeat: no-repeat;
+    background-position: 95%;
+
+    float: right;
+}

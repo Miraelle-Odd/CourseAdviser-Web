@@ -11,6 +11,7 @@ import aStaff from "../../assets/icons/active-staff.png"
 import Modal from 'react-modal';
 import CreateAccount from '../../components/PopupComponents/CreateAccount/CreateAccount';
 import UpdateGeneral from '../../components/PopupComponents/UpdateGeneral/UpdateGeneral';
+import ViewGeneral from '../../components/PopupComponents/ViewGeneral/ViewGeneral';
 
 const onOpenClickHandle = () => {
     alert("Open Sesame")
@@ -138,6 +139,7 @@ const statisticItems = [
 const EmployeeManagement = props => {
     const [isShowCreate, setIsShowCreate] = useState(false);
     const [isShowUpdate, setIsShowUpdate] = useState(false);
+    const [isShowView, setIsShowView] = useState(false);
 
     const onCreateClick = () => {
         setIsShowCreate(true);
@@ -145,9 +147,13 @@ const EmployeeManagement = props => {
     const onUpdateClick = () => {
         setIsShowUpdate(true);
     }
+    const onViewClick = () => {
+        setIsShowView(true);
+    }
     const handleFormClose = () => {
         setIsShowCreate(false);
         setIsShowUpdate(false);
+        setIsShowView(false);
     }
 
     const renderEmpManament = () => {
@@ -159,7 +165,7 @@ const EmployeeManagement = props => {
                     data={empData}
                     categoryItems={lcItems}
                     statisticItems={statisticItems}
-                    openAction={onOpenClickHandle}
+                    openAction={onViewClick}
                     editAction={onUpdateClick}
                     onCreateClick={onCreateClick}
                 ></WorkplaceList>
@@ -195,14 +201,14 @@ const EmployeeManagement = props => {
                 </UpdateGeneral>
             </Modal>
             <Modal
-                isOpen={isShowCreate}
+                isOpen={isShowView}
                 onRequestClose={() => handleFormClose()}
                 className="popup-modal"
                 overlayClassName="popup-overlay"
                 shouldCloseOnOverlayClick={false}>
-                <CreateAccount
+                <ViewGeneral
                     handleFormClose={() => handleFormClose()}>
-                </CreateAccount>
+                </ViewGeneral>
             </Modal>
         </div>
     )

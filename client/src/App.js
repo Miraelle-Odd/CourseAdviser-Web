@@ -26,6 +26,9 @@ import jwt_decode from 'jwt-decode'
 import placeholder from './assets/icons/personal_avatar.png'
 import axios from 'axios';
 import cookies from 'js-cookie'
+import PostView from './pages/PostManagement/PostDetails/PostView';
+import PostUpdate from './pages/PostManagement/PostDetails/PostUpdate';
+import QaLayout from './components/LayoutComponents/QaPage/QaLayout';
 
 const history = createBrowserHistory();
 
@@ -81,6 +84,9 @@ function App() {
             <Route path="/workplace/employee-management/:category/:page" element={<EmployeeManagement></EmployeeManagement>}></Route>
             <Route path="/workplace/chatbot-management" element={<ChatbotManagement></ChatbotManagement>} />
             <Route path="/workplace/post-management/:category/:page" element={<PostManagement></PostManagement>} />
+            <Route path="/workplace/post-management/post-view/:id" element={<PostView></PostView>} />
+            <Route path="/workplace/post-management/post-create" element={<PostUpdate></PostUpdate>} />
+            <Route path="/workplace/post-management/post-update/:id" element={<PostUpdate></PostUpdate>} />
             <Route path='/workplace/q-and-a-management/:category/:page' element={<QaManagement></QaManagement>}></Route>
 
 
