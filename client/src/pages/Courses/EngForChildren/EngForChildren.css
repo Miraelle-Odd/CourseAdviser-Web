@@ -9,10 +9,12 @@
     }
     
     .kid .course-info-layout {
-        padding: 103px 180px 60px 148px;
+        padding: 115px 180px 60px 148px;
         background-image: url(../../../assets/icons/teacher-and-kid-bg.png);
         background-repeat: no-repeat;
         background-size: cover;
+        height: 820px;
+        box-sizing: border-box;
     }
     
     .kid .beginning-layout {
@@ -55,4 +57,16 @@
     .kid .benefits-layout .right {
         justify-content: flex-end;
         margin-top: 58px;
+    }
+    
+    .kid .section-more-margin {
+        margin: 20px 0!important;
+    }
+    
+    .kid .no-margin {
+        margin: 0;
+    }
+    
+    .kid .info-display {
+        min-height: auto;
     }

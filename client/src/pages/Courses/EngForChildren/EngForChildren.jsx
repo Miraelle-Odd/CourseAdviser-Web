@@ -9,21 +9,80 @@ import NativeBenefit from "../../../assets/icons/kid-benefit-native.png"
 import ContestBenefit from "../../../assets/icons/kid-benefit-contest.png"
 import CakeCard from "../../../components/CardComponents/CoursePage/CakeCard";
 
+const renderLevelContent = (props) => {
+    return (
+        <div>
+            <div className="info-section">
+                <span className="title">Giới thiệu :</span>
+                <p className="paragraph">
+                    {/* Khóa học IELTS PREPARE (hay PRE-IELTS) là một trong khóa học Luyện thi IELTS chính được phân loại dựa theo mức độ kiến thức sẽ đạt được sau khóa. Theo đó, khóa PRE-IELTS là khóa cơ sở trong 3 mức độ (PRE, INTER, ADV) với mục đích rèn luyện, tạo nền móng tiếng Anh cho những học viên mới bắt đầu làm quen với tiếng Anh, không có nền tảng ngôn ngữ hoặc có nhu cầu lấy lại gốc tiếng Anh. Chính vì thế mà cấp độ này không có yêu cầu đầu vào. Kiến thức nền tảng có được sau khóa học đủ để học viên tự tin tham gia thi lấy bằng IELTS trong thực tế. */}
+                    {props.introParagraph}
+                </p>
+            </div>
+            <div className="info-section section-more-margin">
+                <span className="title">
+                    Độ tuổi tham gia :
+                    <p className="paragraph no-margin">
+                        {props.age}
+                    </p>
+                </span>
+
+            </div>
+            <div className="info-section section-more-margin">
+                <span className="title">Thời lượng mỗi khóa học :</span>
+                <span className="paragraph">Mỗi khóa gồm 96 buổi học, trong 12 tháng</span>
+            </div>
+            <div className="info-section columns">
+                <div className="column">
+                    <div className="info-section">
+                        <span className="title">Thời lượng mỗi lớp học :</span>
+                        <span className="parameter">1 giờ/buổi</span>
+                    </div>
+                </div>
+                <div className="column">
+                    <div className="info-section">
+                        <span className="title">Học phí toàn khóa :</span>
+                        <span className="parameter">{props.tuitionFee} VNĐ</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    )
+}
+
 const levelTypes = [
     {
         icon: ['fas', 'baby'],
         title: "JUMPSTART",
         subtitle: "Kids from 3 - 6 years old",
+        infoContent: renderLevelContent({
+            introParagraph: "Proin ex leo, accumsan eget fermentum mollis, dictum eu tortor. Maecenas vulputate neque vitae aliquam mattis. Ut pretium enim sed tristique luctus. Sed feugiat odio nec quam molestie blandit. Donec et dictum felis, feugiat tincidunt enim. Aenean posuere pulvinar turpis ac bibendum. Nullam pretium tellus porta sapien luctus auctor. Praesent dignissim dictum eros, molestie posuere velit pellentesque sed. Pellentesque viverra tincidunt ipsum, id viverra nibh aliquet at. In condimentum vulputate eros, in lacinia ante volutpat vitae.",
+            age: "Thích hợp cho các bé từ 3 đến 6 tuổi",
+            tuitionFee: "XX XXX XXX"
+        })
     },
     {
         icon: ['fas', 'child'],
         title: "JUNIOR",
         subtitle: "Kids from 6 - 11 years old",
+        infoContent: renderLevelContent({
+            introParagraph: "Proin ex leo, accumsan eget fermentum mollis, dictum eu tortor. Maecenas vulputate neque vitae aliquam mattis. Ut pretium enim sed tristique luctus. Sed feugiat odio nec quam molestie blandit. Donec et dictum felis, feugiat tincidunt enim. Aenean posuere pulvinar turpis ac bibendum. Nullam pretium tellus porta sapien luctus auctor. Praesent dignissim dictum eros, molestie posuere velit pellentesque sed. Pellentesque viverra tincidunt ipsum, id viverra nibh aliquet at. In condimentum vulputate eros, in lacinia ante volutpat vitae.",
+            age: "Thích hợp cho các bé từ 6 đến 11 tuổi",
+            tuitionFee: "XX XXX XXX"
+        })
     },
     {
         icon: ['fas', 'child-reaching'],
         title: "TEEN",
         subtitle: "Kids from 11 - 16 years old",
+        infoContent: renderLevelContent({
+            introParagraph: "Proin ex leo, accumsan eget fermentum mollis, dictum eu tortor. Maecenas vulputate neque vitae aliquam mattis. Ut pretium enim sed tristique luctus. Sed feugiat odio nec quam molestie blandit. Donec et dictum felis, feugiat tincidunt enim. Aenean posuere pulvinar turpis ac bibendum. Nullam pretium tellus porta sapien luctus auctor. Praesent dignissim dictum eros, molestie posuere velit pellentesque sed. Pellentesque viverra tincidunt ipsum, id viverra nibh aliquet at. In condimentum vulputate eros, in lacinia ante volutpat vitae.",
+            age: "Thích hợp cho các bé từ 11 đến 16 tuổi",
+            tuitionFee: "XX XXX XXX"
+        })
     }
 ]
 
