@@ -6,25 +6,7 @@ import Footer from '../../../../components/Footer/Footer'
 import PostSpecialLayout from '../../../../components/LayoutComponents/PostPage/PostSpecialLayout'
 import PostListLayout from '../../../../components/LayoutComponents/PostPage/PostListLayout'
 import TKB_HK2 from '../../../../assets/icons/TKB_HK2.PNG'
-import paimon from '../../../../assets/icons/staff-img.png'
-const postSpecialBtn = [
-    {
-        id: "1",
-        img: paimon,
-        title: "Btn Title 1",
-        context: "Subtitle cds sdsd dsds dsdsd max 3 lines .ddddddddddddddddd..",
-        datetime: "DD-MM-YYYY - hh:mm:ss",
-        author: "NA",
-    },
-    {
-        id: "2",
-        img: paimon,
-        title: "Btn Title 1",
-        context: "Subtitle cds sdsd dsds dsdsd max 3 lines .ddddddddddddddddd..",
-        datetime: "DD-MM-YYYY - hh:mm:ss",
-        author: "NA",
-    }
-]
+
 const postListItem = [
     {
         id: "1",
@@ -52,19 +34,27 @@ const postListItem = [
     },
 ]
 export default function Discounts(props) {
-
+    const [listOfDiscount, setListOfDiscount] = useState([])
+    useEffect(() => {
+        const getListDiscount = async () => {
+            const result = await axios.get("http://localhost:8080/Posts/Discount/Top2")
+            setListOfDiscount(result.data)
+        }
+        getListDiscount().catch(console.error)
+    }, [])
+    console.log("list-discount", listOfDiscount)
     return (
         <Fragment>
-            <PostSpecialLayout
-                category="discounts"
-                type="blue"
-                btn={postSpecialBtn}
-                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="discounts"
-                icon={['fas', 'piggy-bank']}
-            >
-            </PostSpecialLayout>
-
+            <div className='post-list-padding-top'>
+                <PostSpecialLayout
+                    type="blue"
+                    listItem={listOfDiscount}
+                    description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
+                    title="discounts"
+                    icon={['fas', 'piggy-bank']}
+                    link="/main-post/discounts/1">
+                </PostSpecialLayout>
+            </div>
             <PostListLayout
                 category="discounts"
                 img={TKB_HK2}

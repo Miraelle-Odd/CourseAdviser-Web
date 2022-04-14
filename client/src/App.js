@@ -28,7 +28,8 @@ import axios from 'axios';
 import cookies from 'js-cookie'
 import PostView from './pages/PostManagement/PostDetails/PostView';
 import PostUpdate from './pages/PostManagement/PostDetails/PostUpdate';
-import QaLayout from './components/LayoutComponents/QaPage/QaLayout';
+import QaList from './pages/About/Qa/QaList';
+import QaNone from './pages/About/Qa/QaNone';
 
 const history = createBrowserHistory();
 
@@ -79,6 +80,8 @@ function App() {
             <Route path="/main-post/:postType/post-details/:id" element={<PostDetails></PostDetails>} />
             <Route path="/post-details" element={<PostDetails></PostDetails>} />
             <Route path="/about/:aboutType" element={<AboutHolder></AboutHolder>} />
+            <Route path="/about/:aboutType/:page" element={<QaList></QaList>} />
+            <Route path="/about/:aboutType/no-result" element={<QaNone></QaNone>} />
 
             <Route path="/workplace/account-setting" element={<AccountSetting></AccountSetting>} />
             <Route path="/workplace/employee-management/:category/:page" element={<EmployeeManagement></EmployeeManagement>}></Route>

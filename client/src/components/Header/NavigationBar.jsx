@@ -24,7 +24,7 @@ const courseKidLink = "/courses/english-for-kid";
 const postLink = "/main-post";
 const aboutUsLink = "/about/us";
 const aboutStaffLink = "/about/staff";
-const QaLink = "/about/qa"
+const QaLink = "/about/qa/1"
 const aboutContactLink = "/about/contact";
 
 const adminManageAccount = "/admin-manage-account";
