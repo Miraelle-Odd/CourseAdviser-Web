@@ -2,12 +2,16 @@
     background-image: url(../../../assets/icons/Adult-introduction.png);
     width: 100%;
     height: 600px;
+    background-size: cover;
 }
 
 .adult-road-map {
     background-image: url(../../../assets/icons/Adult-road-map.png);
     width: 100%;
     height: 1104px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .adult .course-info-layout {
@@ -17,6 +21,7 @@
     background-size: cover;
     box-sizing: border-box;
     height: 820px;
+    background-size: cover;
 }
 
 .adult .tuition-calculator-layout {
@@ -25,6 +30,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-size: cover;
 }
 
 .adult .tuition-calculator-title {
@@ -46,4 +52,10 @@
 .adult .row-content {
     padding: 20px 46px;
     justify-content: space-around;
+}
+
+.adult .staff-teacher-content {
+    background-position: bottom;
+    background-size: cover;
+    background-image: url(../../../assets/icons/staff-bg-5.png)!important;
 }

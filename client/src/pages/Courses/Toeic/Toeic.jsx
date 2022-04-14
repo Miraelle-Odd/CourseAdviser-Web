@@ -1,7 +1,10 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Fragment } from "react/cjs/react.production.min";
 import BulletCard from "../../../components/CardComponents/CoursePage/BulletCard";
 import Footer from "../../../components/Footer/Footer";
 import AppoinmentLayout from "../../../components/LayoutComponents/ContactPage/AppoinmentLayout";
+import StaffTeacherLayout from "../../../components/LayoutComponents/StaffPage/StaffTeacherLayout";
 import CourseInfoOptions from "../../../components/SwitchComponents/CoursePage/CourseInfoOptions";
 import TuitionCalculator from "../../../components/TrayComponents/TuitionCalculator";
 import './Toeic.css'
@@ -173,6 +176,15 @@ const shortBonusTypes = [
 ]
 
 const Toeic = props => {
+    const [listOfTeachers, setListOfTeachers] = useState([])
+    useEffect(() => {
+
+        const getListTeachers = async () => {
+            const result = await axios.get("http://localhost:8080/Staffs/course/TOEIC/Top4")
+            setListOfTeachers(result.data)
+        }
+        getListTeachers().catch(console.error)
+    }, [])
     return (
         <div className="course-page-container TOEIC">
             <div className="TOEIC-introduction"></div>
@@ -194,7 +206,10 @@ const Toeic = props => {
                     bonusTypes={shortBonusTypes}
                 ></TuitionCalculator>
             </div>
-
+            <StaffTeacherLayout
+                title="Đội ngũ giảng viên"
+                listItem={listOfTeachers}
+            ></StaffTeacherLayout>
             <AppoinmentLayout> </AppoinmentLayout>
 
             <Footer></Footer>

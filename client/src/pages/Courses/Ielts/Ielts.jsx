@@ -182,7 +182,7 @@ const Ielts = props => {
     useEffect(() => {
 
         const getListTeachers = async () => {
-            const result = await axios.get("http://localhost:8080/Staffs/course/Speaking/Top4")
+            const result = await axios.get("http://localhost:8080/Staffs/course/IELTS/Top4")
             setListOfTeachers(result.data)
         }
         getListTeachers().catch(console.error)
@@ -205,7 +205,7 @@ const Ielts = props => {
                 ></TuitionCalculator>
             </div>
             <StaffTeacherLayout
-                title="Giao vien"
+                title="Đội ngũ giảng viên"
                 listItem={listOfTeachers}
             ></StaffTeacherLayout>
             <AppoinmentLayout> </AppoinmentLayout>
