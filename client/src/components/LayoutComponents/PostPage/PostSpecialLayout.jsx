@@ -47,7 +47,7 @@ export default function PostSpecialLayout(props) {
             </Fragment>
         )
     }
-    else if (props.type == "blue") {
+    if (props.type == "blue") {
         return (
             <Fragment>
                 <div className='post-special-bg-blue'>
