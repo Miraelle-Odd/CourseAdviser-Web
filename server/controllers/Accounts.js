@@ -1,11 +1,9 @@
 const { Accounts } = require("../models");
 const bcrypt = require("bcrypt");
-const e = require("express");
-const { response } = require("express");
 
 const { sign, verify } = require("jsonwebtoken")
 
-const fetchedDataValidate = async (res) => {
+const fetchedDataValidate = async(res) => {
     return res.account_id &&
         res.username &&
         res.password &&
@@ -17,7 +15,7 @@ const fetchedDataValidate = async (res) => {
         res.updatedAt
 }
 
-const findAccount = async (req, res) => {
+const findAccount = async(req, res) => {
     try {
         const result = await Accounts.findOne({
             where: {
@@ -49,11 +47,11 @@ const validateToken = (req, res, next) => {
     }
 }
 
-const verifyToken = async (req, res) => {
+const verifyToken = async(req, res) => {
     res.send(verify(req.body.token, "secret"))
 }
 
-const logIn = async (req, res) => {
+const logIn = async(req, res) => {
     try {
         let account = null
         let message = null

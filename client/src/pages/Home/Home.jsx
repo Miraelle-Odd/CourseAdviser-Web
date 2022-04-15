@@ -19,12 +19,21 @@ import AlertConfirm from '../../components/PopupComponents/AlertConfirm/AlertCon
 import QaForm from '../../components/PopupComponents/PopupSourceComponents/QaForm/QaForm'
 import FloatBtn from '../../components/ButtonComponents/FloatBtn'
 import Chatbot from '../../components/Chatbot/Chatbot'
+import { useNavigate } from 'react-router-dom'
 
 const Home = props => {
-    const [listOfTest, setListOfTest] = useState([])
-    useEffect(() => {
 
-    }, [])
+    window.onload = function () {
+        if (window.localStorage) {
+            if (!localStorage.getItem('firstLoad')) {
+                localStorage['firstLoad'] = true;
+                window.location.reload();
+            }
+            else
+                localStorage.removeItem('firstLoad');
+        }
+    }
+
     return (
         <div className='home'>
             <div className='float-btn-container'>

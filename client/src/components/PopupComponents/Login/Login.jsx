@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Login.css'
 import axios from 'axios'
 import { Fragment } from 'react/cjs/react.production.min';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AuthenForm from '../PopupSourceComponents/AuthenForm/AuthenForm';
 
 

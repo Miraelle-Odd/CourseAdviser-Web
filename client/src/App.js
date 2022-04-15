@@ -36,8 +36,6 @@ function App() {
 
   axios.defaults.withCredentials = true
 
-  console.log(cookies.get('accessToken'))
-
   var workplace = "post-management"
   var currentUser = null
 
@@ -82,14 +80,14 @@ function App() {
             <Route path="/post-details" element={<PostDetails></PostDetails>} />
             <Route path="/about/:aboutType" element={<AboutHolder></AboutHolder>} />
 
-            <Route path="/workplace/account-setting" element={<AccountSetting></AccountSetting>} />
-            <Route path="/workplace/employee-management/:category/:page" element={<EmployeeManagement></EmployeeManagement>}></Route>
-            <Route path="/workplace/chatbot-management" element={<ChatbotManagement></ChatbotManagement>} />
-            <Route path="/workplace/post-management/:category/:page" element={<PostManagement></PostManagement>} />
-            <Route path="/workplace/post-management/post-view/:id" element={<PostView></PostView>} />
-            <Route path="/workplace/post-management/post-create" element={<PostUpdate></PostUpdate>} />
-            <Route path="/workplace/post-management/post-update/:id" element={<PostUpdate></PostUpdate>} />
-            <Route path='/workplace/q-and-a-management/:category/:page' element={<QaManagement></QaManagement>}></Route>
+            <Route path="/workplace/account-setting" element={currentUser != null ? <AccountSetting></AccountSetting> : <Navigate to="/"></Navigate>} />
+            <Route path="/workplace/employee-management/:category/:page" element={currentUser != null ? <EmployeeManagement></EmployeeManagement> : <Navigate to="/"></Navigate>}></Route>
+            <Route path="/workplace/chatbot-management" element={currentUser != null ? <ChatbotManagement></ChatbotManagement> : <Navigate to="/"></Navigate>} />
+            <Route path="/workplace/post-management/:category/:page" element={currentUser != null ? <PostManagement></PostManagement> : <Navigate to="/"></Navigate>} />
+            <Route path="/workplace/post-management/post-view/:id" element={currentUser != null ? <PostView></PostView> : <Navigate to="/"></Navigate>} />
+            <Route path="/workplace/post-management/post-create" element={currentUser != null ? <PostUpdate></PostUpdate> : <Navigate to="/"></Navigate>} />
+            <Route path="/workplace/post-management/post-update/:id" element={currentUser != null ? <PostUpdate></PostUpdate> : <Navigate to="/"></Navigate>} />
+            <Route path='/workplace/q-and-a-management/:category/:page' element={currentUser != null ? <QaManagement></QaManagement> : <Navigate to="/"></Navigate>}></Route>
 
 
             {/* Redirect Links */}

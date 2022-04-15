@@ -34,6 +34,11 @@ const post = require("./routes/Posts");
 app.use("/posts", post);
 const accounts = require("./routes/Accounts");
 app.use("/accounts", accounts)
+const mail = require("./routes/Mail");
+app.use("/mail", mail)
+const appointments = require("./routes/Appointments");
+app.use("/appointments", appointments)
+
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
