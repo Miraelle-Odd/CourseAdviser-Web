@@ -1,5 +1,4 @@
 var nodemailer = require('nodemailer');
-const { Posts, sequelize } = require("../models");
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -24,7 +23,7 @@ const sendAppointment = async(req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.send('Email sent: ' + info.response);
+            res.send('Please check your email for confirmation');
         }
     });
 }

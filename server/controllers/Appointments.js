@@ -11,7 +11,7 @@ const madeAppointment = async(req, res) => {
             sender_email: req.body.senderEmail,
             sender_phone: req.body.senderPhone,
         })
-        res.send(result)
+        res.send("Appointment created successfully")
     } catch (e) {
         res.send(e)
     }

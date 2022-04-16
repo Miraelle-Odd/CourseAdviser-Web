@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ReactDOM from 'react-dom';
 import './AppoinmentLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import DatePicker from 'react-datepicker'
@@ -7,6 +6,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from 'rc-time-picker'
 import 'rc-time-picker/assets/index.css';
 import AppoinmentCard from '../../CardComponents/ContactPage/AppoinmentCard';
+import moment from 'moment';
+import axios from 'axios'
+import AlertSuccess from '../../PopupComponents/AlertSuccess/AlertSuccess';
+import AlertFail from '../../PopupComponents/AlertFail/AlertFail';
+import validator from 'validator'
 
 
 export default function AppoinmentLayout() {
@@ -18,27 +22,66 @@ export default function AppoinmentLayout() {
     const [inputPosition, setInputPosition] = useState();
     const [inputDate, setInputDate] = useState();
     const [inputTime, setInputTime] = useState();
+    const [message, setMessage] = useState()
+    const [failAlert, setFailAlert] = useState(false)
+    const [successAlert, setSuccessAlert] = useState(false)
 
     const confirm = () => {
+        if (!inputName ||
+            !inputEmail ||
+            !inputPhone ||
+            !inputService ||
+            !inputCourse ||
+            !inputPosition ||
+            !inputDate ||
+            !inputTime) {
+            setMessage("All fields required")
+            setFailAlert(true)
+            return false
+        }
+        else {
+            if (!validator.isEmail(inputEmail)) {
+                setMessage("Invalid Email")
+                setFailAlert(true)
+                return false
+            }
+
+        }
         const params = {
-            appoint_purpose: inputService,
+            appointPurpose: inputService,
             concern: inputCourse,
-            appoint_time: inputDate + " " + inputTime,
-            appoint_address: inputPosition,
-            sender_name: inputName,
-            sender_email: inputEmail,
-            sender_phone: inputPhone,
+            appointTime: moment(inputDate).format('yyyy/MM/DD') + " " + moment(inputTime).format('hh:mm:ss'),
+            appointAddress: inputPosition,
+            senderName: inputName,
+            senderEmail: inputEmail,
+            senderPhone: inputPhone,
         }
         console.log(params)
-        // const result = axios.post("http://localhost:8080/appointments/create", params)
-        //     .then(res => {                              
-        //         if (!res.data.error) {
-        //             setError(res.data.message)
-        //         }
-        //         else{
-        //             setError(res.data.error) 
-        //         }
-        //     })
+        const result = axios.post("http://localhost:8080/appointments/create", params)
+            .then(res => {
+                var mailResult
+                if (res.data.errors) {
+                    setMessage("Erros happened. Retry later")
+                    setFailAlert(true)
+                }
+                else {
+                    mailResult = axios.post("http://localhost:8080/mail/appointment",
+                        {
+
+                            reveiverEmail: params.senderEmail,
+                            reveiverName: params.senderName,
+                            address: params.appointAddress,
+                            time: moment(params.appointTime).format('DD/MM/yyyy hh:mm:ss'),
+                            purpose: params.appointPurpose
+
+                        }
+                    )
+                        .then(ress => {
+                            setMessage(ress.data)
+                            setSuccessAlert(true)
+                        })
+                }
+            })
     }
 
     return (
@@ -54,6 +97,7 @@ export default function AppoinmentLayout() {
                             onChange={(e) => setInputName(e.target.value)} />
                         <div className='appoinment-form-inline'>
                             <input
+                                type="email"
                                 className="appoinment-input appoinment-input-inline"
                                 onChange={(e) => setInputEmail(e.target.value)}
                                 placeholder="Email" />
@@ -65,9 +109,10 @@ export default function AppoinmentLayout() {
                         <select
                             className="appoinment-input appoinment-select"
                             onChange={(e) => setInputService(e.target.value)}
+                            defaultValue=""
                         >
-                            <option value="" disabled selected>Dịch vụ bạn cần</option>
-                            <option value="advise">
+                            <option value="" disabled>Dịch vụ bạn cần</option>
+                            <option value="consultation">
                                 Tư vấn
                             </option>
                             <option value="mock test">
@@ -77,8 +122,9 @@ export default function AppoinmentLayout() {
                         <select
                             className="appoinment-input appoinment-select"
                             onChange={(e) => setInputCourse(e.target.value)}
+                            defaultValue=""
                         >
-                            <option value="" disabled selected>Khóa học bạn quan tâm</option>
+                            <option value="" disabled>Khóa học bạn quan tâm</option>
                             <option value="IELTS">
                                 IELTS
                             </option>
@@ -95,8 +141,9 @@ export default function AppoinmentLayout() {
                         <select
                             className="appoinment-input appoinment-select"
                             onChange={(e) => setInputPosition(e.target.value)}
+                            defaultValue=""
                         >
-                            <option value="" disabled selected>Chi nhánh gần bạn</option>
+                            <option value="" disabled>Chi nhánh gần bạn</option>
                             <option value="Branch 1">
                                 Chi nhánh 1
                             </option>
@@ -116,7 +163,10 @@ export default function AppoinmentLayout() {
                             <TimePicker
                                 className="time-picker"
                                 placeholder="Giờ hẹn"
-                                onChange={()=>setInputTime(document.getElementsByClassName("rc-time-picker-input")[0].value)}
+                                onChange={
+                                    // ()=>setInputTime(document.getElementsByClassName("rc-time-picker-input")[0].value)
+                                    (e) => setInputTime(e._d)
+                                }
                             >
                             </TimePicker>
 
@@ -142,6 +192,22 @@ export default function AppoinmentLayout() {
                     </div>
                 </div>
             </div>
+            <AlertSuccess
+                message={message}
+                isOpen={successAlert}
+                onClose={() => {
+                    setSuccessAlert(false)
+                    setMessage("")
+                }}
+            ></AlertSuccess>
+            <AlertFail
+                message={message}
+                isOpen={failAlert}
+                onClose={() => {
+                    setFailAlert(false)
+                    setMessage("")
+                }}
+            ></AlertFail>
         </Fragment>
     )
 }

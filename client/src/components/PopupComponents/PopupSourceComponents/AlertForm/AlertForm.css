@@ -1,59 +1,64 @@
-.alert-form-contain{
+.alert-form-contain {
     width: 300px;
     height: 460px;
     background: #FFFFFF;
     border-radius: 10px;
     position: relative;
 }
-.alert-form-contain .alert-form-close{  
+
+.alert-form-contain .alert-form-close {
     width: 95%;
     display: flex;
     justify-content: right;
     margin-top: 15px;
 }
-.alert-form-close .alert-form-icon{
+
+.alert-form-close .alert-form-icon {
     width: 24px;
     height: 24px;
     color: rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
-.alert-form-contain .alert-form-body{
+
+.alert-form-contain .alert-form-body {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.alert-form-body .alert-form-title{
+
+.alert-form-body .alert-form-title {
     font-family: 'Rounded Mplus 1c Medium';
     font-size: 22px;
     line-height: 33px;
-
     color: #000000;
     margin: 10px 0;
 }
-.alert-form-body .alert-form-subtitle{
-    width: 188px;
 
+.alert-form-body .alert-form-subtitle {
+    width: 188px;
     font-family: 'Rounded Mplus 1c Medium';
     font-size: 14px;
     line-height: 21px;
-
     color: rgba(0, 0, 0, 0.6);
     margin: 0 0;
+    text-align: center;
 }
-.alert-form-body .alert-form-img{
+
+.alert-form-body .alert-form-img {
     width: 108px;
     height: 108px;
     margin: 66px 0 80px 0;
 }
-.alert-form-body .alert-form-yesno{
+
+.alert-form-body .alert-form-yesno {
     width: 170px;
     display: flex;
     justify-content: space-between;
 }
-.alert-form-yesno .alert-form-yes{
+
+.alert-form-yesno .alert-form-yes {
     width: 79px;
     height: 40px;
-
     background: #489CCC;
     font-family: 'Rounded Mplus 1c Extra Bold';
     border-radius: 20px;
@@ -61,14 +66,26 @@
     border: none;
     cursor: pointer;
 }
-.alert-form-yesno .alert-form-no{
+
+.alert-form-yesno .alert-form-no {
     width: 79px;
     height: 40px;
-
     background: #EB4C4C;
     font-family: 'Rounded Mplus 1c Extra Bold';
     border-radius: 20px;
     color: white;
     border: none;
     cursor: pointer;
+}
+
+.alert-form-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
 }

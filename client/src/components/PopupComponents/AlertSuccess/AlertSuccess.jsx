@@ -4,14 +4,16 @@ import { Fragment } from 'react/cjs/react.production.min';
 import alert_success from "../../../assets/icons/alert_success.png";
 import AlertForm from '../PopupSourceComponents/AlertForm/AlertForm';
 
-export default function AlertSuccess() {
+export default function AlertSuccess(props) {
     return (
         <Fragment>
             <AlertForm
                 title="Thành công!"
-                subTitle="Thao tác gì đó của bạn đã được thực hiện."
+                subTitle={props.message}
                 src={alert_success}
-                customStyle="alert-form-success">
+                customStyle="alert-form-success"
+                isOpen={props.isOpen}
+                onClose={props.onClose}>
             </AlertForm>
         </Fragment>
     )
