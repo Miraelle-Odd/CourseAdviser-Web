@@ -4,14 +4,17 @@ import { Fragment } from 'react/cjs/react.production.min';
 import alert_fail from "../../../assets/icons/alert_fail.png";
 import AlertForm from '../PopupSourceComponents/AlertForm/AlertForm';
 
-export default function AlertFail() {
+export default function AlertFail(props) {
     return (
         <Fragment>
             <AlertForm
                 title="Thất bại!"
-                subTitle="Lỗi gì đó blah blah blah blah balh."
+                subTitle={props.message}
                 src={alert_fail}
-                customStyle="alert-form-fail">
+                customStyle="alert-form-fail"
+                isOpen={props.isOpen}
+                onClose={props.onClose}
+                >
             </AlertForm>
         </Fragment>
     )

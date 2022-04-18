@@ -19,7 +19,7 @@ export default function FloatBtn(props) {
                 <Link to={props.link ? props.link : "#"} className='float-btn-link' onClick={props.onClick ? props.onClick : (props.chatbot ? callChatbot : "")}>
                     <button className='float-btn-button'>
                         <FontAwesomeIcon className='float-btn-icon' icon={props.icon}></FontAwesomeIcon>
-                        <h className="float-btn-name">{props.name}</h>
+                        <span className="float-btn-name">{props.name}</span>
                     </button>
                 </Link>
             </div>

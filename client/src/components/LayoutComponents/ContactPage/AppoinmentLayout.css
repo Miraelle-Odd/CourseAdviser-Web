@@ -1,18 +1,20 @@
-.appoinment-layout-content{
+.appoinment-layout-content {
     width: 100%;
     height: 769px;
-    background: white; 
+    background: white;
     background-image: url("../../../assets/icons/bg-contact.png");
     background-repeat: no-repeat;
     background-size: contain;
 }
-.appoinment-layout-content .appoinment-layout-detail{
+
+.appoinment-layout-content .appoinment-layout-detail {
     height: 769px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.appoinment-layout-content .appoinment-layout-form-content{
+
+.appoinment-layout-content .appoinment-layout-form-content {
     width: 606px;
     height: 613px;
     background: rgb(255, 255, 255);
@@ -22,70 +24,112 @@
     padding: 40px;
 }
 
-.appoinment-form-title{
+.appoinment-form-title {
     width: max-content;
     height: 35px;
-
     font-family: 'Rounded Mplus 1c Medium';
     font-size: 24px;
     line-height: 36px;
     color: black;
-
     margin: 0 0;
 }
-.appoinment-form-context{
+
+.appoinment-form-context {
     width: 424px;
     height: fit-content;
-
     font-family: 'Rounded Mplus 1c Light';
     font-size: 14px;
     line-height: 21px;
     color: black;
-
     text-align: left;
-
     margin: 10px 0;
 }
-.appoinment-form-inline{
+
+.appoinment-form-inline {
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin: 0 0;
 }
-.appoinment-input{
-    width: 97%;
+
+.appoinment-input {
+    width: 100%;
     height: 40px;
-    border: 0.5px solid rgba(0,0,0,0.5);
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     margin: 15px 0;
-    padding: 0 0 0 3%;
-
+    padding: 0 2%;
     font-family: 'Rounded Mplus 1c Light';
     font-size: 14px;
     line-height: 21px;
     color: black;
+    box-sizing: border-box;
 }
-.appoinment-input-inline{
-    width: 45%;
+
+.appoinment-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
-.appoinment-from-register{
+
+.appoinment-input-inline {
+    width: 49%;
+}
+
+.appoinment-from-register {
     width: 100%;
     display: flex;
     justify-content: right;
     margin-top: 15px;
 }
-.appoinment-button-register{
+
+.appoinment-button-register {
     width: 195px;
     height: 40px;
     color: white;
-
     font-family: 'Rounded Mplus 1c Extra Bold';
     font-size: 18px;
     line-height: 27px;
     background: #EE751D;
-
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
     border: none;
     margin-top: 0px;
+    cursor: pointer;
+}
+
+.appoinment-layout-content .react-datepicker-wrapper {
+    width: 49%;
+    margin: 15px 0;
+}
+
+.appoinment-layout-content .date-picker {
+    height: 40px;
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 5%;
+    font-family: 'Rounded Mplus 1c Light';
+    font-size: 14px;
+}
+
+.appoinment-layout-content .time-picker {
+    height: 40px;
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 49%;
+    margin: 15px 0;
+}
+
+.appoinment-layout-content .time-picker .rc-time-picker-input {
+    height: 100%;
+    border: none;
+    font-family: 'Rounded Mplus 1c Light';
+    font-size: 14px;
+    color: black;
+}
+
+.appoinment-layout-content .time-picker .rc-time-picker-clear {
+    display: none;
 }

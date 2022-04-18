@@ -9,18 +9,21 @@ module.exports = (sequelize, DataTypes) => {
         appoint_purpose: {
             type: DataTypes.STRING(20),
             allowNull: false,
-            defaultValue: 'advise'
+            defaultValue: 'consultation'
         },
         concern: {
             type: DataTypes.STRING(50),
             allowNull: false,
         },
-        appoint_time:{
+        appoint_address: {
+            type: DataTypes.STRING(50),
+            allowNull: false,
+        },
+        appoint_time: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
         },
-        sender_name:{
+        sender_name: {
             type: DataTypes.STRING(50),
             allowNull: false,
             defaultValue: 'none'
@@ -28,7 +31,11 @@ module.exports = (sequelize, DataTypes) => {
         sender_email: {
             type: DataTypes.STRING(50),
             allowNull: false,
-        }
+        },
+        sender_phone: {
+            type: DataTypes.STRING(50),
+            allowNull: false,
+        },
     });
     return Appointments;
 }

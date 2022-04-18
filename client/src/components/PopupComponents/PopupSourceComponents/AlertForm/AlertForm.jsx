@@ -2,12 +2,18 @@ import React, { useState } from 'react'
 import './AlertForm.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ReactModal from 'react-modal';
 
 export default function AlertForm(props) {
+    // const [open, setOpen] = useState(props.isOpen)
     return (
         <Fragment>
-            <div className='alert-form-contain'>
-                <div className='alert-form-close'>
+            <ReactModal
+                className='alert-form-contain'
+                isOpen = {props.isOpen}
+                overlayClassName="alert-form-overlay"
+            >
+                <div className='alert-form-close' onClick = {props.onClose}>
                     <FontAwesomeIcon className='alert-form-icon' icon={['fas', 'xmark']}></FontAwesomeIcon>
                 </div>
                 <div className='alert-form-body'>
@@ -16,15 +22,15 @@ export default function AlertForm(props) {
                     <img className='alert-form-img' src={props.src}></img>
                     {
                         !props.isYesNo ?
-                            <button className={props.customStyle}>Đóng</button>
-                            : 
+                            <button className={props.customStyle} onClick = {props.onClose}>Đóng</button>
+                            :
                             <div className='alert-form-yesno'>
                                 <button className='alert-form-yes'>Có</button>
                                 <button className='alert-form-no'>Không</button>
                             </div>
                     }
                 </div>
-            </div>
+            </ReactModal>
         </Fragment>
     )
 }
