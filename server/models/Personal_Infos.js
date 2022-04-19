@@ -1,8 +1,7 @@
-
 const Accounts = require("../models/Accounts");
 module.exports = (sequelize, DataTypes) => {
 
-    const Personal_Infos = sequelize.define("Personal_infos", {
+    const Personal_Infos = sequelize.define("Personal_Infos", {
         personal_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -29,16 +28,15 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: "https:i.imgur.com/acvDZcg.png"
         },
-        account_id:{
+        account_id: {
             type: DataTypes.INTEGER,
             references: {
-               model: 'Accounts',
-               key: 'account_id'
+                model: 'Accounts',
+                key: 'account_id'
             }
         }
     });
-    const list = [
-        {
+    const list = [{
             name: "Cao Ngọc Anh",
             birthday: '2001-03-10 00:00:00',
             location: 'Kon Tum',
@@ -84,7 +82,7 @@ module.exports = (sequelize, DataTypes) => {
 
 
     list.forEach(element => {
-        Personal_Infos.sync().then(async function () {
+        Personal_Infos.sync().then(async function() {
             await Personal_Infos.findOrCreate({ where: element })
         })
     });

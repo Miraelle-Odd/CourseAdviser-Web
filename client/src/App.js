@@ -29,6 +29,7 @@ import cookies from 'js-cookie'
 import PostView from './pages/PostManagement/PostDetails/PostView';
 import PostUpdate from './pages/PostManagement/PostDetails/PostUpdate';
 import QaLayout from './components/LayoutComponents/QaPage/QaLayout';
+import PasswordRecovery from './pages/PasswordRecovery/PasswordRecovery';
 
 const history = createBrowserHistory();
 
@@ -56,20 +57,22 @@ function App() {
 
             window.location.href.includes('workplace') ?
               <LeftMenu
-                avatar={currentUser != null ? (currentUser.account.avatar ? currentUser.account.avatar : placeholder) : ""}
-                fullName={currentUser != null ? currentUser.account.username : ""}
+                avatar={currentUser != null ? (currentUser.account.Personal_Info.avatar ? currentUser.account.Personal_Info.avatar : placeholder) : ""}
+                fullName={currentUser != null ? currentUser.account.Personal_Info.name : ""}
                 email={currentUser != null ? currentUser.account.email : ""}
                 position={currentUser != null ? currentUser.account.position : ""}
               ></LeftMenu>
               :
-              <NavigationBar
-                isLogin={cookies.get('accessToken')}
-                userFullname={currentUser != null ? currentUser.account.username : ""}
-                userEmail={currentUser != null ? currentUser.account.email : ""}
-                userAvatar={currentUser != null ? (currentUser.account.avatar ? currentUser.account.avatar : placeholder) : ""}
-              ></NavigationBar>
-
-
+              (
+                !window.location.href.includes('password-recovery') ?
+                  <NavigationBar
+                    isLogin={cookies.get('accessToken')}
+                    userFullname={currentUser != null ? currentUser.account.Personal_Info.name : ""}
+                    userEmail={currentUser != null ? currentUser.account.email : ""}
+                    userAvatar={currentUser != null ? (currentUser.account.Personal_Info.avatar ? currentUser.account.Personal_Info.avatar : placeholder) : ""}
+                  ></NavigationBar>
+                  : ""
+              )
           }
           <Routes>
             <Route exact path="/" element={<HomePage></HomePage>} />
@@ -79,6 +82,9 @@ function App() {
             <Route path="/main-post/:postType/post-details/:id" element={<PostDetails></PostDetails>} />
             <Route path="/post-details" element={<PostDetails></PostDetails>} />
             <Route path="/about/:aboutType" element={<AboutHolder></AboutHolder>} />
+
+            <Route path="/password-recovery/" element={<PasswordRecovery></PasswordRecovery>} />
+            <Route path="/password-recovery/:token" element={<PasswordRecovery></PasswordRecovery>} />
 
             <Route path="/workplace/account-setting" element={currentUser != null ? <AccountSetting></AccountSetting> : <Navigate to="/"></Navigate>} />
             <Route path="/workplace/employee-management/:category/:page" element={currentUser != null ? <EmployeeManagement></EmployeeManagement> : <Navigate to="/"></Navigate>}></Route>

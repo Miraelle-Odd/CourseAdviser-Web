@@ -24,7 +24,8 @@ export default function EyeSwitch(props) {
                     className='edit-form-input'
                     value={props.inputValue}
                     placeholder={props.inputHint}
-                    type={inputType} />
+                    type={inputType}
+                    onChange={props.onChange} />
                 <button className="edit-form-right-eye" onClick={changeVisibilityHandler}>
                     <FontAwesomeIcon className='edit-form-input-icon' icon={toggleEye} />
                 </button>
