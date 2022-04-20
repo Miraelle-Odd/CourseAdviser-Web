@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './PostDetails.css'
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,7 +7,7 @@ import PostRightMenu from '../../../components/RightMenu/PostRightMenu'
 import Footer from '../../../components/Footer/Footer'
 import { useNavigate, useParams } from "react-router-dom";
 import FloatBtn from '../../../components/ButtonComponents/FloatBtn';
-
+import axios from 'axios'
 const latestPosts = [
     {
         postId: "1",
@@ -29,9 +29,29 @@ const latestPosts = [
 
 
 
-const PostDetails = props => {
+const PostDetails = () => {
     let navigate = useNavigate();
-    let { postType } = useParams();
+    let { id } = useParams();
+    const [itemDetail, setItemDetail] = useState([])
+    const [listOfTop5, setListOfTop5] = useState([])
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+    useEffect(() => {
+        const getItemDetail = async () => {
+            const result = await axios.get(`http://localhost:8080/Posts/Post-Detail/${id}`)
+            setItemDetail(result.data)
+        }
+        getItemDetail().catch(console.error)
+
+        const getListTop5 = async () => {
+            const result = await axios.get(`http://localhost:8080/Posts/All/Top5`)
+            setListOfTop5(result.data)
+        }
+        getListTop5().catch(console.error)
+    }, [])
+    console.log("aaa", itemDetail)
     return (
         <div>
             <div className='float-btn-container'>
@@ -55,10 +75,24 @@ const PostDetails = props => {
                                 <div className='back-icon'><FontAwesomeIcon icon={['fas', 'arrow-left']}></FontAwesomeIcon></div>
                                 <span>Trở về</span>
                             </div>
-                            <PostDetailsCard></PostDetailsCard>
+                            {
+                   
+                                itemDetail[0] ?
+                                    <PostDetailsCard
+                                        title={itemDetail[0].post_title}
+                                        subtitle={itemDetail[0].post_type}
+                                        author={itemDetail[0].name}
+                                        uploadTime={itemDetail[0].updatedAt}
+                                        thumbnail={itemDetail[0].post_img}
+                                        content={itemDetail[0].post_content}
+                                    ></PostDetailsCard>
+                                    :
+                                    <PostDetailsCard></PostDetailsCard>
+                            }
+
                         </div>
                         <PostRightMenu
-                            items={latestPosts}
+                            items={listOfTop5}
                         ></PostRightMenu>
                     </div>
                 </div>
