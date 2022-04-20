@@ -25,10 +25,10 @@ export default function ListHolder(props) {
                 ></FloatBtn>
             </div>
             {
-                postType=="academic-posts"?
+                postType=="academic"?
                 <AcademicPosts></AcademicPosts>
                 :
-                postType=="special-events"?
+                postType=="event"?
                 <SpecialEvents></SpecialEvents>
                 :
                 <Discounts></Discounts>

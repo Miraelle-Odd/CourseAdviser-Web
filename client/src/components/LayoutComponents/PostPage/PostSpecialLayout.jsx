@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './PostSpecialLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import moment from "moment";
 
 export default function PostSpecialLayout(props) {
-
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
     if (props.type == "origin") {
         return (
             <Fragment>
@@ -15,7 +17,7 @@ export default function PostSpecialLayout(props) {
                     <div className="post-special-content">
                         <div className='post-special-card'>
                             {props.listItem ? props.listItem.map((item, index) => {
-                                var time = moment(item.updatedAt).format("YYYY-MM-DD HH-mm A");
+                                var time = moment(item.updatedAt).format("YYYY-MM-DD hh-mm A");
                                 return (
                                     <PostCardBtn key={index}
                                         id={item.post_id}
@@ -65,7 +67,7 @@ export default function PostSpecialLayout(props) {
                         </div>
                         <div className='post-special-card'>
                             {props.listItem ? props.listItem.map((item, index) => {
-                                var time = moment(item.updatedAt).format("YYYY-MM-DD HH-mm A");
+                                var time = moment(item.updatedAt).format("YYYY-MM-DD hh-mm A");
                                 return (
                                     <PostCardBtn key={index}
                                         id={item.post_id}
