@@ -3,6 +3,9 @@
     top: 0;
     z-index: 999;
 }
+a:focus-visible{
+    outline: none;
+}
 .header-center{
     display: flex;
     justify-content: center;

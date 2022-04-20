@@ -51,6 +51,12 @@
     margin-top: 40px;
     height: 375px;
     width: 649px;
+
+}
+.post-details-img{
+    height: 375px;
+    width: 649px;
+    object-fit: cover; 
 }
 
 .post-details-content {
