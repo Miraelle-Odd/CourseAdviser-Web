@@ -15,7 +15,7 @@ export default function PostSpecialLayout(props) {
                     <div className="post-special-content">
                         <div className='post-special-card'>
                             {props.listItem ? props.listItem.map((item, index) => {
-                                var time = moment(item.updatedAt).format("YYYY-MM-DD HH-mm A");
+                                var time = moment(item.updatedAt).format("YYYY-MM-DD hh-mm A");
                                 return (
                                     <PostCardBtn key={index}
                                         id={item.post_id}
@@ -65,7 +65,7 @@ export default function PostSpecialLayout(props) {
                         </div>
                         <div className='post-special-card'>
                             {props.listItem ? props.listItem.map((item, index) => {
-                                var time = moment(item.updatedAt).format("YYYY-MM-DD HH-mm A");
+                                var time = moment(item.updatedAt).format("YYYY-MM-DD hh-mm A");
                                 return (
                                     <PostCardBtn key={index}
                                         id={item.post_id}
