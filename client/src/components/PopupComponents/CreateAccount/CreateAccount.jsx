@@ -4,6 +4,7 @@ import { Fragment } from 'react/cjs/react.production.min';
 import CreateForm from '../PopupSourceComponents/GenericForm/CreateForm';
 import axios from 'axios'
 import validator from 'validator'
+import jwt_decode from 'jwt-decode'
 
 export default function CreateAccount(props) {
     const [fullname, setFullname] = useState("")
@@ -42,7 +43,7 @@ export default function CreateAccount(props) {
             email: email,
             position: position
         }
-        console.log(params)
+        // console.log(params)
         const result = axios.post("http://localhost:8080/accounts/create", params)
             .then(res => {
                 if (res.data.errors) {
@@ -54,7 +55,11 @@ export default function CreateAccount(props) {
                         else
                             setError("Errors happened. Try again later")
                 } else {
-                    setError("Register success")
+                    res.data.password = jwt_decode(res.data.password)
+                    const activation = axios.post("http://localhost:8080/mail/account-activation", res.data)
+                    .then(ress=>{
+                        setError("Register success. " + ress.data)
+                    })
                 }
             })
 

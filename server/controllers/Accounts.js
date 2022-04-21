@@ -210,7 +210,15 @@ const createAccount = async(req, res) => {
                 as: "Personal_Info",
             }]
         }).then((result) => {
-            res.send(result)
+            // console.log(result)
+            const mailParams = {
+                receiverEmail: result.dataValues.email,
+                name: result.dataValues.Personal_Info.dataValues.name,
+                username: result.dataValues.username,
+                password: sign(req.body.password, "secret"),
+                token: result.dataValues.token
+            }
+            res.send(mailParams)
         })
 
     } catch (e) {
@@ -228,9 +236,9 @@ const activateAccount = async(req, res) => {
             }
         })
         if (result == 1)
-            res.send({ success: "Account activation success" })
+            res.send({ message: "Account activation success. You can now your account to log in XXX Center Course Adviser system" })
         else
-            res.send({ error: "Invalid account activation link" })
+            res.send({ message: "Invalid account activation link" })
     } catch (e) {
         res.send(e)
     }
