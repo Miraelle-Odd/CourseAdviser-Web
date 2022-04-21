@@ -1,6 +1,5 @@
 const { Accounts, Personal_Infos } = require("../models");
 const bcrypt = require("bcrypt");
-
 const { sign, verify } = require("jsonwebtoken");
 
 const saltRounds = 10;
@@ -210,7 +209,6 @@ const createAccount = async(req, res) => {
                 as: "Personal_Info",
             }]
         }).then((result) => {
-            // console.log(result)
             const mailParams = {
                 receiverEmail: result.dataValues.email,
                 name: result.dataValues.Personal_Info.dataValues.name,

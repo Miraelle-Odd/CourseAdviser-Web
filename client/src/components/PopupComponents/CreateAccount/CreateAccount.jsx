@@ -17,22 +17,18 @@ export default function CreateAccount(props) {
     const onConfirm = () => {
         if (!username) {
             setError("Username required")
-            console.log(error)
             return false
         }
         if (!password) {
             setError("Password required")
-            console.log(error)
             return false
         }
         if (!email) {
             setError("Email required")
-            console.log(error)
             return false
         }
         if (!validator.isEmail(email)) {
             setError("Invalid Email")
-            console.log(error)
             return false
         }
 
@@ -43,7 +39,6 @@ export default function CreateAccount(props) {
             email: email,
             position: position
         }
-        // console.log(params)
         const result = axios.post("http://localhost:8080/accounts/create", params)
             .then(res => {
                 if (res.data.errors) {
