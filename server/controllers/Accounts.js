@@ -1,12 +1,11 @@
-const { Accounts } = require("../models");
+const { Accounts, Personal_Infos } = require("../models");
 const bcrypt = require("bcrypt");
 
 const { sign, verify } = require("jsonwebtoken");
-const { Personal_Infos } = require("../models");
 
 const saltRounds = 10;
 
-const fetchedDataValidate = async (res) => {
+const fetchedDataValidate = async(res) => {
     return res.account_id &&
         res.username &&
         res.password &&
@@ -18,7 +17,7 @@ const fetchedDataValidate = async (res) => {
         res.updatedAt
 }
 
-const findAccountByUsername = async (req, res) => {
+const findAccountByUsername = async(req, res) => {
     try {
         const result = await Accounts.findOne({
             where: {
@@ -40,7 +39,7 @@ const findAccountByUsername = async (req, res) => {
 
 }
 
-const findAccountByEmail = async (req, res) => {
+const findAccountByEmail = async(req, res) => {
     try {
         const result = await Accounts.findOne({
             where: {
@@ -53,13 +52,13 @@ const findAccountByEmail = async (req, res) => {
             else
                 return result
         } else
-            res.send({error: "Retrieve failed due to data loss"})
+            res.send({ error: "Retrieve failed due to data loss" })
     } catch (e) {
         res.send(e)
     }
 }
 
-const setAccountToken = async (req, res) => {
+const setAccountToken = async(req, res) => {
     try {
         var plain = req.body.email + new Date().toUTCString()
         var hash = bcrypt.hashSync(plain, saltRounds)
@@ -73,12 +72,10 @@ const setAccountToken = async (req, res) => {
             }
         })
         if (result == 1)
-            res.send(
-                {
-                    success: "Set token successfully",
-                    token: hash
-                }
-            )
+            res.send({
+                success: "Set token successfully",
+                token: hash
+            })
         else
             res.send({ error: "User not found" })
 
@@ -87,7 +84,7 @@ const setAccountToken = async (req, res) => {
     }
 }
 
-const removeAccountToken = async (req, res) => {
+const removeAccountToken = async(req, res) => {
     try {
         const result = await Accounts.update({
             token: "activated"
@@ -105,7 +102,7 @@ const removeAccountToken = async (req, res) => {
     }
 }
 
-const updatePassword = async (req, res) => {
+const updatePassword = async(req, res) => {
     try {
         var hash = bcrypt.hashSync(req.body.password, saltRounds)
         const result = await Accounts.update({
@@ -125,7 +122,7 @@ const updatePassword = async (req, res) => {
     }
 }
 
-const logIn = async (req, res) => {
+const logIn = async(req, res) => {
     try {
         let account = null
         let message = null
@@ -190,7 +187,7 @@ const logIn = async (req, res) => {
     }
 }
 
-const createAccount = async (req, res) => {
+const createAccount = async(req, res) => {
     try {
         const hashedPassword = bcrypt.hashSync(req.body.password, saltRounds)
         var plain = req.body.email + new Date().toUTCString()
@@ -203,13 +200,61 @@ const createAccount = async (req, res) => {
             position: req.body.position,
             email: req.body.email,
             token: token,
-            status: "disabled"
+            status: "disabled",
+            Personal_Info: {
+                name: req.body.name
+            }
+        }, {
+            include: [{
+                model: Personal_Infos,
+                as: "Personal_Info",
+            }]
+        }).then((result) => {
+            res.send(result)
         })
-        res.send(result)
+
     } catch (e) {
         res.send(e)
     }
 }
+
+const activateAccount = async(req, res) => {
+    try {
+        const result = await Accounts.update({
+            status: "enabled"
+        }, {
+            where: {
+                token: req.body.token
+            }
+        })
+        if (result == 1)
+            res.send({ success: "Account activation success" })
+        else
+            res.send({ error: "Invalid account activation link" })
+    } catch (e) {
+        res.send(e)
+    }
+}
+
+const changeStatus = async(req, res) => {
+    try {
+        const result = await Accounts.update({
+            status: req.body.status
+        }, {
+            where: {
+                username: req.body.username
+            }
+        })
+        if (result == 1)
+            res.send({ success: "Status change success" })
+        else
+            res.send({ error: "User not found" })
+    } catch (e) {
+        res.send(e)
+    }
+}
+
+
 
 module.exports = {
     findAccountByUsername,
@@ -218,5 +263,7 @@ module.exports = {
     removeAccountToken,
     updatePassword,
     createAccount,
+    activateAccount,
+    changeStatus,
     logIn
 }

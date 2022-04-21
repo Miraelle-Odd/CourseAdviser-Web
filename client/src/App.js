@@ -30,6 +30,7 @@ import PostView from './pages/PostManagement/PostDetails/PostView';
 import PostUpdate from './pages/PostManagement/PostDetails/PostUpdate';
 import QaLayout from './components/LayoutComponents/QaPage/QaLayout';
 import PasswordRecovery from './pages/PasswordRecovery/PasswordRecovery';
+import AccountActivation from './pages/AccountActivation/AccountActivation';
 
 const history = createBrowserHistory();
 
@@ -64,7 +65,7 @@ function App() {
               ></LeftMenu>
               :
               (
-                !window.location.href.includes('password-recovery') ?
+                !window.location.href.includes('password-recovery') && !window.location.href.includes('account-activation') ?
                   <NavigationBar
                     isLogin={cookies.get('accessToken')}
                     userFullname={currentUser != null ? currentUser.account.Personal_Info.name : ""}
@@ -85,6 +86,8 @@ function App() {
 
             <Route path="/password-recovery/" element={<PasswordRecovery></PasswordRecovery>} />
             <Route path="/password-recovery/:token" element={<PasswordRecovery></PasswordRecovery>} />
+            <Route path="/account-activation/" element={<AccountActivation></AccountActivation>} />
+            <Route path="/account-activation/:token" element={<AccountActivation></AccountActivation>} />
 
             <Route path="/workplace/account-setting" element={currentUser != null ? <AccountSetting></AccountSetting> : <Navigate to="/"></Navigate>} />
             <Route path="/workplace/employee-management/:category/:page" element={currentUser != null ? <EmployeeManagement></EmployeeManagement> : <Navigate to="/"></Navigate>}></Route>

@@ -29,7 +29,24 @@ const sendAppointment = async(req, res) => {
 }
 
 const sendAccountValidation = async(req, res) => {
-
+    var mailOptions = {
+        from: 'hhmsystemda1@gmail.com',
+        to: req.body.receiverEmail,
+        subject: 'Email verification request from XXX Center Course Adviser',
+        html: `
+            <div>Hello ` + req.body.name + `,</div> 
+            <div>To support your employment to our XXX Center, we would gladly grant you an account in Course Adviser system.</div>
+            <div>The password for your account is : ` + req.body.password + `</div>
+            <div>To verify your email and complete your XXX Center Course Adviser account, click the link below. </div>
+            <a href = "http://localhost:3000/account-activation/` + req.body.token + `">Activate Account</a>`,
+    };
+    transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+            res.send(error)
+        } else {
+            res.send("Please check your email for recovery direction");
+        }
+    });
 }
 
 const sendForgetPassword = async(req, res) => {

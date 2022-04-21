@@ -9,5 +9,7 @@ router.post("/set-token", Accounts.setAccountToken)
 router.post("/token-activated", Accounts.removeAccountToken)
 router.post("/update-password", Accounts.updatePassword)
 router.post("/create", Accounts.createAccount)
+router.post("/activate", Accounts.activateAccount)
+router.post("/change-status", Accounts.changeStatus)
 
 module.exports = router
