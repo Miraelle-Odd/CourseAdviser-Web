@@ -50,16 +50,16 @@ export default function CreateForm(props) {
                             <div className='edit-form-item create-form-item'>
                                 <p className='edit-form-item-title create-form-item-position'>Loại tài khoản</p>
                                 <SortComboBox
-                                    onChange={sortHandler}
+                                    onChange={item.onChange? item.onChange : sortHandler}
                                     customClassName="sort-position margin-right-63"
-                                    items={sortItems}
+                                    items={item.items? item.items : sortItems}
                                 ></SortComboBox>
                             </div>
                         ))
                     }
                 </div>
                 <div className='create-form-confirm-contain'>
-                    <button className='edit-form-confirm-button'>Xác nhận</button>
+                    <button className='edit-form-confirm-button' onClick={props.handleFormConfirm}>Xác nhận</button>
                 </div>
             </div>
         </Fragment>

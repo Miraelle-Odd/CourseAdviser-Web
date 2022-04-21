@@ -50,7 +50,7 @@ export default function AppoinmentLayout() {
         const params = {
             appointPurpose: inputService,
             concern: inputCourse,
-            appointTime: moment(inputDate).format('yyyy/MM/DD') + " " + moment(inputTime).format('hh:mm:ss'),
+            appointTime: moment(inputDate).format('yyyy/MM/DD') + " " + moment(inputTime).format('HH:mm:ss'),
             appointAddress: inputPosition,
             senderName: inputName,
             senderEmail: inputEmail,
@@ -68,10 +68,10 @@ export default function AppoinmentLayout() {
                     mailResult = axios.post("http://localhost:8080/mail/appointment",
                         {
 
-                            reveiverEmail: params.senderEmail,
-                            reveiverName: params.senderName,
+                            receiverEmail: params.senderEmail,
+                            receiverName: params.senderName,
                             address: params.appointAddress,
-                            time: moment(params.appointTime).format('DD/MM/yyyy hh:mm:ss'),
+                            time: moment(params.appointTime).format('DD/MM/yyyy HH:mm:ss'),
                             purpose: params.appointPurpose
 
                         }

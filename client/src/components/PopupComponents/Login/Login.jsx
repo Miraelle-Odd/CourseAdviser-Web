@@ -26,6 +26,7 @@ export default function Login(props) {
         const result = axios.post("http://localhost:8080/accounts/login", params)
             .then(res => {                              
                 if (!res.data.error) {
+                    console.log(res)
                     setError(res.data.message)
                     window.location.replace("/workplace")
                 }
