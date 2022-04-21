@@ -4,6 +4,7 @@ import { Fragment } from 'react/cjs/react.production.min';
 import CreateForm from '../PopupSourceComponents/GenericForm/CreateForm';
 import axios from 'axios'
 import validator from 'validator'
+import jwt_decode from 'jwt-decode'
 
 export default function CreateAccount(props) {
     const [fullname, setFullname] = useState("")
@@ -16,22 +17,18 @@ export default function CreateAccount(props) {
     const onConfirm = () => {
         if (!username) {
             setError("Username required")
-            console.log(error)
             return false
         }
         if (!password) {
             setError("Password required")
-            console.log(error)
             return false
         }
         if (!email) {
             setError("Email required")
-            console.log(error)
             return false
         }
         if (!validator.isEmail(email)) {
             setError("Invalid Email")
-            console.log(error)
             return false
         }
 
@@ -42,17 +39,22 @@ export default function CreateAccount(props) {
             email: email,
             position: position
         }
-        console.log(params)
         const result = axios.post("http://localhost:8080/accounts/create", params)
             .then(res => {
                 if (res.data.errors) {
                     if (res.data.errors[0].message.includes("username must be unique"))
-                        console.log("This username has existed in the system.")
-                    if (res.data.errors[0].message.includes("email must be unique"))
-                        console.log("This email has been registered for another account")
-                    // console.log(res.data.errors[0].message)
-                }else {
-                    console.log("Register success")
+                        setError("This username has existed in the system.")
+                    else
+                        if (res.data.errors[0].message.includes("email must be unique"))
+                            setError("This email has been registered for another account")
+                        else
+                            setError("Errors happened. Try again later")
+                } else {
+                    res.data.password = jwt_decode(res.data.password)
+                    const activation = axios.post("http://localhost:8080/mail/account-activation", res.data)
+                    .then(ress=>{
+                        setError("Register success. " + ress.data)
+                    })
                 }
             })
 
@@ -105,7 +107,8 @@ export default function CreateAccount(props) {
             <CreateForm
                 handleFormClose={props.handleFormClose}
                 listItem={createListItem}
-                handleFormConfirm={onConfirm}>
+                handleFormConfirm={onConfirm}
+                error={error}>
             </CreateForm>
         </Fragment>
     )
