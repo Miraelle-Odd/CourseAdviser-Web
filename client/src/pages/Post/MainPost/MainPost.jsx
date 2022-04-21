@@ -58,7 +58,7 @@ export default function MainPost(props) {
                 description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
                 title="academic posts"
                 icon={['fas', 'graduation-cap']}
-                link="/main-post/academic-posts/1">
+                link="/main-post/academic/1">
             </PostSpecialLayout>
 
             <PostSpecialLayout
@@ -67,7 +67,7 @@ export default function MainPost(props) {
                 description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
                 title="special events"
                 icon={['fas', 'star']}
-                link="/main-post/special-events/1">
+                link="/main-post/event/1">
             </PostSpecialLayout>
 
             <PostSpecialLayout
@@ -76,7 +76,7 @@ export default function MainPost(props) {
                 description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
                 title="discounts"
                 icon={['fas', 'piggy-bank']}
-                link="/main-post/discounts/1">
+                link="/main-post/discount/1">
             </PostSpecialLayout>
 
             <Footer></Footer>

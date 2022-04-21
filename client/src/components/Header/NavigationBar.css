@@ -4,7 +4,10 @@
     z-index: 999;
 }
 
-.header-center {
+a:focus-visible{
+    outline: none;
+}
+.header-center{
     display: flex;
     justify-content: center;
     align-items: center;

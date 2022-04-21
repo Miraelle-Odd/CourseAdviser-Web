@@ -31,6 +31,9 @@ import PostUpdate from './pages/PostManagement/PostDetails/PostUpdate';
 import QaLayout from './components/LayoutComponents/QaPage/QaLayout';
 import PasswordRecovery from './pages/PasswordRecovery/PasswordRecovery';
 import AccountActivation from './pages/AccountActivation/AccountActivation';
+import QaList from './pages/About/Qa/QaList';
+import QaNone from './pages/About/Qa/QaNone';
+
 
 const history = createBrowserHistory();
 
@@ -83,6 +86,8 @@ function App() {
             <Route path="/main-post/:postType/post-details/:id" element={<PostDetails></PostDetails>} />
             <Route path="/post-details" element={<PostDetails></PostDetails>} />
             <Route path="/about/:aboutType" element={<AboutHolder></AboutHolder>} />
+            <Route path="/about/:aboutType/:page" element={<QaList></QaList>} />
+            <Route path="/about/:aboutType/no-result" element={<QaNone></QaNone>} />
 
             <Route path="/password-recovery/" element={<PasswordRecovery></PasswordRecovery>} />
             <Route path="/password-recovery/:token" element={<PasswordRecovery></PasswordRecovery>} />
