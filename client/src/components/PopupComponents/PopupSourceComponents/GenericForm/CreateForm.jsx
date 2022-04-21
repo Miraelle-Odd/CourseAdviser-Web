@@ -26,7 +26,7 @@ export default function CreateForm(props) {
         <Fragment>
             <div className='create-form-contain'>
                 <div className='edit-form-close' >
-                    <FontAwesomeIcon className='edit-form-close-icon' icon={['fas', 'xmark']} onClick={props.handleFormClose}/>
+                    <FontAwesomeIcon className='edit-form-close-icon' icon={['fas', 'xmark']} onClick={props.handleFormClose} />
                 </div>
                 <div className='create-form-body'>
                     <div className='create-form-header'>
@@ -50,15 +50,17 @@ export default function CreateForm(props) {
                             <div className='edit-form-item create-form-item'>
                                 <p className='edit-form-item-title create-form-item-position'>Loại tài khoản</p>
                                 <SortComboBox
-                                    onChange={item.onChange? item.onChange : sortHandler}
+                                    onChange={item.onChange ? item.onChange : sortHandler}
                                     customClassName="sort-position margin-right-63"
-                                    items={item.items? item.items : sortItems}
+                                    items={item.items ? item.items : sortItems}
                                 ></SortComboBox>
                             </div>
                         ))
                     }
+
                 </div>
                 <div className='create-form-confirm-contain'>
+                    <span className='alert-message'>{props.error}</span>
                     <button className='edit-form-confirm-button' onClick={props.handleFormConfirm}>Xác nhận</button>
                 </div>
             </div>

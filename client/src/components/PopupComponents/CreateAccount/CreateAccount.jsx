@@ -47,12 +47,14 @@ export default function CreateAccount(props) {
             .then(res => {
                 if (res.data.errors) {
                     if (res.data.errors[0].message.includes("username must be unique"))
-                        console.log("This username has existed in the system.")
-                    if (res.data.errors[0].message.includes("email must be unique"))
-                        console.log("This email has been registered for another account")
-                    // console.log(res.data.errors[0].message)
-                }else {
-                    console.log("Register success")
+                        setError("This username has existed in the system.")
+                    else
+                        if (res.data.errors[0].message.includes("email must be unique"))
+                            setError("This email has been registered for another account")
+                        else
+                            setError("Errors happened. Try again later")
+                } else {
+                    setError("Register success")
                 }
             })
 
@@ -105,7 +107,8 @@ export default function CreateAccount(props) {
             <CreateForm
                 handleFormClose={props.handleFormClose}
                 listItem={createListItem}
-                handleFormConfirm={onConfirm}>
+                handleFormConfirm={onConfirm}
+                error={error}>
             </CreateForm>
         </Fragment>
     )
