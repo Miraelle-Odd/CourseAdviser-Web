@@ -10,8 +10,8 @@ import WorkplaceStatistic from "./WorkplaceStatistic";
 
 const WorkplaceList = props => {
     const itemsPerPage = 2
-    const [currentItems, setCurrentItems] = useState(null);
-    const [pageCount, setPageCount] = useState(0);
+    // const [currentItems, setCurrentItems] = useState(props.data);
+    // const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
 
     let navigate = useNavigate();
@@ -19,28 +19,30 @@ const WorkplaceList = props => {
     let { category } = useParams();
 
     useEffect(() => {
+        // console.log(props.pageCount)
         // Fetch items from another resources.
-        const endOffset = itemOffset + itemsPerPage;
-        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-        setCurrentItems(props.data.slice(itemOffset, endOffset));
-        console.log(currentItems)
-        console.log(props.data)
-        setPageCount(Math.ceil(props.data.length / itemsPerPage));
-    }, [itemOffset, itemsPerPage]);
+        // const endOffset = itemOffset + itemsPerPage;
+        // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+        // setCurrentItems(props.data.slice(itemOffset, endOffset));
+        // console.log(currentItems)
+        // console.log(props.data)
+        // setPageCount(Math.ceil(props.data.length / itemsPerPage));
+    }, []);
     const handlePageClick = (event) => {
-        const newOffset = event.selected * itemsPerPage % props.data.length;
-        console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
-        setItemOffset(newOffset);
-        navigate("/workplace/"+ props.listName +"/all/" + (event.selected + 1))
+        // const newOffset = event.selected * itemsPerPage % props.data.length;
+        // console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
+        // setItemOffset(newOffset);
+        // navigate("/workplace/"+ props.listName +"/all/" + (event.selected + 1))
     }
     return (
         <div className="workplace-list-container">
             <WorkplaceListCategory
                 items={props.categoryItems}
+                onCategoryChange={props.onCategoryChange}
             ></WorkplaceListCategory>
             <div className='wp-list-pagination-container'>
                 <ReactPaginate
-                    pageCount={pageCount}
+                    pageCount={props.pageCount}
                     className="wp-list-pagination"
                     pageClassName="wp-li-pagination page-hidden"
                     pageLinkClassName="wp-link-pagination"
@@ -50,18 +52,20 @@ const WorkplaceList = props => {
                     nextClassName="prev-next next"
                     nextLinkClassName="wp-link-pagination"
                     nextLabel=""
+                    breakLabel=""
                     disabledClassName="prev-next-disabled"
-                    onPageChange={handlePageClick}
+                    onPageChange={props.handlePageClick? props.handlePageClick : handlePageClick}
                     renderOnZeroPageCount={null}
                     activeClassName="active"
+                    forcePage={props.forcePage}
                 ></ReactPaginate>
                 {
-                    pageCount != 0 ?
+                    
+                    props.pageCount != 0 ?
                         <div>
                             <input type="text" className='wp-list-pagination-input' value={page}></input>
-                            <span className='wp-list-pagination-max'>/ 100</span>
+                            <span className='wp-list-pagination-max'>/ {props.pageCount}</span>
                         </div>
-
                         : ""
 
                 }
@@ -73,7 +77,7 @@ const WorkplaceList = props => {
             <div className="workplace-list">
                 <WorkplaceListItem isHeader fieldFormat={props.fieldFormat}></WorkplaceListItem>
                 {
-                    currentItems ? currentItems.map((item, index) => {
+                    props.data ? props.data.map((item, index) => {
                         return (
                             <WorkplaceListItem
                                 fieldFormat={props.fieldFormat}
