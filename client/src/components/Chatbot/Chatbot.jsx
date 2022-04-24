@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useRef, useState } from "react";
 import './Chatbot.css'
 import Modal from 'react-modal';
+import axios from "axios";
 
 const ChatBubble = (props) => {
 
@@ -34,8 +35,10 @@ const Chatbot = (props) => {
         scrollToBottom()
     }, []);
 
+    const [botMessage, setBotMessage] = useState()
     const addMessage = async () => {
-        if (message.trim() != "") {
+        if (message.trim() != "") { 
+            
             await setMessageList(messageList.concat(
                 <ChatBubble
                     chat={message}
@@ -43,14 +46,19 @@ const Chatbot = (props) => {
             ))
             scrollToBottom()
             setMessage("")
+            const result = await axios.post(`http://localhost:8080/chat/dialogflow/vi/` + message + `/abcd123`)
+            console.log(result)
+            // addBotMessage(result)
         }
     }
-    const addBotMessage = async (props) => {
-        if (message.trim() != "") {
+
+    const addBotMessage = async (result) => {
+        // console.log(result)
+        if (result.data.trim() != "") {
             await setMessageList(messageList.concat(
                 <ChatBubble
                 chatbot
-                    chat={props.message}
+                    chat={result.data}
                 ></ChatBubble>
             ))
             scrollToBottom()
