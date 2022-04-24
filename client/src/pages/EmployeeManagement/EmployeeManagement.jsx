@@ -110,67 +110,27 @@ const EmployeeManagement = props => {
     const [isShowView, setIsShowView] = useState(false);
     const [pageCount, setPageCount] = useState(1)
     const [empData, setEmpData] = useState([])
-    const [currentPage, setCurrentPage] = useState(page)
-    const [currentCategory, setCurrentCategory] = useState(category)
     const [totalCount, setTotalCount] = useState(0)
     const [activeCount, setActiveCount] = useState(0)
     const [inactiveCount, setInactiveCount] = useState(0)
 
-    const empData1 = [
-        {
-            avatar: ava1,
-            fullname: "NA",
-            phoneNumber: "XXXX XXXX XXXX",
-            email: "kurocrea@gmail.com",
-            active: true
-        },
-        {
-            avatar: ava1,
-            fullname: "NA2",
-            phoneNumber: "XXXX XXXX XXXX",
-            email: "kurocrea@gmail.com",
-            active: true
-        },
-        {
-            avatar: ava1,
-            fullname: "NA3",
-            phoneNumber: "XXXX XXXX XXXX",
-            email: "kurocrea@gmail.com",
-            active: true
-        },
-        {
-            avatar: ava1,
-            fullname: "NA4",
-            phoneNumber: "XXXX XXXX XXXX",
-            email: "kurocrea@gmail.com",
-            active: true
-        },
-        {
-            avatar: ava1,
-            fullname: "NA5",
-            phoneNumber: "XXXX XXXX XXXX",
-            email: "kurocrea@gmail.com",
-            active: true
-        },
-    ]
-
     useEffect(() => {
-        const getListCount = axios.get("http://localhost:8080/accounts/get-count/" + currentCategory)
+        const getListCount = axios.get("http://localhost:8080/accounts/get-count/" + category)
             .then((res) => {
                 setPageCount(Math.ceil(res.data / itemsPerPage))
                 setTotalCount(res.data)
             })
-        const getActiveCount = axios.get("http://localhost:8080/accounts/get-active-count/" + currentCategory)
+        const getActiveCount = axios.get("http://localhost:8080/accounts/get-active-count/" + category)
             .then((res) => {
                 setActiveCount(res.data)
                 console.log(res.data)
             })
-        const getInactiveCount = axios.get("http://localhost:8080/accounts/get-inactive-count/" + currentCategory)
+        const getInactiveCount = axios.get("http://localhost:8080/accounts/get-inactive-count/" + category)
             .then((res) => {
                 setInactiveCount(res.data)
                 console.log(res.data)
             })
-        const getList = axios.get("http://localhost:8080/accounts/get-list/" + currentCategory + "/" + (currentPage - 1))
+        const getList = axios.get("http://localhost:8080/accounts/get-list/" + category + "/" + (page - 1))
             .then((res) => {
                 res.data.map((item, index) => {
                     item.avatar = item.Personal_Info.avatar
@@ -185,20 +145,25 @@ const EmployeeManagement = props => {
                 console.log(res.data)
                 setEmpData(res.data)
             })
-    }, [currentPage])
+    }, [])
 
     const handlePageClick = (event) => {
         navigate("/workplace/employee-management/" + category + "/" + (event.selected + 1))
-        setCurrentPage(event.selected + 1);
         navigate(0)
     }
 
     const onCategoryChange = (event) => {
-        setCurrentPage(1)
-        setCurrentCategory(event.currentTarget.attributes.getNamedItem("value").value)
         navigate("/workplace/employee-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/1")
         navigate(0)
         // console.log(event.currentTarget.attributes.getNamedItem("value").value)
+    }
+
+    const onPageTextChange = (e) => {
+        if (e.key === 'Enter')
+            if (e.target.value <= pageCount && e.target.value >= 1 && e.target.value != e.target.defaultValue) {
+                navigate("/workplace/employee-management/" + category + "/" + (e.target.value))
+                navigate(0)
+            }
     }
 
     const onCreateClick = () => {
@@ -243,9 +208,9 @@ const EmployeeManagement = props => {
                     onCreateClick={onCreateClick}
                     handlePageClick={handlePageClick}
                     pageCount={pageCount}
-                    forcePage={parseInt(currentPage) - 1}
+                    forcePage={parseInt(page) - 1}
                     onCategoryChange={onCategoryChange}
-
+                    onPageTextChange={onPageTextChange}
                 ></WorkplaceList>
 
             </div>

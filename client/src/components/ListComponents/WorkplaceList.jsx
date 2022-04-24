@@ -63,7 +63,7 @@ const WorkplaceList = props => {
                     
                     props.pageCount != 0 ?
                         <div>
-                            <input type="text" className='wp-list-pagination-input' value={page}></input>
+                            <input type="text" className='wp-list-pagination-input' defaultValue={page} onKeyDown={props.onPageTextChange}></input>
                             <span className='wp-list-pagination-max'>/ {props.pageCount}</span>
                         </div>
                         : ""

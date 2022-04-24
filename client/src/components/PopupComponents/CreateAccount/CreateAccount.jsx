@@ -5,8 +5,11 @@ import CreateForm from '../PopupSourceComponents/GenericForm/CreateForm';
 import axios from 'axios'
 import validator from 'validator'
 import jwt_decode from 'jwt-decode'
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function CreateAccount(props) {
+    let navigate = useNavigate()
+
     const [fullname, setFullname] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
