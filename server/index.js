@@ -38,7 +38,8 @@ const mail = require("./routes/Mail");
 app.use("/mail", mail)
 const appointments = require("./routes/Appointments");
 app.use("/appointments", appointments)
-
+const chatBot = require("./routes/ChatBot");
+app.use("/chat", chatBot)
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
