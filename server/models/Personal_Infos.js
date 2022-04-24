@@ -23,6 +23,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: "N/A"
         },
+        phone: {
+            type: DataTypes.STRING(12),
+            allowNull: false,
+            defaultValue: "N/A"
+        },
         avatar: {
             type: DataTypes.STRING,
             allowNull: false,

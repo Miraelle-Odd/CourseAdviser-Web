@@ -260,7 +260,85 @@ const changeStatus = async(req, res) => {
     }
 }
 
+const getCountByPosition = async(req, res) => {
+    var result
+    if (req.params.position == "all")
+        result = await Accounts.count();
+    else
+        result = await Accounts.count({
+            where: {
+                position: req.params.position
+            }
+        });
+    res.send(result.toString());
+}
 
+const getActiveCountByPosition = async(req, res) => {
+    var result
+    if (req.params.position == "all")
+        result = await Accounts.count({
+            where: {
+                status: "enabled",
+            }
+        });
+    else
+        result = await Accounts.count({
+            where: {
+                status: "enabled",
+                position: req.params.position
+            }
+        });
+    res.send(result.toString());
+}
+
+const getInactiveCountByPosition = async(req, res) => {
+    var result
+    if (req.params.position == "all")
+        result = await Accounts.count({
+            where: {
+                status: "disabled",
+            }
+        });
+    else
+        result = await Accounts.count({
+            where: {
+                status: "disabled",
+                position: req.params.position
+            }
+        });
+    res.send(result.toString());
+}
+
+const getListAccountByPosition = async(req, res) => {
+    var page = 0;
+    var result
+    if (req.params.page)
+        page = req.params.page
+    if (req.params.position == "all")
+        result = await Accounts.findAll({
+            attributes: ['email', 'status'],
+            limit: 2,
+            offset: page * 2,
+            include: {
+                model: Personal_Infos,
+                as: 'Personal_Info'
+            }
+        })
+    else
+        result = await Accounts.findAll({
+            attributes: ['email', 'status'],
+            where: {
+                position: req.params.position
+            },
+            limit: 2,
+            offset: page * 2,
+            include: {
+                model: Personal_Infos,
+                as: 'Personal_Info'
+            }
+        })
+    res.send(result)
+}
 
 module.exports = {
     findAccountByUsername,
@@ -271,5 +349,9 @@ module.exports = {
     createAccount,
     activateAccount,
     changeStatus,
+    getCountByPosition,
+    getListAccountByPosition,
+    getActiveCountByPosition,
+    getInactiveCountByPosition,
     logIn
 }

@@ -11,5 +11,10 @@ router.post("/update-password", Accounts.updatePassword)
 router.post("/create", Accounts.createAccount)
 router.post("/activate", Accounts.activateAccount)
 router.post("/change-status", Accounts.changeStatus)
+router.get("/get-count/:position", Accounts.getCountByPosition)
+router.get("/get-active-count/:position", Accounts.getActiveCountByPosition)
+router.get("/get-inactive-count/:position", Accounts.getInactiveCountByPosition)
+router.get("/get-list/:position", Accounts.getListAccountByPosition)
+router.get("/get-list/:position/:page", Accounts.getListAccountByPosition)
 
 module.exports = router

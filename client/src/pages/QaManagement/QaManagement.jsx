@@ -7,6 +7,8 @@ import Modal from 'react-modal';
 import CreateQa from '../../components/PopupComponents/CreateQa/CreateQa'
 import UpdateQa from '../../components/PopupComponents/UpdateQa/UpdateQa'
 import ViewQa from '../../components/PopupComponents/ViewQa/ViewQa'
+import { useNavigate, useParams } from 'react-router-dom'
+import axios from 'axios'
 
 const onOpenClickHandle = () => {
     alert("Open Sesame")
@@ -44,7 +46,7 @@ const qaListFormat = [
     }
 ]
 
-const qaData = [
+const qaData1 = [
     {
         question: "Question blabh XXX XXX XXXXX XXX XXXXX XXX XX",
         answer: "XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX...."
@@ -55,18 +57,21 @@ const lcItems = [
     {
         display: "Tất cả",
         awesomeIcon: ['fas', 'address-card'],
-        link: "/workplace/q-and-a-management/all/1"
+        link: "/workplace/q-and-a-management/all",
+        value: "all"
     },
     {
         display: "Trung tâm",
         awesomeIcon: ['fas', 'school'],
-        link: "/workplace/q-and-a-management/about-center/1"
+        link: "/workplace/q-and-a-management/center",
+        value: "center"
 
     },
     {
         display: "Khóa học",
         awesomeIcon: ['fas', 'book'],
-        link: "/workplace/q-and-a-management/about-courses/1"
+        link: "/workplace/q-and-a-management/course",
+        value: "course"
 
     },
 ]
@@ -88,10 +93,65 @@ const statisticItems = [
 
 
 const QaManagement = props => {
+    let { category, page } = useParams()
+    let navigate = useNavigate()
+    const itemsPerPage = 2;
+
     const [isShowCreate, setIsShowCreate] = useState(false);
     const [isShowUpdate, setIsShowUpdate] = useState(false);
     const [isShowView, setIsShowView] = useState(false);
+    const [pageCount, setPageCount] = useState(1)
+    const [qaData, setQaData] = useState([])
+    const [totalCount, setTotalCount] = useState(0)
+    const [activeCount, setActiveCount] = useState(0)
+    const [inactiveCount, setInactiveCount] = useState(0)
 
+    useEffect(() => {
+        const getListCount = axios.get("http://localhost:8080/q-and-as/get-count/" + category)
+            .then((res) => {
+                setPageCount(Math.ceil(res.data / itemsPerPage))
+                setTotalCount(res.data)
+            })
+        const getActiveCount = axios.get("http://localhost:8080/q-and-as/get-active-count/" + category)
+            .then((res) => {
+                setActiveCount(res.data)
+
+            })
+        const getInactiveCount = axios.get("http://localhost:8080/q-and-as/get-inactive-count/" + category)
+            .then((res) => {
+                setInactiveCount(res.data)
+            })
+        const getList = axios.get("http://localhost:8080/q-and-as/get-list/" + category + "/" + (page - 1))
+            .then((res) => {
+                res.data.map((item, index) => {
+                    if (item.status == "enabled")
+                        item.active = true
+                    else
+                        item.active = false
+                    item = { item:  (delete item['status'], item) };
+                })
+                setQaData(res.data)
+            })
+    }, [])
+
+    const handlePageClick = (event) => {
+        navigate("/workplace/q-and-a-management/" + category + "/" + (event.selected + 1))
+        navigate(0)
+    }
+
+    const onCategoryChange = (event) => {
+        navigate("/workplace/q-and-a-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/1")
+        navigate(0)
+        // console.log(event.currentTarget.attributes.getNamedItem("value").value)
+    }
+
+    const onPageTextChange = (e) => {
+        if (e.key === 'Enter')
+            if (e.target.value <= pageCount && e.target.value >= 1 && e.target.value != e.target.defaultValue) {
+                navigate("/workplace/q-and-a-management/" + category + "/" + (e.target.value))
+                navigate(0)
+            }
+    }
     const onCreateClick = () => {
         setIsShowCreate(true);
     }
@@ -115,10 +175,28 @@ const QaManagement = props => {
                     fieldFormat={qaListFormat}
                     data={qaData}
                     categoryItems={lcItems}
-                    statisticItems={statisticItems}
+                    statisticItems={[
+                        {
+                            fieldName: "Tổng cộng",
+                            fieldValue: totalCount
+                        },
+                        {
+                            fieldName: "Hoạt động",
+                            fieldValue: activeCount
+                        },
+                        {
+                            fieldName: "Khóa",
+                            fieldValue: inactiveCount
+                        },
+                    ]}
                     openAction={onViewClick}
                     editAction={onUpdateClick}
                     onCreateClick={onCreateClick}
+                    handlePageClick={handlePageClick}
+                    pageCount={pageCount}
+                    forcePage={parseInt(page) - 1}
+                    onCategoryChange={onCategoryChange}
+                    onPageTextChange={onPageTextChange}
                 ></WorkplaceList>
             </div>
         )
