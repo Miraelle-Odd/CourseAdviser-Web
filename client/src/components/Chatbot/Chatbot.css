@@ -47,9 +47,11 @@
     bottom: 0px;
     right: 150px;
     z-index: 999;
+    outline: none;
 }
 
 .chatbox {
+    outline: none;
     box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.6);
     height: 460px;
     width: 340px;

@@ -24,6 +24,7 @@ const ChatBubble = (props) => {
 const Chatbot = (props) => {
     const messagesEndRef = useRef(null)
     const [message, setMessage] = useState("");
+    const [botResponse, setBotResponse] = useState("")
     const [messageList, setMessageList] = useState([]);
 
 
@@ -35,35 +36,37 @@ const Chatbot = (props) => {
         scrollToBottom()
     }, []);
 
-    const [botMessage, setBotMessage] = useState()
+
     const addMessage = async () => {
-        if (message.trim() != "") { 
-            
-            await setMessageList(messageList.concat(
-                <ChatBubble
-                    chat={message}
-                ></ChatBubble>
+        if (message.trim() != "") {
+            const req = message
+            setMessageList(messageList.concat(
+                {
+                    chat: req,
+                    chatbot: false
+                }
             ))
-            scrollToBottom()
             setMessage("")
-            const result = await axios.post(`http://localhost:8080/chat/dialogflow/vi/` + message + `/abcd123`)
-            console.log(result)
-            // addBotMessage(result)
+            scrollToBottom()
+            const result = await axios.post(`http://localhost:8080/chat/dialogflow/vi/` + req + `/abcd123`)
+                .then(res => {
+                    addBotMessage(req, res.data)
+                })
         }
     }
 
-    const addBotMessage = async (result) => {
-        // console.log(result)
-        if (result.data.trim() != "") {
-            await setMessageList(messageList.concat(
-                <ChatBubble
-                chatbot
-                    chat={result.data}
-                ></ChatBubble>
-            ))
-            scrollToBottom()
-            setMessage("")
-        }
+    const addBotMessage = async (req, res) => {
+        await setMessageList(messageList.concat(
+            {
+                chat: req,
+                chatbot: false,
+            },
+            {
+                chat: res,
+                chatbot: true,
+            }
+        ))
+        scrollToBottom()
     }
 
     return (
@@ -88,7 +91,17 @@ const Chatbot = (props) => {
             <div className="chatbox-body">
                 <div className="chat-view">
                     <div className="chat-container">
-                        {messageList}
+                        {
+                            messageList.map((item, index) => {
+                                return (
+                                    <ChatBubble
+                                        chat={item.chat}
+                                        chatbot={item.chatbot}
+                                    ></ChatBubble>
+                                )
+
+                            })
+                        }
                         <div className="temp" ref={messagesEndRef}></div>
                     </div>
 
