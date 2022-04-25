@@ -110,6 +110,11 @@
   white-space: pre-wrap;
   text-align: left;
   background-color: white;
+
+  font-family: 'Rounded Mplus 1c Medium';
+  font-size: 14px;
+  line-height: 21px;
+  color: #000000;
 }
 .qa-item-answer{
   min-height: 52px;
@@ -118,6 +123,11 @@
   padding: 10px 60px;
   white-space: pre-wrap;
   text-align: left;
+
+  font-family: 'Rounded Mplus 1c Regular';
+  font-size: 14px;
+  line-height: 21px;
+  color: #000000;
 }
 .not-show{
   display: none;
