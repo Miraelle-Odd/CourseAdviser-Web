@@ -42,6 +42,12 @@ const appointments = require("./routes/Appointments");
 app.use("/appointments", appointments)
 const chatBot = require("./routes/ChatBot");
 app.use("/chat", chatBot)
+const webhook = require("./routes/Webhook");
+app.use("/webhook", webhook)
+
+app.use("", (req, res) => {
+    res.send("Ngrok start")
+})
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
