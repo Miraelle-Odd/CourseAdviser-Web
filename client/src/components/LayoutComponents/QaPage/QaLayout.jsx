@@ -1,21 +1,46 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './QaLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import QaListItem from '../../ListComponents/QaListItem';
 import ReactPaginate from 'react-paginate';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function QaLayout(props) {
     let navigate = useNavigate();
-    const handlePageClick = (event) => {
-        navigate("/about/qa/" + (event.selected + 1))
-    }
+    // const handlePageClick = (event) => {
+    //     navigate("/about/qa/" + (event.selected + 1))
+    // }
     var paginateColor = "qa-li-pagination"
     var paginatePrev = " qa-prev"
     var paginateNext = " qa-next"
     var paginateActive = "qa-li-active"
+
+    let { page } = useParams();
+    const [currentPage, setCurrentPage] = useState(page ? page : 1);
+    const itemsPerPage = 2;
+    const [listOfPaging, setListOfPaging] = useState([]);
+    const [pageCount, setPageCount] = useState(1);
+
+    const handlePageClick = (event) => {
+        navigate("/about/qa/" + (event.selected + 1))
+        setCurrentPage(event.selected + 1);
+
+        window.scrollTo(0, 0);
+    }
+
+    useEffect(() => {
+        setPageCount(Math.ceil(props.count / itemsPerPage))
+
+        const getListPaging = async () => {
+            const result = await axios.get(`http://localhost:8080/q-and-as/${currentPage - 1}`)
+            setListOfPaging(result.data)
+        }
+        getListPaging().catch(console.error)
+    }, [currentPage, props.count])
+    console.log("dfasfsd", props.count, pageCount)
     return (
         props.hasResult ?
             (<Fragment>
@@ -36,17 +61,17 @@ export default function QaLayout(props) {
                         <div className='qa-below-body qa-layout-center'>
                             <ul class="qa-list-contain">
                                 {
-                                    props.listItem.map((item, index) => (
+                                    listOfPaging ? listOfPaging.map((item, index) => (
                                         <QaListItem key={index}
                                             question={item.question}
                                             answer={item.answer}>
                                         </QaListItem>
-                                    ))
+                                    )) : ""
                                 }
                             </ul>
                             <div className="">
                                 <ReactPaginate
-                                    pageCount={10}
+                                    pageCount={pageCount}
                                     pageRangeDisplayed={3}
                                     marginPagesDisplayed={2}
                                     breakLabel="..."
@@ -65,7 +90,7 @@ export default function QaLayout(props) {
                                     disabledClassName="disabled"
                                     onPageChange={handlePageClick}
                                     renderOnZeroPageCount={null}
-                                    forcePage={0}
+                                    forcePage={parseInt(currentPage) - 1}
                                 />
                             </div>
                         </div>

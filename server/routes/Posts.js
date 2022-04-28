@@ -11,4 +11,6 @@ router.get("/post-detail/:id", Posts.getItemDetail)
 router.get("/all/top5", Posts.getTop5All)
 router.get("/get-list/:category", Posts.getListPostByCategory)
 router.get("/get-list/:category/:page", Posts.getListPostByCategory)
+router.post("/update-post", Posts.updatePost)
+
 module.exports = router

@@ -98,8 +98,8 @@ const PostManagement = props => {
             })
             const getList = axios.get("http://localhost:8080/posts/get-list/" + category + "/" + (page - 1))
             .then((res) => {
-                // console.log(res.data)
                 res.data.map((item, index) => {
+                    item.id = item.post_id
                     item.thumbnail = item.post_img
                     item.title = item.post_title
                     item.subtitle = item.post_subtitle
@@ -107,7 +107,7 @@ const PostManagement = props => {
                         item.active = true
                     else
                         item.active = false
-                    item = { item: (delete item['post_img'], delete item['post_status'], delete item['post_title'],  delete item['post_subtitle'], item) };
+                    item = { item: (delete item['post_id'], delete item['post_img'], delete item['post_status'], delete item['post_title'],  delete item['post_subtitle'], item) };
                 })
                 setPostData(res.data)
             })
@@ -132,11 +132,13 @@ const PostManagement = props => {
     const onCreateClick = () => {
         navigate("/workplace/post-management/post-create")
     }
-    const onViewClick = () => {
-        navigate("/workplace/post-management/post-view/1")
+    const onViewClick = (e) => {
+        const id = e.currentTarget.attributes.getNamedItem("value").value
+        navigate(`/workplace/post-management/post-view/${id}`)
     }
-    const onUpdateClick = () => {
-        navigate("/workplace/post-management/post-update/1")
+    const onUpdateClick = (e) => {
+        const id = e.currentTarget.attributes.getNamedItem("value").value
+        navigate(`/workplace/post-management/post-update/${id}`)
     }
     const renderPostManagement = () => {
         return (

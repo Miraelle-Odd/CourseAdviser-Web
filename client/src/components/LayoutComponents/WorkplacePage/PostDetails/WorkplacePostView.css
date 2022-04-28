@@ -67,7 +67,6 @@
 }
 .workplace-post-img{
     width: 602px;
-    height: 261px;
 
     object-fit: cover;
 }
@@ -89,7 +88,7 @@
     overflow:hidden;
 }
 .customValue{
-    width: 80%;
+    width: 50%;
     font-family: 'Rounded Mplus 1c Medium';
     font-size: 16px;
     line-height: 24px;

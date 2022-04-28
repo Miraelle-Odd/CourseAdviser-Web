@@ -14,14 +14,6 @@ import UpdateGeneral from '../../components/PopupComponents/UpdateGeneral/Update
 import ViewGeneral from '../../components/PopupComponents/ViewGeneral/ViewGeneral';
 import axios from 'axios';
 
-const onOpenClickHandle = () => {
-    alert("Open Sesame")
-}
-
-const onEditClickHandle = () => {
-    alert("Edit Sesame")
-}
-
 const empListFormat = [
     {
         name: "avatar",
@@ -85,20 +77,6 @@ const lcItems = [
     },
 ]
 
-const statisticItems = [
-    {
-        fieldName: "Tổng cộng",
-        fieldValue: 21
-    },
-    {
-        fieldName: "Hoạt động",
-        fieldValue: 20
-    },
-    {
-        fieldName: "Khóa",
-        fieldValue: 1
-    },
-]
 
 const EmployeeManagement = props => {
     let { category, page } = useParams()

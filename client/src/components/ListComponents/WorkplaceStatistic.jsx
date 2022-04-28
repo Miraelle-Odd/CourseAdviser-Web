@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const WorkplaceStatistic = props => {
     return (
         <div className="statistics-menu">
-            <span className="title">Thống kê</span>
+            <span className="title">{props.menu_title ? props.menu_title : "Thống kê"}</span>
             {
                 props.items ? props.items.map((item, index) => {
                     return (

@@ -28,6 +28,7 @@ const WorkplacePostView = props => {
             </div>
             <div className="statistics-container">
                 <WorkplaceStatistic
+                    menu_title={"Chi tiết"}
                     items={props.statisticItems}
                     customValue={"customValue"}
                 ></WorkplaceStatistic>

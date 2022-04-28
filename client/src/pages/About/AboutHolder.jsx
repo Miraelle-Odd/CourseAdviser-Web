@@ -9,6 +9,8 @@ import Contact from './Contact/Contact'
 import FloatBtn from '../../components/ButtonComponents/FloatBtn'
 
 import QaLayout from '../../components/LayoutComponents/QaPage/QaLayout'
+import QaList from './Qa/QaList'
+import QaNone from './Qa/QaNone'
 
 
 export default function AboutHolder(props) {
@@ -36,7 +38,10 @@ export default function AboutHolder(props) {
                 <AboutStaff></AboutStaff>
                 :
                 aboutType=="qa"?
-                <QaLayout></QaLayout>
+                <QaList></QaList>
+                :
+                aboutType=="qa-none"?
+                <QaNone></QaNone>
                 :
                 <Contact></Contact>
             }

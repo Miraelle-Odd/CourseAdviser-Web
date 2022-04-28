@@ -1,5 +1,21 @@
 const { Q_and_as } = require("../models");
 
+const getCountAll = async(req, res) => {
+    var result = await Q_and_as.count();
+    res.send(result.toString());
+}
+
+const getItemPaging = async(req, res) => {
+    var page = 0;
+    if (req.params.page)
+        page = req.params.page;
+    var result = await Q_and_as.findAll({
+        limit: 2,
+        offset: page * 2,
+    })
+    res.send(result)
+}
+
 const getCountByMainSubject = async(req, res) => {
     var result
     if (req.params.category == "all")
@@ -70,6 +86,8 @@ const getListQAByMainSubject = async(req, res) => {
 }
 
 module.exports = {
+    getCountAll,
+    getItemPaging,
     getCountByMainSubject,
     getListQAByMainSubject,
     getActiveCountByMainSubject,
