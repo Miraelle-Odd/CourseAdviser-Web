@@ -15,7 +15,7 @@ const configuration = {
 }
 const sessionClient = new dialogflow.SessionsClient(configuration);
 
-const detectIntent = async (languageCode, queryText, sessionId) => {
+const detectIntent = async(languageCode, queryText, sessionId) => {
 
     let sessionPath = sessionClient.projectAgentSessionPath(projectId, sessionId);
 
@@ -39,17 +39,21 @@ const detectIntent = async (languageCode, queryText, sessionId) => {
     console.log(result);
 
     return {
-        response: result.fulfillmentText
+        response: result.fulfillmentText,
+        fulfillmentMessages: result.fulfillmentMessages
     };
 }
 
-const postToChat = async (req, res) => {
+const postToChat = async(req, res) => {
 
     let languageCode = req.params.languageCode;
     let queryText = req.params.queryText;
     let sessionId = req.params.sessionId;
     let responseData = await detectIntent(languageCode, queryText, sessionId);
 
+    // if (responseData.fulfillmentMessages)
+    //     console.log(responseData.fulfillmentMessages);
+    // else
     res.send(responseData.response);
 }
 
