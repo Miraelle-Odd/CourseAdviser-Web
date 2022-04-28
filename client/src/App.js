@@ -86,7 +86,7 @@ function App() {
             <Route path="/main-post/:postType/post-details/:id" element={<PostDetails></PostDetails>} />
             <Route path="/post-details" element={<PostDetails></PostDetails>} />
             <Route path="/about/:aboutType" element={<AboutHolder></AboutHolder>} />
-            <Route path="/about/:aboutType/:page" element={<QaList></QaList>} />
+            <Route path="/about/:aboutType/:page" element={<AboutHolder></AboutHolder>} />
             <Route path="/about/:aboutType/no-result" element={<QaNone></QaNone>} />
 
             <Route path="/password-recovery/" element={<PasswordRecovery></PasswordRecovery>} />

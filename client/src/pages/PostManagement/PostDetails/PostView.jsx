@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './PostView.css'
 import Footer from '../../../components/Footer/Footer'
 import WorkplaceLayout from '../../../components/LayoutComponents/WorkplacePage/WorkplaceLayout'
@@ -7,41 +7,56 @@ import WorkplaceList from '../../../components/ListComponents/WorkplaceList'
 import WorkplacePostView from '../../../components/LayoutComponents/WorkplacePage/PostDetails/WorkplacePostView'
 import TKB_HK2 from '../../../assets/icons/TKB_HK2.PNG'
 import StatusSwitch from '../../../components/SwitchComponents/WorkplacePage/StatusSwitch'
-import { useNavigate } from 'react-router-dom'
-const statisticItems = [
-    {
-        fieldName: "Chủ đề",
-        fieldValue: "Học thuật"
-    },
-    {
-        fieldName: "Tác giả",
-        fieldValue: "Nguyễn Văn A"
-    },
-    {
-        fieldName: "Ngày đăng",
-        fieldValue: "DD/MM/YYYY"
-    },
-    {
-        fieldName: "Trạng thái",
-        fieldValue: <StatusSwitch on={true} onClick={()=>{}}></StatusSwitch>
-    }
-]
-
+import { useNavigate, useParams } from 'react-router-dom'
+import axios from 'axios'
+import moment from 'moment'
 
 const PostView = props => {
     let navigate = useNavigate()
+    let {id} = useParams();
+
     const onUpdateClick = () => {
-        navigate("/workplace/post-management/post-update/1")
+        navigate(`/workplace/post-management/post-update/${id}`)
     }
+
+    const [postDetail, setPostDetail] = useState();
+
+    useEffect(()=> {
+        const getPostDetail = async () => {
+            const result = await axios.get(`http://localhost:8080/Posts/Post-detail/${id}`)
+            setPostDetail(result.data[0])
+        }
+        getPostDetail().catch(console.error)
+    }, [])
+
+    const statisticItems = [
+        {
+            fieldName: "Chủ đề",
+            fieldValue: postDetail ? postDetail.post_type : "Học thuật"
+        },
+        {
+            fieldName: "Tác giả",
+            fieldValue: postDetail ? postDetail.name : "AAAA AAA AA"
+        },
+        {
+            fieldName: "Ngày đăng",
+            fieldValue: postDetail ? moment(postDetail.updatedAt).format("YYYY-MM-DD hh-mm A") : "YYYY-MM-DD hh-mm A"
+        },
+        {
+            fieldName: "Trạng thái",
+            fieldValue: <StatusSwitch on={postDetail ? postDetail.post_status == 'enabled' ? true : false : true} onClick={()=>{}}></StatusSwitch>
+        }
+    ]
+
     const renderPostView = () => {
         return (
             <div className='post-man-body'>
                 <WorkplacePostView
                     statisticItems = {statisticItems}
-                    content="Đây là nội dung balha .........  BBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhs AAA XXXXXXX hdh BBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdĐây là nội dung balha .........  BBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhs AAA XXXXXXX hdh BBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdĐây là nội dung balha .........  BBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhs AAA XXXXXXX hdh BBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdĐây là nội dung balha .........  BBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhs AAA XXXXXXX hdh BBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdĐây là nội dung balha .........  BBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhs AAA XXXXXXX hdh BBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsdBBBB AAA XXXXXXX hdhashdhsd"
-                    subtitle="Tiêu đề phụblah blah blah XXXX XXXXX XXXXXXX  XXXX Chỉ cho scroll ở Nội dung dưới tiêu đề trong cái card chứa dòng này)"
-                    title="Tiêu đề bài viết Dài 2 dòng đc nà blah blah aaaa aaaa aaa aaa aaa aaa aaa aaa aaa aaa aa aa aa a aa bb b bb bbbb bbbb bb b bb bbbb"
-                    img={TKB_HK2}
+                    content={postDetail ? postDetail.post_content : "aa"}
+                    subtitle={postDetail ? postDetail.post_subtitle : "aa"}
+                    title= {postDetail ? postDetail.post_title : "aa"}
+                    img={postDetail ? postDetail.post_img : "aa"}
                     onUpdateClick={onUpdateClick}           
                 ></WorkplacePostView>
             </div>

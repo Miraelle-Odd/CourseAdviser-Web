@@ -181,7 +181,7 @@ export default function NavigationBar(props) {
                 <button className='user-button float-right'>
                     <div className={position === "/" && navbar ? "navbar-user-contain header-center" : "no-border navbar-user-contain header-center"}>
                         <img className="user-avatar" src={image} alt="" ></img>
-                        <span className="user-name">{name}</span>
+                        <span className="user-name header-center">{name}</span>
                         <FontAwesomeIcon className='navbar-icon ' icon={['fas','chevron-down']}></FontAwesomeIcon>
                     </div>
                     <ul className="item-click-dropdown user-dropdown">

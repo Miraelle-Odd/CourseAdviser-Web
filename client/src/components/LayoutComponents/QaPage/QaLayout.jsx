@@ -18,18 +18,18 @@ export default function QaLayout(props) {
     var paginateNext = " qa-next"
     var paginateActive = "qa-li-active"
 
+    let { page } = useParams();
+    const [currentPage, setCurrentPage] = useState(page ? page : 1);
+    const itemsPerPage = 2;
+    const [listOfPaging, setListOfPaging] = useState([]);
+    const [pageCount, setPageCount] = useState(1);
+
     const handlePageClick = (event) => {
         navigate("/about/qa/" + (event.selected + 1))
         setCurrentPage(event.selected + 1);
 
         window.scrollTo(0, 0);
     }
-    
-    let { page } = useParams();
-    const [currentPage, setCurrentPage] = useState(page);
-    const itemsPerPage = 2;
-    const [listOfPaging, setListOfPaging] = useState([]);
-    const [pageCount, setPageCount] = useState(1);
 
     useEffect(() => {
         setPageCount(Math.ceil(props.count / itemsPerPage))

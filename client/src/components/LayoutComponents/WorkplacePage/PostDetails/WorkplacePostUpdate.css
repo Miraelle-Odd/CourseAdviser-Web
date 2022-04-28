@@ -60,7 +60,7 @@
     position: absolute;
     width: 120px;
     height: 40px;
-    right: 318px;
+    right: calc(50% - 200px);
     top: 170px;
 
     background: #4C83C5;
@@ -133,5 +133,6 @@
     text-align: right;
 }
 .post-status{
-    width: 100%
+    width: max-content;
+    margin: 0 70% 0 30%;
 }

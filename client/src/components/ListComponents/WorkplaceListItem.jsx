@@ -27,9 +27,6 @@ const WorkplaceListItem = props => {
         )
     else {
         var data = props.data
-        const onOpenClick = (e) => {
-            console.log(e.target)
-        }
         return (
             <div className="workplace-li">
                 {props.fieldFormat.map((item, index) => {
@@ -47,10 +44,10 @@ const WorkplaceListItem = props => {
                                 :
                                 item.actionCell ?
                                     <span className="action-otps">
-                                        <div className="action-otp" onClick={props.openFun}>
+                                        <div className="action-otp" onClick={props.openFun} value={data.id}>
                                             <FontAwesomeIcon icon={['fas', 'book-open']}></FontAwesomeIcon>
                                         </div>
-                                        <div className="action-otp" onClick={props.editFun}>
+                                        <div className="action-otp" onClick={props.editFun} value={data.id}>
                                             <FontAwesomeIcon icon={['fas', 'pen']}></FontAwesomeIcon>
                                         </div>
                                     </span>

@@ -11,7 +11,8 @@ export default function QaNone() {
     return (
         <div className='qa-page-contain'>
             <QaLayout
-            backHandle={onBackClick}>
+            backHandle={onBackClick}
+            count={0}>
             </QaLayout>
             <Footer> </Footer>
         </div>

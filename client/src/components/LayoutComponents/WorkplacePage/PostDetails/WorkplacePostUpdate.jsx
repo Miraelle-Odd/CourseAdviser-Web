@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './WorkplacePostUpdate.css'
 import WorkplaceStatistic from '../../../ListComponents/WorkplaceStatistic';
 import noimg from '../../../../assets/icons/post-noimg.png';
 import SortComboBox from '../../../ComboBoxComponents/SortComboBox';
 import StatusSwitch from '../../../SwitchComponents/WorkplacePage/StatusSwitch';
 import TextareaAutosize from 'react-textarea-autosize';
+import axios from 'axios';
 const sortItems = [
     {
         value: 0,
@@ -19,23 +20,67 @@ const sortItems = [
         displayText: "Discount"
     }
 ]
-const sortHandler = (e) => {
-    console.log(e.target.value);
-    //Handle chosen sort option code
-}
+
 
 const WorkplacePostUpdate = props => {
-    const [title, setTitle] = useState(props.title)
-    const [subtitle, setSubtitle] = useState(props.subtitle)
-    const [postImg, setPostImg] = useState(props.img ? props.img : noimg)
-    const [content, setContent] = useState(props.contain)
-    // const onChangeHandle = (value) => {
-    //     setAa(value)
-    // }
+    const [title, setTitle] = useState()
+    const [subtitle, setSubtitle] = useState()
+    const [postImg, setPostImg] = useState()
+    const [content, setContent] = useState()
+    const [type, setType] = useState(0)
+    const [status, setStatus] = useState()
+
+    useEffect(() => {
+        console.log("nbmb", props)
+        setType(props.type)
+        setStatus(props.active)
+    }, [props])
+    console.log("đá", props.active)
+    console.log(status)
+    const onConfirm = () => {
+        var type_convert;
+        if (type == 0)
+            type_convert = "academic"
+        else if (type == 1)
+            type_convert = "event"
+        else
+            type_convert = "discount"
+
+        var status_convert;
+        if (status == true)
+            status_convert = "enabled"
+        else
+            status_convert = "disabled"
+        const params = {
+            post_id: props.id,
+            post_title: title,
+            post_subtitle: subtitle,
+            post_content: content,
+            post_type: type_convert,
+            post_status: status_convert
+        }
+        axios.post("http://localhost:8080/posts/update-post/", params)
+        console.log("dsadsad", params)
+    }
+
+    const sortHandler = (e) => {
+        setType(e.target.value)
+        //Handle chosen sort option code
+    }
+    const statusHandler = () => {
+        // setStatus(e.target.value)
+        if (props.active == true)
+            setStatus(false)
+        else
+            setStatus(true)
+    }
+
+
+    // var temp = getType()
     return (
         <div className="workplace-list-container">
 
-            <button className="create-btn" onClick={props.onUpdateClick}>
+            <button className="create-btn" onClick={onConfirm}>
                 Đăng
             </button>
             <div className="workplace-list workplace-post-contain workplace-post-update">
@@ -43,17 +88,17 @@ const WorkplacePostUpdate = props => {
                     <p className="post-update-item">Tiêu đề:</p>
                     <input className="post-update-title-input"
                         placeholder="Nhập tiêu đề của bài viết"
-                        value={title}
+                        defaultValue={props.title}
                         onChange={e => { setTitle(e.target.value); }} />
                     <input className="post-update-title-input"
                         placeholder="Nhập tiêu đề phụ của bài viết"
-                        value={subtitle}
+                        defaultValue={props.subtitle}
                         onChange={e => { setSubtitle(e.target.value); }} />
                 </div>
                 <div className="post-body-contain">
                     <p className="post-update-item">Hình minh họa:</p>
                     <div className="post-update-img-contain">
-                        <img className="post-update-img" src={postImg}></img>
+                        <img className="post-update-img" src={props.img ? props.img : noimg}></img>
                         <button className="post-update-img-btn">Chọn hình</button>
                     </div>
                 </div>
@@ -62,7 +107,7 @@ const WorkplacePostUpdate = props => {
                     <TextareaAutosize
                         className="post-update-content"
                         placeholder="Nhập nội dung bài viết..."
-                        defaultValue={content}
+                        defaultValue={props.content}
                         onChange={e => { setContent(e.target.value); }}
                         minRows={20}
                     />
@@ -76,7 +121,8 @@ const WorkplacePostUpdate = props => {
                         <SortComboBox
                             onChange={sortHandler}
                             customClassName="sort-post"
-                            items={sortItems}>
+                            items={sortItems}
+                            defaultValue={type}>
                         </SortComboBox>
                     </div>
                     <div className="statistics-menu-item-contain">
@@ -93,13 +139,11 @@ const WorkplacePostUpdate = props => {
                     </div>
                     <div className="statistics-menu-item-contain">
                         <p className="statistics-menu-item">Trạng thái: </p>
-                        <div className='post-status workplace-post-center'>
+                        <div className='post-status workplace-post-center' onClick={statusHandler}>
                             <StatusSwitch
-                                onClick={() => { }}
-                                on={true}>
+                                on={status}>
                             </StatusSwitch>
                         </div>
-
                     </div>
                 </div>
             </div>

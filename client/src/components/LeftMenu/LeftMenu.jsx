@@ -1,5 +1,5 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './LeftMenu.css'
 import avatarPlaceholder from '../../assets/icons/circle-placeholder.png'
@@ -30,7 +30,7 @@ const menuEmpOption = [
     },
 ]
 
-const onLogout = () =>{
+const onLogout = () => {
     cookies.remove("accessToken")
 }
 
@@ -78,6 +78,7 @@ const LeftMenu = props => {
                             (props.position == "manager" ? menuManOption : menuEmpOption).map((item, index) => {
                                 return (
                                     <MenuOption
+                                        key={index}
                                         link={item.link}
                                         icon={item.icon}
                                         btnName={item.btnName}
@@ -105,10 +106,10 @@ const LeftMenu = props => {
 
                 </div>
                 <div className='left-menu-user-info'>
-                    <img className='avatar' src={props.avatar ? props.avatar : avatarPlaceholder} alt="avatar"/>
+                    <img className='avatar' src={props.avatar ? props.avatar : avatarPlaceholder} alt="avatar" />
                     <div className='content'>
-                        <span className='content-main'>{props.fullName? props.fullName : "Default No Name"}</span>
-                        <span className='content-sub'>{props.email? props.email : "default@gmail.com"}</span>
+                        <span className='content-main'>{props.fullName ? props.fullName : "Default No Name"}</span>
+                        <span className='content-sub'>{props.email ? props.email : "default@gmail.com"}</span>
                     </div>
                 </div>
             </div>
