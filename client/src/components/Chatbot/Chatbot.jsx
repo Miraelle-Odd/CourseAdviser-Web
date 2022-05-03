@@ -3,28 +3,11 @@ import React, { useEffect, useRef, useState } from "react";
 import './Chatbot.css'
 import Modal from 'react-modal';
 import axios from "axios";
-
-const ChatBubble = (props) => {
-
-
-    return (
-        <div className={props.chatbot ? "chat-content left" : "chat-content right"}>
-            {
-                props.chatbot ?
-                    <span className="chatbot-avatar">
-                        <FontAwesomeIcon icon="robot"></FontAwesomeIcon>
-                    </span>
-                    : ""
-            }
-            <span className={props.chatbot ? "chat-bubble chatbot" : "chat-bubble guest"}>{props.chat}</span>
-        </div>
-    )
-}
+import placeholder from '../../assets/icons/post-noimg.png'
 
 const Chatbot = (props) => {
     const messagesEndRef = useRef(null)
     const [message, setMessage] = useState("");
-    const [botResponse, setBotResponse] = useState("")
     const [messageList, setMessageList] = useState([]);
 
 
@@ -40,10 +23,27 @@ const Chatbot = (props) => {
     const addMessage = async () => {
         if (message.trim() != "") {
             const req = message
-            setMessageList(messageList.concat(
+            await setMessageList(messageList.concat(
                 {
                     chat: req,
-                    chatbot: false
+                    human: true
+                }
+            ))
+            setMessage("")
+            scrollToBottom()
+            const result = await axios.post(`http://localhost:8080/chat/dialogflow/vi/` + req + `/abcd123`)
+                .then(res => {
+                    addBotMessage(req, res.data)
+                })
+        }
+    }
+
+    const addSuggestion = async (req) => {
+        if (req.trim() != "") {
+            await setMessageList(messageList.concat(
+                {
+                    chat: req,
+                    human: true
                 }
             ))
             setMessage("")
@@ -59,14 +59,89 @@ const Chatbot = (props) => {
         await setMessageList(messageList.concat(
             {
                 chat: req,
-                chatbot: false,
+                human: true,
             },
             {
                 chat: res,
-                chatbot: true,
             }
         ))
         scrollToBottom()
+    }
+
+    const ChatBubble = (props) => {
+        return (
+            <div className={!props.human ? "chat-content left" : "chat-content right"}>
+                {
+                    !props.human ?
+                        <span className="chatbot-avatar">
+                            <FontAwesomeIcon icon="robot"></FontAwesomeIcon>
+                        </span>
+                        : ""
+                }
+                <span className={!props.human ? "chat-bubble chatbot" : "chat-bubble guest"}>{props.chat}</span>
+            </div>
+        )
+    }
+
+    const ChatCard = (props) => {
+        return (
+            <div className="chat-content left">
+                <span className="chatbot-avatar">
+                    <FontAwesomeIcon icon="robot"></FontAwesomeIcon>
+                </span>
+                <div className="chat-card">
+                    <div className="card-img-section">
+                        <img className="card-img" src={props.imageUri ? props.imageUri : placeholder}></img>
+                        <div className="card-introduction">
+                            <span className="title">{props.title ? props.title : "N/A"}</span>
+                            <span className="description">{props.subtitle ? props.subtitle : "N/A"}</span>
+                        </div>
+                    </div>
+                    <div className="card-btn-section">
+                        {props.buttons ? props.buttons.map((item, index) => {
+                            return (
+                                <div className="card-btn"
+                                    onClick={() => {
+                                        window.open(item.postback ? item.postback : "#", "_blank")
+                                    }}>
+                                    <span className="icon">
+                                        <FontAwesomeIcon icon={['fas', 'arrow-up-right-from-square']}></FontAwesomeIcon>
+                                    </span>
+                                    {item.text ? item.text : "Click me"}
+                                </div>
+                            )
+                        })
+                            : ""}
+
+                    </div>
+                </div>
+
+            </div>
+        )
+    }
+
+    const ChatSuggestion = (props) => {
+        return (
+            <div className="chat-content left">
+                <span className="chatbot-avatar">
+                    <FontAwesomeIcon icon="robot"></FontAwesomeIcon>
+                </span>
+                <div className="chat-suggestions">
+                    {
+                        props.quickReplies ? props.quickReplies.map((item, index) => {
+                            return (
+                                <span
+                                    className="chat-suggestion"
+                                    onClick={()=>addSuggestion(item)}
+                                >{item}</span>
+                            )
+                        })
+                            : ""
+                    }
+
+                </div>
+            </div>
+        )
     }
 
     return (
@@ -91,14 +166,52 @@ const Chatbot = (props) => {
             <div className="chatbox-body">
                 <div className="chat-view">
                     <div className="chat-container">
+
+                        {/* <ChatCard></ChatCard> */}
+                        {/* <ChatSuggestion></ChatSuggestion> */}
                         {
                             messageList.map((item, index) => {
                                 return (
-                                    <ChatBubble
-                                        chat={item.chat}
-                                        chatbot={item.chatbot}
-                                    ></ChatBubble>
+                                    <div>
+                                        {
+                                            item.human ?
+                                                <ChatBubble
+                                                    chat={item.chat}
+                                                    human={item.human}
+                                                ></ChatBubble>
+                                                :
+                                                item.chat.map((chatItem, index) => {
+                                                    if (chatItem.card) {
+                                                        return (
+                                                            <ChatCard
+                                                                title={chatItem.card.title}
+                                                                subtitle={chatItem.card.subtitle}
+                                                                imageUri={chatItem.card.imageUri}
+                                                                buttons={chatItem.card.buttons}
+                                                            ></ChatCard>
+
+                                                        )
+                                                    }
+                                                    if (chatItem.text) {
+                                                        return (
+                                                            <ChatBubble
+                                                                chat={chatItem.text.text}>
+                                                            </ChatBubble>
+                                                        )
+                                                    }
+                                                    if (chatItem.quickReplies) {
+                                                        return (
+                                                            <ChatSuggestion
+                                                                quickReplies={chatItem.quickReplies.quickReplies}
+                                                            ></ChatSuggestion>
+                                                        )
+                                                    }
+                                                })
+                                        }
+
+                                    </div>
                                 )
+
 
                             })
                         }
@@ -113,7 +226,7 @@ const Chatbot = (props) => {
                     </button>
                 </div>
             </div>
-        </Modal>
+        </Modal >
     )
 }
 

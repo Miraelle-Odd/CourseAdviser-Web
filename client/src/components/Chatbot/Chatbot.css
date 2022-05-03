@@ -9,7 +9,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    margin: 3px 0px;
+    margin: 8px 0px;
     box-sizing: border-box;
 }
 
@@ -21,7 +21,7 @@
 
 .chat-content .chat-bubble {
     display: flex;
-    width: 170px;
+    width: 200px;
     min-height: 30px;
     height: max-content;
     border-radius: 20px;
@@ -189,4 +189,96 @@
 .chatbox-body .temp {
     height: 1px;
     width: 100%;
+}
+
+.chat-card {
+    border-radius: 4px;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    box-shadow: 0px 1px 3px 0px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 2px 1px -1px rgb(0 0 0 / 12%);
+}
+
+.chat-card .card-img-section {
+    width: 100%;
+    position: relative;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: #fff;
+}
+
+.chat-card .card-img {
+    width: 100%;
+}
+
+.chat-card .card-introduction {
+    position: absolute;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    font-family: 'Roboto';
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+}
+
+.chat-card .description {
+    font-size: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.chat-card .card-btn-section {
+    width: 100%;
+}
+
+.chat-card .card-btn {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    font-family: 'Roboto Bold';
+    font-size: 10px;
+    padding: 10px 16px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.chat-card .card-btn:hover {
+    cursor: pointer;
+    background-color: rgb(220, 220, 220);
+}
+
+.chat-card .card-btn .icon {
+    margin-right: 20px;
+}
+
+.chat-suggestions {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chat-suggestions .chat-suggestion {
+    color: rgb(33, 33, 33);
+    background-color: rgb(250, 250, 250);
+    padding: 8px 16px;
+    font-size: 12px;
+    font-family: 'Roboto';
+    width: max-content;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 26%);
+    margin: 2px 0;
+}
+
+.chat-suggestions .chat-suggestion:hover {
+    cursor: pointer;
+    background-color: rgb(220, 220, 220);
 }

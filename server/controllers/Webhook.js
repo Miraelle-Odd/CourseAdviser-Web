@@ -16,13 +16,15 @@ const showCourseGeneralInfo = async(agent) => {
                     }
                 })
                 .then(ress => {
+                    agent.add(res.dataValues.course_description)
+                    agent.add("Thông tin chi tiết xem tại:")
                     agent.add(new Card({
                         title: res.dataValues.course_name,
                         imageUrl: res.dataValues.course_image,
                         text: res.dataValues.course_description
                     }).setButton({ text: "Chi tiết", url: res.dataValues.course_page }))
-                    agent.add(res.dataValues.course_description)
-                    agent.add("Select one");
+
+                    agent.add("Tìm hiểu thêm:");
                     ress.map((item, index) => {
                         agent.add(new Suggestion(res.dataValues.course_name + " " + item.dataValues.level_name));
                     })
