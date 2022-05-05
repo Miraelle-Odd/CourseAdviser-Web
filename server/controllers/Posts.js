@@ -95,6 +95,9 @@ const getListPostByCategory = async (req, res) => {
         page = req.params.page
     if (req.params.category == "all")
         result = await Posts.findAll({
+            order: [
+                ['post_id', 'DESC']
+            ],
             limit: 2,
             offset: page * 2,
         })
@@ -103,6 +106,9 @@ const getListPostByCategory = async (req, res) => {
             where: {
                 post_type: req.params.category
             },
+            order: [
+                ['post_id', 'DESC']
+            ],
             limit: 2,
             offset: page * 2,
         })
@@ -124,7 +130,7 @@ const updatePost = async (req, res) => {
 
     else {
         let itemValues = {
-            author_id: 1,
+            author_id: req.body.author_id,
             post_title: req.body.post_title,
             post_subtitle: req.body.post_subtitle,
             post_content: req.body.post_content,
@@ -135,8 +141,11 @@ const updatePost = async (req, res) => {
             Posts.create(itemValues).then((result) => {
                 res.send(result);
             })
-        else
+        else{
             console.log("invalid")
+            res.send("invalid")
+        }
+            
     }
 }
 

@@ -13,7 +13,7 @@ const WorkplaceListCategory = props => {
             {
                 props.items.map((item, index) => {
                     return (
-                        <NavLink to={item.link} onClick={props.onCategoryChange} className="workplace-lc" value={item.value}>
+                        <NavLink to={item.link} onClick={props.onCategoryChange} className="workplace-lc" value={item.value} key={index}>
                             {
                                 item.awesomeIcon ?
                                     <FontAwesomeIcon className="icon" icon={item.awesomeIcon}></FontAwesomeIcon> :
