@@ -18,21 +18,8 @@ const WorkplaceList = props => {
     let { page } = useParams();
     let { category } = useParams();
 
-    useEffect(() => {
-        // console.log(props.pageCount)
-        // Fetch items from another resources.
-        // const endOffset = itemOffset + itemsPerPage;
-        // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-        // setCurrentItems(props.data.slice(itemOffset, endOffset));
-        // console.log(currentItems)
-        // console.log(props.data)
-        // setPageCount(Math.ceil(props.data.length / itemsPerPage));
-    }, []);
+
     const handlePageClick = (event) => {
-        // const newOffset = event.selected * itemsPerPage % props.data.length;
-        // console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
-        // setItemOffset(newOffset);
-        // navigate("/workplace/"+ props.listName +"/all/" + (event.selected + 1))
     }
     return (
         <div className="workplace-list-container">
@@ -80,6 +67,7 @@ const WorkplaceList = props => {
                     props.data ? props.data.map((item, index) => {
                         return (
                             <WorkplaceListItem
+                                key={index}
                                 fieldFormat={props.fieldFormat}
                                 data={item}
                                 openFun={props.openAction}

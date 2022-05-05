@@ -18,7 +18,7 @@ const WorkplaceListItem = props => {
                                 (item.center ? " center-cell" : "") +
                                 (item.noWrap ? " no-wrap" : "") +
                                 (item.noRightMargin ? " no-right-margin" : "")
-                            }>
+                            } key={index}>
                             {item.field}
                         </span>
                     )
@@ -38,7 +38,7 @@ const WorkplaceListItem = props => {
                                 (item.center ? " center-cell" : "") +
                                 (item.noWrap ? " no-wrap" : "") +
                                 (item.noRightMargin ? " no-right-margin" : "")
-                            }>
+                            } key={index}>
                             {item.photo ?
                                 <img className="photo" src={data.avatar ? data.avatar : data.thumbnail ? data.thumbnail : PlaceHolder}></img>
                                 :
@@ -63,7 +63,7 @@ const WorkplaceListItem = props => {
                                             return true;
                                         }).map(([key, value]) => {
                                             return (
-                                                <p>{value}</p>
+                                                <p key={value}>{value}</p>
                                             )
                                         })
                             }

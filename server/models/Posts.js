@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         post_img: {
-            defaultValue: "https://i.imgur.com/WHrlCk4.jpg",
+            defaultValue: "https://i.imgur.com/GANIzyw.png",
             type: DataTypes.STRING,
         },
         post_type: {

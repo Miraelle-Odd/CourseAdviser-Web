@@ -36,6 +36,8 @@ const QA = require("./routes/Q_and_as");
 app.use("/q-and-as", QA);
 const accounts = require("./routes/Accounts");
 app.use("/accounts", accounts)
+const personal_info = require("./routes/Personal_Infos");
+app.use("/personal_infos", personal_info)
 const mail = require("./routes/Mail");
 app.use("/mail", mail)
 const appointments = require("./routes/Appointments");

@@ -29,14 +29,14 @@ const WorkplacePostUpdate = props => {
     const [content, setContent] = useState()
     const [type, setType] = useState(0)
     const [status, setStatus] = useState()
+    const [author, setAuthor] = useState()
 
     useEffect(() => {
-        console.log("nbmb", props)
         setType(props.type)
         setStatus(props.active)
+        setAuthor(props.author_id)
     }, [props])
-    console.log("đá", props.active)
-    console.log(status)
+
     const onConfirm = () => {
         var type_convert;
         if (type == 0)
@@ -57,10 +57,14 @@ const WorkplacePostUpdate = props => {
             post_subtitle: subtitle,
             post_content: content,
             post_type: type_convert,
-            post_status: status_convert
+            post_status: status_convert,
+            author_id: author,
         }
-        axios.post("http://localhost:8080/posts/update-post/", params)
-        console.log("dsadsad", params)
+        console.log(params)
+        const result = axios.post("http://localhost:8080/posts/update-post/", params)
+            .then(res => {
+                console.log("dsadsad", res.data)
+            })
     }
 
     const sortHandler = (e) => {
@@ -139,11 +143,22 @@ const WorkplacePostUpdate = props => {
                     </div>
                     <div className="statistics-menu-item-contain">
                         <p className="statistics-menu-item">Trạng thái: </p>
-                        <div className='post-status workplace-post-center' onClick={statusHandler}>
-                            <StatusSwitch
-                                on={status}>
-                            </StatusSwitch>
-                        </div>
+                        {
+                            props.id ?
+                                <div className='post-status workplace-post-center' onClick={statusHandler}>
+                                    <StatusSwitch
+                                        on={status}>
+                                    </StatusSwitch>
+                                </div> 
+                                :
+                                <div className='post-status workplace-post-center' >
+                                    <StatusSwitch
+                                        on={status}
+                                        onClick={() => {}}>
+                                    </StatusSwitch>
+                                </div>
+                        }
+
                     </div>
                 </div>
             </div>
