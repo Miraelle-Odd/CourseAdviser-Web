@@ -73,6 +73,7 @@
     backdrop-filter: blur(4px);
     border-radius: 0px 100px 100px 80px;
     transform: rotate(-11.15deg);
+    z-index: 100;
 }
 
 .chatbot-avatar {

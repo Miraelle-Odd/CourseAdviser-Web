@@ -10,7 +10,6 @@ const Chatbot = (props) => {
     const [message, setMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
 
-
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
     }
@@ -51,6 +50,7 @@ const Chatbot = (props) => {
             const result = await axios.post(`http://localhost:8080/chat/dialogflow/vi/` + req + `/abcd123`)
                 .then(res => {
                     addBotMessage(req, res.data)
+                    
                 })
         }
     }
@@ -100,7 +100,7 @@ const Chatbot = (props) => {
                     <div className="card-btn-section">
                         {props.buttons ? props.buttons.map((item, index) => {
                             return (
-                                <div className="card-btn"
+                                <div className="card-btn" key = {index}
                                     onClick={() => {
                                         window.open(item.postback ? item.postback : "#", "_blank")
                                     }}>
@@ -130,7 +130,7 @@ const Chatbot = (props) => {
                     {
                         props.quickReplies ? props.quickReplies.map((item, index) => {
                             return (
-                                <span
+                                <span key={index}
                                     className="chat-suggestion"
                                     onClick={()=>addSuggestion(item)}
                                 >{item}</span>
@@ -166,14 +166,12 @@ const Chatbot = (props) => {
             <div className="chatbox-body">
                 <div className="chat-view">
                     <div className="chat-container">
-
-                        {/* <ChatCard></ChatCard> */}
-                        {/* <ChatSuggestion></ChatSuggestion> */}
                         {
                             messageList.map((item, index) => {
+                                console.log(item)
                                 return (
-                                    <div>
-                                        {
+                                    <div key = {index}>
+                                        {                                            
                                             item.human ?
                                                 <ChatBubble
                                                     chat={item.chat}
@@ -208,7 +206,6 @@ const Chatbot = (props) => {
                                                     }
                                                 })
                                         }
-
                                     </div>
                                 )
 
