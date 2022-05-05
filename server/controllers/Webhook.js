@@ -1,21 +1,22 @@
 const express = require("express");
+const { Op } = require("sequelize");
 const { Card, Suggestion } = require("dialogflow-fulfillment");
-const { Bot_Courses, Bot_CourseLevels } = require("../models")
+const { Bot_Courses, Bot_CourseLevels, Bot_CourseSpecials } = require("../models");
 
 const showCourseGeneralInfo = async(agent) => {
     const course = agent.parameters['engcourses'];
     if (course) {
-        const result = await Bot_Courses.findOne({
+        await Bot_Courses.findOne({
             where: {
                 course_name: course
             }
         }).then(async(res) => {
-            const result2 = await Bot_CourseLevels.findAll({
+            await Bot_CourseLevels.findAll({
                     where: {
                         course_id: res.dataValues.course_id
                     }
                 })
-                .then(ress => {
+                .then(async(ress) => {
                     agent.add(res.dataValues.course_description)
                     agent.add("Thông tin chi tiết xem tại:")
                     agent.add(new Card({
@@ -28,6 +29,18 @@ const showCourseGeneralInfo = async(agent) => {
                     ress.map((item, index) => {
                         agent.add(new Suggestion(res.dataValues.course_name + " " + item.dataValues.level_name));
                     })
+                    if (res.dataValues.course_name != "Tiếng Anh cho bé")
+                        await Bot_CourseSpecials.findAll({
+                            where: {
+                                special_name: {
+                                    [Op.ne]: "NORMAL"
+                                }
+                            }
+                        }).then(resss => {
+                            resss.map((item, index) => {
+                                agent.add(new Suggestion(item.dataValues.special_name));
+                            })
+                        })
                 })
 
         })
@@ -38,7 +51,7 @@ const showCourseLevelInfo = async(agent) => {
     const course = agent.parameters['engcourses'];
     const level = agent.parameters['engcourselevels'];
     if (course && level) {
-        const result = await Bot_CourseLevels.findOne({
+        await Bot_CourseLevels.findOne({
                 where: {
                     level_name: level
                 },
@@ -54,11 +67,25 @@ const showCourseLevelInfo = async(agent) => {
             .then(res => {
                 agent.add(res.dataValues.level_description)
             })
+    }
+}
 
+const showCourseSpecialInfo = async(agent) => {
+    const special = agent.parameters['engcoursespecials'];
+    if (special) {
+        await Bot_CourseSpecials.findOne({
+                where: {
+                    special_name: special
+                }
+            })
+            .then(res => {
+                agent.add(res.dataValues.special_description)
+            })
     }
 }
 
 module.exports = {
     showCourseGeneralInfo,
-    showCourseLevelInfo
+    showCourseLevelInfo,
+    showCourseSpecialInfo
 }
