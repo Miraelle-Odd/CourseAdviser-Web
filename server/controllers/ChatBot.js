@@ -39,8 +39,7 @@ const detectIntent = async(languageCode, queryText, sessionId) => {
     console.log(result);
 
     return {
-        response: result.fulfillmentText,
-        fulfillmentMessages: result.fulfillmentMessages
+        response: result.fulfillmentMessages
     };
 }
 

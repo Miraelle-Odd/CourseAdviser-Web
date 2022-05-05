@@ -11,6 +11,12 @@ router.post("", (req, res) => {
     // add intent map 2nd parameter pass function
     intentMap.set('iCourseGeneral', Webhook.showCourseGeneralInfo)
     intentMap.set('iCourseGeneral - level', Webhook.showCourseLevelInfo)
+    intentMap.set('iCourseGeneral - special', Webhook.showCourseSpecialInfo)
+    intentMap.set('iCourseAdvises', Webhook.askCourse)
+    intentMap.set('iCourseAdvises - requirement', Webhook.askRequirement)
+    intentMap.set('iCourseAdvises - guarantee', Webhook.askGuarantee)
+    intentMap.set('iCourseAdvises - time', Webhook.askGivenTime)
+    intentMap.set('iCourseAdvises - conclusion', Webhook.giveAdvises)
         // now agent is handle request and pass intent map
     agent.handleRequest(intentMap)
 })
