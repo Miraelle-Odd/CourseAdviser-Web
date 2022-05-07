@@ -12,6 +12,19 @@ import AboutWhyLayout from '../../../components/LayoutComponents/AboutPage/About
 import AboutFeedbackLayout from '../../../components/LayoutComponents/AboutPage/AboutFeedbackLayout'
 
 export default function AboutUs(props) {
+    const [listOfFeedbacks, setListOfFeedbacks] = useState([])
+
+    useEffect(() => {
+        const getListFeedbacks = async () => {
+            await axios.get("http://localhost:8080/exstudents/get-feedback")
+                .then(async(res) => {
+                    setListOfFeedbacks(res.data)
+                })
+
+        }
+        getListFeedbacks().catch(console.error)
+    }, [])
+
     return (
         <Fragment>
             <AboutIntroLayout> </AboutIntroLayout>
@@ -26,7 +39,9 @@ export default function AboutUs(props) {
 
             <AboutWhyLayout> </AboutWhyLayout>
 
-            <AboutFeedbackLayout> </AboutFeedbackLayout>
+            <AboutFeedbackLayout
+                feedbacks={listOfFeedbacks}
+            > </AboutFeedbackLayout>
 
             <Footer> </Footer>
 

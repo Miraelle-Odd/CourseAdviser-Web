@@ -32,6 +32,8 @@ const staff = require("./routes/Staffs");
 app.use("/staffs", staff);
 const post = require("./routes/Posts");
 app.use("/posts", post);
+const exstudents = require("./routes/Exstudents");
+app.use("/exstudents", exstudents)
 const QA = require("./routes/Q_and_as");
 app.use("/q-and-as", QA);
 const accounts = require("./routes/Accounts");
