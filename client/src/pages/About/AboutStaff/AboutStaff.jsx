@@ -26,7 +26,7 @@ export default function AboutStaff(props) {
         getListAdvisers().catch(console.error)
 
         const getListTeachers = async () => {
-            const result = await axios.get("http://localhost:8080/Staffs/type/Teacher/Top4")
+            const result = await axios.get("http://localhost:8080/Staffs/type/Teacher/Top24")
             setListOfTeachers(result.data)
         }
         getListTeachers().catch(console.error)
@@ -49,7 +49,8 @@ export default function AboutStaff(props) {
 
             <StaffTeacherLayout
                 title="Đội ngũ giảng dạy uyên bác"
-                listItem={listOfTeachers}>
+                listItem={listOfTeachers}
+                slider>
             </StaffTeacherLayout>
 
             <Footer></Footer>
