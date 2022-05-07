@@ -12,6 +12,8 @@ export default function MainPost(props) {
     const [listOfAcademic, setListOfAcademic] = useState([])
     const [listOfEvent, setListOfEvent] = useState([])
     const [listOfDiscount, setListOfDiscount] = useState([])
+    const [listOfSlider, setListOfSlider] =useState([])
+
     useEffect(() => {
         const getListAcademics = async () => {
             const result = await axios.get("http://localhost:8080/Posts/Academic/Top2")
@@ -30,11 +32,25 @@ export default function MainPost(props) {
             setListOfDiscount(result.data)
         }
         getListDiscount().catch(console.error)
+
+        const getListSlider = async () => {
+            await axios.get("http://localhost:8080/Posts/all/top5")
+            .then(async(res)=>{
+                await res.data.map((item, index)=>{
+                    item.link="/main-post/" + item.post_type + "/post-details/" + item.post_id
+                })
+                setListOfSlider(res.data)
+            })  
+        }
+        getListSlider().catch(console.error)
+        
     }, [])
 
-    console.log("academic", listOfAcademic)
-    console.log("event", listOfEvent)
-    console.log("discount", listOfDiscount)
+    // console.log("academic", listOfAcademic)
+    // console.log("event", listOfEvent)
+    // console.log("discount", listOfDiscount)
+    // console.log("slider", listOfSlider)
+    
     return (
         <Fragment>
             <div className='float-btn-container'>
@@ -50,7 +66,9 @@ export default function MainPost(props) {
                     name="Chatbot tư vấn"
                 ></FloatBtn>
             </div>
-            <PostSliderLayout> </PostSliderLayout>
+            <PostSliderLayout
+                items={listOfSlider}
+            > </PostSliderLayout>
 
             <PostSpecialLayout
                 type="blue"
