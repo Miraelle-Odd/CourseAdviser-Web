@@ -5,6 +5,7 @@ import img from '../../../assets/icons/post-noimg.png';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Link} from 'react-router-dom'
+import moment from 'moment'
 
 const SliderItem = (props) => {
     return (
@@ -13,7 +14,7 @@ const SliderItem = (props) => {
             <Link className='info-layer' to={props.link? props.link : "#"}>
                 <span className='title'>{props.title ? props.title : "NO TITLE"}</span>
                 <span className='date'>
-                    Posted on {props.date ? props.date : " Month DD, YYYY "} by
+                    Posted on {props.date ? moment(props.date).format("LL") : " Month DD, YYYY "} by
                     <span className='author'>{props.author ? props.author : "anomynous"}</span>
                 </span>
             </Link>
