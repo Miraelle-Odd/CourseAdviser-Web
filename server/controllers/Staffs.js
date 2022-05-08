@@ -10,6 +10,15 @@ const getTop4WithType = async(req, res) => {
     })
     res.send(result)
 }
+const getTop24WithType = async(req, res) => {
+    const result = await Staffs.findAll({
+        where: {
+            staff_type: req.params.type
+        },
+        limit: 24
+    })
+    res.send(result)
+}
 const getTop4WithCourse = async(req, res) => {
     const result = await Staffs.findAll({
         where: {
@@ -22,5 +31,6 @@ const getTop4WithCourse = async(req, res) => {
 
 module.exports = {
     getTop4WithType,
+    getTop24WithType,
     getTop4WithCourse,
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import {
     Link,
     NavLink,
@@ -13,7 +13,7 @@ import ForgotPassword from '../PopupComponents/ForgotPassword/ForgotPassword';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cookies from 'js-cookie'
-
+import jwt_decode from 'jwt-decode'
 const homeLink = "/";
 const courseLink = "/courses";
 const aboutLink = "/about";
@@ -26,13 +26,11 @@ const aboutUsLink = "/about/us";
 const aboutStaffLink = "/about/staff";
 const QaLink = "/about/qa/1"
 const aboutContactLink = "/about/contact";
-
-const adminManageAccount = "/admin-manage-account";
-const adminManageChatbot = "/admin-manage-chatbot";
-const adminManagePost = "/admin-manage-post";
-const adminManageQa = "/admin-manage-qa";
-const userSetting = "/user-setting";
-
+const adminManageAccount = "/workplace/employee-management";
+const adminManageChatbot = "/workplace/chatbot-management";
+const adminManagePost = "/workplace/post-management";
+const adminManageQa = "/workplace/q-and-a-management";
+const userSetting = "/workplace/account-setting";
 
 let navbarItems = [
     {
@@ -142,11 +140,16 @@ export default function NavigationBar(props) {
         setIsShowLogin(false);
         setIsShowForgot(false);
     }
-    
+
     useEffect(() => {
         changeBackground();
         window.addEventListener('scroll', changeBackground);
     }, [])
+
+    var currentUser
+    if (cookies.get('accessToken')) {
+        currentUser = jwt_decode(cookies.get('accessToken'))
+    }
 
     const changeBackground = () => {
         if (window.pageYOffset >= 100) {
@@ -155,7 +158,7 @@ export default function NavigationBar(props) {
             setNavbar(true);
         }
     }
-    
+
     const renderItemNavbar_WithDropdown = (actionButton, item) => (
         <button className='item-button header-center'>
             <ul className="item-click-dropdown">
@@ -182,7 +185,7 @@ export default function NavigationBar(props) {
                     <div className={position === "/" && navbar ? "navbar-user-contain header-center" : "no-border navbar-user-contain header-center"}>
                         <img className="user-avatar" src={image} alt="" ></img>
                         <span className="user-name header-center">{name}</span>
-                        <FontAwesomeIcon className='navbar-icon ' icon={['fas','chevron-down']}></FontAwesomeIcon>
+                        <FontAwesomeIcon className='navbar-icon ' icon={['fas', 'chevron-down']}></FontAwesomeIcon>
                     </div>
                     <ul className="item-click-dropdown user-dropdown">
                         <li>
@@ -195,20 +198,20 @@ export default function NavigationBar(props) {
                         <li><div className='dropdown-line'></div>
                         </li>
                         {listItem.map((subItem, index) => subItem.displayName != null && (
-                            <Link className="no-decoration" to={subItem.link} key={index}>
+                            <a className="no-decoration" href={subItem.link} key={index}>
                                 <li className="dropdown-item dropdown-item-with-icon header-center" >
                                     {subItem.displayName}
-                                    <FontAwesomeIcon className='dropdown-item-icon' icon={['fas','chevron-right']}></FontAwesomeIcon>
+                                    <FontAwesomeIcon className='dropdown-item-icon' icon={['fas', 'chevron-right']}></FontAwesomeIcon>
                                 </li>
-                                
-                            </Link>
+
+                            </a>
                         ))}
                         <li><div className='dropdown-line'></div>
                         </li>
                         <li className="dropdown-item no-decoration">
                             <div className="dropdown-footer  header-center" onClick={onLogout}>
                                 <span className='dropdown-logout'>Đăng xuất</span>
-                                <FontAwesomeIcon className='dropdown-logout-icon' icon={['fas','right-from-bracket']}></FontAwesomeIcon>
+                                <FontAwesomeIcon className='dropdown-logout-icon' icon={['fas', 'right-from-bracket']}></FontAwesomeIcon>
                             </div>
                         </li>
                     </ul>
@@ -275,7 +278,9 @@ export default function NavigationBar(props) {
                                 </Modal>
                             </li>) :
                             (
-                                renderUserToggle(props.userFullname, props.userAvatar, props.userEmail, managerDropdownItems)
+                                currentUser.account.position == "manager" ?
+                                    renderUserToggle(props.userFullname, props.userAvatar, props.userEmail, managerDropdownItems) :
+                                    renderUserToggle(props.userFullname, props.userAvatar, props.userEmail, employeeDropdownItems)
                             )
                     }
                 </ul>

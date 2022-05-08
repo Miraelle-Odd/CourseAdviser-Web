@@ -1,10 +1,10 @@
-.about-fb-layout-center{
+.about-fb-layout-center {
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
-.about-fb-layout-content{
+
+.about-fb-layout-content {
     width: 100%;
     height: 777px;
     background-image: url("../../../assets/icons/bg-about-feedback.png");
@@ -14,15 +14,17 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-.about-fb-layout-content .about-fb-layout-title{
+
+.about-fb-layout-content .about-fb-layout-title {
     width: 726px;
     height: 104px;
-    background-color: rgba(255,255,255,0.8);
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px 100px;
     margin-top: 70px;
 }
-.about-fb-layout-detail{
+
+.about-fb-layout-detail {
     width: 478px;
     height: 74px;
     color: #B62F05;
@@ -31,18 +33,66 @@
     line-height: 75px;
     margin: auto auto;
 }
-.about-fb-layout-content .about-fb-layout-row{
+
+.about-fb-layout-content .about-fb-layout-row {
     display: flex;
     margin: 45px auto 50px auto;
+    justify-content: center;
 }
-.about-fb-layout-row .about-fb-layout-space{
+
+.about-fb-layout-row .about-fb-layout-space {
     width: 30px;
 }
-.about-fb-layout-content .about-fb-layout-indicator{
+
+.about-fb-layout-content .about-fb-layout-indicator {
     width: 328px;
     height: 38px;
-    background-color: rgba(255,255,255,0.9);
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 19px;
+}
 
+.feedback-slider {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    height: 500px;
+}
+
+.feedback-slider .carousel {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+    overflow: visible;
+}
+
+.feedback-slider .carousel .control-dots {
+    height: 38px;
+    width: 328px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    align-self: center;
+    bottom: -50px;
+}
+
+.feedback-slider .carousel .control-dots .dot {
+    border: 2px solid #ffa05c;
+    box-shadow: none;
+    width: 17px;
+    height: 17px;
+    background-color: transparent;
+}
+
+.feedback-slider .carousel .control-dots .selected {
+    background-color: #FFAB6F;
+}
+
+.about-fb-layout-row .flex {
+    display: flex;
 }
