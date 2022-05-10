@@ -12,6 +12,7 @@ export default function CreateAccount(props) {
     const [email, setEmail] = useState("")
     const [position, setPosition] = useState("employee")
     const [error, setError] = useState()
+    const [type, setType] = useState(0)
 
     const onConfirm = () => {
         if (!username) {
@@ -51,9 +52,9 @@ export default function CreateAccount(props) {
                 } else {
                     res.data.password = password
                     const activation = axios.post("http://localhost:8080/mail/account-activation", res.data)
-                    .then(ress=>{
-                        setError("Register success. " + ress.data)
-                    })
+                        .then(ress => {
+                            setError("Register success. " + ress.data)
+                        })
                 }
             })
     }
@@ -95,18 +96,27 @@ export default function CreateAccount(props) {
                     value: "manager",
                     displayText: "Quản lý"
                 }
-            ],
-            onChange: (e) => setPosition(e.target.value)
+            ]
         }
     ]
 
+    const testSortHandler = (e) => {
+        setType(e.target.value)
+        if (e.target.value == 0)
+            setPosition("employee")
+        if (e.target.value == 1)
+            setPosition("manager")
+        //Handle chosen sort option code
+    }
     return (
         <Fragment>
             <CreateForm
                 handleFormClose={props.handleFormClose}
                 listItem={createListItem}
                 handleFormConfirm={onConfirm}
-                error={error}>
+                error={error}
+                test={testSortHandler}
+                type={type}>
             </CreateForm>
         </Fragment>
     )
