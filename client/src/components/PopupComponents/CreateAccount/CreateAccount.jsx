@@ -4,12 +4,8 @@ import { Fragment } from 'react/cjs/react.production.min';
 import CreateForm from '../PopupSourceComponents/GenericForm/CreateForm';
 import axios from 'axios'
 import validator from 'validator'
-import jwt_decode from 'jwt-decode'
-import { useNavigate, useParams } from "react-router-dom";
 
 export default function CreateAccount(props) {
-    let navigate = useNavigate()
-
     const [fullname, setFullname] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -54,7 +50,7 @@ export default function CreateAccount(props) {
                         else
                             setError("Errors happened. Try again later")
                 } else {
-                    res.data.password = jwt_decode(res.data.password)
+                    res.data.password = password
                     const activation = axios.post("http://localhost:8080/mail/account-activation", res.data)
                         .then(ress => {
                             setError("Register success. " + ress.data)
@@ -99,7 +95,7 @@ export default function CreateAccount(props) {
                 {
                     value: "manager",
                     displayText: "Quản lý"
-                },
+                }
             ]
         }
     ]
