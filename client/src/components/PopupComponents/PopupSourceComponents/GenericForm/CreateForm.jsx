@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './CreateForm.css'
 import SortComboBox from '../../../ComboBoxComponents/SortComboBox';
 import { Fragment } from 'react/cjs/react.production.min';
@@ -18,10 +18,7 @@ const sortItems = [
 export default function CreateForm(props) {
     const [inputValue, setInputValue] = useState();
 
-    const sortHandler = (e) => {
-        console.log(e.target.value);
-        //Handle chosen sort option code
-    }
+
     return (
         <Fragment>
             <div className='create-form-contain'>
@@ -50,10 +47,11 @@ export default function CreateForm(props) {
                             <div className='edit-form-item create-form-item'>
                                 <p className='edit-form-item-title create-form-item-position'>Loại tài khoản</p>
                                 <SortComboBox
-                                    onChange={item.onChange ? item.onChange : sortHandler}
+                                    onChange={props.test}
                                     customClassName="sort-position margin-right-63"
-                                    items={item.items ? item.items : sortItems}
-                                ></SortComboBox>
+                                    items={sortItems}
+                                    defaultValue={props.type}>
+                                </SortComboBox>
                             </div>
                         ))
                     }
