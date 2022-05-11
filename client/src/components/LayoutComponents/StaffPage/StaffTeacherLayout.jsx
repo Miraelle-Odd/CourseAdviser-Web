@@ -10,7 +10,7 @@ export default function StaffTeacherLayout(props) {
     for (var i = 0; i < props.listItem.length; i = i + 4) {
         teacherGroups.push(props.listItem.slice(i, i + 4))
     }
-
+    console.log(teacherGroups)
     return (
         <Fragment>
             <div className="staff-teacher-content">
@@ -24,19 +24,20 @@ export default function StaffTeacherLayout(props) {
                                 showArrows={false}
                                 showThumbs={false}
                                 showStatus={false}
+                                autoFocus={true}
                                 autoPlay={true}
                                 infiniteLoop={true}
-                                interval={3000}
-                            >
-                                {teacherGroups.map((item, index) => {
-                                    return (
-                                        <StaffCardLayout
-                                            key={index}
-                                            listItem={item}>
-                                        </StaffCardLayout>
-                                    )
-                                })}
-
+                                interval={2000}
+                                transitionTime={800}>
+                                {
+                                    teacherGroups.map((item, index) => {
+                                        return (
+                                            <StaffCardLayout
+                                                key={index}
+                                                listItem={item}>
+                                            </StaffCardLayout>
+                                        )
+                                    })}
                             </Carousel>
                             :
                             <StaffCardLayout
