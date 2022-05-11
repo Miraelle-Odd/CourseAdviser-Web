@@ -186,7 +186,8 @@ const QaManagement = props => {
                 onRequestClose={() => handleFormClose()}
                 className="popup-modal"
                 overlayClassName="popup-overlay"
-                shouldCloseOnOverlayClick={false}>
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
                 <CreateQa
                     handleFormClose={() => handleFormClose()}>
                 </CreateQa>
@@ -196,7 +197,8 @@ const QaManagement = props => {
                 onRequestClose={() => handleFormClose()}
                 className="popup-modal"
                 overlayClassName="popup-overlay"
-                shouldCloseOnOverlayClick={false}>
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
                 <UpdateQa
                     question="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
                     answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
@@ -208,7 +210,8 @@ const QaManagement = props => {
                 onRequestClose={() => handleFormClose()}
                 className="popup-modal"
                 overlayClassName="popup-overlay"
-                shouldCloseOnOverlayClick={false}>
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
                 <ViewQa
                     question="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
                     answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"

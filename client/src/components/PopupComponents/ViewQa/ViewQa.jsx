@@ -17,7 +17,11 @@ export default function ViewQa(props) {
             const result = await axios.get(`http://localhost:8080/q-and-as/get-qa/${props.idItem}`)
             .then(res => {
                 if (res) {
-                    console.log(res)
+                    setMainSub(res.data.main_subject)
+                    setSubSub1(res.data.sub_subject_a)
+                    setSubSub2(res.data.sub_subject_b)
+                    setQuestion(res.data.question)
+                    setAnswer(res.data.answer)
                 }
             })
         }
@@ -29,11 +33,12 @@ export default function ViewQa(props) {
                 isView={true}
                 title="Nội dung hỏi đáp"
                 subTitle="Hiển thị các thông tin câu hỏi và trả lời của mục giải đáp"
-                question={props.question}
-                answer={props.answer}
+                question={question}
+                answer={answer}
                 handleFormClose={props.handleFormClose}
-                sortItems_Topic={sortItems_Topic}
-                sortItems_Sub1={sortItems_Sub1}>
+                sortItems_Topic={mainSub}
+                sortItems_Sub1={subSub1}
+                sortItems_Sub2={subSub2}>
             </QaForm>
         </Fragment>
     )
