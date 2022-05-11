@@ -60,7 +60,7 @@ const WorkplacePostUpdate = props => {
             post_status: status_convert,
             author_id: author,
         }
-        console.log(params)
+        //console.log(params)
         const result = axios.post("http://localhost:8080/posts/update-post/", params)
             .then(res => {
                 console.log("dsadsad", res.data)

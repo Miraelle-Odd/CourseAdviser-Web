@@ -10,5 +10,6 @@ router.get("/get-active-count/:category", Q_and_as.getActiveCountByMainSubject)
 router.get("/get-inactive-count/:category", Q_and_as.getInactiveCountByMainSubject)
 router.get("/get-list/:category", Q_and_as.getListQAByMainSubject)
 router.get("/get-list/:category/:page", Q_and_as.getListQAByMainSubject)
+router.get("/get-qa/:id", Q_and_as.getQaById)
 
 module.exports = router

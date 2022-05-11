@@ -10,15 +10,6 @@ import ViewQa from '../../components/PopupComponents/ViewQa/ViewQa'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
-const onOpenClickHandle = () => {
-    alert("Open Sesame")
-
-}
-
-const onEditClickHandle = () => {
-    alert("Edit Sesame")
-}
-
 const qaListFormat = [
     {
         name: "question",
@@ -46,13 +37,6 @@ const qaListFormat = [
     }
 ]
 
-const qaData1 = [
-    {
-        question: "Question blabh XXX XXX XXXXX XXX XXXXX XXX XX",
-        answer: "XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX...."
-    }
-]
-
 const lcItems = [
     {
         display: "Tất cả",
@@ -76,21 +60,6 @@ const lcItems = [
     },
 ]
 
-const statisticItems = [
-    {
-        fieldName: "Tổng cộng",
-        fieldValue: 21
-    },
-    {
-        fieldName: "Hoạt động",
-        fieldValue: 20
-    },
-    {
-        fieldName: "Khóa",
-        fieldValue: 1
-    },
-]
-
 
 const QaManagement = props => {
     let { category, page } = useParams()
@@ -105,6 +74,8 @@ const QaManagement = props => {
     const [totalCount, setTotalCount] = useState(0)
     const [activeCount, setActiveCount] = useState(0)
     const [inactiveCount, setInactiveCount] = useState(0)
+
+    const [idItem, setIdItem] = useState()
 
     useEffect(() => {
         const getListCount = axios.get("http://localhost:8080/q-and-as/get-count/" + category)
@@ -124,6 +95,7 @@ const QaManagement = props => {
         const getList = axios.get("http://localhost:8080/q-and-as/get-list/" + category + "/" + (page - 1))
             .then((res) => {
                 res.data.map((item, index) => {
+                    item.id = item.qa_id
                     if (item.status == "enabled")
                         item.active = true
                     else
@@ -158,7 +130,9 @@ const QaManagement = props => {
     const onUpdateClick = () => {
         setIsShowUpdate(true);
     }
-    const onViewClick = () => {
+    const onViewClick = (e) => {
+         const id = e.currentTarget.attributes.getNamedItem("value").value
+        setIdItem(id);
         setIsShowView(true);
     }
     const handleFormClose = () => {
@@ -238,7 +212,8 @@ const QaManagement = props => {
                 <ViewQa
                     question="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
                     answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
-                    handleFormClose={() => handleFormClose()}>
+                    handleFormClose={() => handleFormClose()}
+                    idItem={idItem}>
                 </ViewQa>
             </Modal>
         </div>

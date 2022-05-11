@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
             guarantee: 5,
             min_age: 0,
             max_age: 0,
-            basic_fee: 150000,
+            basic_fee: 180800,
             fee_unit: "class"
         },
         {
@@ -92,7 +92,7 @@ module.exports = (sequelize, DataTypes) => {
             guarantee: 300,
             min_age: 0,
             max_age: 0,
-            basic_fee: 150000,
+            basic_fee: 180800,
             fee_unit: "class"
         },
         {
@@ -136,7 +136,7 @@ module.exports = (sequelize, DataTypes) => {
             guarantee: 0,
             min_age: 6,
             max_age: 11,
-            basic_fee: 1500000,
+            basic_fee: 1808000,
             fee_unit: "course"
         },
         {
