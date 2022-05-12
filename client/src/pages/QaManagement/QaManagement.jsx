@@ -149,6 +149,7 @@ const QaManagement = props => {
                     fieldFormat={qaListFormat}
                     data={qaData}
                     categoryItems={lcItems}
+                    statisticPanel
                     statisticItems={[
                         {
                             fieldName: "Tổng cộng",

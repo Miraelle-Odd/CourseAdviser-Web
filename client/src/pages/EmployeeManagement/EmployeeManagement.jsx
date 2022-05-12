@@ -174,6 +174,7 @@ const EmployeeManagement = props => {
                     fieldFormat={empListFormat}
                     data={empData}
                     categoryItems={lcItems}
+                    statisticPanel
                     statisticItems={[
                         {
                             fieldName: "Tổng cộng",

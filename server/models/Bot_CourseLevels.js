@@ -45,6 +45,11 @@ module.exports = (sequelize, DataTypes) => {
         fee_unit: {
             type: DataTypes.STRING(10),
             allowNull: false,
+        },
+        level_status: {
+            type: DataTypes.STRING(8),
+            allowNull: false,
+            defaultValue: "disabled"
         }
     }, {
         charset: 'utf8mb4',
@@ -59,8 +64,9 @@ module.exports = (sequelize, DataTypes) => {
             guarantee: 5,
             min_age: 0,
             max_age: 0,
-            basic_fee: 180800,
-            fee_unit: "class"
+            basic_fee: 150000,
+            fee_unit: "buổi",
+            level_status: "enabled"
         },
         {
             level_name: "INTER",
@@ -71,7 +77,8 @@ module.exports = (sequelize, DataTypes) => {
             min_age: 0,
             max_age: 0,
             basic_fee: 160000,
-            fee_unit: "class"
+            fee_unit: "buổi",
+            level_status: "enabled"
         },
         {
             level_name: "ADV",
@@ -82,7 +89,8 @@ module.exports = (sequelize, DataTypes) => {
             min_age: 0,
             max_age: 0,
             basic_fee: 170000,
-            fee_unit: "class"
+            fee_unit: "buổi",
+            level_status: "enabled"
         },
         {
             level_name: "PRE",
@@ -92,8 +100,9 @@ module.exports = (sequelize, DataTypes) => {
             guarantee: 300,
             min_age: 0,
             max_age: 0,
-            basic_fee: 180800,
-            fee_unit: "class"
+            basic_fee: 150000,
+            fee_unit: "buổi",
+            level_status: "enabled"
         },
         {
             level_name: "INTER",
@@ -104,7 +113,8 @@ module.exports = (sequelize, DataTypes) => {
             min_age: 0,
             max_age: 0,
             basic_fee: 160000,
-            fee_unit: "class"
+            fee_unit: "buổi",
+            level_status: "enabled"
         },
         {
             level_name: "ADV",
@@ -115,7 +125,8 @@ module.exports = (sequelize, DataTypes) => {
             min_age: 0,
             max_age: 0,
             basic_fee: 170000,
-            fee_unit: "class"
+            fee_unit: "buổi",
+            level_status: "enabled"
         },
         {
             level_name: "JUMPSTART",
@@ -126,7 +137,8 @@ module.exports = (sequelize, DataTypes) => {
             min_age: 3,
             max_age: 6,
             basic_fee: 1300000,
-            fee_unit: "course"
+            fee_unit: "toàn khóa",
+            level_status: "enabled"
         },
         {
             level_name: "JUNIOR",
@@ -136,8 +148,9 @@ module.exports = (sequelize, DataTypes) => {
             guarantee: 0,
             min_age: 6,
             max_age: 11,
-            basic_fee: 1808000,
-            fee_unit: "course"
+            basic_fee: 1500000,
+            fee_unit: "toàn khóa",
+            level_status: "enabled"
         },
         {
             level_name: "TEEN",
@@ -148,7 +161,8 @@ module.exports = (sequelize, DataTypes) => {
             min_age: 11,
             max_age: 16,
             basic_fee: 1700000,
-            fee_unit: "course"
+            fee_unit: "toàn khóa",
+            level_status: "enabled"
         },
         {
             level_name: "SPEAKING FOR COMMUNITY",
@@ -159,7 +173,8 @@ module.exports = (sequelize, DataTypes) => {
             min_age: 0,
             max_age: 0,
             basic_fee: 160000,
-            fee_unit: "class"
+            fee_unit: "buổi",
+            level_status: "enabled"
         },
         {
             level_name: "ADVANCE WRITING",
@@ -170,7 +185,8 @@ module.exports = (sequelize, DataTypes) => {
             min_age: 0,
             max_age: 0,
             basic_fee: 160000,
-            fee_unit: "class"
+            fee_unit: "buổi",
+            level_status: "enabled"
         },
     ]
 

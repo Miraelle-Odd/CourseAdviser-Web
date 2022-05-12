@@ -138,3 +138,13 @@
     cursor: pointer;
     background-color: #669BD9;
 }
+
+.chatbot-container {
+    margin-left: 8px;
+    width: 20.9%;
+    height: 85.6%;
+    background: #F8F8F8;
+    align-self: end;
+    display: flex;
+    flex-direction: column;
+}

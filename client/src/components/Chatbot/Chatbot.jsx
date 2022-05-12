@@ -5,6 +5,88 @@ import Modal from 'react-modal';
 import axios from "axios";
 import placeholder from '../../assets/icons/post-noimg.png'
 
+const ChatBubble = (props) => {
+    return (
+        <div className={!props.human ? "chat-content left" : "chat-content right"}>
+            {
+                !props.human ?
+                    <span className="chatbot-avatar">
+                        <FontAwesomeIcon icon="robot"></FontAwesomeIcon>
+                    </span>
+                    : ""
+            }
+            <span className={!props.human ? "chat-bubble chatbot" : "chat-bubble guest"}>{props.chat}</span>
+        </div>
+    )
+}
+
+const ChatCard = (props) => {
+    return (
+        <div className="chat-content left">
+            {
+                !props.human ?
+                    <span className="chatbot-avatar">
+                        <FontAwesomeIcon icon="robot"></FontAwesomeIcon>
+                    </span>
+                    : ""
+            }
+            <div className="chat-card">
+                <div className="card-img-section">
+                    <img className="card-img" src={props.imageUri ? props.imageUri : placeholder}></img>
+                    <div className="card-introduction">
+                        <span className="title">{props.title ? props.title : "N/A"}</span>
+                        <span className="description">{props.subtitle ? props.subtitle : "N/A"}</span>
+                    </div>
+                </div>
+                <div className="card-btn-section">
+                    {props.buttons ? props.buttons.map((item, index) => {
+                        return (
+                            <div className="card-btn" key={index}
+                                onClick={() => {
+                                    window.open(item.postback ? item.postback : "#", "_blank")
+                                }}>
+                                <span className="icon">
+                                    <FontAwesomeIcon icon={['fas', 'arrow-up-right-from-square']}></FontAwesomeIcon>
+                                </span>
+                                {item.text ? item.text : "Click me"}
+                            </div>
+                        )
+                    })
+                        : ""}
+
+                </div>
+            </div>
+
+        </div>
+    )
+}
+const ChatSuggestion = (props) => {
+    return (
+        <div className="chat-content left">
+            {
+                !props.human ?
+                    <span className="chatbot-avatar">
+                        <FontAwesomeIcon icon="robot"></FontAwesomeIcon>
+                    </span>
+                    : ""
+            }
+            <div className="chat-suggestions">
+                {
+                    props.quickReplies ? props.quickReplies.map((item, index) => {
+                        return (
+                            <span key={index}
+                                className="chat-suggestion"
+                                onClick={props.onClick}
+                            >{item}</span>
+                        )
+                    })
+                        : ""
+                }
+
+            </div>
+        </div>
+    )
+}
 const Chatbot = (props) => {
     const messagesEndRef = useRef(null)
     const [message, setMessage] = useState("");
@@ -50,7 +132,7 @@ const Chatbot = (props) => {
             const result = await axios.post(`http://localhost:8080/chat/dialogflow/vi/` + req + `/abcd123`)
                 .then(res => {
                     addBotMessage(req, res.data)
-                    
+
                 })
         }
     }
@@ -66,82 +148,6 @@ const Chatbot = (props) => {
             }
         ))
         scrollToBottom()
-    }
-
-    const ChatBubble = (props) => {
-        return (
-            <div className={!props.human ? "chat-content left" : "chat-content right"}>
-                {
-                    !props.human ?
-                        <span className="chatbot-avatar">
-                            <FontAwesomeIcon icon="robot"></FontAwesomeIcon>
-                        </span>
-                        : ""
-                }
-                <span className={!props.human ? "chat-bubble chatbot" : "chat-bubble guest"}>{props.chat}</span>
-            </div>
-        )
-    }
-
-    const ChatCard = (props) => {
-        return (
-            <div className="chat-content left">
-                <span className="chatbot-avatar">
-                    <FontAwesomeIcon icon="robot"></FontAwesomeIcon>
-                </span>
-                <div className="chat-card">
-                    <div className="card-img-section">
-                        <img className="card-img" src={props.imageUri ? props.imageUri : placeholder}></img>
-                        <div className="card-introduction">
-                            <span className="title">{props.title ? props.title : "N/A"}</span>
-                            <span className="description">{props.subtitle ? props.subtitle : "N/A"}</span>
-                        </div>
-                    </div>
-                    <div className="card-btn-section">
-                        {props.buttons ? props.buttons.map((item, index) => {
-                            return (
-                                <div className="card-btn" key = {index}
-                                    onClick={() => {
-                                        window.open(item.postback ? item.postback : "#", "_blank")
-                                    }}>
-                                    <span className="icon">
-                                        <FontAwesomeIcon icon={['fas', 'arrow-up-right-from-square']}></FontAwesomeIcon>
-                                    </span>
-                                    {item.text ? item.text : "Click me"}
-                                </div>
-                            )
-                        })
-                            : ""}
-
-                    </div>
-                </div>
-
-            </div>
-        )
-    }
-
-    const ChatSuggestion = (props) => {
-        return (
-            <div className="chat-content left">
-                <span className="chatbot-avatar">
-                    <FontAwesomeIcon icon="robot"></FontAwesomeIcon>
-                </span>
-                <div className="chat-suggestions">
-                    {
-                        props.quickReplies ? props.quickReplies.map((item, index) => {
-                            return (
-                                <span key={index}
-                                    className="chat-suggestion"
-                                    onClick={()=>addSuggestion(item)}
-                                >{item}</span>
-                            )
-                        })
-                            : ""
-                    }
-
-                </div>
-            </div>
-        )
     }
 
     return (
@@ -170,8 +176,8 @@ const Chatbot = (props) => {
                             messageList.map((item, index) => {
                                 console.log(item)
                                 return (
-                                    <div key = {index}>
-                                        {                                            
+                                    <div key={index}>
+                                        {
                                             item.human ?
                                                 <ChatBubble
                                                     chat={item.chat}
@@ -201,6 +207,9 @@ const Chatbot = (props) => {
                                                         return (
                                                             <ChatSuggestion
                                                                 quickReplies={chatItem.quickReplies.quickReplies}
+                                                                onClick={(e) => 
+                                                                    addSuggestion(e.target.textContent)
+                                                                }
                                                             ></ChatSuggestion>
                                                         )
                                                     }
@@ -228,3 +237,7 @@ const Chatbot = (props) => {
 }
 
 export default Chatbot
+export {
+    ChatCard,
+    ChatSuggestion
+}

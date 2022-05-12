@@ -48,6 +48,10 @@ const chatBot = require("./routes/ChatBot");
 app.use("/chat", chatBot)
 const webhook = require("./routes/Webhook");
 app.use("/webhook", webhook)
+const botCourses = require("./routes/Bot_AllCourses");
+app.use("/bot-courses", botCourses)
+const botCourseLevels = require("./routes/Bot_CourseLevels");
+app.use("/bot-course-levels", botCourseLevels)
 
 app.use("", (req, res) => {
     res.send("Ngrok start")

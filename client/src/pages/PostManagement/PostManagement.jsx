@@ -147,6 +147,7 @@ const PostManagement = props => {
                     listName="post-management"
                     fieldFormat={postListFormat}
                     categoryItems={lcItems}
+                    statisticPanel
                     statisticItems={[
                         {
                             fieldName: "Tổng cộng",
