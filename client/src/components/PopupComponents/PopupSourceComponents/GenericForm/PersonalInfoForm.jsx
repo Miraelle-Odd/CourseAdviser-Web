@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './PersonalInfoForm.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -17,12 +17,12 @@ export default function PersonalInfoForm(props) {
         }
     ]
     const [inputValue, setInputValue] = useState();
-    const [cbValue, setCbValue] = useState(props.gender);
+    const [cbValue, setCbValue] = useState();
 
-    const sortHandler = (e) => {
-        console.log(e.target.value);
-        //Handle chosen sort option code
-    }
+
+    useEffect(() => {
+        setCbValue(props.gender)
+    }, [props.gender])
     return (
         <Fragment>
             <div className='personal-info-contain'>
@@ -43,7 +43,7 @@ export default function PersonalInfoForm(props) {
                         <div className='personal-info-col-left'>
 
                             {props.listItemLeft.map((item, index) => !item.isPositionSelect ? (
-                                <div className='edit-form-item personal-info-item'>
+                                <div className='edit-form-item personal-info-item' key={index}>
                                     <p className='edit-form-item-title'>{item.title}</p>
                                     <div className='edit-form-input-contain'>
                                         <input
@@ -56,25 +56,25 @@ export default function PersonalInfoForm(props) {
                                     </div>
                                 </div>
                             ) : (
-                                <div className='edit-form-item personal-info-item'>
+                                <div className='edit-form-item personal-info-item' key={index}>
                                     <p className='edit-form-item-title'>Loại tài khoản</p>
                                     {
                                         item.readOnly ?
                                             <div className='edit-form-position-view'>{item.position}</div>
                                             :
                                             <SortComboBox
-                                                onChange={sortHandler}
+                                                onChange={props.test}
                                                 customClassName="sort-position margin-right-63 personal-info-item"
                                                 items={sortItems}
-                                            ></SortComboBox>
+                                                defaultValue={props.type}>
+                                            </SortComboBox>
                                     }
-
                                 </div>
                             ))}
                         </div>
                         <div className='personal-info-col-right'>
                             {props.listItemRight.map((item, index) => !item.isGenderSelect ? (
-                                <div className='edit-form-item personal-info-item'>
+                                <div className='edit-form-item personal-info-item' key={index}>
                                     <p className='edit-form-item-title'>{item.title}</p>
                                     <div className='edit-form-input-contain'>
                                         <input
@@ -87,7 +87,7 @@ export default function PersonalInfoForm(props) {
                                     </div>
                                 </div>
                             ) : (
-                                <div className='edit-form-item'>
+                                <div className='edit-form-item' key={index}>
                                     <p className='edit-form-item-title'>Giới tính:</p>
                                     <div className='edit-form-gender-contain'>
                                         <input className='edit-form-checkbox'
@@ -95,14 +95,14 @@ export default function PersonalInfoForm(props) {
                                             type={"checkbox"}
                                             readOnly={item.readOnly} />
                                         <button className={item.readOnly ? cbValue === 'female' ? "edit-form-gender-button gender-selected gender-female button-disable" : "edit-form-gender-button gender-female button-disable" : cbValue === 'female' ? 'edit-form-gender-button gender-female gender-selected' : 'edit-form-gender-button gender-female'}
-                                            onClick={() => setCbValue('female')}>
+                                            onClick={props.changeGender} value={0}>
                                             <FontAwesomeIcon className='edit-form-gender-icon' icon={['fas', 'venus']} />
                                         </button>
                                         <input className='edit-form-checkbox'
                                             value={cbValue}
-                                            type={"checkbox"} />
+                                            type={"checkbox"}/>
                                         <button className={item.readOnly ? cbValue === 'male' ? "edit-form-gender-button gender-selected button-disable" : 'edit-form-gender-button button-disable' : cbValue === 'male' ? "edit-form-gender-button gender-selected" : 'edit-form-gender-button'}
-                                            onClick={() => setCbValue('male')}>
+                                            onClick={props.changeGender} value={1}>
                                             <FontAwesomeIcon className='edit-form-gender-icon' icon={['fas', 'mars']} />
                                         </button>
                                     </div>
@@ -115,7 +115,7 @@ export default function PersonalInfoForm(props) {
                             ""
                             :
                             <div className='personal-info-confirm-contain'>
-                                <button className='edit-form-confirm-button'>Cập nhật</button>
+                                <button className='edit-form-confirm-button' onClick={props.updateHandler}>Cập nhật</button>
                             </div>
                     }
 

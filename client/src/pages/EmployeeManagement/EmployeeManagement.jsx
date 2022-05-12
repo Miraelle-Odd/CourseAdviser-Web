@@ -92,6 +92,8 @@ const EmployeeManagement = props => {
     const [activeCount, setActiveCount] = useState(0)
     const [inactiveCount, setInactiveCount] = useState(0)
 
+    const [idItem, setIdItem] = useState()
+
     useEffect(() => {
         const getListCount = axios.get("http://localhost:8080/accounts/get-count/" + category)
             .then((res) => {
@@ -111,6 +113,7 @@ const EmployeeManagement = props => {
         const getList = axios.get("http://localhost:8080/accounts/get-list/" + category + "/" + (page - 1))
             .then((res) => {
                 res.data.map((item, index) => {
+                    item.id = item.Personal_Info.account_id
                     item.avatar = item.Personal_Info.avatar
                     item.phoneNumber = item.Personal_Info.phone
                     item.fullname = item.Personal_Info.name
@@ -147,10 +150,14 @@ const EmployeeManagement = props => {
     const onCreateClick = () => {
         setIsShowCreate(true);
     }
-    const onUpdateClick = () => {
+    const onUpdateClick = (e) => {
+        const id = e.currentTarget.attributes.getNamedItem("value").value
+        setIdItem(id);
         setIsShowUpdate(true);
     }
-    const onViewClick = () => {
+    const onViewClick = (e) => {
+        const id = e.currentTarget.attributes.getNamedItem("value").value
+        setIdItem(id);
         setIsShowView(true);
     }
     const handleFormClose = () => {
@@ -206,7 +213,8 @@ const EmployeeManagement = props => {
                 onRequestClose={() => handleFormClose()}
                 className="popup-modal"
                 overlayClassName="popup-overlay"
-                shouldCloseOnOverlayClick={false}>
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
                 <CreateAccount
                     handleFormClose={() => handleFormClose()}>
                 </CreateAccount>
@@ -216,9 +224,11 @@ const EmployeeManagement = props => {
                 onRequestClose={() => handleFormClose()}
                 className="popup-modal"
                 overlayClassName="popup-overlay"
-                shouldCloseOnOverlayClick={false}>
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
                 <UpdateGeneral
-                    handleFormClose={() => handleFormClose()}>
+                    handleFormClose={() => handleFormClose()}
+                    idItem={idItem}>
                 </UpdateGeneral>
             </Modal>
             <Modal
@@ -226,9 +236,11 @@ const EmployeeManagement = props => {
                 onRequestClose={() => handleFormClose()}
                 className="popup-modal"
                 overlayClassName="popup-overlay"
-                shouldCloseOnOverlayClick={false}>
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
                 <ViewGeneral
-                    handleFormClose={() => handleFormClose()}>
+                    handleFormClose={() => handleFormClose()}
+                    idItem={idItem}>
                 </ViewGeneral>
             </Modal>
         </div>
