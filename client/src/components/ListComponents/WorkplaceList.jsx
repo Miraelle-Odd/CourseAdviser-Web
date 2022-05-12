@@ -7,6 +7,7 @@ import WorkplaceListCategory from "./WorkplaceListCategory";
 import { useNavigate, useParams } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import WorkplaceStatistic from "./WorkplaceStatistic";
+import ManagerChatbot from "../Chatbot/ManagerChatbot";
 
 const WorkplaceList = props => {
     const itemsPerPage = 2
@@ -41,13 +42,13 @@ const WorkplaceList = props => {
                     nextLabel=""
                     breakLabel=""
                     disabledClassName="prev-next-disabled"
-                    onPageChange={props.handlePageClick? props.handlePageClick : handlePageClick}
+                    onPageChange={props.handlePageClick ? props.handlePageClick : handlePageClick}
                     renderOnZeroPageCount={null}
                     activeClassName="active"
                     forcePage={props.forcePage}
                 ></ReactPaginate>
                 {
-                    
+
                     props.pageCount != 0 ?
                         <div>
                             <input type="text" className='wp-list-pagination-input' defaultValue={page} onKeyDown={props.onPageTextChange}></input>
@@ -72,6 +73,8 @@ const WorkplaceList = props => {
                                 data={item}
                                 openFun={props.openAction}
                                 editFun={props.editAction}
+                                customOn={props.customOn}
+                                customOff={props.customOff}
                             ></WorkplaceListItem>
                         )
 
@@ -81,11 +84,22 @@ const WorkplaceList = props => {
                 }
             </div>
 
-            <div className="statistics-container">
-                <WorkplaceStatistic
-                    items = {props.statisticItems}
-                ></WorkplaceStatistic>
-            </div>
+            {
+                props.statisticPanel ?
+                    <div className="statistics-container">
+                        <WorkplaceStatistic
+                            items={props.statisticItems}
+                        ></WorkplaceStatistic>
+                    </div>
+                    : ""
+            }
+            {
+                props.chatbot ?
+                    <div className="chatbot-container">
+                        <ManagerChatbot></ManagerChatbot>
+                    </div>
+                    : ""
+            }
         </div>
 
     )

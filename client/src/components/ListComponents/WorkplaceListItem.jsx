@@ -55,6 +55,8 @@ const WorkplaceListItem = props => {
                                     item.statusCell ?
                                         <StatusSwitch
                                             on={data.active}
+                                            customOn={props.customOn}
+                                            customOff={props.customOff}
                                         ></StatusSwitch>
                                         :
                                         Object.entries(data).filter(function ([key, value]) {
@@ -63,7 +65,7 @@ const WorkplaceListItem = props => {
                                             return true;
                                         }).map(([key, value]) => {
                                             return (
-                                                <p key={value}>{value}</p>
+                                                <p className="text-cell" key={value}>{value}</p>
                                             )
                                         })
                             }
