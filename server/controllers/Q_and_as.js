@@ -10,6 +10,9 @@ const getItemPaging = async(req, res) => {
     if (req.params.page)
         page = req.params.page;
     var result = await Q_and_as.findAll({
+        order: [
+            ['qa_id', 'DESC']
+        ],
         limit: 2,
         offset: page * 2,
     })
@@ -71,6 +74,9 @@ const getListQAByMainSubject = async(req, res) => {
         page = req.params.page
     if (req.params.category == "all")
         result = await Q_and_as.findAll({
+            order: [
+                ['qa_id', 'DESC']
+            ],
             limit: 2,
             offset: page * 2,
         })
@@ -79,12 +85,27 @@ const getListQAByMainSubject = async(req, res) => {
             where: {
                 main_subject: req.params.category
             },
+            order: [
+                ['qa_id', 'DESC']
+            ],
             limit: 2,
             offset: page * 2,
         })
     res.send(result)
 }
 
+const getQaById = async(req, res) => {
+    try {
+        const result = await Q_and_as.findOne({
+            where: {
+                qa_id: req.params.id
+            }
+        })
+        res.send(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
 module.exports = {
     getCountAll,
     getItemPaging,
@@ -92,4 +113,5 @@ module.exports = {
     getListQAByMainSubject,
     getActiveCountByMainSubject,
     getInactiveCountByMainSubject,
+    getQaById
 }

@@ -85,13 +85,14 @@
 
 
 /*for customizing carousel */
-
 .post-slider .carousel {
     height: 100%;
     display: flex;
     justify-content: center;
 }
-
+.carousel .slide{
+    background: none!important;
+}
 .post-slider .carousel .slider-wrapper {
     height: 100%;
 }

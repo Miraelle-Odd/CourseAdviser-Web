@@ -18,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
         },
+        gender: {
+            type: DataTypes.STRING(10),
+            allowNull: false,
+            defaultValue: "N/A"
+        },
         location: {
             type: DataTypes.STRING(20),
             allowNull: false,
@@ -44,6 +49,7 @@ module.exports = (sequelize, DataTypes) => {
     const list = [{
             name: "Cao Ngọc Anh",
             birthday: '2001-03-10 00:00:00',
+            gender: 'female',
             location: 'Kon Tum',
             phone: '0000000000',
             avatar: 'https://i.imgur.com/uKqhZDC.jpg',
@@ -52,6 +58,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             name: "emptest1",
             birthday: '2001-03-10 00:00:00',
+            gender: 'female',
             location: 'Hồ Chí Minh',
             phone: '0000000000',
             avatar: 'https://i.imgur.com/acvDZcg.png',
@@ -60,6 +67,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             name: "mantest1",
             birthday: '2001-03-10 00:00:00',
+            gender: 'male',
             location: 'Tokyo',
             phone: '0000000000',
             avatar: 'https://i.imgur.com/acvDZcg.png',
@@ -68,6 +76,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             name: "emptest2",
             birthday: '2001-03-10 00:00:00',
+            gender: 'male',
             location: 'Shanghai',
             phone: '0000000000',
             avatar: 'https://i.imgur.com/acvDZcg.png',
@@ -76,6 +85,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             name: "Cao Ngọc Anh",
             birthday: '2001-03-10 00:00:00',
+            gender: 'female',
             location: 'Kon Tum',
             phone: '0000000000',
             avatar: 'http://i.imgur.com/LSBzGPe.png',
@@ -84,6 +94,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             name: "Ngọc Anh Cute",
             birthday: '2001-03-10 00:00:00',
+            gender: 'male',
             location: 'Kon Tum',
             phone: '0000000000',
             avatar: 'http://i.imgur.com/LFBkN8A.png',

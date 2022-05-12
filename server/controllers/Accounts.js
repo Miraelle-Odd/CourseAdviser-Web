@@ -4,7 +4,7 @@ const { sign, verify } = require("jsonwebtoken");
 
 const saltRounds = 10;
 
-const fetchedDataValidate = async(res) => {
+const fetchedDataValidate = async (res) => {
     return res.account_id &&
         res.username &&
         res.password &&
@@ -16,7 +16,7 @@ const fetchedDataValidate = async(res) => {
         res.updatedAt
 }
 
-const findAccountByUsername = async(req, res) => {
+const findAccountByUsername = async (req, res) => {
     try {
         const result = await Accounts.findOne({
             where: {
@@ -38,7 +38,7 @@ const findAccountByUsername = async(req, res) => {
 
 }
 
-const findAccountByEmail = async(req, res) => {
+const findAccountByEmail = async (req, res) => {
     try {
         const result = await Accounts.findOne({
             where: {
@@ -57,7 +57,7 @@ const findAccountByEmail = async(req, res) => {
     }
 }
 
-const setAccountToken = async(req, res) => {
+const setAccountToken = async (req, res) => {
     try {
         var plain = req.body.email + new Date().toUTCString()
         var hash = bcrypt.hashSync(plain, saltRounds)
@@ -83,7 +83,7 @@ const setAccountToken = async(req, res) => {
     }
 }
 
-const removeAccountToken = async(req, res) => {
+const removeAccountToken = async (req, res) => {
     try {
         const result = await Accounts.update({
             token: "activated"
@@ -101,7 +101,7 @@ const removeAccountToken = async(req, res) => {
     }
 }
 
-const updatePassword = async(req, res) => {
+const updatePassword = async (req, res) => {
     try {
         var hash = bcrypt.hashSync(req.body.password, saltRounds)
         const result = await Accounts.update({
@@ -121,7 +121,7 @@ const updatePassword = async(req, res) => {
     }
 }
 
-const logIn = async(req, res) => {
+const logIn = async (req, res) => {
     try {
         let account = null
         let message = null
@@ -186,7 +186,7 @@ const logIn = async(req, res) => {
     }
 }
 
-const createAccount = async(req, res) => {
+const createAccount = async (req, res) => {
     try {
         const hashedPassword = bcrypt.hashSync(req.body.password, saltRounds)
         var plain = req.body.email + new Date().toUTCString()
@@ -224,7 +224,7 @@ const createAccount = async(req, res) => {
     }
 }
 
-const activateAccount = async(req, res) => {
+const activateAccount = async (req, res) => {
     try {
         const result = await Accounts.update({
             status: "enabled"
@@ -242,7 +242,7 @@ const activateAccount = async(req, res) => {
     }
 }
 
-const changeStatus = async(req, res) => {
+const changeStatus = async (req, res) => {
     try {
         const result = await Accounts.update({
             status: req.body.status
@@ -260,7 +260,7 @@ const changeStatus = async(req, res) => {
     }
 }
 
-const getCountByPosition = async(req, res) => {
+const getCountByPosition = async (req, res) => {
     var result
     if (req.params.position == "all")
         result = await Accounts.count();
@@ -273,7 +273,7 @@ const getCountByPosition = async(req, res) => {
     res.send(result.toString());
 }
 
-const getActiveCountByPosition = async(req, res) => {
+const getActiveCountByPosition = async (req, res) => {
     var result
     if (req.params.position == "all")
         result = await Accounts.count({
@@ -291,7 +291,7 @@ const getActiveCountByPosition = async(req, res) => {
     res.send(result.toString());
 }
 
-const getInactiveCountByPosition = async(req, res) => {
+const getInactiveCountByPosition = async (req, res) => {
     var result
     if (req.params.position == "all")
         result = await Accounts.count({
@@ -309,7 +309,7 @@ const getInactiveCountByPosition = async(req, res) => {
     res.send(result.toString());
 }
 
-const getListAccountByPosition = async(req, res) => {
+const getListAccountByPosition = async (req, res) => {
     var page = 0;
     var result
     if (req.params.page)
@@ -317,6 +317,9 @@ const getListAccountByPosition = async(req, res) => {
     if (req.params.position == "all")
         result = await Accounts.findAll({
             attributes: ['email', 'status'],
+            order: [
+                ['account_id', 'DESC']
+            ],
             limit: 2,
             offset: page * 2,
             include: {
@@ -330,6 +333,9 @@ const getListAccountByPosition = async(req, res) => {
             where: {
                 position: req.params.position
             },
+            order: [
+                ['account_id', 'DESC']
+            ],
             limit: 2,
             offset: page * 2,
             include: {
@@ -338,6 +344,43 @@ const getListAccountByPosition = async(req, res) => {
             }
         })
     res.send(result)
+}
+
+const getDetailById = async (req, res) => {
+    try {
+        const result = await Accounts.findOne({
+            where: {
+                account_id: req.params.id
+            },
+            include: {
+                model: Personal_Infos,
+                as: 'Personal_Info'
+            }
+        })
+        res.send(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+const updateAccountById = async (req, res) => {
+    let accountValues = {
+        position: req.body.position,
+    };
+    let personalValues = {
+        name: req.body.name,
+        birthday: req.body.birthday,
+        gender: req.body.gender,
+        location: req.body.location,
+        phone: req.body.phone
+    };
+    Accounts.update(accountValues, { where: { account_id: req.body.account_id } })
+        .then(
+            Personal_Infos.update(personalValues, { where: { account_id: req.body.account_id } })
+                .then((result) =>
+                    res.send(result)
+                )
+        );
 }
 
 module.exports = {
@@ -353,5 +396,7 @@ module.exports = {
     getListAccountByPosition,
     getActiveCountByPosition,
     getInactiveCountByPosition,
-    logIn
+    logIn,
+    getDetailById,
+    updateAccountById
 }

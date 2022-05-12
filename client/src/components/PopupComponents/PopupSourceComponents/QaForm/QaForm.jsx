@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './QaForm.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -61,9 +61,14 @@ export default function QaForm(props) {
     const [inputValue, setInputValue] = useState();
     const [sub1, setSub1] = useState(sortItems_Sub1_0);
     const [sub2, setSub2] = useState(sortItems_Sub2);
-    const [question, setQuestion] = useState(props.question);
+    const [question, setQuestion] = useState();
     const [answer, setAnswer] = useState(props.answer);
 
+    useEffect(() => {
+        setQuestion(props.question)
+        setAnswer(props.answer)
+    },[props.question, props.answer])
+    
     const sortHandler_Main = (e) => {
         console.log(e.target.value);
         //Handle chosen sort option code
