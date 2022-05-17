@@ -14,7 +14,7 @@ const PostRightMenu = props => {
                     props.items.map((item, index) => {
                         var time = moment(item.updatedAt).format("YYYY-MM-DD hh-mm A");
                         return (
-                            <a href={"/main-post/" + props.category + "/post-details/" + item.post_id} className='list-item-container'>
+                            <a href={"/main-post/" + item.category + "/post-details/" + item.post_id} className='list-item-container'>
                                 <img className='item-thumbnail' src={item.post_img ? item.post_img : placeholder}></img>
                                 <div className='item-info'>
                                     <div className='item-title'>

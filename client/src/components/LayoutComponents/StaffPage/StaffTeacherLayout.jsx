@@ -28,7 +28,8 @@ export default function StaffTeacherLayout(props) {
                                 autoPlay={true}
                                 infiniteLoop={true}
                                 interval={2000}
-                                transitionTime={800}>
+                                transitionTime={800}
+                            >
                                 {
                                     teacherGroups.map((item, index) => {
                                         return (

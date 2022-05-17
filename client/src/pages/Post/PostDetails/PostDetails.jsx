@@ -27,8 +27,6 @@ const latestPosts = [
     }
 ]
 
-
-
 const PostDetails = () => {
     let navigate = useNavigate();
     let { id } = useParams();
@@ -47,11 +45,16 @@ const PostDetails = () => {
 
         const getListTop5 = async () => {
             const result = await axios.get(`http://localhost:8080/Posts/All/Top5`)
-            setListOfTop5(result.data)
+            .then((res)=>{
+                res.data.map((item, index)=>{
+                    item.category = item.post_type
+                })
+                setListOfTop5(res.data)
+            })
+            
         }
         getListTop5().catch(console.error)
     }, [])
-    console.log("aaa", itemDetail)
     return (
         <div>
             <div className='float-btn-container'>
