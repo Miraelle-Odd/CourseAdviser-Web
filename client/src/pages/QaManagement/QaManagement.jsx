@@ -127,8 +127,10 @@ const QaManagement = props => {
     const onCreateClick = () => {
         setIsShowCreate(true);
     }
-    const onUpdateClick = () => {
-        setIsShowUpdate(true);
+    const onUpdateClick = (e) => {
+        const id = e.currentTarget.attributes.getNamedItem("value").value
+        setIdItem(id);
+        setIsShowUpdate(true)
     }
     const onViewClick = (e) => {
          const id = e.currentTarget.attributes.getNamedItem("value").value
@@ -203,7 +205,8 @@ const QaManagement = props => {
                 <UpdateQa
                     question="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
                     answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
-                    handleFormClose={() => handleFormClose()}>
+                    handleFormClose={() => handleFormClose()}
+                    idItem={idItem}>
                 </UpdateQa>
             </Modal>
             <Modal

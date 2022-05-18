@@ -12,18 +12,50 @@ export default function ViewQa(props) {
     const [question, setQuestion] = useState();
     const [answer, setAnswer] = useState();
 
-    useEffect(()=> {
+    useEffect(() => {
         const getQaDetail = async () => {
             const result = await axios.get(`http://localhost:8080/q-and-as/get-qa/${props.idItem}`)
-            .then(res => {
-                if (res) {
-                    setMainSub(res.data.main_subject)
-                    setSubSub1(res.data.sub_subject_a)
-                    setSubSub2(res.data.sub_subject_b)
-                    setQuestion(res.data.question)
-                    setAnswer(res.data.answer)
-                }
-            })
+                .then(res => {
+                    if (res) {
+                        var main_trans
+                        var sub1_trans
+                        var sub2_trans
+                        if (res.data.main_subject == "course") {
+                            main_trans = "Khóa học"
+                            if (res.data.sub_subject_a == "IELTS")
+                                sub1_trans = "IELTS"
+                            if (res.data.sub_subject_a == "TOEIC")
+                                sub1_trans = "TOEIC"
+                            if (res.data.sub_subject_a == "Adult Course")
+                                sub1_trans = "Speaking"
+                            if (res.data.sub_subject_a == "Kid Course")
+                                sub1_trans = "Kids"
+                            if (res.data.sub_subject_b == "tuition")
+                                sub2_trans = "Học phí"
+                            if (res.data.sub_subject_b == "level")
+                                sub2_trans = "Cấp độ"
+                        }
+
+                        if (res.data.main_subject == "center") {
+                            main_trans = "Trung tâm"
+                            if (res.data.sub_subject_a == "contact")
+                                sub1_trans = "Liên hệ"
+                            if (res.data.sub_subject_a == "teaching")
+                                sub1_trans = "Giảng dạy"
+                            if (res.data.sub_subject_a == "register")
+                                sub1_trans = "Đăng ký"
+                            if (res.data.sub_subject_a == "reservation")
+                                sub1_trans = "Bảo lưu"
+                            if (res.data.sub_subject_b == "none")
+                                sub2_trans = "Không"
+                        }
+                        setMainSub(main_trans)
+                        setSubSub1(sub1_trans)
+                        setSubSub2(sub2_trans)
+                        setQuestion(res.data.question)
+                        setAnswer(res.data.answer)
+                    }
+                })
         }
         getQaDetail().catch(console.error)
     }, [])

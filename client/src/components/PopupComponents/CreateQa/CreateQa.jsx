@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './CreateQa.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import QaForm from '../PopupSourceComponents/QaForm/QaForm';
+import axios from 'axios';
 
 const sortItems_Topic = [
     {
@@ -34,19 +35,19 @@ const sortItems_Sub1_0 = [
 const sortItems_Sub1_1 = [
     {
         value: 0,
-        displayText: "Giới thiệu"
+        displayText: "Liên hệ"
     },
     {
         value: 1,
-        displayText: "Lịch sử"
-    },
-    {
-        value: 2,
         displayText: "Giảng dạy"
     },
     {
+        value: 2,
+        displayText: "Đăng ký"
+    },
+    {
         value: 3,
-        displayText: "Thành tích"
+        displayText: "Bảo lưu"
     }
 ]
 const sortItems_Sub2 = [
@@ -56,7 +57,7 @@ const sortItems_Sub2 = [
     },
     {
         value: 1,
-        displayText: "Bảo lưu"
+        displayText: "Cấp độ"
     }
 ]
 
@@ -67,32 +68,60 @@ const sortItems_Sub2Null = [
     }
 ]
 export default function CreateQa(props) {
-
-
     const [question, setQuestion] = useState();
     const [answer, setAnswer] = useState();
 
     const onConfirmClick = () => {
         console.log(question + "     " + answer)
+        var qa_main
+        var qa_sub1
+        var qa_sub2
+        if (typeMain == 0) {
+            qa_main = "course"
+            if (typeSub1 == 0)
+                qa_sub1 = "IELTS"
+            if (typeSub1 == 1)
+                qa_sub1 = "TOEIC"
+            if (typeSub1 == 2)
+                qa_sub1 = "Adult Course"
+            if (typeSub1 == 3)
+                qa_sub1 = ("Kid Course")
+            if (typeSub2 == 0)
+                qa_sub2 = "tuition"
+            if (typeSub2 == 1)
+                qa_sub2 = "level"
 
-        if (typeMain == 0)
-            console.log("course")
-        if (typeMain == 1)
-            console.log("center")
-        if (typeSub1 == 0)
-            console.log("IELTS")
-        if (typeSub1 == 1)
-            console.log("TOEIC")
-        if (typeSub1 == 2)
-            console.log("Speaking")
-        if (typeSub1 == 3)
-            console.log("Kid")
-        if (typeSub2 == -1)
-            console.log("none")
-        if (typeSub2 == 0)
-            console.log("tuition")
-        if (typeSub2 == 1)
-            console.log("reservation")
+        }
+
+        if (typeMain == 1) {
+            qa_main = "center"
+            if (typeSub1 == 0)
+                qa_sub1 = "contact"
+            if (typeSub1 == 1)
+                qa_sub1 = "teaching"
+            if (typeSub1 == 2)
+                qa_sub1 = "register"
+            if (typeSub1 == 3)
+                qa_sub1 = "reservation"
+            if (typeSub2 == 0)
+                qa_sub2 = "none"
+        }
+
+        const params = {
+            main_subject: qa_main,
+            sub_subject_a: qa_sub1,
+            sub_subject_b: qa_sub2,
+            question: question,
+            answer: answer
+        }
+        console.log(params)
+        const result = axios.post("http://localhost:8080/q-and-as/post-qa", params)
+            .then(res => {
+                console.log(res.data)
+                setTimeout(function () {
+                    window.location.reload();
+                }, 3000);
+            })
     }
 
     const [sub1, setSub1] = useState(sortItems_Sub1_0);
@@ -107,7 +136,7 @@ export default function CreateQa(props) {
         if (e.target.value == 1) {
             setSub1(sortItems_Sub1_1)
             setSub2(sortItems_Sub2Null)
-            setTypeSub2(-1)
+            setTypeSub2(0)
         } else {
             setSub1(sortItems_Sub1_0)
             setSub2(sortItems_Sub2)
