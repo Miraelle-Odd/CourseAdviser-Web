@@ -12,4 +12,6 @@ router.get("/get-list/:category", Q_and_as.getListQAByMainSubject)
 router.get("/get-list/:category/:page", Q_and_as.getListQAByMainSubject)
 router.get("/get-qa/:id", Q_and_as.getQaById)
 
+router.post("/post-qa", Q_and_as.createOrUpdateQa)
+
 module.exports = router

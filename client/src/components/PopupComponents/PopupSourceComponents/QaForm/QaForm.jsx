@@ -5,86 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SortComboBox from '../../../ComboBoxComponents/SortComboBox';
 
 
-const sortItems_Sub1_0 = [
-    {
-        value: 0,
-        displayText: "IELTS"
-    },
-    {
-        value: 1,
-        displayText: "TOEIC"
-    },
-    {
-        value: 2,
-        displayText: "Speaking"
-    },
-    {
-        value: 3,
-        displayText: "Kids"
-    }
-]
-const sortItems_Sub1_1 = [
-    {
-        value: 0,
-        displayText: "Giới thiệu"
-    },
-    {
-        value: 1,
-        displayText: "Lịch sử"
-    },
-    {
-        value: 2,
-        displayText: "Giảng dạy"
-    },
-    {
-        value: 3,
-        displayText: "Thành tích"
-    }
-]
-const sortItems_Sub2 = [
-    {
-        value: 0,
-        displayText: "Học phí"
-    },
-    {
-        value: 1,
-        displayText: "Bảo lưu"
-    }
-]
-const sortItems_Sub2Null = [
-    {
-        value: 0,
-        displayText: "Không"
-    }
-]
 export default function QaForm(props) {
-    const [inputValue, setInputValue] = useState();
-    const [sub1, setSub1] = useState(sortItems_Sub1_0);
-    const [sub2, setSub2] = useState(sortItems_Sub2);
-    const [question, setQuestion] = useState();
-    const [answer, setAnswer] = useState(props.answer);
-
-    useEffect(() => {
-        setQuestion(props.question)
-        setAnswer(props.answer)
-    },[props.question, props.answer])
-    
-    const sortHandler_Main = (e) => {
-        console.log(e.target.value);
-        //Handle chosen sort option code
-        if (e.target.value == 1) {
-            setSub1(sortItems_Sub1_1)
-            setSub2(sortItems_Sub2Null)
-        } else {
-            setSub1(sortItems_Sub1_0)
-            setSub2(sortItems_Sub2)
-        }
-
-    }
-    const sortHandler_Sub = (e) => {
-        console.log(e.target.value);
-        //Handle chosen sort option code
-    }
     return (
         <Fragment>
             <div className='qa-form-contain'>
@@ -104,9 +25,10 @@ export default function QaForm(props) {
                                     <div className='qa-form-view'>{props.sortItems_Topic}</div>
                                     :
                                     <SortComboBox
-                                        onChange={sortHandler_Main}
+                                        onChange={props.sortHandler_Main}
                                         customClassName="sort-position margin-right-63 sort-qa"
-                                        items={props.sortItems_Topic}>
+                                        items={props.sortItems_Topic}
+                                        defaultValue={props.typeMain}>
                                     </SortComboBox>
                             }
 
@@ -118,9 +40,10 @@ export default function QaForm(props) {
                                     <div className='qa-form-view'>{props.sortItems_Sub1}</div>
                                     :
                                     <SortComboBox
-                                        onChange={sortHandler_Sub}
+                                        onChange={props.sortHandler_Sub1}
                                         customClassName="sort-position margin-right-63 sort-qa"
-                                        items={sub1}>
+                                        items={props.sub1}
+                                        defaultValue={props.typeSub1}>
                                     </SortComboBox>
                             }
 
@@ -132,9 +55,10 @@ export default function QaForm(props) {
                                     <div className='qa-form-view'>{props.sortItems_Sub2}</div>
                                     :
                                     <SortComboBox
-                                        onChange={sortHandler_Sub}
+                                        onChange={props.sortHandler_Sub2}
                                         customClassName="sort-position margin-right-63 sort-qa"
-                                        items={sub2}>
+                                        items={props.sub2}
+                                        defaultValue={props.typeSub2}>
                                     </SortComboBox>
                             }
                         </div>
@@ -144,13 +68,13 @@ export default function QaForm(props) {
                             <p className='edit-form-item-title create-form-item-position'>Câu hỏi</p>
                             {
                                 props.isView ?
-                                    <div className='qa-form-view-text'> {question} </div>
+                                    <div className='qa-form-view-text'> {props.question} </div>
                                     :
                                     <textarea
                                         className='qa-form-input'
                                         placeholder='XXX xxx XXX'
-                                        value={question}
-                                        onChange={e => { setQuestion(e.target.value); }}>
+                                        value={props.question}
+                                        onChange={props.inputQuestion}>
                                     </textarea>
                             }
 
@@ -159,13 +83,13 @@ export default function QaForm(props) {
                             <p className='edit-form-item-title create-form-item-position'>Trả lời</p>
                             {
                                 props.isView ?
-                                    <div className='qa-form-view-text'> {answer} </div>
+                                    <div className='qa-form-view-text'> {props.answer} </div>
                                     :
                                     <textarea
                                         className='qa-form-input'
                                         placeholder='XXX xxx XXX'
-                                        value={answer}
-                                        onChange={e => { setAnswer(e.target.value); }}>
+                                        value={props.answer}
+                                        onChange={props.inputAnswer}>
                                     </textarea>
                             }
                         </div>
@@ -175,7 +99,7 @@ export default function QaForm(props) {
                 {
                     props.isView ? ""
                         :
-                        <div className='qa-form-confirm-contain'>
+                        <div className='qa-form-confirm-contain' onClick={props.handleConfirm}>
                             <button className='edit-form-confirm-button'>{props.confirmText}</button>
                         </div>
                 }
