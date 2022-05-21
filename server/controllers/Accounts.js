@@ -4,8 +4,8 @@ const { sign, verify } = require("jsonwebtoken");
 
 const saltRounds = 10;
 
-const fetchedDataValidate = async (res) => {
-    return res.account_id &&
+const fetchedDataValidate = (res) => {
+    return res && res.account_id &&
         res.username &&
         res.password &&
         res.position &&
@@ -16,7 +16,7 @@ const fetchedDataValidate = async (res) => {
         res.updatedAt
 }
 
-const findAccountByUsername = async (req, res) => {
+const findAccountByUsername = async(req, res) => {
     try {
         const result = await Accounts.findOne({
             where: {
@@ -27,18 +27,17 @@ const findAccountByUsername = async (req, res) => {
                 as: 'Personal_Info'
             }
         })
-        if (fetchedDataValidate(result)) {
-            // res.send(result)
+        if (req.body.front)
+            res.send(result)
+        else
             return result
-        } else
-            res.send("Retrieve failed due to data loss")
     } catch (e) {
         console.log(e)
     }
 
 }
 
-const findAccountByEmail = async (req, res) => {
+const findAccountByEmail = async(req, res) => {
     try {
         const result = await Accounts.findOne({
             where: {
@@ -57,7 +56,7 @@ const findAccountByEmail = async (req, res) => {
     }
 }
 
-const setAccountToken = async (req, res) => {
+const setAccountToken = async(req, res) => {
     try {
         var plain = req.body.email + new Date().toUTCString()
         var hash = bcrypt.hashSync(plain, saltRounds)
@@ -83,7 +82,7 @@ const setAccountToken = async (req, res) => {
     }
 }
 
-const removeAccountToken = async (req, res) => {
+const removeAccountToken = async(req, res) => {
     try {
         const result = await Accounts.update({
             token: "activated"
@@ -101,7 +100,7 @@ const removeAccountToken = async (req, res) => {
     }
 }
 
-const updatePassword = async (req, res) => {
+const updatePassword = async(req, res) => {
     try {
         var hash = bcrypt.hashSync(req.body.password, saltRounds)
         const result = await Accounts.update({
@@ -121,7 +120,7 @@ const updatePassword = async (req, res) => {
     }
 }
 
-const logIn = async (req, res) => {
+const logIn = async(req, res) => {
     try {
         let account = null
         let message = null
@@ -186,7 +185,7 @@ const logIn = async (req, res) => {
     }
 }
 
-const createAccount = async (req, res) => {
+const createAccount = async(req, res) => {
     try {
         const hashedPassword = bcrypt.hashSync(req.body.password, saltRounds)
         var plain = req.body.email + new Date().toUTCString()
@@ -224,7 +223,7 @@ const createAccount = async (req, res) => {
     }
 }
 
-const activateAccount = async (req, res) => {
+const activateAccount = async(req, res) => {
     try {
         const result = await Accounts.update({
             status: "enabled"
@@ -242,7 +241,7 @@ const activateAccount = async (req, res) => {
     }
 }
 
-const changeStatus = async (req, res) => {
+const changeStatus = async(req, res) => {
     try {
         const result = await Accounts.update({
             status: req.body.status
@@ -260,7 +259,7 @@ const changeStatus = async (req, res) => {
     }
 }
 
-const getCountByPosition = async (req, res) => {
+const getCountByPosition = async(req, res) => {
     var result
     if (req.params.position == "all")
         result = await Accounts.count();
@@ -273,7 +272,7 @@ const getCountByPosition = async (req, res) => {
     res.send(result.toString());
 }
 
-const getActiveCountByPosition = async (req, res) => {
+const getActiveCountByPosition = async(req, res) => {
     var result
     if (req.params.position == "all")
         result = await Accounts.count({
@@ -291,7 +290,7 @@ const getActiveCountByPosition = async (req, res) => {
     res.send(result.toString());
 }
 
-const getInactiveCountByPosition = async (req, res) => {
+const getInactiveCountByPosition = async(req, res) => {
     var result
     if (req.params.position == "all")
         result = await Accounts.count({
@@ -309,7 +308,7 @@ const getInactiveCountByPosition = async (req, res) => {
     res.send(result.toString());
 }
 
-const getListAccountByPosition = async (req, res) => {
+const getListAccountByPosition = async(req, res) => {
     var page = 0;
     var result
     if (req.params.page)
@@ -346,7 +345,7 @@ const getListAccountByPosition = async (req, res) => {
     res.send(result)
 }
 
-const getDetailById = async (req, res) => {
+const getDetailById = async(req, res) => {
     try {
         const result = await Accounts.findOne({
             where: {
@@ -363,7 +362,7 @@ const getDetailById = async (req, res) => {
     }
 }
 
-const updateAccountById = async (req, res) => {
+const updateAccountById = async(req, res) => {
     let accountValues = {
         position: req.body.position,
     };
@@ -372,14 +371,15 @@ const updateAccountById = async (req, res) => {
         birthday: req.body.birthday,
         gender: req.body.gender,
         location: req.body.location,
-        phone: req.body.phone
+        phone: req.body.phone,
+        avatar: req.body.avatar
     };
     Accounts.update(accountValues, { where: { account_id: req.body.account_id } })
         .then(
             Personal_Infos.update(personalValues, { where: { account_id: req.body.account_id } })
-                .then((result) =>
-                    res.send(result)
-                )
+            .then((result) =>
+                res.send(result)
+            )
         );
 }
 

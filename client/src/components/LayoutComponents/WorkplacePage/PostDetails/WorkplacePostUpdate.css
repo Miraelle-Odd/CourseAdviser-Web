@@ -1,138 +1,140 @@
-.post-update-container{
+.post-update-container {
     margin-left: 24px;
     display: flex;
     width: 100%;
     height: calc(100vh - 104px);
     justify-content: left;
 }
-.workplace-post-update{
+
+.workplace-post-update {
     padding: 0 80px 0 120px;
     overflow-y: auto;
 }
-.post-update-item{
-    font-family: 'Rounded Mplus 1c Extra Bold';
 
+.post-update-item {
+    font-family: 'Rounded Mplus 1c Extra Bold';
     font-size: 20px;
     line-height: 30px;
     display: flex;
     align-items: center;
     text-transform: capitalize;
-
     color: rgba(0, 0, 0, 0.7);
     margin: 15px 0 0 0;
 }
-.post-update-title-input{
+
+.post-update-title-input {
     width: 752px;
     height: 70px;
-
     background: #FFFFFF;
     border: 2px solid rgba(0, 0, 0, 0.2);
     font-family: 'Rounded Mplus 1c Regular';
-
     font-size: 20px;
     line-height: 30px;
     margin-top: 10px;
     outline: none;
     padding: 0 20px;
 }
-.post-body-first{
+
+.post-body-first {
     margin-top: 70px;
 }
-.post-body-contain{
+
+.post-body-contain {
     width: 100%;
     position: relative;
 }
-.post-update-img-contain{
+
+.post-update-img-contain {
     width: 100%;
     height: 193px;
     position: relative;
     display: flex;
     justify-content: center;
 }
-.post-update-img{
+
+.post-update-img {
     width: 367px;
     height: 193px;
-
     object-fit: cover;
     position: absolute;
 }
-.post-update-img-btn{
+
+.post-update-img-btn {
     position: absolute;
     width: 120px;
     height: 40px;
     right: calc(50% - 200px);
     top: 170px;
-
     background: #4C83C5;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     border: none;
     z-index: 10;
-
     font-family: 'Roboto Medium';
     font-size: 16px;
     line-height: 19px;
-
     color: #FFFFFF;
     cursor: pointer;
 }
-.post-update-content{
+
+.post-update-content {
     width: 752px;
     resize: none;
     outline: none;
-    
     font-family: 'Rounded Mplus 1c Regular';
     font-size: 16px;
     line-height: 24px;
-
     color: #000000;
-    
     padding: 10px;
     margin-bottom: 70px;
     text-align: justify;
-    border: 2px solid rgba(0, 0, 0, 0.2); 
+    border: 2px solid rgba(0, 0, 0, 0.2);
 }
-.statistics-menu-title{
+
+.statistics-menu-title {
     width: 195px;
     height: 71px;
-
     font-family: 'Rounded Mplus 1c Extra Bold';
     font-size: 20px;
     line-height: 30px;
     display: flex;
     align-items: center;
-
     margin: 0 0;
     color: #414141;
 }
-.statistics-menu-item-contain{
+
+.statistics-menu-item-contain {
     width: 200px;
 }
-.statistics-menu-item{
+
+.statistics-menu-item {
     font-family: 'Rounded Mplus 1c Medium';
     font-size: 12px;
     line-height: 18px;
     display: flex;
     align-items: center;
-
     color: rgba(0, 0, 0, 0.5);
     margin: 10px 0;
 }
-.statistics-menu-readonly{
+
+.statistics-menu-readonly {
     width: 180px;
     height: 35px;
-
     border: none;
     outline: none;
     font-family: 'Rounded Mplus 1c Light';
     font-size: 14px;
-
     color: rgba(0, 0, 0, 0.4);
     border-bottom: 1px solid black;
     float: right;
     text-align: right;
 }
-.post-status{
+
+.post-status {
     width: max-content;
     margin: 0 70% 0 30%;
+}
+
+.post-update-img-contain .image-browser {
+    display: none;
 }

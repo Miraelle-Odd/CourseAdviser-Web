@@ -5,7 +5,7 @@ import PersonalInfoForm from '../PopupSourceComponents/GenericForm/PersonalInfoF
 import axios from 'axios';
 import moment from 'moment'
 
-
+axios.defaults.withCredentials = true
 
 export default function UpdateGeneral(props) {
     const [name, setName] = useState();
@@ -17,6 +17,7 @@ export default function UpdateGeneral(props) {
     const [gender, setGender] = useState();
     const [avatar, setAvatar] = useState();
     const [phone, setPhone] = useState();
+    const [avatarURL, setAvatarURL] = useState();
 
     const [type, setType] = useState()
     useEffect(() => {
@@ -39,7 +40,7 @@ export default function UpdateGeneral(props) {
                         setGender(res.data.Personal_Info.gender)
                         var time = moment(res.data.Personal_Info.birthday).format("YYYY-MM-DD");
                         setBirthday(time)
-                        setAvatar(res.data.Personal_Info.avatar)
+                        setAvatarURL(res.data.Personal_Info.avatar)
                         setPhone(res.data.Personal_Info.phone)
                     }
                 })
@@ -115,7 +116,32 @@ export default function UpdateGeneral(props) {
         if (e.target.value == 1)
             setGender("male")
     }
-    const onConfirm = () => {
+    const avatarHandler = (e) => {
+        setAvatarURL(URL.createObjectURL(e.target.files[0]))
+        setAvatar(e.target.files[0])
+    }
+    const getBase64 = file => {
+        return new Promise(resolve => {
+            let fileInfo;
+            let baseURL = "";
+            // Make new FileReader
+            let reader = new FileReader();
+
+            // Convert the file to base64 text
+            reader.readAsDataURL(file);
+
+            // on reader load somthing...
+            reader.onload = () => {
+                // Make a fileInfo Object
+                // console.log("Called", reader);
+                baseURL = reader.result;
+                // console.log(baseURL);
+                resolve(baseURL);
+            };
+        });
+    };
+    const onConfirm = async () => {
+        var data
         const params = {
             account_id: props.idItem,
             name: name,
@@ -123,17 +149,48 @@ export default function UpdateGeneral(props) {
             location: location,
             gender: gender,
             birthday: birthday,
-            phone: phone
+            phone: phone,
+        }
+        if (avatar) {
+            data = new FormData()
+            data.append("image", avatar)
+            axios.post("http://localhost:8080/image/upload-to-imgur/", data)
+                .then(res => {
+                    params.avatar = res.data.link
+                    console.log("......", params)
+                    axios.post("http://localhost:8080/Accounts/update-account/", params)
+                        .then(ress => {
+                            if (ress.data[0] == 0) {
+                                console.log("......", "Upload Failed")
+
+                            }
+                            else {
+                                console.log("......", "Upload Successful")
+                                setTimeout(function () {
+                                    window.location.reload();
+                                }, 3000);
+                            }
+                        })
+                })
+        }
+        else {
+            console.log("......", params)
+            axios.post("http://localhost:8080/Accounts/update-account/", params)
+                .then(ress => {
+                    if (ress.data[0] == 0) {
+                        console.log("......", "Upload Failed")
+
+                    }
+                    else {
+                        console.log("......", "Upload Successful")
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 3000);
+                    }
+                })
         }
 
-        const result = axios.post("http://localhost:8080/Accounts/update-account/", params)
-            .then(res => {
-                console.log("......", res)
 
-                setTimeout(function () {
-                    window.location.reload();
-                }, 3000);
-            })
     }
     return (
         <Fragment>
@@ -143,7 +200,8 @@ export default function UpdateGeneral(props) {
                 handleFormClose={props.handleFormClose}
                 listItemLeft={personalListItemLeft}
                 listItemRight={personalListItemRight}
-                avatar={avatar ? avatar : null}
+                avatar={avatarURL ? avatarURL : null}
+                changeAvatar={avatarHandler}
                 gender={gender ? gender : null}
                 changeGender={genderHandler}
                 test={SortHandler}
