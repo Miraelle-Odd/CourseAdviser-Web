@@ -20,6 +20,14 @@ import QaForm from '../../components/PopupComponents/PopupSourceComponents/QaFor
 import FloatBtn from '../../components/ButtonComponents/FloatBtn'
 import Chatbot from '../../components/Chatbot/Chatbot'
 import { useNavigate } from 'react-router-dom'
+import CourseForm from '../../components/PopupComponents/PopupSourceComponents/CoursesForm/CourseForm'
+import BotCourseUpdate from '../../components/PopupComponents/BotCourseUpdate/BotCourseUpdate'
+import BotCourseView from '../../components/PopupComponents/BotCourseView/BotCourseView'
+import BotCourseCreate from '../../components/PopupComponents/BotCourseCreate/BotCourseCreate'
+import CourseLevelForm from '../../components/PopupComponents/PopupSourceComponents/CoursesLevelForm/CourseLevelForm'
+import BotCourseUpdateLevel from '../../components/PopupComponents/BotCourseUpdateLevel/BotCourseUpdateLevel'
+import BotCourseViewLevel from '../../components/PopupComponents/BotCourseViewLevel/BotCourseViewLevel'
+import BotCourseCreateLevel from '../../components/PopupComponents/BotCourseCreateLevel/BotCourseCreateLevel'
 
 const Home = props => {
 
@@ -58,6 +66,13 @@ const Home = props => {
             <AppoinmentLayout> </AppoinmentLayout>
 
             <Footer></Footer>
+
+            {/* <BotCourseView></BotCourseView>
+            <BotCourseUpdate></BotCourseUpdate>
+            <BotCourseCreate></BotCourseCreate> */}
+            <BotCourseViewLevel></BotCourseViewLevel>
+            <BotCourseUpdateLevel></BotCourseUpdateLevel>
+            <BotCourseCreateLevel></BotCourseCreateLevel>
 
             {/* 
             <AlertSuccess></AlertSuccess>

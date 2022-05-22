@@ -1,0 +1,35 @@
+.flex-contain {
+    width: 260px !important;
+    height: 37px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.course-level-body{
+    padding: 0 75px !important;
+}
+.course-level-main {
+    height: 60px;
+}
+
+.course-level-child {
+    width: 46%;
+}
+.course-level-combobox {
+    width: 270px !important;
+    margin-top: 40px;
+}
+.course-level-title{
+    margin: 20px 0 0 0 !important;
+}
+.course-level-item {
+    width: 96%;
+    margin: 0 0 !important;
+}
+.course-level-textarea{
+    width: 250px !important;
+}
+.custom-confirm{
+    width: 97% !important;
+    margin-top: 0 !important;
+}
