@@ -19,6 +19,9 @@ export default function PersonalInfoForm(props) {
     const [inputValue, setInputValue] = useState();
     const [cbValue, setCbValue] = useState();
 
+    const openImageBrowser = () => {
+        document.getElementById('personal-info-avatar-right_image-browser').click()
+    }
 
     useEffect(() => {
         setCbValue(props.gender)
@@ -36,7 +39,19 @@ export default function PersonalInfoForm(props) {
                             <p className='personal-info-text'>{props.subtitle}</p>
                         </div>
                         <div className='personal-info-avatar-right'>
-                            <img className="personal-info-avatar" src={props.avatar ? props.avatar : personal_avatar}></img>
+                            {
+                                props.isView ? 
+                                <img className="personal-info-avatar" src={props.avatar ? props.avatar : personal_avatar}></img>
+                                :
+                                    <div>
+                                        <input id="personal-info-avatar-right_image-browser" className="image-browser" type="file" accept="image/*"
+                                            onChange={props.changeAvatar}
+                                        ></input>
+                                        <img className="personal-info-avatar browsable" src={props.avatar ? props.avatar : personal_avatar}
+                                            onClick={openImageBrowser}
+                                        ></img>
+                                    </div>
+                            }                            
                         </div>
                     </div>
                     <div className='personal-info-main'>
@@ -100,7 +115,7 @@ export default function PersonalInfoForm(props) {
                                         </button>
                                         <input className='edit-form-checkbox'
                                             value={cbValue}
-                                            type={"checkbox"}/>
+                                            type={"checkbox"} />
                                         <button className={item.readOnly ? cbValue === 'male' ? "edit-form-gender-button gender-selected button-disable" : 'edit-form-gender-button button-disable' : cbValue === 'male' ? "edit-form-gender-button gender-selected" : 'edit-form-gender-button'}
                                             onClick={props.changeGender} value={1}>
                                             <FontAwesomeIcon className='edit-form-gender-icon' icon={['fas', 'mars']} />

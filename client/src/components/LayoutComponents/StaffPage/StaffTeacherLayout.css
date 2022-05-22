@@ -46,7 +46,7 @@
     margin-top: 50px;
 }
 
-.staff-teacher-content .carousel-root {
+.staff-teacher-border>div {
     height: 100%;
     width: 100%;
 }

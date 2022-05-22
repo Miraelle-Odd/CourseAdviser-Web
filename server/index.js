@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
 const app = express();
+
 // parse requests of content-type - application/json
 app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
@@ -16,13 +17,9 @@ app.use(cors({
 }));
 
 
+
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
-
-// simple route
-// app.get("/", (req, res) => {
-//     res.json({ message: "Welcome NA" });
-// });
 
 const db = require("./models");
 const PORT = process.env.PORT || 8080;
@@ -52,6 +49,8 @@ const botCourses = require("./routes/Bot_AllCourses");
 app.use("/bot-courses", botCourses)
 const botCourseLevels = require("./routes/Bot_CourseLevels");
 app.use("/bot-course-levels", botCourseLevels)
+const image = require("./routes/Image");
+app.use("/image", image)
 
 app.use("", (req, res) => {
     res.send("Ngrok start")

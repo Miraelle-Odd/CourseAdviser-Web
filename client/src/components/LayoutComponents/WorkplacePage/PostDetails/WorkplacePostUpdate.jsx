@@ -26,6 +26,7 @@ const WorkplacePostUpdate = props => {
     const [title, setTitle] = useState()
     const [subtitle, setSubtitle] = useState()
     const [postImg, setPostImg] = useState()
+    const [postImgURL, setPostImgURL] = useState()
     const [content, setContent] = useState()
     const [type, setType] = useState(0)
     const [status, setStatus] = useState()
@@ -35,9 +36,14 @@ const WorkplacePostUpdate = props => {
         setType(props.type)
         setStatus(props.active)
         setAuthor(props.author_id)
+        setPostImgURL(props.img)
     }, [props])
 
-    const onConfirm = () => {
+    const openImageBrowser = () => {
+        document.getElementById('post-update-img-btn_image-browser').click()
+    }
+
+    const onConfirm = async () => {
         var type_convert;
         if (type == 0)
             type_convert = "academic"
@@ -51,7 +57,8 @@ const WorkplacePostUpdate = props => {
             status_convert = "enabled"
         else
             status_convert = "disabled"
-        const params = {
+
+        var params = {
             post_id: props.id,
             post_title: title,
             post_subtitle: subtitle,
@@ -60,11 +67,34 @@ const WorkplacePostUpdate = props => {
             post_status: status_convert,
             author_id: author,
         }
-        //console.log(params)
-        const result = axios.post("http://localhost:8080/posts/update-post/", params)
-            .then(res => {
-                console.log("dsadsad", res.data)
-            })
+
+        var data
+
+        if (postImg) {
+            data = new FormData()
+            data.append("image", postImg)
+
+            await axios.post("http://localhost:8080/image/upload-to-imgur/", data)
+                .then((res) => {
+                    params.post_img =  res.data.link
+                    console.log(params)
+                    const result = axios.post("http://localhost:8080/posts/update-post/", params)
+                        .then(res => {
+                            console.log("dsadsad", res.data)
+                        })
+                })
+        }
+        else {
+            console.log(params)
+            const result = axios.post("http://localhost:8080/posts/update-post/", params)
+                .then(res => {
+                    console.log("dsadsad", res.data)
+                })
+        }
+
+
+
+
     }
 
     const sortHandler = (e) => {
@@ -102,8 +132,14 @@ const WorkplacePostUpdate = props => {
                 <div className="post-body-contain">
                     <p className="post-update-item">Hình minh họa:</p>
                     <div className="post-update-img-contain">
-                        <img className="post-update-img" src={props.img ? props.img : noimg}></img>
-                        <button className="post-update-img-btn">Chọn hình</button>
+                        <img className="post-update-img" src={postImgURL ? postImgURL : noimg}></img>
+                        <button className="post-update-img-btn" onClick={openImageBrowser}>Chọn hình</button>
+                        <input id="post-update-img-btn_image-browser" className='image-browser' type="file" accept="image/*"
+                            onChange={(e) => {
+                                setPostImg(e.target.files[0])
+                                setPostImgURL(URL.createObjectURL(e.target.files[0]))
+                            }}
+                        ></input>
                     </div>
                 </div>
                 <div className="post-body-contain">
@@ -149,12 +185,12 @@ const WorkplacePostUpdate = props => {
                                     <StatusSwitch
                                         on={status}>
                                     </StatusSwitch>
-                                </div> 
+                                </div>
                                 :
                                 <div className='post-status workplace-post-center' >
                                     <StatusSwitch
                                         on={status}
-                                        onClick={() => {}}>
+                                        onClick={() => { }}>
                                     </StatusSwitch>
                                 </div>
                         }

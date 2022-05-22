@@ -28,7 +28,6 @@ import axios from 'axios';
 import cookies from 'js-cookie'
 import PostView from './pages/PostManagement/PostDetails/PostView';
 import PostUpdate from './pages/PostManagement/PostDetails/PostUpdate';
-import QaLayout from './components/LayoutComponents/QaPage/QaLayout';
 import PasswordRecovery from './pages/PasswordRecovery/PasswordRecovery';
 import AccountActivation from './pages/AccountActivation/AccountActivation';
 import QaList from './pages/About/Qa/QaList';
@@ -75,7 +74,8 @@ function App() {
                     userEmail={currentUser != null ? currentUser.account.email : ""}
                     userAvatar={currentUser != null ? (currentUser.account.Personal_Info.avatar ? currentUser.account.Personal_Info.avatar : placeholder) : ""}
                   ></NavigationBar>
-                  : ""
+                  : 
+                  ""
               )
           }
           <Routes>
@@ -114,8 +114,6 @@ function App() {
             <Route path="/workplace/chatbot-management/:category" element={<Navigate to="/workplace/chatbot-management/:category/1"></Navigate>} />
             <Route path="/workplace/post-management/:category" element={<Navigate to="/workplace/post-management/:category/1"></Navigate>} />
             <Route path="/workplace/q-and-a-management/:category" element={<Navigate to="/workplace/q-and-a-management/:category/1"></Navigate>} />
-
-
           </Routes>
         </React.Suspense>
       </Router>

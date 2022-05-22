@@ -122,6 +122,7 @@ const updatePost = async(req, res) => {
             post_content: req.body.post_content,
             post_type: req.body.post_type,
             post_status: req.body.post_status,
+            post_img: req.body.post_img
         };
         Posts.update(itemValues, { where: { post_id: req.body.post_id } }).then((result) => {
             res.send(result);
@@ -134,6 +135,7 @@ const updatePost = async(req, res) => {
             post_content: req.body.post_content,
             post_type: req.body.post_type,
             post_status: req.body.post_status,
+            post_img: req.body.post_img
         };
         if (itemValues.post_title !== undefined && itemValues.post_subtitle !== undefined && itemValues.post_content !== undefined)
             Posts.create(itemValues).then((result) => {

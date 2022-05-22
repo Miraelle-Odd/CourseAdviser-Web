@@ -1,76 +1,91 @@
-.personal-info-contain{
+.personal-info-contain {
     width: 727px;
     height: 502px;
-
     background-image: url("../../../../assets/icons/personal_form_bg.png");
     border-radius: 30px;
 }
-.personal-info-contain .personal-info-body{
+
+.personal-info-contain .personal-info-body {
     padding: 0px 45px;
 }
-.personal-info-body .personal-info-header{
+
+.personal-info-body .personal-info-header {
     display: flex;
 }
-.personal-info-header .personal-info-header-left{
+
+.personal-info-header .personal-info-header-left {
     width: 55%;
 }
-.personal-info-header-left .personal-info-title{
-    font-family: 'Rounded Mplus 1c Black';
 
+.personal-info-header-left .personal-info-title {
+    font-family: 'Rounded Mplus 1c Black';
     font-size: 24px;
     line-height: 36px;
-
     text-align: left;
     color: #000000;
     margin: 10px 0 0 0;
 }
-.personal-info-header-left .personal-info-text{
-    font-family: 'Rounded Mplus 1c Regular';
 
+.personal-info-header-left .personal-info-text {
+    font-family: 'Rounded Mplus 1c Regular';
     font-size: 12px;
     line-height: 18px;
-
     text-align: left;
     color: rgba(0, 0, 0, 0.6);
     margin-bottom: 10px;
 }
-.personal-info-header .personal-info-avatar-right{
+
+.personal-info-header .personal-info-avatar-right {
     width: 40%;
     display: flex;
     justify-content: right;
+    position: relative;
 }
-.personal-info-avatar-right .personal-info-avatar{
+
+.personal-info-avatar-right .personal-info-avatar {
     width: 90px;
     height: 90px;
     border-radius: 50% 50%;
+    object-fit: cover;
 }
-.personal-info-body .personal-info-main{
+
+.personal-info-avatar-right .browsable {
+    cursor: pointer;
+}
+
+.personal-info-body .personal-info-main {
     height: 300px;
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
 }
-.personal-info-main .personal-info-col-left{
+
+.personal-info-main .personal-info-col-left {
     width: 45%;
     height: 300px;
 }
-.personal-info-main .personal-info-col-right{
+
+.personal-info-main .personal-info-col-right {
     width: 45%;
     height: 300px;
 }
-.personal-info-item{
+
+.personal-info-item {
     margin: 10px 0 !important;
 }
-.personal-info-body .personal-info-confirm-contain{
+
+.personal-info-body .personal-info-confirm-contain {
     width: 100%;
     display: flex;
     justify-content: right;
     margin-top: 10px;
 }
-.button-disable{
+
+.button-disable {
     pointer-events: none;
 }
-.edit-form-position-view{
+
+.edit-form-position-view {
     width: 260px;
     height: 20px;
     background: #FFFFFF;
@@ -82,4 +97,10 @@
     outline: none;
     padding: 8px 12px;
     -webkit-appearance: none;
+}
+
+.personal-info-avatar-right .image-browser {
+    position: absolute;
+    width: 100%;
+    display: none;
 }
