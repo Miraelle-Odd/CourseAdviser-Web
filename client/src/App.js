@@ -105,7 +105,7 @@ function App() {
 
 
             {/* Redirect Links */}
-            <Route path="/workplace" element={<Navigate to={"/workplace/" + workplace + "/all/1"}></Navigate>} />
+            <Route path="/workplace" element={<Navigate to={"/workplace/" + workplace + "/all/updated-latest/1"}></Navigate>} />
             <Route path="/workplace/employee-management" element={<Navigate to="/workplace/employee-management/all/updated-latest/1"></Navigate>} />
             <Route path="/workplace/chatbot-management" element={<Navigate to="/workplace/chatbot-management/bot-courses/1"></Navigate>} />
             <Route path="/workplace/post-management" element={<Navigate to="/workplace/post-management/all/1"></Navigate>} />
