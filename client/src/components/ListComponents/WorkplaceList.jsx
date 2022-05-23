@@ -19,9 +19,7 @@ const WorkplaceList = props => {
     let { page } = useParams();
     let { category } = useParams();
 
-
-    const handlePageClick = (event) => {
-    }
+    const handlePageClick = (event) => {}
     return (
         <div className="workplace-list-container">
             <WorkplaceListCategory

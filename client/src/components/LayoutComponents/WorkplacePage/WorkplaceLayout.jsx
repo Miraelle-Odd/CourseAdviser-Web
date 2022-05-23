@@ -18,7 +18,6 @@ const WorkplaceLayout = props => {
     const [sortOption, setSortOption] = useState(0)
     const sortHandler = (e) => {
         console.log(e.target.value);
-        
         setSortOption(e.target.value)
         //Handle chosen sort option code
     }

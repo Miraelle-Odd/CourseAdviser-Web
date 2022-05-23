@@ -142,11 +142,11 @@ const EmployeeManagement = props => {
 
     const [sortOption, setSortOption] = useState()
 
-    useEffect(async() => {
+    useEffect(async () => {
         sortItems.forEach(element => {
             for (let [key, keyValue] of Object.entries(element)) {
-                if(key == "sortParam" && keyValue  == sort){
-                   setSortOption(element.value) 
+                if (key == "sortParam" && keyValue == sort) {
+                    setSortOption(element.value)
                 }
             }
         });
@@ -163,22 +163,22 @@ const EmployeeManagement = props => {
             .then((res) => {
                 setInactiveCount(res.data)
             })
-        const getList = axios.get("http://localhost:8080/accounts/get-list/" + category + "/" + sortItems[sortOption].sortField + "/"+ sortItems[sortOption].sortOrder +"/" + (page - 1))
-            .then((res) => {
-                res.data.map((item, index) => {
-                    item.id = item.Personal_Info.account_id
-                    item.avatar = item.Personal_Info.avatar
-                    item.phoneNumber = item.Personal_Info.phone
-                    item.fullname = item.Personal_Info.name
-                    if (item.status == "enabled")
-                        item.active = true
-                    else
-                        item.active = false
-                    item = { item: (delete item['Personal_Info'], delete item['status'], item) };
+        if (sortItems[sortOption])
+            axios.get("http://localhost:8080/accounts/get-list/" + category + "/" + sortItems[sortOption].sortField + "/" + sortItems[sortOption].sortOrder + "/" + (page - 1))
+                .then((res) => {
+                    res.data.map((item, index) => {
+                        item.id = item.Personal_Info.account_id
+                        item.avatar = item.Personal_Info.avatar
+                        item.phoneNumber = item.Personal_Info.phone
+                        item.fullname = item.Personal_Info.name
+                        if (item.status == "enabled")
+                            item.active = true
+                        else
+                            item.active = false
+                        item = { item: (delete item['Personal_Info'], delete item['status'], item) };
+                    })
+                    setEmpData(res.data)
                 })
-                console.log(res.data)
-                setEmpData(res.data)
-            })
     }, [sortOption])
 
     const handlePageClick = (event) => {
@@ -189,7 +189,6 @@ const EmployeeManagement = props => {
     const onCategoryChange = (event) => {
         navigate("/workplace/employee-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/" + sort + "/1")
         navigate(0)
-        // console.log(event.currentTarget.attributes.getNamedItem("value").value)
     }
 
     const onPageTextChange = (e) => {
@@ -220,7 +219,6 @@ const EmployeeManagement = props => {
     }
 
     const renderEmpManament = () => {
-        console.log("curent", sortOption)
         return (
             <div className='emp-man-body'>
                 <WorkplaceList
@@ -258,10 +256,9 @@ const EmployeeManagement = props => {
     }
 
     const sortHandler = (e) => {
-        console.log(e.target.value)
         setSortOption(e.target.value)
-        navigate("/workplace/employee-management/" + category + "/" + sortItems[e.target.value].sortParam + "/1")
-        //Handle chosen sort option code
+        navigate("/workplace/employee-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + page)
+        navigate(0)
     }
 
     return (
