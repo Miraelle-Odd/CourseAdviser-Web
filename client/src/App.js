@@ -116,6 +116,7 @@ function App() {
             <Route path="/workplace/q-and-a-management/:category" element={<Navigate to="/workplace/q-and-a-management/:category/updated-latest/1"></Navigate>} />
             <Route path="/workplace/employee-management/:category/:sort" element={<Navigate to="/workplace/employee-management/:category/:sort/1"></Navigate>} />
             <Route path="/workplace/post-management/:category/:sort" element={<Navigate to="/workplace/post-management/all/:category/:sort/1"></Navigate>} />
+            <Route path="/workplace/q-and-a-management/:category/:sort" element={<Navigate to="/workplace/q-and-a-management/:category/:sort/1"></Navigate>} />
           </Routes>
         </React.Suspense>
       </Router>

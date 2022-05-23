@@ -194,7 +194,7 @@ const EmployeeManagement = props => {
     const onPageTextChange = (e) => {
         if (e.key === 'Enter')
             if (e.target.value <= pageCount && e.target.value >= 1 && e.target.value != e.target.defaultValue) {
-                navigate("/workplace/employee-management/" + category + "/" + (e.target.value))
+                navigate("/workplace/employee-management/" + category + "/" + sort + "/" + (e.target.value))
                 navigate(0)
             }
     }

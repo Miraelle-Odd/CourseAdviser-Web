@@ -60,9 +60,41 @@ const lcItems = [
     },
 ]
 
+const sortItems = [
+    {
+        value: 0,
+        displayText: "Tạo mới nhất",
+        sortParam: "updated-latest",
+        sortField: "qa_id",
+        sortOrder: "DESC"
+    },
+    {
+        value: 1,
+        displayText: "Tạo cũ nhất",
+        sortParam: "updated-oldest",
+        sortField: "qa_id",
+        sortOrder: "ASC"
+    },
+    {
+        value: 2,
+        displayText: "Câu hỏi - A đến Z",
+        sortParam: "question-ascend",
+        sortField: "question",
+        sortOrder: "ASC"
+
+    },
+    {
+        value: 3,
+        displayText: "Câu hỏi - Z đến A",
+        sortParam: "question-descend",
+        sortField: "question",
+        sortOrder: "DESC"
+    }
+]
+
 
 const QaManagement = props => {
-    let { category, page } = useParams()
+    let { category, page, sort } = useParams()
     let navigate = useNavigate()
     const itemsPerPage = 2;
 
@@ -77,7 +109,16 @@ const QaManagement = props => {
 
     const [idItem, setIdItem] = useState()
 
-    useEffect(() => {
+    const [sortOption, setSortOption] = useState()
+
+    useEffect(async () => {
+        sortItems.forEach(element => {
+            for (let [key, keyValue] of Object.entries(element)) {
+                if (key == "sortParam" && keyValue == sort) {
+                    setSortOption(element.value)
+                }
+            }
+        });
         const getListCount = axios.get("http://localhost:8080/q-and-as/get-count/" + category)
             .then((res) => {
                 setPageCount(Math.ceil(res.data / itemsPerPage))
@@ -92,7 +133,8 @@ const QaManagement = props => {
             .then((res) => {
                 setInactiveCount(res.data)
             })
-        const getList = axios.get("http://localhost:8080/q-and-as/get-list/" + category + "/" + (page - 1))
+        if(sortItems[sortOption])
+            axios.get("http://localhost:8080/q-and-as/get-list/" + category + "/" + sortItems[sortOption].sortField + "/" + sortItems[sortOption].sortOrder + "/" + (page - 1))
             .then((res) => {
                 res.data.map((item, index) => {
                     item.id = item.qa_id
@@ -100,27 +142,26 @@ const QaManagement = props => {
                         item.active = true
                     else
                         item.active = false
-                    item = { item:  (delete item['status'], item) };
+                    item = { item: (delete item['status'], item) };
                 })
                 setQaData(res.data)
             })
-    }, [])
+    }, [sortOption])
 
     const handlePageClick = (event) => {
-        navigate("/workplace/q-and-a-management/" + category + "/" + (event.selected + 1))
+        navigate("/workplace/q-and-a-management/" + category + "/" + sort + "/" + (event.selected + 1))
         navigate(0)
     }
 
     const onCategoryChange = (event) => {
-        navigate("/workplace/q-and-a-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/1")
+        navigate("/workplace/q-and-a-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/" + sort + "/1")
         navigate(0)
-        // console.log(event.currentTarget.attributes.getNamedItem("value").value)
     }
 
     const onPageTextChange = (e) => {
         if (e.key === 'Enter')
             if (e.target.value <= pageCount && e.target.value >= 1 && e.target.value != e.target.defaultValue) {
-                navigate("/workplace/q-and-a-management/" + category + "/" + (e.target.value))
+                navigate("/workplace/q-and-a-management/" + category + "/" + sort + "/" + (e.target.value))
                 navigate(0)
             }
     }
@@ -133,7 +174,7 @@ const QaManagement = props => {
         setIsShowUpdate(true)
     }
     const onViewClick = (e) => {
-         const id = e.currentTarget.attributes.getNamedItem("value").value
+        const id = e.currentTarget.attributes.getNamedItem("value").value
         setIdItem(id);
         setIsShowView(true);
     }
@@ -141,6 +182,12 @@ const QaManagement = props => {
         setIsShowCreate(false);
         setIsShowUpdate(false);
         setIsShowView(false);
+    }
+
+    const sortHandler = (e) => {
+        setSortOption(e.target.value)
+        navigate("/workplace/q-and-a-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + page)
+        navigate(0)
     }
 
     const renderQaManagement = () => {
@@ -180,8 +227,13 @@ const QaManagement = props => {
     }
     return (
         <div className='userpage-container'>
-            <WorkplaceLayout title="Quản lý Q & A" toolbar
+            <WorkplaceLayout
+                title="Quản lý Q & A"
+                toolbar
                 renderBody={renderQaManagement()}
+                sortItems={sortItems}
+                sortHandler={sortHandler}
+                sortOption={sortOption}
             ></WorkplaceLayout>
             <Footer></Footer>
             <Modal
