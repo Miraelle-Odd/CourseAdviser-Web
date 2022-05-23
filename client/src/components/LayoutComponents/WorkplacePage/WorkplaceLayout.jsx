@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SortComboBox from '../../ComboBoxComponents/SortComboBox';
 import './WorkplaceLayout.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Footer from '../../Footer/Footer';
 
 const sortItems = [
     {
@@ -12,30 +11,17 @@ const sortItems = [
     {
         value: 1,
         displayText: "Tạo cũ nhất"
-    },
-    {
-        value: 2,
-        displayText: "Họ tên - A đến Z"
-    },
-    {
-        value: 3,
-        displayText: "Họ tên - Z đến A"
-    },
-    {
-        value: 4,
-        displayText: "Email - A đến Z"
-    },
-    {
-        value: 5,
-        displayText: "Email - Z đến A"
     }
 ]
 
-const sortHandler = (e) => {
-    console.log(e.target.value);
-    //Handle chosen sort option code
-}
 const WorkplaceLayout = props => {
+    const [sortOption, setSortOption] = useState(0)
+    const sortHandler = (e) => {
+        console.log(e.target.value);
+        
+        setSortOption(e.target.value)
+        //Handle chosen sort option code
+    }
     return (
         <div className='workplace-container'>            
             <div className='workplace-header'>
@@ -47,9 +33,10 @@ const WorkplaceLayout = props => {
                             <input name="search-input" type="text" className="search" placeholder='Nhập nội dung tìm kiếm...'></input>
                         </div>
                         <SortComboBox
-                            onChange={sortHandler}
+                            onChange={props.sortHandler?props.sortHandler : sortHandler}
                             customClassName="sort margin-right-63"
-                            items={sortItems}
+                            items={props.sortItems?props.sortItems : sortItems}
+                            defaultValue={props.sortOption? props.sortOption : sortOption}
                         ></SortComboBox>
                     </div> : ""
                 }

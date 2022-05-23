@@ -77,9 +77,55 @@ const lcItems = [
     },
 ]
 
+const sortItems = [
+    {
+        value: 0,
+        displayText: "Tạo mới nhất",
+        sortParam: "updated-latest",
+        sortField: "account_id",
+        sortOrder: "DESC"
+    },
+    {
+        value: 1,
+        displayText: "Tạo cũ nhất",
+        sortParam: "updated-oldest",
+        sortField: "account_id",
+        sortOrder: "ASC"
+    },
+    {
+        value: 2,
+        displayText: "Họ tên - A đến Z",
+        sortParam: "name-ascend",
+        sortField: "name",
+        sortOrder: "ASC"
+
+    },
+    {
+        value: 3,
+        displayText: "Họ tên - Z đến A",
+        sortParam: "name-descend",
+        sortField: "name",
+        sortOrder: "DESC"
+    },
+    {
+        value: 4,
+        displayText: "Email - A đến Z",
+        sortParam: "email-ascend",
+        sortField: "email",
+        sortOrder: "ASC"
+    },
+    {
+        value: 5,
+        displayText: "Email - Z đến A",
+        sortParam: "email-descend",
+        sortField: "account_id",
+        sortField: "email",
+        sortOrder: "DESC"
+    }
+]
 
 const EmployeeManagement = props => {
-    let { category, page } = useParams()
+    let { category, page, sort } = useParams()
     let navigate = useNavigate()
     const itemsPerPage = 2;
 
@@ -94,7 +140,16 @@ const EmployeeManagement = props => {
 
     const [idItem, setIdItem] = useState()
 
-    useEffect(() => {
+    const [sortOption, setSortOption] = useState()
+
+    useEffect(async() => {
+        sortItems.forEach(element => {
+            for (let [key, keyValue] of Object.entries(element)) {
+                if(key == "sortParam" && keyValue  == sort){
+                   setSortOption(element.value) 
+                }
+            }
+        });
         const getListCount = axios.get("http://localhost:8080/accounts/get-count/" + category)
             .then((res) => {
                 setPageCount(Math.ceil(res.data / itemsPerPage))
@@ -103,14 +158,12 @@ const EmployeeManagement = props => {
         const getActiveCount = axios.get("http://localhost:8080/accounts/get-active-count/" + category)
             .then((res) => {
                 setActiveCount(res.data)
-                console.log(res.data)
             })
         const getInactiveCount = axios.get("http://localhost:8080/accounts/get-inactive-count/" + category)
             .then((res) => {
                 setInactiveCount(res.data)
-                console.log(res.data)
             })
-        const getList = axios.get("http://localhost:8080/accounts/get-list/" + category + "/" + (page - 1))
+        const getList = axios.get("http://localhost:8080/accounts/get-list/" + category + "/" + sortItems[sortOption].sortField + "/"+ sortItems[sortOption].sortOrder +"/" + (page - 1))
             .then((res) => {
                 res.data.map((item, index) => {
                     item.id = item.Personal_Info.account_id
@@ -126,15 +179,15 @@ const EmployeeManagement = props => {
                 console.log(res.data)
                 setEmpData(res.data)
             })
-    }, [])
+    }, [sortOption])
 
     const handlePageClick = (event) => {
-        navigate("/workplace/employee-management/" + category + "/" + (event.selected + 1))
+        navigate("/workplace/employee-management/" + category + "/" + sort + "/" + (event.selected + 1))
         navigate(0)
     }
 
     const onCategoryChange = (event) => {
-        navigate("/workplace/employee-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/1")
+        navigate("/workplace/employee-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/" + sort + "/1")
         navigate(0)
         // console.log(event.currentTarget.attributes.getNamedItem("value").value)
     }
@@ -167,6 +220,7 @@ const EmployeeManagement = props => {
     }
 
     const renderEmpManament = () => {
+        console.log("curent", sortOption)
         return (
             <div className='emp-man-body'>
                 <WorkplaceList
@@ -203,10 +257,22 @@ const EmployeeManagement = props => {
         )
     }
 
+    const sortHandler = (e) => {
+        console.log(e.target.value)
+        setSortOption(e.target.value)
+        navigate("/workplace/employee-management/" + category + "/" + sortItems[e.target.value].sortParam + "/1")
+        //Handle chosen sort option code
+    }
+
     return (
         <div className='userpage-container'>
-            <WorkplaceLayout title="Quản lý tài khoản nhân viên" toolbar
+            <WorkplaceLayout
+                title="Quản lý tài khoản nhân viên"
+                toolbar
                 renderBody={renderEmpManament()}
+                sortItems={sortItems}
+                sortHandler={sortHandler}
+                sortOption={sortOption}
             ></WorkplaceLayout>
             <Footer></Footer>
             <Modal

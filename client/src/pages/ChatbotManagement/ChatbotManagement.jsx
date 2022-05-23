@@ -93,6 +93,52 @@ const lcItems = [
     },
 ]
 
+const sortCourseItems = [
+    {
+        value: 0,
+        displayText: "Tạo mới nhất"
+    },
+    {
+        value: 1,
+        displayText: "Tạo cũ nhất"
+    },
+    {
+        value: 2,
+        displayText: "Tên khóa học - A đến Z"
+    },
+    {
+        value: 3,
+        displayText: "Tên khóa học - Z đến A"
+    },
+]
+
+const sortLevelItems = [
+    {
+        value: 0,
+        displayText: "Tạo mới nhất"
+    },
+    {
+        value: 1,
+        displayText: "Tạo cũ nhất"
+    },
+    {
+        value: 2,
+        displayText: "Tên cấp học - A đến Z"
+    },
+    {
+        value: 3,
+        displayText: "Tên cấp học - Z đến A"
+    },
+    {
+        value: 4,
+        displayText: "Học phí cơ bản- thấp đến cao"
+    },
+    {
+        value: 5,
+        displayText: "Học phí cơ bản - cao đến thấp"
+    },
+]
+
 const ChatbotManagement = props => {
     let navigate = useNavigate()
     let { category, page } = useParams()
@@ -101,12 +147,17 @@ const ChatbotManagement = props => {
     const [pageCount, setPageCount] = useState(1)
     const [botData, setBotData] = useState([])
     const [botListFormat, setBotListFormat] = useState(courseListFormat)
+    const [sortItems, setSortItems] = useState()
 
     useEffect(() => {
-        if (category == "bot-courses")
+        if (category == "bot-courses"){
             setBotListFormat(courseListFormat)
-        if (category == "bot-course-levels")
+            setSortItems(sortCourseItems)
+        }
+        if (category == "bot-course-levels"){
             setBotListFormat(levelListFormat)
+            setSortItems(sortLevelItems)
+        }
         axios.get("http://localhost:8080/" + category + "/get-count/")
             .then((res) => {
                 setPageCount(Math.ceil(res.data / itemsPerPage))
@@ -177,9 +228,11 @@ const ChatbotManagement = props => {
 
     return (
         <div className='userpage-container'>
-            <WorkplaceLayout title="Quản lý Chatbot"
+            <WorkplaceLayout
+                title="Quản lý Chatbot"
                 renderBody={renderBotManagement()}
                 toolbar
+                sortItems={sortItems}
             ></WorkplaceLayout>
             <Footer></Footer>
         </div>
