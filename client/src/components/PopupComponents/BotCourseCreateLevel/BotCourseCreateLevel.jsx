@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Fragment } from 'react/cjs/react.production.min';
 import axios from 'axios';
 import CourseLevelForm from '../PopupSourceComponents/CoursesLevelForm/CourseLevelForm';
 
 export default function BotCourseCreateLevel(props) {
+    const [sortItems, setSortItems] = useState()
     const [levelName, setLevelName] = useState()
     const [levelInput, setLevelInput] = useState()
     const [levelOutput, setLevelOutput] = useState()
@@ -12,7 +13,7 @@ export default function BotCourseCreateLevel(props) {
     const [levelPrice, setLevelPrice] = useState()
     const [levelUnit, setLevelUnit] = useState()
     const [levelDescription, setLevelDescription] = useState()
-    const [type, setType] = useState(0)
+    const [type, setType] = useState(1)
     const inputList = [
         {
             title: "Tiêu chuẩn đầu vào và đầu ra",
@@ -45,6 +46,18 @@ export default function BotCourseCreateLevel(props) {
             onChange2: (e) => { setLevelUnit(e.target.value) }
         }
     ]
+
+    useEffect(async () => {
+        if (!sortItems)
+            axios.get("http://localhost:8080/bot-courses/get-all-course-name/").then((res) => {
+                res.data.map((item, index) => {
+                    item.value = item.course_id
+                    item.displayText = item.course_name
+                })
+                setSortItems(res.data)
+            })
+    }, [sortItems])
+
     const SortHandler = (e) => {
         setType(e.target.value)
         // if (e.target.value == 0)
@@ -54,17 +67,25 @@ export default function BotCourseCreateLevel(props) {
         //Handle chosen sort option code
     }
     const onConfirm = () => {
-    }
-    const sortItems = [
-        {
-            value: 0,
-            displayText: "Không"
-        },
-        {
-            value: 1,
-            displayText: "Có"
+        const createData = {
+            level_name: levelName,
+            level_description: levelDescription,
+            requirement: levelInput,
+            guarantee: levelOutput,
+            min_age: ageInput,
+            max_age: ageOutput,
+            basic_fee: levelPrice,
+            fee_unit: levelUnit,
+            course_id: type
         }
-    ]
+        axios.post("http://localhost:8080/bot-course-levels/create-level", createData).then((ress) => {
+            console.log(ress.data)
+            setTimeout(function () {
+                window.location.reload();
+            }, 3000);
+        })
+    }
+
     return (
         <Fragment>
             <CourseLevelForm
@@ -81,7 +102,8 @@ export default function BotCourseCreateLevel(props) {
                 inputDescription={(e) => { setLevelDescription(e.target.value); }}
                 levelName={levelName}
                 levelOnChange={(e) => { setLevelName(e.target.value); }}
-                updateHandler={onConfirm}>
+                updateHandler={onConfirm}
+                comboBoxTitle={"Khóa học gốc:"}>
             </CourseLevelForm>
         </Fragment>
     )

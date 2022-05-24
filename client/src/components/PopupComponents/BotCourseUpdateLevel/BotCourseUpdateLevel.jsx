@@ -1,18 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Fragment } from 'react/cjs/react.production.min';
 import axios from 'axios';
 import CourseLevelForm from '../PopupSourceComponents/CoursesLevelForm/CourseLevelForm';
 
 export default function BotCourseUpdateLevel(props) {
-    const [levelName, setLevelName] = useState("vxcvxcvxcv")
-    const [levelInput, setLevelInput] = useState("cxzcz")
-    const [levelOutput, setLevelOutput] = useState("cxzcz")
-    const [ageInput, setAgeInput] = useState("cxzcz")
-    const [ageOutput, setAgeOutput] = useState("cxzcz")
-    const [levelPrice, setLevelPrice] = useState("cxzcz")
-    const [levelUnit, setLevelUnit] = useState("cxzcz")
-    const [levelDescription, setLevelDescription] = useState("bvbcv Lorem")
-    const [type, setType] = useState(1)
+    const [sortItems, setSortItems] = useState()
+    const [level, setLevel] = useState(props.level)
+    const [levelName, setLevelName] = useState(level.level_name)
+    const [levelInput, setLevelInput] = useState(level.requirement)
+    const [levelOutput, setLevelOutput] = useState(level.guarantee)
+    const [ageInput, setAgeInput] = useState(level.min_age)
+    const [ageOutput, setAgeOutput] = useState(level.max_age)
+    const [levelPrice, setLevelPrice] = useState(level.basic_fee)
+    const [levelUnit, setLevelUnit] = useState(level.fee_unit)
+    const [levelDescription, setLevelDescription] = useState(level.level_description)
+    const [type, setType] = useState(level.course_id)
+
     const inputList = [
         {
             title: "Tiêu chuẩn đầu vào và đầu ra",
@@ -45,26 +48,46 @@ export default function BotCourseUpdateLevel(props) {
             onChange2: (e) => { setLevelUnit(e.target.value) }
         }
     ]
+
+    useEffect(async () => {
+        if (!sortItems)
+            axios.get("http://localhost:8080/bot-courses/get-all-course-name/").then((res) => {
+                res.data.map((item, index) => {
+                    item.value = item.course_id
+                    item.displayText = item.course_name
+                })
+                setSortItems(res.data)
+            })
+    }, [sortItems])
+
     const SortHandler = (e) => {
         setType(e.target.value)
-        // if (e.target.value == 0)
-        //     setPosition("employee")
-        // if (e.target.value == 1)
-        //     setPosition("manager")
-        //Handle chosen sort option code
     }
-    const onConfirm = () => {
-    }
-    const sortItems = [
-        {
-            value: 0,
-            displayText: "Không"
-        },
-        {
-            value: 1,
-            displayText: "Có"
+    const onConfirm = async() => {
+        const updateData = {
+            id: level.level_id,
+            level_name: levelName,
+            level_description: levelDescription,
+            requirement: levelInput,
+            guarantee: levelOutput,
+            min_age: ageInput,
+            max_age: ageOutput,
+            basic_fee: levelPrice,
+            fee_unit: levelUnit,
+            course_id: type
         }
-    ]
+        axios.post("http://localhost:8080/bot-course-levels/update-level-by-id", updateData).then((ress) => {
+            if (ress.data[0] == 1) {
+                console.log("Update success")
+                setTimeout(function () {
+                    window.location.reload();
+                }, 3000);
+            }
+            else
+                console.log("Update failed")
+        })
+    }
+
     return (
         <Fragment>
             <CourseLevelForm
@@ -81,7 +104,8 @@ export default function BotCourseUpdateLevel(props) {
                 inputDescription={(e) => { setLevelDescription(e.target.value); }}
                 levelName={levelName}
                 levelOnChange={(e) => { setLevelName(e.target.value); }}
-                updateHandler={onConfirm}>
+                updateHandler={onConfirm}
+                comboBoxTitle={"Khóa học gốc:"}>
             </CourseLevelForm>
         </Fragment>
     )

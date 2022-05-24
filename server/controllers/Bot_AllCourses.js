@@ -19,6 +19,18 @@ const getAllCourses = async(req, res) => {
     }
 }
 
+const getAllCourseName = async(req, res) => {
+    try {
+        await Bot_Courses.findAll({
+            attributes: ['course_id', 'course_name']
+        }).then(result => {
+            res.send(result)
+        })
+    } catch (error) {
+        res.send(error)
+    }
+}
+
 const getCount = async(req, res) => {
     const result = await Bot_Courses.count();
     res.send(result.toString());
@@ -80,5 +92,6 @@ module.exports = {
     getCount,
     getCourseById,
     updateCourseById,
-    createCourse
+    createCourse,
+    getAllCourseName
 }

@@ -9,6 +9,9 @@ import Modal from 'react-modal';
 import BotCourseCreate from '../../components/PopupComponents/BotCourseCreate/BotCourseCreate'
 import BotCourseUpdate from '../../components/PopupComponents/BotCourseUpdate/BotCourseUpdate'
 import BotCourseView from '../../components/PopupComponents/BotCourseView/BotCourseView'
+import BotCourseViewLevel from '../../components/PopupComponents/BotCourseViewLevel/BotCourseViewLevel'
+import BotCourseCreateLevel from '../../components/PopupComponents/BotCourseCreateLevel/BotCourseCreateLevel'
+import BotCourseUpdateLevel from '../../components/PopupComponents/BotCourseUpdateLevel/BotCourseUpdateLevel'
 
 const courseListFormat = [
     {
@@ -196,6 +199,10 @@ const ChatbotManagement = props => {
     const [isShowUpdate, setIsShowUpdate] = useState(false);
     const [isShowView, setIsShowView] = useState(false);
 
+    const [isShowCreateLevel, setIsShowCreateLevel] = useState(false);
+    const [isShowUpdateLevel, setIsShowUpdateLevel] = useState(false);
+    const [isShowViewLevel, setIsShowViewLevel] = useState(false);
+
     const [pageCount, setPageCount] = useState(1)
     const [botData, setBotData] = useState([])
     const [botListFormat, setBotListFormat] = useState(courseListFormat)
@@ -206,18 +213,18 @@ const ChatbotManagement = props => {
     const [sortOption, setSortOption] = useState()
 
     useEffect(async () => {
-        if (category == "bot-courses") {
+        if (category === "bot-courses") {
             setBotListFormat(courseListFormat)
             setSortItems(sortCourseItems)
         }
-        if (category == "bot-course-levels") {
+        if (category === "bot-course-levels") {
             setBotListFormat(levelListFormat)
             setSortItems(sortLevelItems)
         }
         if (sortItems)
             sortItems.forEach(element => {
                 for (let [key, keyValue] of Object.entries(element)) {
-                    if (key == "sortParam" && keyValue == sort) {
+                    if (key === "sortParam" && keyValue === sort) {
                         setSortOption(element.value)
                     }
                 }
@@ -232,7 +239,7 @@ const ChatbotManagement = props => {
                     res.data.map((item, index) => {
                         if (item.course_name) {
                             item.thumbnail = item.course_image
-                            if (item.course_status == "enabled")
+                            if (item.course_status === "enabled")
                                 item.active = true
                             else
                                 item.active = false
@@ -243,7 +250,7 @@ const ChatbotManagement = props => {
                             item.id = item.level_id
                             item.level_name = item.Bot_Course.course_name + " - " + item.level_name
                             item.basic_fee = item.basic_fee + "/" + item.fee_unit
-                            if (item.level_status == "enabled")
+                            if (item.level_status === "enabled")
                                 item.active = true
                             else
                                 item.active = false
@@ -254,7 +261,7 @@ const ChatbotManagement = props => {
                     setBotData(res.data)
                 })
 
-    }, [sortOption, sortItems])
+    }, [sortOption, sortItems, category, page, sort])
 
     const handlePageClick = (event) => {
         navigate("/workplace/chatbot-management/" + category + "/" + sort + "/" + (event.selected + 1))
@@ -266,7 +273,7 @@ const ChatbotManagement = props => {
     }
     const onPageTextChange = (e) => {
         if (e.key === 'Enter')
-            if (e.target.value <= pageCount && e.target.value >= 1 && e.target.value != e.target.defaultValue) {
+            if (e.target.value <= pageCount && e.target.value >= 1 && e.target.value !== e.target.defaultValue) {
                 navigate("/workplace/chatbot-management/" + category + "/" + sort + "/" + (e.target.value))
                 navigate(0)
             }
@@ -279,26 +286,48 @@ const ChatbotManagement = props => {
     }
 
     const onCreateClick = () => {
-        setIsShowCreate(true);
+        if (category === "bot-course-levels")
+            setIsShowCreateLevel(true)
+        else
+            setIsShowCreate(true);
     }
-    const onUpdateClick = async(e) => {
+    const onUpdateClick = async (e) => {
         const id = e.currentTarget.attributes.getNamedItem("value").value
-        await axios.post("http://localhost:8080/bot-courses/get-course-by-id", {id: id}).then((res)=>{
-            setCourse(res.data)
-        })
-        setIsShowUpdate(true);
+        if (category === "bot-courses") {
+            await axios.post("http://localhost:8080/bot-courses/get-course-by-id", { id: id }).then((res) => {
+                setCourse(res.data)
+            })
+            setIsShowUpdate(true);
+        }
+        else {
+            await axios.post("http://localhost:8080/bot-course-levels/get-level-by-id", { id: id }).then((res) => {
+                setCourse(res.data)
+            })
+            setIsShowUpdateLevel(true);
+        }
     }
-    const onViewClick = async(e) => {
+    const onViewClick = async (e) => {
         const id = e.currentTarget.attributes.getNamedItem("value").value
-        await axios.post("http://localhost:8080/bot-courses/get-course-by-id", {id: id}).then((res)=>{
-            setCourse(res.data)
-        })
-        setIsShowView(true);
+        if (category === "bot-courses") {
+            await axios.post("http://localhost:8080/bot-courses/get-course-by-id", { id: id }).then((res) => {
+                setCourse(res.data)
+            })
+            setIsShowView(true);
+        }
+        else {
+            await axios.post("http://localhost:8080/bot-course-levels/get-level-by-id", { id: id }).then((res) => {
+                setCourse(res.data)
+            })
+            setIsShowViewLevel(true);
+        }
     }
     const handleFormClose = () => {
         setIsShowCreate(false);
         setIsShowUpdate(false);
         setIsShowView(false);
+        setIsShowCreateLevel(false);
+        setIsShowUpdateLevel(false);
+        setIsShowViewLevel(false);
     }
 
     const renderBotManagement = () => {
@@ -373,6 +402,45 @@ const ChatbotManagement = props => {
                     handleFormClose={handleFormClose}
                     course={course}>
                 </BotCourseView>
+            </Modal>
+
+            <Modal
+                isOpen={isShowCreateLevel}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}
+            >
+                <BotCourseCreateLevel
+                    handleFormClose={handleFormClose}>
+                </BotCourseCreateLevel>
+            </Modal>
+            <Modal
+                isOpen={isShowUpdateLevel}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}
+            >
+                <BotCourseUpdateLevel
+                    handleFormClose={handleFormClose}
+                    level={course}>
+                </BotCourseUpdateLevel>
+            </Modal>
+            <Modal
+                isOpen={isShowViewLevel}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}
+            >
+                <BotCourseViewLevel
+                    handleFormClose={handleFormClose}
+                    level={course}>
+                </BotCourseViewLevel>
             </Modal>
         </div>
     )
