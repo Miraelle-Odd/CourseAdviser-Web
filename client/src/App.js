@@ -96,7 +96,7 @@ function App() {
 
             <Route path="/workplace/account-setting" element={currentUser != null ? <AccountSetting></AccountSetting> : <Navigate to="/"></Navigate>} />
             <Route path="/workplace/employee-management/:category/:sort/:page" element={currentUser != null ? <EmployeeManagement></EmployeeManagement> : <Navigate to="/"></Navigate>}></Route>
-            <Route path="/workplace/chatbot-management/:category/:page" element={currentUser != null ? <ChatbotManagement></ChatbotManagement> : <Navigate to="/"></Navigate>} />
+            <Route path="/workplace/chatbot-management/:category/:sort/:page" element={currentUser != null ? <ChatbotManagement></ChatbotManagement> : <Navigate to="/"></Navigate>} />
             <Route path="/workplace/post-management/:category/:sort/:page" element={currentUser != null ? <PostManagement></PostManagement> : <Navigate to="/"></Navigate>} />
             <Route path="/workplace/post-management/post-view/:id" element={currentUser != null ? <PostView></PostView> : <Navigate to="/"></Navigate>} />
             <Route path="/workplace/post-management/post-create" element={currentUser != null ? <PostUpdate></PostUpdate> : <Navigate to="/"></Navigate>} />
@@ -107,16 +107,17 @@ function App() {
             {/* Redirect Links */}
             <Route path="/workplace" element={<Navigate to={"/workplace/" + workplace + "/all/updated-latest/1"}></Navigate>} />
             <Route path="/workplace/employee-management" element={<Navigate to="/workplace/employee-management/all/updated-latest/1"></Navigate>} />
-            <Route path="/workplace/chatbot-management" element={<Navigate to="/workplace/chatbot-management/bot-courses/1"></Navigate>} />
+            <Route path="/workplace/chatbot-management" element={<Navigate to="/workplace/chatbot-management/bot-courses/updated-latest/1"></Navigate>} />
             <Route path="/workplace/post-management" element={<Navigate to="/workplace/post-management/all/updated-latest/1"></Navigate>} />
             <Route path="/workplace/q-and-a-management" element={<Navigate to="/workplace/q-and-a-management/all/updated-latest/1"></Navigate>} />
             <Route path="/workplace/employee-management/:category" element={<Navigate to="/workplace/employee-management/:category/updated-latest/1"></Navigate>} />
-            <Route path="/workplace/chatbot-management/:category" element={<Navigate to="/workplace/chatbot-management/:category/1"></Navigate>} />
+            <Route path="/workplace/chatbot-management/:category" element={<Navigate to="/workplace/chatbot-management/:category/updated-latest/1"></Navigate>} />
             <Route path="/workplace/post-management/:category" element={<Navigate to="/workplace/post-management/:category/updated-latest/1"></Navigate>} />
             <Route path="/workplace/q-and-a-management/:category" element={<Navigate to="/workplace/q-and-a-management/:category/updated-latest/1"></Navigate>} />
             <Route path="/workplace/employee-management/:category/:sort" element={<Navigate to="/workplace/employee-management/:category/:sort/1"></Navigate>} />
             <Route path="/workplace/post-management/:category/:sort" element={<Navigate to="/workplace/post-management/all/:category/:sort/1"></Navigate>} />
             <Route path="/workplace/q-and-a-management/:category/:sort" element={<Navigate to="/workplace/q-and-a-management/:category/:sort/1"></Navigate>} />
+            <Route path="/workplace/chatbot-management/:category/:sort" element={<Navigate to="/workplace/chatbot-management/:category/:sort/1"></Navigate>} />
           </Routes>
         </React.Suspense>
       </Router>

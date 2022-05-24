@@ -6,8 +6,11 @@ const getAllCourses = async(req, res) => {
         if (req.params.page)
             page = req.params.page
         await Bot_Courses.findAll({
-            limit: 2,
-            offset: page * 2,
+            limit: 8,
+            offset: page * 8,
+            order: [
+                [req.params.sortField, req.params.sortOrder]
+            ],
         }).then((result) => {
             res.send(result)
         })
