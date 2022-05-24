@@ -210,6 +210,7 @@ const EmployeeManagement = props => {
     const onViewClick = (e) => {
         const id = e.currentTarget.attributes.getNamedItem("value").value
         setIdItem(id);
+        console.log(e.currentTarget)
         setIsShowView(true);
     }
     const handleFormClose = () => {

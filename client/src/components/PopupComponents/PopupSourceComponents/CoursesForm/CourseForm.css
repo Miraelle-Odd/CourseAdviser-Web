@@ -1,13 +1,15 @@
 .course-popup-main {
-    height: 330px ;
+    height: 330px;
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
 }
-.no-space-between{
+
+.no-space-between {
     justify-content: left;
 }
-.fake-sort{
+
+.fake-sort {
     width: 270px;
     height: 37px;
     background: #FFFFFF;
@@ -16,31 +18,44 @@
     border-radius: 20px;
     font-family: 'Rounded Mplus 1c Light';
     font-size: 14px;
-
     color: rgba(0, 0, 0, 0.4);
     outline: none;
     padding: 8px 12px;
     text-align: left;
 }
-.custom-margin{
+
+.custom-margin {
     margin-left: 30px;
 }
-.course-popup-item{
+
+.course-popup-item {
     width: 96%;
 }
-.course-info-item{
+
+.course-info-item {
     width: 270px !important;
     margin: 15px 0 0px 0 !important;
 }
-.course-info-select{
+
+.course-info-select {
     width: 270px !important;
 }
-.custom-item-margin{
+
+.custom-item-margin {
     margin-top: 45px;
 }
+
 .course-popup-img {
     width: 330px;
     height: 136px;
     border: 1px solid #4C83C5;
     border-radius: 10px;
+}
+
+.updatable-img {
+    cursor: pointer;
+}
+
+.course-popup-item .image-browser {
+    display: none;
 }

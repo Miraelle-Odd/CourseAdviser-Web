@@ -5,6 +5,10 @@ import WorkplaceLayout from '../../components/LayoutComponents/WorkplacePage/Wor
 import WorkplaceList from '../../components/ListComponents/WorkplaceList'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+import Modal from 'react-modal';
+import BotCourseCreate from '../../components/PopupComponents/BotCourseCreate/BotCourseCreate'
+import BotCourseUpdate from '../../components/PopupComponents/BotCourseUpdate/BotCourseUpdate'
+import BotCourseView from '../../components/PopupComponents/BotCourseView/BotCourseView'
 
 const courseListFormat = [
     {
@@ -188,9 +192,15 @@ const ChatbotManagement = props => {
     let { category, page, sort } = useParams()
     const itemsPerPage = 8
 
+    const [isShowCreate, setIsShowCreate] = useState(false);
+    const [isShowUpdate, setIsShowUpdate] = useState(false);
+    const [isShowView, setIsShowView] = useState(false);
+
     const [pageCount, setPageCount] = useState(1)
     const [botData, setBotData] = useState([])
     const [botListFormat, setBotListFormat] = useState(courseListFormat)
+
+    const [course, setCourse] = useState()
 
     const [sortItems, setSortItems] = useState()
     const [sortOption, setSortOption] = useState()
@@ -226,9 +236,11 @@ const ChatbotManagement = props => {
                                 item.active = true
                             else
                                 item.active = false
-                            item = { item: (delete item['course_image'], delete item['course_status'], item) };
+                            item.id = item.course_id
+                            item = { item: (delete item['course_id'], delete item['course_image'], delete item['course_status'], item) };
                         }
                         if (item.level_name) {
+                            item.id = item.level_id
                             item.level_name = item.Bot_Course.course_name + " - " + item.level_name
                             item.basic_fee = item.basic_fee + "/" + item.fee_unit
                             if (item.level_status == "enabled")
@@ -236,7 +248,7 @@ const ChatbotManagement = props => {
                             else
                                 item.active = false
 
-                            item = { item: (delete item['fee_unit'], delete item['Bot_Course'], delete item['level_status'], item) };
+                            item = { item: (delete item['level_id'], delete item['fee_unit'], delete item['Bot_Course'], delete item['level_status'], item) };
                         }
                     })
                     setBotData(res.data)
@@ -266,6 +278,29 @@ const ChatbotManagement = props => {
         navigate(0)
     }
 
+    const onCreateClick = () => {
+        setIsShowCreate(true);
+    }
+    const onUpdateClick = async(e) => {
+        const id = e.currentTarget.attributes.getNamedItem("value").value
+        await axios.post("http://localhost:8080/bot-courses/get-course-by-id", {id: id}).then((res)=>{
+            setCourse(res.data)
+        })
+        setIsShowUpdate(true);
+    }
+    const onViewClick = async(e) => {
+        const id = e.currentTarget.attributes.getNamedItem("value").value
+        await axios.post("http://localhost:8080/bot-courses/get-course-by-id", {id: id}).then((res)=>{
+            setCourse(res.data)
+        })
+        setIsShowView(true);
+    }
+    const handleFormClose = () => {
+        setIsShowCreate(false);
+        setIsShowUpdate(false);
+        setIsShowView(false);
+    }
+
     const renderBotManagement = () => {
         return (
             <div className='bot-man-body'>
@@ -282,6 +317,9 @@ const ChatbotManagement = props => {
                     customOn={"Open"}
                     customOff={"Close"}
                     chatbot
+                    openAction={onViewClick}
+                    editAction={onUpdateClick}
+                    onCreateClick={onCreateClick}
                 ></WorkplaceList>
             </div>
         )
@@ -298,6 +336,44 @@ const ChatbotManagement = props => {
                 sortOption={sortOption}
             ></WorkplaceLayout>
             <Footer></Footer>
+            <Modal
+                isOpen={isShowCreate}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}
+            >
+                <BotCourseCreate
+                    handleFormClose={handleFormClose}>
+                </BotCourseCreate>
+            </Modal>
+            <Modal
+                isOpen={isShowUpdate}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}
+            >
+                <BotCourseUpdate
+                    handleFormClose={handleFormClose}
+                    course={course}>
+                </BotCourseUpdate>
+            </Modal>
+            <Modal
+                isOpen={isShowView}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}
+            >
+                <BotCourseView
+                    handleFormClose={handleFormClose}
+                    course={course}>
+                </BotCourseView>
+            </Modal>
         </div>
     )
 }
