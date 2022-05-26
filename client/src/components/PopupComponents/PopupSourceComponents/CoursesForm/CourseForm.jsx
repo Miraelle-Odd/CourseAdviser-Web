@@ -15,6 +15,10 @@ const sortItems = [
         displayText: "Có"
     }
 ]
+
+const openImageBrowser = () => {
+    document.getElementById('course-popup-item_image-browser').click()
+}
 export default function CourseForm(props) {
     return (
         <Fragment>
@@ -65,7 +69,11 @@ export default function CourseForm(props) {
                         <div className='personal-info-col-right custom-margin'>
                             <div className='edit-form-item course-popup-item course-info-item'>
                                 <p className='edit-form-item-title'>Minh họa:</p>
-                                <img className='course-popup-img' src={props.img ? props.img : noImg}></img>
+                                <img className={'course-popup-img' + (props.isView? "" : " updatable-img")} src={props.img ? props.img : noImg}
+                                    onClick={props.isView? ()=>{} : openImageBrowser}></img>
+                                <input id="course-popup-item_image-browser" className="image-browser" type="file" accept="image/*"
+                                    onChange={props.changeImage}
+                                ></input>
                             </div>
                             <div className='edit-form-item create-form-item course-info-item'>
                                 <p className='edit-form-item-title create-form-item-position'>Mô tả: </p>

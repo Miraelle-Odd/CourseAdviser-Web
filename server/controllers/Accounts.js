@@ -311,19 +311,24 @@ const getInactiveCountByPosition = async(req, res) => {
 const getListAccountByPosition = async(req, res) => {
     var page = 0;
     var result
+    var order
+    if (req.params.sortField == "name")
+        order = [Personal_Infos, req.params.sortField, req.params.sortOrder]
+    else
+        order = [req.params.sortField, req.params.sortOrder]
     if (req.params.page)
         page = req.params.page
     if (req.params.position == "all")
         result = await Accounts.findAll({
             attributes: ['email', 'status'],
             order: [
-                ['account_id', 'DESC']
+                order
             ],
             limit: 2,
             offset: page * 2,
             include: {
                 model: Personal_Infos,
-                as: 'Personal_Info'
+                as: 'Personal_Info',
             }
         })
     else
@@ -333,7 +338,7 @@ const getListAccountByPosition = async(req, res) => {
                 position: req.params.position
             },
             order: [
-                ['account_id', 'DESC']
+                order
             ],
             limit: 2,
             offset: page * 2,

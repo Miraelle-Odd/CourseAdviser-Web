@@ -4,10 +4,13 @@ import axios from 'axios';
 import CourseForm from '../PopupSourceComponents/CoursesForm/CourseForm';
 
 export default function BotCourseUpdate(props) {
-    const [courseName, setCourseName] = useState("vxcvxcvxcv")
-    const [courseUrl, setCourseUrl] = useState("vxcvxvxvcv")
-    const [courseDescription, setCourseDescription] = useState("bvbcv Lorem")
-    const [type, setType] = useState(1)
+    const [course, setCourse] = useState(props.course)
+    const [courseName, setCourseName] = useState(course.course_name)
+    const [courseUrl, setCourseUrl] = useState(course.course_page)
+    const [courseDescription, setCourseDescription] = useState(course.course_description)
+    const [type, setType] = useState(course.special_support ? 1 : 0)
+    const [imageURL, setImageURL] = useState(course.course_image)
+    const [image, setImage] = useState()
     const inputList = [
         {
             title: "Tên khóa học:",
@@ -26,13 +29,52 @@ export default function BotCourseUpdate(props) {
     ]
     const SortHandler = (e) => {
         setType(e.target.value)
-        // if (e.target.value == 0)
-        //     setPosition("employee")
-        // if (e.target.value == 1)
-        //     setPosition("manager")
-        //Handle chosen sort option code
     }
-    const onConfirm = () => {
+    const imageHandler = (e) => {
+        setImageURL(URL.createObjectURL(e.target.files[0]))
+        setImage(e.target.files[0])
+    }
+    const onConfirm = async() => {
+        var imgData
+        var updateData = {
+            id: course.course_id,
+            course_name: courseName,
+            course_page: courseUrl,
+            course_description: courseDescription,
+            special_support: type
+        }
+        if (image) {
+            imgData = new FormData()
+            imgData.append("image", image)
+            axios.post("http://localhost:8080/image/upload-to-imgur/", imgData)
+                .then(res => {
+                    updateData.course_image = res.data.link
+                    console.log("......", updateData)
+                    axios.post("http://localhost:8080/bot-courses/update-course-by-id", updateData).then((ress) => {
+                        console.log(ress.data)
+                        if (ress.data[0] == 1) {
+                            console.log("Update success")
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 3000);
+                        }
+                        else
+                            console.log("Update failed")
+                    })
+                })
+        }
+        else{
+            axios.post("http://localhost:8080/bot-courses/update-course-by-id", updateData).then((ress) => {
+                        if (ress.data[0] == 1) {
+                            console.log("Update success")
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 3000);
+                        }
+                        else
+                            console.log("Update failed")
+                    })
+        }
     }
     return (
         <Fragment>
@@ -45,7 +87,9 @@ export default function BotCourseUpdate(props) {
                 selectComboBox={SortHandler}
                 type={type}
                 description={courseDescription}
+                img={imageURL}
                 inputDescription={(e) => { setCourseDescription(e.target.value); }}
+                changeImage={imageHandler}
                 updateHandler={onConfirm}>
             </CourseForm>
         </Fragment>

@@ -70,9 +70,9 @@ const Home = props => {
             {/* <BotCourseView></BotCourseView>
             <BotCourseUpdate></BotCourseUpdate>
             <BotCourseCreate></BotCourseCreate> */}
-            <BotCourseViewLevel></BotCourseViewLevel>
+            {/* <BotCourseViewLevel></BotCourseViewLevel>
             <BotCourseUpdateLevel></BotCourseUpdateLevel>
-            <BotCourseCreateLevel></BotCourseCreateLevel>
+            <BotCourseCreateLevel></BotCourseCreateLevel> */}
 
             {/* 
             <AlertSuccess></AlertSuccess>
@@ -85,15 +85,6 @@ const Home = props => {
                 icon={['far', 'calendar-check']}
                 name={"Đặt lịch tư vấn"}>
             </FloatBtn> */}
-
-            {/* {
-                listOfTest.map((value, key) => {
-                    return <DraftCom
-                        title={value.title}
-                        content={value.text}
-                    ></DraftCom>
-                })
-            } */}
         </div>
     )
 }

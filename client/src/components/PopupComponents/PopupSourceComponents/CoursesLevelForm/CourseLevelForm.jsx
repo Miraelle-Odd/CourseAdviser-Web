@@ -76,7 +76,7 @@ export default function CourseLevelForm(props) {
                         </div>
                         <div className='personal-info-col-right course-level-margin'>
                             <div className='edit-form-item course-popup-item course-level-combobox'>
-                                <p className='edit-form-item-title'>Có hỗ trợ chương trình đặc biệt:</p>
+                                <p className='edit-form-item-title'>{props.comboBoxTitle ? props.comboBoxTitle : "Có hỗ trợ chương trình đặc biệt:"}</p>
                                 {
                                     props.isView ?
                                         <div className='fake-sort course-info-select'>{props.comboBoxValue}</div>
