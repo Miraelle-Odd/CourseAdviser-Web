@@ -94,7 +94,7 @@ function App() {
             <Route path="/account-activation/" element={<AccountActivation></AccountActivation>} />
             <Route path="/account-activation/:token" element={<AccountActivation></AccountActivation>} />
 
-            <Route path="/workplace/account-setting" element={currentUser != null ? <AccountSetting></AccountSetting> : <Navigate to="/"></Navigate>} />
+            <Route path="/workplace/account-setting" element={currentUser != null ? <AccountSetting currentId={currentUser.account.account_id}></AccountSetting> : <Navigate to="/"></Navigate>} />
             <Route path="/workplace/employee-management/:category/:sort/:page" element={currentUser != null ? <EmployeeManagement></EmployeeManagement> : <Navigate to="/"></Navigate>}></Route>
             <Route path="/workplace/chatbot-management/:category/:sort/:page" element={currentUser != null ? <ChatbotManagement></ChatbotManagement> : <Navigate to="/"></Navigate>} />
             <Route path="/workplace/post-management/:category/:sort/:page" element={currentUser != null ? <PostManagement></PostManagement> : <Navigate to="/"></Navigate>} />
