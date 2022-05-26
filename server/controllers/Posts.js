@@ -96,7 +96,7 @@ const getListPostByCategory = async(req, res) => {
     if (req.params.category == "all")
         result = await Posts.findAll({
             order: [
-                ['post_id', 'DESC']
+                [req.params.sortField, req.params.sortOrder]
             ],
             limit: 2,
             offset: page * 2,
@@ -107,7 +107,7 @@ const getListPostByCategory = async(req, res) => {
                 post_type: req.params.category
             },
             order: [
-                ['post_id', 'DESC']
+                [req.params.sortField, req.params.sortOrder]
             ],
             limit: 2,
             offset: page * 2,

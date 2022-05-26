@@ -226,7 +226,16 @@ const Chatbot = (props) => {
 
                 </div>
                 <div className="chat-input">
-                    <input className="text-input" onChange={(e) => setMessage(e.target.value)} value={message}></input>
+                    <input 
+                    className="text-input" 
+                    onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={async(e)=>{
+                        if(e.key === 'Enter'){
+                            addMessage()
+                        }
+                    }} 
+                    value={message}
+                    ></input>
                     <button className="send-btn" onClick={addMessage}>
                         <FontAwesomeIcon icon={['fas', 'paper-plane']}></FontAwesomeIcon>
                     </button>
