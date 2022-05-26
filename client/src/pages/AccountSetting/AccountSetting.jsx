@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './AccountSetting.css'
 import Footer from '../../components/Footer/Footer'
 import WorkplaceLayout from '../../components/LayoutComponents/WorkplacePage/WorkplaceLayout'
 import PersonalInfoTray from '../../components/TrayComponents/PersonalInfoTray'
-
+import moment from 'moment'
 import Modal from 'react-modal';
 import UpdateSelfInfo from '../../components/PopupComponents/UpdateSelfInfo/UpdateSelfInfo'
 import UpdateSelfContact from '../../components/PopupComponents/UpdateSelfContact/UpdateSelfContact'
 import UpdatePassword from '../../components/PopupComponents/UpdatePassword/UpdatePassword'
+import axios from 'axios'
 
 const AccountSetting = props => {
     const [isShowUpdateBasicInfo, setIsShowUpdateBasicInfo] = useState(false);
@@ -21,70 +22,83 @@ const AccountSetting = props => {
     const openChangePassForm = () => {
         setIsShowUpdatePassword(true)
     }
-    
+
     const openChangeBasicInfoForm = () => {
         setIsShowUpdateBasicInfo(true)
     }
-    
+
     const openChangeContractInfoForm = () => {
         setIsShowUpdateContactInfo(true)
     }
+
+    const [currentUser, setCurrentUser] = useState();
+
+    useEffect(() => {
+        const getAccountById = async () => {
+            const result = await axios.get(`http://localhost:8080/Accounts/get-detail/${props.currentId}`)
+            setCurrentUser(result.data)
+        }
+        getAccountById().catch(console.error)
+    }, [props])
+
+    var time = moment(currentUser ? currentUser.Personal_Info.birthday : null).format("YYYY-MM-DD");
+
     const basicInfo = [
         {
             fieldName: "Họ tên",
-            fieldValue: "Cao Ngọc Anh",
+            fieldValue: currentUser ? currentUser.Personal_Info.name : null,
             openForm: true,
             openFormFun: openChangeBasicInfoForm,
         },
         {
             fieldName: "Giới tính",
-            fieldValue: "Nữ",
+            fieldValue: currentUser ? currentUser.Personal_Info.gender == "female" ? "Nữ" : "Nam" : null,
             openForm: true,
             openFormFun: openChangeBasicInfoForm,
         },
         {
             fieldName: "Ngày sinh",
-            fieldValue: "08/03/2001",
+            fieldValue: time,
             openForm: true,
             openFormFun: openChangeBasicInfoForm,
             isLast: true
         },
     ]
-    
+
     const contractInfo = [
         {
             fieldName: "Email",
-            fieldValue: "kurocrea@gmail",
+            fieldValue: currentUser ?currentUser.email : null
         },
         {
             fieldName: "Số điện thoại",
-            fieldValue: "0935 822 239",
+            fieldValue: currentUser ?currentUser.Personal_Info.phone : null,
             openForm: true,
             openFormFun: openChangeContractInfoForm,
         }, {
             fieldName: "Ví trí",
-            fieldValue: "TP. Hồ Chí Minh",
+            fieldValue: currentUser ?currentUser.Personal_Info.location : null,
             openForm: true,
             openFormFun: openChangeContractInfoForm,
             isLast: true
         },
     ]
-    
+
     const accountInfo = [
         {
             fieldName: "Username",
-            fieldValue: "NABadass"
+            fieldValue: currentUser ?currentUser.username : null,
         },
         {
             fieldName: "Password",
-            fieldValue: "********",
+            fieldValue: "Đổi mật khẩu",
             openForm: true,
             openFormFun: openChangePassForm,
 
         },
         {
             fieldName: "Loại tài khoản",
-            fieldValue: "Quản lý",
+            fieldValue: currentUser ? currentUser.position = "employee" ? "Nhân viên" : "Quản lý" : null,
             isLast: true
         }
     ]
@@ -118,7 +132,7 @@ const AccountSetting = props => {
                         </PersonalInfoTray>
                     </div>
                 </div>
-    
+
             </div >
         )
     }
@@ -134,9 +148,15 @@ const AccountSetting = props => {
                 onRequestClose={() => handleFormClose()}
                 className="popup-modal"
                 overlayClassName="popup-overlay"
-                shouldCloseOnOverlayClick={false}>
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
                 <UpdateSelfInfo
-                    handleFormClose={() => handleFormClose()}>
+                    handleFormClose={() => handleFormClose()}
+                    name={currentUser ? currentUser.Personal_Info.name : null}
+                    gender={currentUser ? currentUser.Personal_Info.gender == "Nữ" ? "female" : "male" : null}
+                    birthday={currentUser ? currentUser.Personal_Info.birthday : null}
+                    idItem={currentUser ? currentUser.account_id : null}
+                >
                 </UpdateSelfInfo>
             </Modal>
             <Modal
@@ -144,9 +164,14 @@ const AccountSetting = props => {
                 onRequestClose={() => handleFormClose()}
                 className="popup-modal"
                 overlayClassName="popup-overlay"
-                shouldCloseOnOverlayClick={false}>
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
                 <UpdateSelfContact
-                    handleFormClose={() => handleFormClose()}>
+                    handleFormClose={() => handleFormClose()}
+                    phone={currentUser ? currentUser.Personal_Info.phone : null}
+                    location={currentUser ? currentUser.Personal_Info.location : null}
+                    idItem={currentUser ? currentUser.account_id : null}
+                    >
                 </UpdateSelfContact>
             </Modal>
             <Modal
@@ -154,9 +179,12 @@ const AccountSetting = props => {
                 onRequestClose={() => handleFormClose()}
                 className="popup-modal"
                 overlayClassName="popup-overlay"
-                shouldCloseOnOverlayClick={false}>
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
                 <UpdatePassword
-                    handleFormClose={() => handleFormClose()}>
+                    handleFormClose={() => handleFormClose()}
+                    idItem={currentUser ? currentUser.account_id : null}
+                    >
                 </UpdatePassword>
             </Modal>
         </div>

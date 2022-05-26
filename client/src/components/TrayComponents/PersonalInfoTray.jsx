@@ -9,11 +9,11 @@ const PersonalInfoItem = props => {
             className={'personal-info-tray-item' + (props.isLast ? ' is-last' : '') + (props.openForm ? ' open-form' : '')}
             onClick={props.openFormFun}
         >
-            <span class="field">{props.fieldName}</span>
-            <span class="value">{props.fieldValue}</span>
+            <span className="field">{props.fieldName}</span>
+            <span className="value">{props.fieldValue}</span>
             {
                 props.openForm ?
-                    <span class="icon">
+                    <span className="icon">
                         <FontAwesomeIcon icon={['fas', 'chevron-right']}></FontAwesomeIcon>
                     </span>
                     : ""
@@ -31,11 +31,12 @@ const PersonalInfoTray = props => {
                     <span className='title'>{props.title}</span>
                     <span className='subtitle'>{props.subtitle}</span>
                 </div>
-                <div className={'tray-items' + (props.image? ' no-padding-right' : '')}>
+                <div className={'tray-items' + (props.image ? ' no-padding-right' : '')}>
                     {
                         props.items ? props.items.map((item, index) => {
                             return (
                                 <PersonalInfoItem
+                                    key={index}
                                     fieldName={item.fieldName}
                                     fieldValue={item.fieldValue}
                                     openForm={item.openForm}
