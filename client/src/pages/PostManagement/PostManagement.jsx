@@ -6,6 +6,8 @@ import WorkplaceList from '../../components/ListComponents/WorkplaceList'
 import thumb1 from "../../assets/icons/draft.png"
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+import Modal from 'react-modal';
+import AlertConfirm from '../../components/PopupComponents/AlertConfirm/AlertConfirm'
 
 const postListFormat = [
     {
@@ -111,9 +113,10 @@ const PostManagement = props => {
     const [totalCount, setTotalCount] = useState(0)
     const [activeCount, setActiveCount] = useState(0)
     const [inactiveCount, setInactiveCount] = useState(0)
-
+    const [isShowAlert, setIsShowAlert] = useState(false);
     const [postData, setPostData] = useState([])
-
+    const [updateStatus, setUpdateStatus] = useState()
+    const [error, setError] = useState()
     const [sortOption, setSortOption] = useState()
 
     useEffect(async () => {
@@ -190,7 +193,24 @@ const PostManagement = props => {
         navigate("/workplace/post-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + page)
         navigate(0)
     }
-
+    const onStatusClick = (e) => {
+        const status = e.currentTarget.attributes.getNamedItem("value").value
+        setUpdateStatus(status)
+        setIsShowAlert(true);
+    }
+    const handleFormClose = () => {
+        setIsShowAlert(false);
+    }
+    const handleStatus = (e) => {
+        axios.post(`http://localhost:8080/posts/update-status/${updateStatus}`)
+        .then((res) => {
+            console.log(res.data)
+            setError("Update success.\n\rReload page after")
+            setTimeout(function () {
+                window.location.reload();
+            }, 3000);
+        })
+    }
     const renderPostManagement = () => {
         return (
             <div className='post-man-body'>
@@ -222,6 +242,7 @@ const PostManagement = props => {
                     forcePage={parseInt(page) - 1}
                     pageCount={pageCount}
                     onPageTextChange={onPageTextChange}
+                    statusAction={onStatusClick}
                 ></WorkplaceList>
             </div>
         )
@@ -238,6 +259,19 @@ const PostManagement = props => {
                 sortOption={sortOption}
             ></WorkplaceLayout>
             <Footer></Footer>
+            <Modal
+                isOpen={isShowAlert}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
+                    <AlertConfirm
+                        alert={error}
+                        handleFormClose={() => handleFormClose()}
+                        handleStatus={() => handleStatus()}>
+                    </AlertConfirm>
+            </Modal>
         </div>
     )
 }

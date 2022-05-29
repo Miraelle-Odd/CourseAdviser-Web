@@ -11,7 +11,7 @@ router.get("/get-inactive-count/:category", Q_and_as.getInactiveCountByMainSubje
     // router.get("/get-list/:category", Q_and_as.getListQAByMainSubject)
 router.get("/get-list/:category/:sortField/:sortOrder/:page", Q_and_as.getListQAByMainSubject)
 router.get("/get-qa/:id", Q_and_as.getQaById)
-
+router.post("/update-status/:id/:status", Q_and_as.updateStatus)
 router.post("/post-qa", Q_and_as.createOrUpdateQa)
 
 module.exports = router

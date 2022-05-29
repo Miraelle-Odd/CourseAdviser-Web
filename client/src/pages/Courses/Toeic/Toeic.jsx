@@ -176,6 +176,11 @@ const shortBonusTypes = [
 ]
 
 const Toeic = props => {
+    
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
+
     const [listOfTeachers, setListOfTeachers] = useState([])
     useEffect(() => {
 

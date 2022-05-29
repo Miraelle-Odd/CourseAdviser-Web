@@ -21,6 +21,11 @@
     color: rgba(0, 0, 0, 0.7);
     margin: 15px 0 0 0;
 }
+.alert-item{
+    height: 20px;
+    font-family: 'Rounded Mplus 1c Medium' !important;
+    color: rgb(180, 0, 0) !important;
+}
 
 .post-update-title-input {
     width: 752px;

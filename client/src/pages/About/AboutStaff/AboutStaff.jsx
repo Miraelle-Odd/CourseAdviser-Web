@@ -12,6 +12,11 @@ export default function AboutStaff(props) {
     const [listOfAdvisers, setListOfAdvisers] = useState([])
     const [listOfManagers, setListOfManagers] = useState([])
     const [listOfTeachers, setListOfTeachers] = useState([])
+
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
+    
     useEffect(() => {
         const getListManagers = async () => {
             const result = await axios.get("http://localhost:8080/Staffs/type/Manager/Top4")

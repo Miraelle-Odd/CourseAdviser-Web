@@ -157,6 +157,10 @@ const shortBonusTypes = [
 const EngForAdults = props => {
     const [listOfTeachers, setListOfTeachers] = useState([])
     useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
+
+    useEffect(() => {
 
         const getListTeachers = async () => {
             const result = await axios.get("http://localhost:8080/Staffs/course/Speaking/Top4")

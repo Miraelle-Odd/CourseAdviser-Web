@@ -12,7 +12,6 @@ export default function AlertSuccess(props) {
                 subTitle={props.message}
                 src={alert_success}
                 customStyle="alert-form-success"
-                isOpen={props.isOpen}
                 onClose={props.onClose}>
             </AlertForm>
         </Fragment>

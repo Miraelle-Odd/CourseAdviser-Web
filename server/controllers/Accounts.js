@@ -387,7 +387,23 @@ const updateAccountById = async(req, res) => {
             )
         );
 }
+const updateStatus = async (req, res) => {
+    let itemValues;
+    if (req.params.status == "false") {
+        itemValues = {
+            status: "enabled"
+        };
+    }
+    else if (req.params.status == "true") {
+        itemValues = {
+            status: "disabled"
+        };
+    }
 
+    Accounts.update(itemValues, { where: { account_id: req.params.id } }).then((result) => {
+        res.send(result);
+    });
+}
 module.exports = {
     findAccountByUsername,
     findAccountByEmail,
@@ -403,5 +419,6 @@ module.exports = {
     getInactiveCountByPosition,
     logIn,
     getDetailById,
-    updateAccountById
+    updateAccountById,
+    updateStatus
 }

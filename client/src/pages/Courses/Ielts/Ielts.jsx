@@ -180,6 +180,10 @@ const shortBonusTypes = [
 const Ielts = props => {
     const [listOfTeachers, setListOfTeachers] = useState([])
     useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
+    
+    useEffect(() => {
 
         const getListTeachers = async () => {
             const result = await axios.get("http://localhost:8080/Staffs/course/IELTS/Top4")

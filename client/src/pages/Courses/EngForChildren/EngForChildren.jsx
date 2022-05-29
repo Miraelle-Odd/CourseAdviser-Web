@@ -8,6 +8,7 @@ import GameBenefit from "../../../assets/icons/kid-benefit-game.png"
 import NativeBenefit from "../../../assets/icons/kid-benefit-native.png"
 import ContestBenefit from "../../../assets/icons/kid-benefit-contest.png"
 import CakeCard from "../../../components/CardComponents/CoursePage/CakeCard";
+import { useEffect } from "react";
 
 const renderLevelContent = (props) => {
     return (
@@ -116,7 +117,9 @@ const benefitList = [
 ]
 
 const EngForChildren = props => {
-
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
     return (
         <div className="course-page-container kid">
             <div className="kid-introduction"></div>

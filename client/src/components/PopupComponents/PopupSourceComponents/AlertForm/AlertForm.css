@@ -3,14 +3,15 @@
     height: 460px;
     background: #FFFFFF;
     border-radius: 10px;
+    
     position: relative;
 }
 
-.alert-form-contain .alert-form-close {
+  .alert-form-close {
     width: 95%;
     display: flex;
     justify-content: right;
-    margin-top: 15px;
+    padding-top: 15px;
 }
 
 .alert-form-close .alert-form-icon {
@@ -19,8 +20,12 @@
     color: rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
-
-.alert-form-contain .alert-form-body {
+.add-text{
+    display: flex;
+    flex-direction: column;
+    
+}
+  .alert-form-body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,15 +52,21 @@
 .alert-form-body .alert-form-img {
     width: 108px;
     height: 108px;
-    margin: 66px 0 80px 0;
+    margin: 46px 0 50px 0;
 }
 
-.alert-form-body .alert-form-yesno {
-    width: 170px;
+.alert-form-yesno {
+    margin-top: 15px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    z-index: 100px;
 }
-
+.aler-form{
+    width: 200px !important;
+    height: 40px !important;
+    white-space: pre-line;
+    text-align: center;
+}
 .alert-form-yesno .alert-form-yes {
     width: 79px;
     height: 40px;
@@ -65,6 +76,7 @@
     color: white;
     border: none;
     cursor: pointer;
+    z-index: 100px;
 }
 
 .alert-form-yesno .alert-form-no {
@@ -76,6 +88,8 @@
     color: white;
     border: none;
     cursor: pointer;
+    z-index: 100px;
+    margin-left: 30px;
 }
 
 .alert-form-overlay {
@@ -88,4 +102,5 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100px;
 }

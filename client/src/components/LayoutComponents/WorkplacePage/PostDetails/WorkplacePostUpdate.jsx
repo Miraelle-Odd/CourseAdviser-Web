@@ -31,6 +31,7 @@ const WorkplacePostUpdate = props => {
     const [type, setType] = useState(0)
     const [status, setStatus] = useState()
     const [author, setAuthor] = useState()
+    const [error, setError] = useState()
 
     useEffect(() => {
         setType(props.type)
@@ -76,11 +77,12 @@ const WorkplacePostUpdate = props => {
 
             await axios.post("http://localhost:8080/image/upload-to-imgur/", data)
                 .then((res) => {
-                    params.post_img =  res.data.link
+                    params.post_img = res.data.link
                     console.log(params)
                     const result = axios.post("http://localhost:8080/posts/update-post/", params)
                         .then(res => {
                             console.log("dsadsad", res.data)
+                            setError("Successful!")
                         })
                 })
         }
@@ -89,6 +91,7 @@ const WorkplacePostUpdate = props => {
             const result = axios.post("http://localhost:8080/posts/update-post/", params)
                 .then(res => {
                     console.log("dsadsad", res.data)
+                    setError("Successful!")
                 })
         }
 
@@ -119,6 +122,7 @@ const WorkplacePostUpdate = props => {
             </button>
             <div className="workplace-list workplace-post-contain workplace-post-update">
                 <div className="post-body-contain post-body-first">
+                    <p className="post-update-item alert-item">{error}</p>
                     <p className="post-update-item">Tiêu đề:</p>
                     <input className="post-update-title-input"
                         placeholder="Nhập tiêu đề của bài viết"

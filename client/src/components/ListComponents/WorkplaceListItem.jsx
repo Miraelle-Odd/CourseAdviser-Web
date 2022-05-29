@@ -53,11 +53,14 @@ const WorkplaceListItem = props => {
                                     </span>
                                     :
                                     item.statusCell ?
-                                        <StatusSwitch
-                                            on={data.active}
-                                            customOn={props.customOn}
-                                            customOff={props.customOff}
-                                        ></StatusSwitch>
+                                        <div onClick={props.statusFun} value={data.id + "/" + data.active}>
+                                            <StatusSwitch
+                                                on={data.active}
+                                                onClick={() => {}}
+                                                customOn={props.customOn}
+                                                customOff={props.customOff}
+                                            ></StatusSwitch>
+                                        </div>
                                         :
                                         Object.entries(data).filter(function ([key, value]) {
                                             if (key !== item.name)

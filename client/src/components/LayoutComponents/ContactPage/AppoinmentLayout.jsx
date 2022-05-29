@@ -10,6 +10,7 @@ import moment from 'moment';
 import axios from 'axios'
 import AlertSuccess from '../../PopupComponents/AlertSuccess/AlertSuccess';
 import AlertFail from '../../PopupComponents/AlertFail/AlertFail';
+import Modal from 'react-modal';
 import validator from 'validator'
 
 
@@ -84,6 +85,11 @@ export default function AppoinmentLayout() {
             })
     }
 
+    const handleFormClose = () => {
+        setSuccessAlert(false)
+        setFailAlert(false)
+        setMessage("")
+    }
     return (
         <Fragment>
             <div className="appoinment-layout-content">
@@ -164,7 +170,6 @@ export default function AppoinmentLayout() {
                                 className="time-picker"
                                 placeholder="Giờ hẹn"
                                 onChange={
-                                    // ()=>setInputTime(document.getElementsByClassName("rc-time-picker-input")[0].value)
                                     (e) => setInputTime(e._d)
                                 }
                             >
@@ -192,22 +197,33 @@ export default function AppoinmentLayout() {
                     </div>
                 </div>
             </div>
-            <AlertSuccess
-                message={message}
+            <Modal
                 isOpen={successAlert}
-                onClose={() => {
-                    setSuccessAlert(false)
-                    setMessage("")
-                }}
-            ></AlertSuccess>
-            <AlertFail
-                message={message}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
+                <AlertSuccess
+                    message={message}
+                    onClose={() => handleFormClose()}
+                ></AlertSuccess>
+            </Modal>
+
+            <Modal
                 isOpen={failAlert}
-                onClose={() => {
-                    setFailAlert(false)
-                    setMessage("")
-                }}
-            ></AlertFail>
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
+                <AlertFail
+                    message={message}
+                    onClose={() => handleFormClose()}
+                ></AlertFail>
+            </Modal>
+
+
         </Fragment>
     )
 }
