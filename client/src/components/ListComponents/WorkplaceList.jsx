@@ -73,6 +73,7 @@ const WorkplaceList = props => {
                                 editFun={props.editAction}
                                 customOn={props.customOn}
                                 customOff={props.customOff}
+                                statusFun={props.statusAction}
                             ></WorkplaceListItem>
                         )
 

@@ -13,6 +13,7 @@ import CreateAccount from '../../components/PopupComponents/CreateAccount/Create
 import UpdateGeneral from '../../components/PopupComponents/UpdateGeneral/UpdateGeneral';
 import ViewGeneral from '../../components/PopupComponents/ViewGeneral/ViewGeneral';
 import axios from 'axios';
+import AlertConfirm from '../../components/PopupComponents/AlertConfirm/AlertConfirm';
 
 const empListFormat = [
     {
@@ -137,6 +138,9 @@ const EmployeeManagement = props => {
     const [totalCount, setTotalCount] = useState(0)
     const [activeCount, setActiveCount] = useState(0)
     const [inactiveCount, setInactiveCount] = useState(0)
+    const [isShowAlert, setIsShowAlert] = useState(false);
+    const [updateStatus, setUpdateStatus] = useState()
+    const [error, setError] = useState()
 
     const [idItem, setIdItem] = useState()
 
@@ -213,10 +217,16 @@ const EmployeeManagement = props => {
         console.log(e.currentTarget)
         setIsShowView(true);
     }
+    const onStatusClick = (e) => {
+        const status = e.currentTarget.attributes.getNamedItem("value").value
+        setUpdateStatus(status)
+        setIsShowAlert(true);
+    }
     const handleFormClose = () => {
         setIsShowCreate(false);
         setIsShowUpdate(false);
         setIsShowView(false);
+        setIsShowAlert(false);
     }
 
     const renderEmpManament = () => {
@@ -250,8 +260,8 @@ const EmployeeManagement = props => {
                     forcePage={parseInt(page) - 1}
                     onCategoryChange={onCategoryChange}
                     onPageTextChange={onPageTextChange}
+                    statusAction={onStatusClick}
                 ></WorkplaceList>
-
             </div>
         )
     }
@@ -262,6 +272,16 @@ const EmployeeManagement = props => {
         navigate(0)
     }
 
+    const handleStatus = (e) => {
+        axios.post(`http://localhost:8080/accounts/update-status/${updateStatus}`)
+        .then((res) => {
+            console.log(res.data)
+            setError("Update success.\n\rReload page after")
+            setTimeout(function () {
+                window.location.reload();
+            }, 3000);
+        })
+    }
     return (
         <div className='userpage-container'>
             <WorkplaceLayout
@@ -307,6 +327,19 @@ const EmployeeManagement = props => {
                     handleFormClose={() => handleFormClose()}
                     idItem={idItem}>
                 </ViewGeneral>
+            </Modal>
+            <Modal
+                isOpen={isShowAlert}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
+                <AlertConfirm
+                    alert={error}
+                    handleFormClose={() => handleFormClose()}
+                    handleStatus={() => handleStatus()}>
+                </AlertConfirm>
             </Modal>
         </div>
     )

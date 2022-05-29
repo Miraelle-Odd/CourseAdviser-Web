@@ -148,7 +148,23 @@ const updatePost = async(req, res) => {
 
     }
 }
+const updateStatus = async (req, res) => {
+    let itemValues;
+    if (req.params.status == "false") {
+        itemValues = {
+            post_status: "enabled"
+        };
+    }
+    else if (req.params.status == "true") {
+        itemValues = {
+            post_status: "disabled"
+        };
+    }
 
+    Posts.update(itemValues, { where: { post_id: req.params.id } }).then((result) => {
+        res.send(result);
+    });
+}
 module.exports = {
     getTop2WithType,
     getCountAll,
@@ -158,5 +174,6 @@ module.exports = {
     getInactiveCountAll,
     getTop5All,
     getListPostByCategory,
-    updatePost
+    updatePost,
+    updateStatus
 }

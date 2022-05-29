@@ -12,9 +12,7 @@ export default function AlertFail(props) {
                 subTitle={props.message}
                 src={alert_fail}
                 customStyle="alert-form-fail"
-                isOpen={props.isOpen}
-                onClose={props.onClose}
-                >
+                onClose={props.onClose}>
             </AlertForm>
         </Fragment>
     )

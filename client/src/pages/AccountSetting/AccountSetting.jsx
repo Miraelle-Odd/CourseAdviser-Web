@@ -32,6 +32,10 @@ const AccountSetting = props => {
     }
 
     const [currentUser, setCurrentUser] = useState();
+    
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
 
     useEffect(() => {
         const getAccountById = async () => {

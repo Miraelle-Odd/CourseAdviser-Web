@@ -12,5 +12,5 @@ router.get("/all/top5", Posts.getTop5All)
     // router.get("/get-list/:category", Posts.getListPostByCategory)
 router.get("/get-list/:category/:sortField/:sortOrder/:page", Posts.getListPostByCategory)
 router.post("/update-post", Posts.updatePost)
-
+router.post("/update-status/:id/:status", Posts.updateStatus)
 module.exports = router

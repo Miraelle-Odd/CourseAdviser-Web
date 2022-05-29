@@ -18,5 +18,5 @@ router.get("/get-inactive-count/:position", Accounts.getInactiveCountByPosition)
 router.get("/get-list/:position/:sortField/:sortOrder/:page", Accounts.getListAccountByPosition)
 router.get("/get-detail/:id", Accounts.getDetailById)
 router.post("/update-account", Accounts.updateAccountById)
-
+router.post("/update-status/:id/:status", Accounts.updateStatus)
 module.exports = router

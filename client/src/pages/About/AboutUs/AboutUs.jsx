@@ -15,6 +15,10 @@ export default function AboutUs(props) {
     const [listOfFeedbacks, setListOfFeedbacks] = useState([])
 
     useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
+    
+    useEffect(() => {
         const getListFeedbacks = async () => {
             await axios.get("http://localhost:8080/exstudents/get-feedback")
                 .then(async(res) => {

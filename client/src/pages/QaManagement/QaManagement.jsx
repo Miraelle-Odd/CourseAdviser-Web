@@ -9,6 +9,7 @@ import UpdateQa from '../../components/PopupComponents/UpdateQa/UpdateQa'
 import ViewQa from '../../components/PopupComponents/ViewQa/ViewQa'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+import AlertConfirm from '../../components/PopupComponents/AlertConfirm/AlertConfirm'
 
 const qaListFormat = [
     {
@@ -101,14 +102,15 @@ const QaManagement = props => {
     const [isShowCreate, setIsShowCreate] = useState(false);
     const [isShowUpdate, setIsShowUpdate] = useState(false);
     const [isShowView, setIsShowView] = useState(false);
+    const [isShowAlert, setIsShowAlert] = useState(false);
     const [pageCount, setPageCount] = useState(1)
     const [qaData, setQaData] = useState([])
     const [totalCount, setTotalCount] = useState(0)
     const [activeCount, setActiveCount] = useState(0)
     const [inactiveCount, setInactiveCount] = useState(0)
-
+    const [updateStatus, setUpdateStatus] = useState()
+    const [error, setError] = useState()
     const [idItem, setIdItem] = useState()
-
     const [sortOption, setSortOption] = useState()
 
     useEffect(async () => {
@@ -133,19 +135,19 @@ const QaManagement = props => {
             .then((res) => {
                 setInactiveCount(res.data)
             })
-        if(sortItems[sortOption])
+        if (sortItems[sortOption])
             axios.get("http://localhost:8080/q-and-as/get-list/" + category + "/" + sortItems[sortOption].sortField + "/" + sortItems[sortOption].sortOrder + "/" + (page - 1))
-            .then((res) => {
-                res.data.map((item, index) => {
-                    item.id = item.qa_id
-                    if (item.status == "enabled")
-                        item.active = true
-                    else
-                        item.active = false
-                    item = { item: (delete item['status'], item) };
+                .then((res) => {
+                    res.data.map((item, index) => {
+                        item.id = item.qa_id
+                        if (item.status == "enabled")
+                            item.active = true
+                        else
+                            item.active = false
+                        item = { item: (delete item['status'], item) };
+                    })
+                    setQaData(res.data)
                 })
-                setQaData(res.data)
-            })
     }, [sortOption])
 
     const handlePageClick = (event) => {
@@ -182,12 +184,27 @@ const QaManagement = props => {
         setIsShowCreate(false);
         setIsShowUpdate(false);
         setIsShowView(false);
+        setIsShowAlert(false);
     }
-
+    const onStatusClick = (e) => {
+        const status = e.currentTarget.attributes.getNamedItem("value").value
+        setUpdateStatus(status)
+        setIsShowAlert(true);
+    }
     const sortHandler = (e) => {
         setSortOption(e.target.value)
         navigate("/workplace/q-and-a-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + page)
         navigate(0)
+    }
+    const handleStatus = (e) => {
+        axios.post(`http://localhost:8080/q-and-as/update-status/${updateStatus}`)
+        .then((res) => {
+            console.log(res.data)
+            setError("Update success.\n\rReload page after")
+            setTimeout(function () {
+                window.location.reload();
+            }, 3000);
+        })
     }
 
     const renderQaManagement = () => {
@@ -221,6 +238,7 @@ const QaManagement = props => {
                     forcePage={parseInt(page) - 1}
                     onCategoryChange={onCategoryChange}
                     onPageTextChange={onPageTextChange}
+                    statusAction={onStatusClick}
                 ></WorkplaceList>
             </div>
         )
@@ -233,8 +251,8 @@ const QaManagement = props => {
                 renderBody={renderQaManagement()}
                 sortItems={sortItems}
                 sortHandler={sortHandler}
-                sortOption={sortOption}
-            ></WorkplaceLayout>
+                sortOption={sortOption}>
+            </WorkplaceLayout>
             <Footer></Footer>
             <Modal
                 isOpen={isShowCreate}
@@ -275,7 +293,21 @@ const QaManagement = props => {
                     idItem={idItem}>
                 </ViewQa>
             </Modal>
+            <Modal
+                isOpen={isShowAlert}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
+                    <AlertConfirm
+                        alert={error}
+                        handleFormClose={() => handleFormClose()}
+                        handleStatus={() => handleStatus()}>
+                    </AlertConfirm>
+            </Modal>
         </div>
+
     )
 }
 
