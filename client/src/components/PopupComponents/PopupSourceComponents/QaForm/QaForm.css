@@ -56,7 +56,7 @@
 }
 .qa-form-confirm-contain{
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
     padding: 0 60px;
 }
 .qa-form-view{

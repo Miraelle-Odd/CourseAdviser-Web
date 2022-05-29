@@ -4,6 +4,7 @@ import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import personal_avatar from '../../../../assets/icons/personal_avatar.png'
 import SortComboBox from '../../../ComboBoxComponents/SortComboBox';
+import CountdownText from '../../../TrayComponents/CountDownComponents/CountdownText';
 
 export default function PersonalInfoForm(props) {
     const sortItems = [
@@ -40,9 +41,9 @@ export default function PersonalInfoForm(props) {
                         </div>
                         <div className='personal-info-avatar-right'>
                             {
-                                props.isView ? 
-                                <img className="personal-info-avatar" src={props.avatar ? props.avatar : personal_avatar}></img>
-                                :
+                                props.isView ?
+                                    <img className="personal-info-avatar" src={props.avatar ? props.avatar : personal_avatar}></img>
+                                    :
                                     <div>
                                         <input id="personal-info-avatar-right_image-browser" className="image-browser" type="file" accept="image/*"
                                             onChange={props.changeAvatar}
@@ -51,7 +52,7 @@ export default function PersonalInfoForm(props) {
                                             onClick={openImageBrowser}
                                         ></img>
                                     </div>
-                            }                            
+                            }
                         </div>
                     </div>
                     <div className='personal-info-main'>
@@ -125,11 +126,21 @@ export default function PersonalInfoForm(props) {
                             ))}
                         </div>
                     </div>
+
                     {
                         props.isView ?
                             ""
                             :
                             <div className='personal-info-confirm-contain'>
+                                {
+                                    props.alert == "Update success. Reload page after" ?
+                                        <p className='popup-alert-text'>
+                                            {props.alert}
+                                            <CountdownText></CountdownText>
+                                            seconds
+                                        </p>
+                                        : <p className='popup-alert-text'>{props.alert}</p>
+                                }
                                 <button className='edit-form-confirm-button' onClick={props.updateHandler}>Cập nhật</button>
                             </div>
                     }

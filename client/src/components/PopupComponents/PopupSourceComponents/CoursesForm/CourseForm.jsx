@@ -4,6 +4,7 @@ import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SortComboBox from '../../../ComboBoxComponents/SortComboBox';
 import noImg from '../../../../assets/icons/post-noimg.png'
+import CountdownText from '../../../TrayComponents/CountDownComponents/CountdownText';
 
 const sortItems = [
     {
@@ -69,8 +70,8 @@ export default function CourseForm(props) {
                         <div className='personal-info-col-right custom-margin'>
                             <div className='edit-form-item course-popup-item course-info-item'>
                                 <p className='edit-form-item-title'>Minh họa:</p>
-                                <img className={'course-popup-img' + (props.isView? "" : " updatable-img")} src={props.img ? props.img : noImg}
-                                    onClick={props.isView? ()=>{} : openImageBrowser}></img>
+                                <img className={'course-popup-img' + (props.isView ? "" : " updatable-img")} src={props.img ? props.img : noImg}
+                                    onClick={props.isView ? () => { } : openImageBrowser}></img>
                                 <input id="course-popup-item_image-browser" className="image-browser" type="file" accept="image/*"
                                     onChange={props.changeImage}
                                 ></input>
@@ -96,6 +97,15 @@ export default function CourseForm(props) {
                         props.isView ? ""
                             :
                             <div className='personal-info-confirm-contain'>
+                                {
+                                    props.alert == "Update success. Reload page after" ?
+                                        <p className='popup-alert-text'>
+                                            {props.alert}
+                                            <CountdownText></CountdownText>
+                                            seconds
+                                        </p>
+                                        : <p className='popup-alert-text'>{props.alert}</p>
+                                }
                                 <button className='edit-form-confirm-button' onClick={props.updateHandler}>{props.textConfirm}</button>
                             </div>
                     }

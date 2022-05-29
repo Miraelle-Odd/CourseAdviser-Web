@@ -70,12 +70,12 @@ const sortItems_Sub2Null = [
 export default function UpdateQa(props) {
     const [question, setQuestion] = useState();
     const [answer, setAnswer] = useState();
-
     const [sub1, setSub1] = useState(sortItems_Sub1_0);
     const [sub2, setSub2] = useState(sortItems_Sub2);
     const [typeMain, setTypeMain] = useState(0)
     const [typeSub1, setTypeSub1] = useState(0)
     const [typeSub2, setTypeSub2] = useState(0)
+    const [error, setError] = useState();
 
     const sortHandler_Main = (e) => {
         setTypeMain(e.target.value)
@@ -190,7 +190,8 @@ export default function UpdateQa(props) {
         console.log(params)
         const result = axios.post("http://localhost:8080/q-and-as/post-qa", params)
             .then(res => {
-                console.log(res)
+                console.log("......", "Upload Successful")
+                setError("Update success. Reload page after")
                 setTimeout(function () {
                     window.location.reload();
                 }, 3000);
@@ -216,7 +217,8 @@ export default function UpdateQa(props) {
                 sub1={sub1}
                 sub2={sub2}
                 question={question}
-                answer={answer}>
+                answer={answer}
+                alert={error}>
             </QaForm>
         </Fragment>
     )

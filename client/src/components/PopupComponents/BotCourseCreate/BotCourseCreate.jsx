@@ -10,6 +10,7 @@ export default function BotCourseCreate(props) {
     const [type, setType] = useState()
     const [imageURL, setImageURL] = useState()
     const [image, setImage] = useState()
+    const [error, setError] = useState()
     const inputList = [
         {
             title: "Tên khóa học:",
@@ -34,6 +35,10 @@ export default function BotCourseCreate(props) {
         setType(e.target.value)
     }
     const onConfirm = () => {
+        if (!courseName || !courseDescription) {
+            setError("All fields are required.")
+            return false;
+        }
         var imgData
         var createData = {
             course_name: courseName,
@@ -50,6 +55,7 @@ export default function BotCourseCreate(props) {
                     console.log("......", createData)
                     axios.post("http://localhost:8080/bot-courses/create-course", createData).then((ress) => {
                         console.log(ress.data)
+                        setError("Update success. Reload page after")
                         setTimeout(function () {
                             window.location.reload();
                         }, 3000);
@@ -59,9 +65,10 @@ export default function BotCourseCreate(props) {
         else {
             axios.post("http://localhost:8080/bot-courses/create-course", createData).then((res) => {
                 console.log(res.data)
-                setTimeout(function () {
-                    window.location.reload();
-                }, 3000);
+                setError("Update success. Reload page after")
+                // setTimeout(function () {
+                //     window.location.reload();
+                // }, 3000);
             })
         }
 
@@ -79,7 +86,8 @@ export default function BotCourseCreate(props) {
                 img={imageURL}
                 changeImage={imageHandler}
                 inputDescription={(e) => { setCourseDescription(e.target.value); }}
-                updateHandler={onConfirm}>
+                updateHandler={onConfirm}
+                alert={error}>
             </CourseForm>
         </Fragment>
     )

@@ -83,8 +83,11 @@
     outline: none;
 }
 .edit-form-body .edit-form-confirm-contain{
-    position: absolute;
-    right: 40px;
+    margin-top: 40px;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: space-between;
     bottom: 55px;
 }
 .edit-form-confirm-button{

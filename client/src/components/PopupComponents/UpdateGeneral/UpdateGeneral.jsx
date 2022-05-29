@@ -18,6 +18,7 @@ export default function UpdateGeneral(props) {
     const [avatar, setAvatar] = useState();
     const [phone, setPhone] = useState();
     const [avatarURL, setAvatarURL] = useState();
+    const [error, setError] = useState();
 
     const [type, setType] = useState()
     useEffect(() => {
@@ -120,7 +121,26 @@ export default function UpdateGeneral(props) {
         setAvatarURL(URL.createObjectURL(e.target.files[0]))
         setAvatar(e.target.files[0])
     }
+    const getBase64 = file => {
+        return new Promise(resolve => {
+            let fileInfo;
+            let baseURL = "";
+            // Make new FileReader
+            let reader = new FileReader();
 
+            // Convert the file to base64 text
+            reader.readAsDataURL(file);
+
+            // on reader load somthing...
+            reader.onload = () => {
+                // Make a fileInfo Object
+                // console.log("Called", reader);
+                baseURL = reader.result;
+                // console.log(baseURL);
+                resolve(baseURL);
+            };
+        });
+    };
     const onConfirm = async () => {
         var data
         const params = {
@@ -143,10 +163,11 @@ export default function UpdateGeneral(props) {
                         .then(ress => {
                             if (ress.data[0] == 0) {
                                 console.log("......", "Upload Failed")
-
+                                setError("Update fail. Please check again.")
                             }
                             else {
                                 console.log("......", "Upload Successful")
+                                setError("Update success. Reload page after")
                                 setTimeout(function () {
                                     window.location.reload();
                                 }, 3000);
@@ -160,10 +181,11 @@ export default function UpdateGeneral(props) {
                 .then(ress => {
                     if (ress.data[0] == 0) {
                         console.log("......", "Upload Failed")
-
+                        setError("Update fail. Please check again")
                     }
                     else {
                         console.log("......", "Upload Successful")
+                        setError("Update success. Reload page after")
                         setTimeout(function () {
                             window.location.reload();
                         }, 3000);
@@ -187,7 +209,8 @@ export default function UpdateGeneral(props) {
                 changeGender={genderHandler}
                 test={SortHandler}
                 type={type}
-                updateHandler={onConfirm}>
+                updateHandler={onConfirm}
+                alert={error}>
             </PersonalInfoForm>
         </Fragment>
     )

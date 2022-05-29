@@ -70,9 +70,18 @@ const sortItems_Sub2Null = [
 export default function CreateQa(props) {
     const [question, setQuestion] = useState();
     const [answer, setAnswer] = useState();
+    const [sub1, setSub1] = useState(sortItems_Sub1_0);
+    const [sub2, setSub2] = useState(sortItems_Sub2);
+    const [typeMain, setTypeMain] = useState(0)
+    const [typeSub1, setTypeSub1] = useState(0)
+    const [typeSub2, setTypeSub2] = useState(0)
+    const [error, setError] = useState();
 
     const onConfirmClick = () => {
-        console.log(question + "     " + answer)
+        if(!question || !answer){
+            setError("All fields are required.")
+            return false;
+        }
         var qa_main
         var qa_sub1
         var qa_sub2
@@ -117,18 +126,19 @@ export default function CreateQa(props) {
         console.log(params)
         const result = axios.post("http://localhost:8080/q-and-as/post-qa", params)
             .then(res => {
-                console.log(res.data)
-                setTimeout(function () {
-                    window.location.reload();
-                }, 3000);
+                if (res.data[0] == 0) {
+                    console.log("......", "Upload Failed")
+                    setError("Update fail. Please check again.")
+                }
+                else {
+                    console.log("......", "Upload Successful")
+                    setError("Update success. Reload page after")
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 3000);
+                }
             })
     }
-
-    const [sub1, setSub1] = useState(sortItems_Sub1_0);
-    const [sub2, setSub2] = useState(sortItems_Sub2);
-    const [typeMain, setTypeMain] = useState(0)
-    const [typeSub1, setTypeSub1] = useState(0)
-    const [typeSub2, setTypeSub2] = useState(0)
 
     const sortHandler_Main = (e) => {
         setTypeMain(e.target.value)
@@ -166,7 +176,8 @@ export default function CreateQa(props) {
                 typeSub1={typeSub1}
                 typeSub2={typeSub2}
                 sub1={sub1}
-                sub2={sub2}>
+                sub2={sub2}
+                alert={error}>
             </QaForm>
         </Fragment>
     )

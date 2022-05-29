@@ -77,10 +77,22 @@
 .personal-info-body .personal-info-confirm-contain {
     width: 100%;
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
     margin-top: 10px;
 }
+.popup-alert-text{
+    width: max-content;
+    height: max-content;
+    margin: 0 0;
 
+    font-family: 'Rounded Mplus 1c Medium';
+    font-size: 14px;   
+    color: #9e1f1f;
+}
+.for-small{
+    width: 150px;
+    height: max-content;
+}
 .button-disable {
     pointer-events: none;
 }

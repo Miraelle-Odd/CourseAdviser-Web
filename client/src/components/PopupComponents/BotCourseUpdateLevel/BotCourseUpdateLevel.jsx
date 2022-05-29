@@ -15,6 +15,7 @@ export default function BotCourseUpdateLevel(props) {
     const [levelUnit, setLevelUnit] = useState(level.fee_unit)
     const [levelDescription, setLevelDescription] = useState(level.level_description)
     const [type, setType] = useState(level.course_id)
+    const [error, setError] = useState()
 
     const inputList = [
         {
@@ -79,12 +80,16 @@ export default function BotCourseUpdateLevel(props) {
         axios.post("http://localhost:8080/bot-course-levels/update-level-by-id", updateData).then((ress) => {
             if (ress.data[0] == 1) {
                 console.log("Update success")
+                setError("Update success. Reload page after")
                 setTimeout(function () {
                     window.location.reload();
                 }, 3000);
             }
-            else
+            else {
                 console.log("Update failed")
+                setError("Update fail. Please check again.")
+            }
+                
         })
     }
 
@@ -105,7 +110,8 @@ export default function BotCourseUpdateLevel(props) {
                 levelName={levelName}
                 levelOnChange={(e) => { setLevelName(e.target.value); }}
                 updateHandler={onConfirm}
-                comboBoxTitle={"Khóa học gốc:"}>
+                comboBoxTitle={"Khóa học gốc:"}
+                alert={error}>
             </CourseLevelForm>
         </Fragment>
     )
