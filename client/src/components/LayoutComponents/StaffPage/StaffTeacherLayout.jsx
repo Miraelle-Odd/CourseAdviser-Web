@@ -17,7 +17,7 @@ export default function StaffTeacherLayout(props) {
                 <div className='staff-teacher-header staff-teacher-center'>
                     <p className='staff-teacher-title staff-teacher-center'>{props.title}</p>
                 </div>
-                <div className='staff-teacher-border staff-teacher-center'>
+                <div className={'staff-teacher-border staff-teacher-center' + (props.slider? " div-in-slider" : "")}>
                     {
                         props.slider ?
                             <Carousel
