@@ -14,6 +14,8 @@ export default function BotCourseCreateLevel(props) {
     const [levelUnit, setLevelUnit] = useState()
     const [levelDescription, setLevelDescription] = useState()
     const [type, setType] = useState(1)
+    const [error, setError] = useState()
+
     const inputList = [
         {
             title: "Tiêu chuẩn đầu vào và đầu ra",
@@ -60,13 +62,16 @@ export default function BotCourseCreateLevel(props) {
 
     const SortHandler = (e) => {
         setType(e.target.value)
-        // if (e.target.value == 0)
-        //     setPosition("employee")
-        // if (e.target.value == 1)
-        //     setPosition("manager")
-        //Handle chosen sort option code
     }
+
     const onConfirm = () => {
+        if (!levelName || !levelDescription 
+            || !levelInput || !levelOutput
+            || !ageInput || !ageOutput
+            || !levelPrice || !levelUnit) {
+            setError("All fields are required.")
+            return false;
+        }
         const createData = {
             level_name: levelName,
             level_description: levelDescription,
@@ -80,6 +85,7 @@ export default function BotCourseCreateLevel(props) {
         }
         axios.post("http://localhost:8080/bot-course-levels/create-level", createData).then((ress) => {
             console.log(ress.data)
+            setError("Update success. Reload page after")
             setTimeout(function () {
                 window.location.reload();
             }, 3000);
@@ -103,7 +109,8 @@ export default function BotCourseCreateLevel(props) {
                 levelName={levelName}
                 levelOnChange={(e) => { setLevelName(e.target.value); }}
                 updateHandler={onConfirm}
-                comboBoxTitle={"Khóa học gốc:"}>
+                comboBoxTitle={"Khóa học gốc:"}
+                alert={error}>
             </CourseLevelForm>
         </Fragment>
     )

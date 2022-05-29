@@ -10,6 +10,7 @@ export default function UpdateSelfInfo(props) {
     const [name, setName] = useState();
     const [gender, setGender] = useState();
     const [birthday, setBirthday] = useState();
+    const [error, setError] = useState();
     
     useEffect(() => {
         setName(props.name)
@@ -54,10 +55,11 @@ export default function UpdateSelfInfo(props) {
                 .then(res => {
                     if (res.data[0] == 0) {
                         console.log("......", "Upload Failed")
-
+                        setError("Update fail. Please check again")
                     }
                     else {
                         console.log("......", "Upload Successful")
+                        setError("Update success. Reload page after")
                         setTimeout(function () {
                             window.location.reload();
                         }, 3000);
@@ -73,7 +75,8 @@ export default function UpdateSelfInfo(props) {
                 confirmText="Cập nhật"
                 gender={gender ? gender : null}
                 changeGender={genderHandler}
-                confirmHandler = {onConfirm}>
+                confirmHandler = {onConfirm}
+                alert={error}>
             </SelfEditForm>
         </Fragment>
     )

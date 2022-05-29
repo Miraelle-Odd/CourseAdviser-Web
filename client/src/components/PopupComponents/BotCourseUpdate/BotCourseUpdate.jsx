@@ -11,6 +11,7 @@ export default function BotCourseUpdate(props) {
     const [type, setType] = useState(course.special_support ? 1 : 0)
     const [imageURL, setImageURL] = useState(course.course_image)
     const [image, setImage] = useState()
+    const [error, setError] = useState()
     const inputList = [
         {
             title: "Tên khóa học:",
@@ -54,12 +55,15 @@ export default function BotCourseUpdate(props) {
                         console.log(ress.data)
                         if (ress.data[0] == 1) {
                             console.log("Update success")
+                            setError("Update success. Reload page after")
                             setTimeout(function () {
                                 window.location.reload();
                             }, 3000);
                         }
-                        else
+                        else {
                             console.log("Update failed")
+                            setError("Update fail. Please check again.")
+                        }
                     })
                 })
         }
@@ -67,12 +71,15 @@ export default function BotCourseUpdate(props) {
             axios.post("http://localhost:8080/bot-courses/update-course-by-id", updateData).then((ress) => {
                         if (ress.data[0] == 1) {
                             console.log("Update success")
+                            setError("Update success. Reload page after")
                             setTimeout(function () {
                                 window.location.reload();
                             }, 3000);
                         }
-                        else
+                        else {
                             console.log("Update failed")
+                            setError("Update fail. Please check again.")
+                        }
                     })
         }
     }
@@ -90,7 +97,8 @@ export default function BotCourseUpdate(props) {
                 img={imageURL}
                 inputDescription={(e) => { setCourseDescription(e.target.value); }}
                 changeImage={imageHandler}
-                updateHandler={onConfirm}>
+                updateHandler={onConfirm}
+                alert={error}>
             </CourseForm>
         </Fragment>
     )

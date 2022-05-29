@@ -3,6 +3,7 @@ import './QaForm.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SortComboBox from '../../../ComboBoxComponents/SortComboBox';
+import CountdownText from '../../../TrayComponents/CountDownComponents/CountdownText';
 
 
 export default function QaForm(props) {
@@ -99,8 +100,17 @@ export default function QaForm(props) {
                 {
                     props.isView ? ""
                         :
-                        <div className='qa-form-confirm-contain' onClick={props.handleConfirm}>
-                            <button className='edit-form-confirm-button'>{props.confirmText}</button>
+                        <div className='qa-form-confirm-contain'>
+                            {
+                                props.alert == "Update success. Reload page after" ?
+                                    <p className='popup-alert-text'>
+                                        {props.alert}
+                                        <CountdownText></CountdownText>
+                                        seconds
+                                    </p>
+                                    : <p className='popup-alert-text'>{props.alert}</p>
+                            }
+                            <button className='edit-form-confirm-button' onClick={props.handleConfirm}>{props.confirmText}</button>
                         </div>
                 }
 

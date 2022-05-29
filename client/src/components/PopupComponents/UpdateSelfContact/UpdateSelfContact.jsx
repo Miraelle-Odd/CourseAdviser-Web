@@ -10,6 +10,7 @@ import axios from 'axios';
 export default function UpdateSelfContact(props) {
     const [phone, setPhone] = useState();
     const [location, setLocation] = useState();
+    const [error, setError] = useState();
 
     useEffect(() => {
         setPhone(props.phone)
@@ -44,10 +45,11 @@ export default function UpdateSelfContact(props) {
                 .then(res => {
                     if (res.data[0] == 0) {
                         console.log("......", "Upload Failed")
-
+                        setError("Update fail. Please check again")
                     }
                     else {
                         console.log("......", "Upload Successful")
+                        setError("Update success. Reload page after")
                         setTimeout(function () {
                             window.location.reload();
                         }, 3000);
@@ -61,7 +63,8 @@ export default function UpdateSelfContact(props) {
                 listItem={editListItem}
                 confirmText="Cập nhật"
                 handleFormClose={props.handleFormClose}
-                confirmHandler={onConfirm}>
+                confirmHandler={onConfirm}
+                alert={error}>
             </SelfEditForm>
         </Fragment>
     )

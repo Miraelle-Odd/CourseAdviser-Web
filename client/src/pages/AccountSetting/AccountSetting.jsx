@@ -153,7 +153,7 @@ const AccountSetting = props => {
                 <UpdateSelfInfo
                     handleFormClose={() => handleFormClose()}
                     name={currentUser ? currentUser.Personal_Info.name : null}
-                    gender={currentUser ? currentUser.Personal_Info.gender == "Nữ" ? "female" : "male" : null}
+                    gender={currentUser ? currentUser.Personal_Info.gender : null}
                     birthday={currentUser ? currentUser.Personal_Info.birthday : null}
                     idItem={currentUser ? currentUser.account_id : null}
                 >

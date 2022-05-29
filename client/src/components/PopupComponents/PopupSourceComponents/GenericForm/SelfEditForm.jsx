@@ -3,13 +3,14 @@ import './SelfEditForm.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import EyeSwitch from '../../../SwitchComponents/PasswordPopup/EyeSwitch';
+import CountdownText from '../../../TrayComponents/CountDownComponents/CountdownText';
 export default function SelfEditForm(props) {
     const [inputValue, setInputValue] = useState();
     const [cbValue, setCbValue] = useState();
 
     useEffect(() => {
         setCbValue(props.gender)
-        
+
     }, [props.gender])
     return (
         <Fragment>
@@ -31,7 +32,7 @@ export default function SelfEditForm(props) {
                                                 value={item.itemValue}
                                                 placeholder={item.inputHint}
                                                 onChange={item.onChange}
-                                                type={"text"}/>
+                                                type={"text"} />
                                             <FontAwesomeIcon className='edit-form-input-icon' icon={item.icon} />
                                         </div>
                                         :
@@ -66,6 +67,15 @@ export default function SelfEditForm(props) {
                         ))
                     }
                     <div className='edit-form-confirm-contain'>
+                        {
+                            props.alert == "Update success. Reload page after" ?
+                                <p className='popup-alert-text for-small'>
+                                    {props.alert}
+                                    <CountdownText></CountdownText>
+                                    seconds
+                                </p>
+                                : <p className='popup-alert-text for-small'>{props.alert}</p>
+                        }
                         <button className='edit-form-confirm-button' onClick={props.confirmHandler}>{props.confirmText}</button>
                     </div>
                 </div>
