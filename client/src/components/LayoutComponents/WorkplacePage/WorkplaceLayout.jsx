@@ -29,7 +29,8 @@ const WorkplaceLayout = props => {
                     <div className='workplace-toolbar'>
                         <div className='search-container'>
                             <FontAwesomeIcon className='search-icon' icon={['fas', 'search']}></FontAwesomeIcon>
-                            <input name="search-input" type="text" className="search" placeholder='Nhập nội dung tìm kiếm...'></input>
+                            <input name="search-input" type="text" className="search" placeholder='Nhập nội dung tìm kiếm...' 
+                                defaultValue={props.currentSearch == "all" ? "" : props.currentSearch} onKeyDown={props.searchHandler}></input>
                         </div>
                         <SortComboBox
                             onChange={props.sortHandler?props.sortHandler : sortHandler}
