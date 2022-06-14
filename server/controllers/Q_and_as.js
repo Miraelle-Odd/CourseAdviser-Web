@@ -1,5 +1,6 @@
 const { Q_and_as } = require("../models");
-
+const { Op } = require("sequelize");
+const e = require("express");
 const getCountAll = async (req, res) => {
     var result = await Q_and_as.count();
     res.send(result.toString());
@@ -72,25 +73,55 @@ const getListQAByMainSubject = async (req, res) => {
     var result
     if (req.params.page)
         page = req.params.page
-    if (req.params.category == "all")
-        result = await Q_and_as.findAll({
-            order: [
-                [req.params.sortField, req.params.sortOrder]
-            ],
-            limit: 2,
-            offset: page * 2,
-        })
+    if (req.params.category == "all") {
+        if (req.params.search == "all")
+            result = await Q_and_as.findAll({
+                order: [
+                    [req.params.sortField, req.params.sortOrder]
+                ],
+                limit: 2,
+                offset: page * 2,
+            })
+        else
+            result = await Q_and_as.findAll({
+                where: {
+                    question: {
+                        [Op.substring]: req.params.search
+                    }
+                },
+                order: [
+                    [req.params.sortField, req.params.sortOrder]
+                ],
+                limit: 2,
+                offset: page * 2,
+            })
+    }
     else
-        result = await Q_and_as.findAll({
-            where: {
-                main_subject: req.params.category
-            },
-            order: [
-                [req.params.sortField, req.params.sortOrder]
-            ],
-            limit: 2,
-            offset: page * 2,
-        })
+        if (req.params.search == "all")
+            result = await Q_and_as.findAll({
+                where: {
+                    main_subject: req.params.category
+                },
+                order: [
+                    [req.params.sortField, req.params.sortOrder]
+                ],
+                limit: 2,
+                offset: page * 2,
+            })
+        else
+            result = await Q_and_as.findAll({
+                where: {
+                    main_subject: req.params.category,
+                    question: {
+                        [Op.substring]: req.params.search
+                    }
+                },
+                order: [
+                    [req.params.sortField, req.params.sortOrder]
+                ],
+                limit: 2,
+                offset: page * 2,
+            })
     res.send(result)
 }
 
@@ -141,8 +172,45 @@ const updateStatus = async (req, res) => {
     Q_and_as.update(itemValues, { where: { qa_id: req.params.id } }).then((result) => {
         res.send(result);
     });
-
 }
+
+const getCountBySearch = async (req, res) => {
+    var result
+    let search = req.params.search;
+    let category = req.params.category;
+    if (search == "all") {
+        if (category == "all")
+            result = await Q_and_as.count();
+        else
+            result = await Q_and_as.count({
+                where: {
+                    main_subject: category
+                }
+            });
+    }
+    else {
+        if (category == "all")
+            result = await Q_and_as.count({
+                where: {
+                    question: {
+                        [Op.substring]: search
+                    }
+                }
+            });
+        else
+            result = await Q_and_as.count({
+                where: {
+                    main_subject: category,
+                    question: {
+                        [Op.substring]: search
+                    }
+                }
+            });
+    }
+
+    res.send(result.toString());
+}
+
 module.exports = {
     getCountAll,
     getItemPaging,
@@ -152,5 +220,6 @@ module.exports = {
     getInactiveCountByMainSubject,
     getQaById,
     createOrUpdateQa,
-    updateStatus
+    updateStatus,
+    getCountBySearch
 }

@@ -126,7 +126,7 @@ const sortItems = [
 ]
 
 const EmployeeManagement = props => {
-    let { category, page, sort } = useParams()
+    let { category, page, sort, search } = useParams()
     let navigate = useNavigate()
     const itemsPerPage = 2;
 
@@ -154,10 +154,18 @@ const EmployeeManagement = props => {
                 }
             }
         });
-        const getListCount = axios.get("http://localhost:8080/accounts/get-count/" + category)
+        axios.get("http://localhost:8080/accounts/get-count/" + category)
             .then((res) => {
                 setPageCount(Math.ceil(res.data / itemsPerPage))
                 setTotalCount(res.data)
+            })
+            .then(() => {
+                if (search != 'all') {
+                    axios.get("http://localhost:8080/accounts/get-counts/" + category + "/" + search)
+                        .then((res) => {
+                            setPageCount(Math.ceil(res.data / itemsPerPage))
+                        })
+                }
             })
         const getActiveCount = axios.get("http://localhost:8080/accounts/get-active-count/" + category)
             .then((res) => {
@@ -168,7 +176,7 @@ const EmployeeManagement = props => {
                 setInactiveCount(res.data)
             })
         if (sortItems[sortOption])
-            axios.get("http://localhost:8080/accounts/get-list/" + category + "/" + sortItems[sortOption].sortField + "/" + sortItems[sortOption].sortOrder + "/" + (page - 1))
+            axios.get("http://localhost:8080/accounts/get-list/" + category + "/" + sortItems[sortOption].sortField + "/" + sortItems[sortOption].sortOrder + "/" + search + "/" + (page - 1))
                 .then((res) => {
                     res.data.map((item, index) => {
                         item.id = item.Personal_Info.account_id
@@ -183,22 +191,23 @@ const EmployeeManagement = props => {
                     })
                     setEmpData(res.data)
                 })
+
     }, [sortOption])
 
     const handlePageClick = (event) => {
-        navigate("/workplace/employee-management/" + category + "/" + sort + "/" + (event.selected + 1))
+        navigate("/workplace/employee-management/" + category + "/" + sort + "/" + search + "/" + (event.selected + 1))
         navigate(0)
     }
 
     const onCategoryChange = (event) => {
-        navigate("/workplace/employee-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/" + sort + "/1")
+        navigate("/workplace/employee-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/" + sort + "/all/1")
         navigate(0)
     }
 
     const onPageTextChange = (e) => {
         if (e.key === 'Enter')
             if (e.target.value <= pageCount && e.target.value >= 1 && e.target.value != e.target.defaultValue) {
-                navigate("/workplace/employee-management/" + category + "/" + sort + "/" + (e.target.value))
+                navigate("/workplace/employee-management/" + category + "/" + sort + "/" + search + "/" + (e.target.value))
                 navigate(0)
             }
     }
@@ -268,19 +277,29 @@ const EmployeeManagement = props => {
 
     const sortHandler = (e) => {
         setSortOption(e.target.value)
-        navigate("/workplace/employee-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + page)
+        navigate("/workplace/employee-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + search + "/" + page)
         navigate(0)
+    }
+    const searchHandler = (e) => {
+        if (e.key === "Enter") {
+            var text = "all"
+            if (e.target.value && e.target.value.trim() != "")
+                text = e.target.value
+
+            navigate("/workplace/employee-management/" + category + "/" + sort + "/" + text + "/1")
+            navigate(0)
+        }
     }
 
     const handleStatus = (e) => {
         axios.post(`http://localhost:8080/accounts/update-status/${updateStatus}`)
-        .then((res) => {
-            console.log(res.data)
-            setError("Update success.\n\rReload page after")
-            setTimeout(function () {
-                window.location.reload();
-            }, 3000);
-        })
+            .then((res) => {
+                console.log(res.data)
+                setError("Update success.\n\rReload page after")
+                setTimeout(function () {
+                    window.location.reload();
+                }, 3000);
+            })
     }
     return (
         <div className='userpage-container'>
@@ -291,7 +310,9 @@ const EmployeeManagement = props => {
                 sortItems={sortItems}
                 sortHandler={sortHandler}
                 sortOption={sortOption}
-            ></WorkplaceLayout>
+                searchHandler={searchHandler}
+                currentSearch={search}>
+            </WorkplaceLayout>
             <Footer></Footer>
             <Modal
                 isOpen={isShowCreate}
