@@ -16,16 +16,34 @@ const fetchedDataValidate = (res) => {
         res.updatedAt
 }
 
+const findAccountById = async(req, res) => {
+    try {
+        const result = await Accounts.findOne({
+            attributes: ["email"],
+            where: {
+                account_id: req.params.id
+            },
+            include: {
+                model: Personal_Infos,
+                as: 'Personal_Info'
+            }
+        })
+        if (req.params.front)
+            res.send(result)
+        else
+            return result
+    } catch (e) {
+        console.log(e)
+    }
+
+}
+
 const findAccountByUsername = async(req, res) => {
     try {
         const result = await Accounts.findOne({
             where: {
                 username: req.body.username
             },
-            include: {
-                model: Personal_Infos,
-                as: 'Personal_Info'
-            }
         })
         if (req.body.front)
             res.send(result)
@@ -120,6 +138,52 @@ const updatePassword = async(req, res) => {
     }
 }
 
+const updatePasswordByUserId = async(req, res) => {
+    try {
+        Accounts.findOne({
+            attributes: ["password"],
+            where: {
+                account_id: req.body.account_id
+            },
+        }).then((result) => {
+            console.log(result.dataValues.password)
+            comparePw = bcrypt.compare(req.body.password_old, result.dataValues.password, (error, response) => {
+                if (response) {
+                    Accounts.update({
+                        password: bcrypt.hashSync(req.body.password_new, saltRounds)
+                    }, {
+                        where: {
+                            account_id: req.body.account_id
+                        }
+                    }).then((result2) => {
+                        if (result2[0] == 1)
+                            res.send("1")
+                        else
+                            res.send("0")
+                    })
+                } else {
+                    res.send("2")
+                }
+            })
+        })
+
+
+        // var hash = bcrypt.hashSync(req.body.password_new, saltRounds)
+        // const result = await Accounts.update({
+        //     password: hash
+        // }, {
+        //     where: {
+        //         account_id: req.body.account_id
+        //     }
+        // })
+
+        // res.send(result)
+
+    } catch (e) {
+        res.send(e)
+    }
+}
+
 const logIn = async(req, res) => {
     try {
         let account = null
@@ -146,7 +210,10 @@ const logIn = async(req, res) => {
                     comparePw = bcrypt.compare(req.body.password, account.password, (error, response) => {
                         if (response) {
                             data = {
-                                account: account,
+                                account: {
+                                    account_id: account.account_id,
+                                    position: account.position
+                                },
                                 isLogin: true
                             }
                             const accessToken = sign(data, "secret")
@@ -387,14 +454,13 @@ const updateAccountById = async(req, res) => {
             )
         );
 }
-const updateStatus = async (req, res) => {
+const updateStatus = async(req, res) => {
     let itemValues;
     if (req.params.status == "false") {
         itemValues = {
             status: "enabled"
         };
-    }
-    else if (req.params.status == "true") {
+    } else if (req.params.status == "true") {
         itemValues = {
             status: "disabled"
         };
@@ -420,5 +486,7 @@ module.exports = {
     logIn,
     getDetailById,
     updateAccountById,
-    updateStatus
+    updateStatus,
+    updatePasswordByUserId,
+    findAccountById
 }

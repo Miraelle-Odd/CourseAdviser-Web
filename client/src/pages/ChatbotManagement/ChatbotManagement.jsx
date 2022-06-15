@@ -12,6 +12,7 @@ import BotCourseView from '../../components/PopupComponents/BotCourseView/BotCou
 import BotCourseViewLevel from '../../components/PopupComponents/BotCourseViewLevel/BotCourseViewLevel'
 import BotCourseCreateLevel from '../../components/PopupComponents/BotCourseCreateLevel/BotCourseCreateLevel'
 import BotCourseUpdateLevel from '../../components/PopupComponents/BotCourseUpdateLevel/BotCourseUpdateLevel'
+import AlertConfirm from '../../components/PopupComponents/AlertConfirm/AlertConfirm'
 
 const courseListFormat = [
     {
@@ -198,6 +199,9 @@ const ChatbotManagement = props => {
     const [isShowCreate, setIsShowCreate] = useState(false);
     const [isShowUpdate, setIsShowUpdate] = useState(false);
     const [isShowView, setIsShowView] = useState(false);
+    const [isShowAlert, setIsShowAlert] = useState(false);
+    const [error, setError] = useState()
+    const [updateStatus, setUpdateStatus] = useState()
 
     const [isShowCreateLevel, setIsShowCreateLevel] = useState(false);
     const [isShowUpdateLevel, setIsShowUpdateLevel] = useState(false);
@@ -321,6 +325,24 @@ const ChatbotManagement = props => {
             setIsShowViewLevel(true);
         }
     }
+    const onStatusClick = (e) => {
+        const status = e.currentTarget.attributes.getNamedItem("value").value
+        console.log(status)
+        setUpdateStatus(status)
+        setIsShowAlert(true);
+    }
+    const handleStatus = (e) => {
+        console.log(category)
+        axios.post(`http://localhost:8080/${category}/update-status/${updateStatus}`)
+        .then((res) => {
+            console.log(res.data)
+            setError("Update success.\n\rReload page after")
+            setTimeout(function () {
+                window.location.reload();
+            }, 3000);
+        })
+    }
+
     const handleFormClose = () => {
         setIsShowCreate(false);
         setIsShowUpdate(false);
@@ -328,12 +350,14 @@ const ChatbotManagement = props => {
         setIsShowCreateLevel(false);
         setIsShowUpdateLevel(false);
         setIsShowViewLevel(false);
+        setIsShowAlert(false)
     }
 
     const renderBotManagement = () => {
         return (
             <div className='bot-man-body'>
                 <WorkplaceList
+                    noCreateBtn
                     listName="chatbot-management"
                     fieldFormat={botListFormat}
                     data={botData}
@@ -349,6 +373,7 @@ const ChatbotManagement = props => {
                     openAction={onViewClick}
                     editAction={onUpdateClick}
                     onCreateClick={onCreateClick}
+                    statusAction={onStatusClick}
                 ></WorkplaceList>
             </div>
         )
@@ -441,6 +466,20 @@ const ChatbotManagement = props => {
                     handleFormClose={handleFormClose}
                     level={course}>
                 </BotCourseViewLevel>
+            </Modal>
+
+            <Modal
+                isOpen={isShowAlert}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
+                <AlertConfirm
+                    alert={error}
+                    handleFormClose={() => handleFormClose()}
+                    handleStatus={() => handleStatus()}>
+                </AlertConfirm>
             </Modal>
         </div>
     )

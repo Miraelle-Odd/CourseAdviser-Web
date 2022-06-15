@@ -8,5 +8,6 @@ router.post("/get-course-by-id", Bot_Courses.getCourseById)
 router.post("/update-course-by-id", Bot_Courses.updateCourseById)
 router.post("/create-course", Bot_Courses.createCourse)
 router.get("/get-all-course-name/", Bot_Courses.getAllCourseName)
+router.post("/update-status/:id/:status", Bot_Courses.updateStatus)
 
 module.exports = router

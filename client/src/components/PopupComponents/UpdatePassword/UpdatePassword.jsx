@@ -3,6 +3,7 @@ import './UpdatePassword.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SelfEditForm from '../PopupSourceComponents/GenericForm/SelfEditForm';
+import axios from 'axios';
 
 
 
@@ -10,6 +11,7 @@ export default function UpdatePassword(props) {
     const [pwOld, setpwOld] = useState();
     const [pwNew, setpwNew] = useState();
     const [confirm_pwNew, setConfirm_pwNew] = useState();
+    const [message, setMessage] = useState()
 
     const editListItem = [
         {
@@ -39,6 +41,14 @@ export default function UpdatePassword(props) {
         }
     ]
     const onConfirm = async () => {
+        if(!pwOld || !pwNew || !confirm_pwNew){
+            setMessage("All fields required")
+            return 0;
+        }
+        if(pwNew !== confirm_pwNew){
+            setMessage("Confirm password and new password do not match")
+            return 0;
+        }
         const params = {
             account_id: props.idItem,
             password_old: pwOld,
@@ -46,19 +56,22 @@ export default function UpdatePassword(props) {
             confirm_password: confirm_pwNew,
         }
         console.log(params)
-        // axios.post("http://localhost:8080/Accounts/update-account/", params)
-        //         .then(res => {
-        //             if (res.data[0] == 0) {
-        //                 console.log("......", "Upload Failed")
-    
-        //             }
-        //             else {
-        //                 console.log("......", "Upload Successful")
-        //                 setTimeout(function () {
-        //                     window.location.reload();
-        //                 }, 3000);
-        //             }
-        //         })
+        axios.post("http://localhost:8080/Accounts/update-password-directly", params)
+                .then(res => {
+                    console.log(res)
+                    if (res.data == 0) {
+                        setMessage("Upload Failed. Retrieve later")   
+                    }
+                    if (res.data == 1) {
+                        setMessage("Update success. Reload page after")
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 3000);
+                    }
+                    if (res.data == 2) {
+                        setMessage("Your current password is incorrect")
+                    }
+                })
     } 
     return (
         <Fragment>
@@ -67,8 +80,10 @@ export default function UpdatePassword(props) {
                 listItem={editListItem}
                 confirmText="Xác nhận"
                 handleFormClose={props.handleFormClose}
-                confirmHandler={onConfirm}>
+                confirmHandler={onConfirm}
+                alert={message}>
             </SelfEditForm>
+
         </Fragment>
     )
 }

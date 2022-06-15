@@ -29,9 +29,10 @@
     border-radius: 50%;
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
-.image-container .image-browse {
+.image-container .avatar-change-btn {
     width: 24px;
     height: 24px;
     background-color: #36ADEF;
@@ -44,7 +45,43 @@
     cursor: pointer;
     position: absolute;
     right: -3px;
-    bottom: 0px
+    bottom: 0px;
+}
+
+.image-container .avatar-confirm-btn {
+    width: 24px;
+    height: 24px;
+    background-color: #36ef96;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    cursor: pointer;
+    position: absolute;
+    right: -8px;
+    bottom: 12px;
+}
+
+.image-container .avatar-cancel-btn {
+    width: 24px;
+    height: 24px;
+    background-color: #ef5e36;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    bottom: -8px;
+}
+
+.image-container .hide {
+    display: none;
 }
 
 .image-container .image-note {
@@ -52,6 +89,10 @@
     font-family: 'Rounded Mplus 1c Medium';
     font-size: 14px;
     color: rgba(0, 0, 0, 0.8)
+}
+
+.image-container .image-browse {
+    display: none;
 }
 
 .personal-info-tray .tray-header {

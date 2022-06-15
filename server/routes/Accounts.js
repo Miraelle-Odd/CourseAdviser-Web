@@ -3,6 +3,7 @@ const router = express.Router();
 const { Accounts } = require("../controllers")
 
 router.post("/login", Accounts.logIn)
+router.get("/findOneId/:front/:id", Accounts.findAccountById)
 router.post("/findOneUsername", Accounts.findAccountByUsername)
 router.post("/findOneEmail", Accounts.findAccountByEmail)
 router.post("/set-token", Accounts.setAccountToken)
@@ -19,4 +20,6 @@ router.get("/get-list/:position/:sortField/:sortOrder/:page", Accounts.getListAc
 router.get("/get-detail/:id", Accounts.getDetailById)
 router.post("/update-account", Accounts.updateAccountById)
 router.post("/update-status/:id/:status", Accounts.updateStatus)
+router.post("/update-password-directly", Accounts.updatePasswordByUserId)
+
 module.exports = router

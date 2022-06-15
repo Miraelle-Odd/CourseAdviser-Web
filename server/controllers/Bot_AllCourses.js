@@ -87,11 +87,29 @@ const createCourse = async(req, res) => {
     }
 }
 
+const updateStatus = async(req, res) => {
+    let itemValues;
+    if (req.params.status == "false") {
+        itemValues = {
+            course_status: "enabled"
+        };
+    } else if (req.params.status == "true") {
+        itemValues = {
+            course_status: "disabled"
+        };
+    }
+
+    Bot_Courses.update(itemValues, { where: { course_id: req.params.id } }).then((result) => {
+        res.send(result);
+    });
+}
+
 module.exports = {
     getAllCourses,
     getCount,
     getCourseById,
     updateCourseById,
     createCourse,
-    getAllCourseName
+    getAllCourseName,
+    updateStatus
 }
