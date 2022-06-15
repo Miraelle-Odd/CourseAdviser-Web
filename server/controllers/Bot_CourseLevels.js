@@ -1,4 +1,5 @@
-const { Bot_Courses, Bot_CourseLevels, sequelize } = require("../models");
+const { Bot_Courses, Bot_CourseLevels } = require("../models");
+const { Op } = require("sequelize");
 
 const getAllLevels = async(req, res) => {
     try {
@@ -16,25 +17,51 @@ const getAllLevels = async(req, res) => {
             ]
         if (req.params.page)
             page = req.params.page
-        await Bot_CourseLevels.findAll({
-            limit: 8,
-            offset: page * 8,
-            order: sort,
-            include: {
-                model: Bot_Courses,
-                as: 'Bot_Course',
-                attributes: ['course_name'],
-            }
-        }).then((result) => {
-            res.send(result)
-        })
+        if (req.params.search == "all")
+            await Bot_CourseLevels.findAll({
+                limit: 8,
+                offset: page * 8,
+                order: sort,
+                include: {
+                    model: Bot_Courses,
+                    as: 'Bot_Course',
+                    attributes: ['course_name'],
+                }
+            }).then((result) => {
+                res.send(result)
+            })
+        else
+            await Bot_CourseLevels.findAll({
+
+                limit: 8,
+                offset: page * 8,
+                order: sort,
+                include: {
+                    model: Bot_Courses,
+                    as: 'Bot_Course',
+                    attributes: ['course_name'],
+                    where: {
+                        course_name: {
+                            [Op.substring]: req.params.search
+                        }
+                    },
+                }
+            }).then((result) => {
+                res.send(result)
+            })
     } catch (error) {
         res.send(error)
     }
 }
 
 const getCount = async(req, res) => {
-    const result = await Bot_CourseLevels.count();
+    const result = await Bot_CourseLevels.count({
+        where: {
+            level_name: {
+                [Op.substring]: req.params.search
+            }
+        },
+    });
     res.send(result.toString());
 }
 

@@ -1,19 +1,37 @@
-const { Bot_Courses, sequelize } = require("../models");
+const { Bot_Courses } = require("../models");
+const { Op } = require("sequelize");
 
 const getAllCourses = async(req, res) => {
     try {
+
         var page = 0;
         if (req.params.page)
             page = req.params.page
-        await Bot_Courses.findAll({
-            limit: 8,
-            offset: page * 8,
-            order: [
-                [req.params.sortField, req.params.sortOrder]
-            ],
-        }).then((result) => {
-            res.send(result)
-        })
+        if (req.params.search == "all")
+            await Bot_Courses.findAll({
+                limit: 8,
+                offset: page * 8,
+                order: [
+                    [req.params.sortField, req.params.sortOrder]
+                ],
+            }).then((result) => {
+                res.send(result)
+            })
+        else
+            await Bot_Courses.findAll({
+                where: {
+                    course_name: {
+                        [Op.substring]: req.params.search
+                    }
+                },
+                limit: 8,
+                offset: page * 8,
+                order: [
+                    [req.params.sortField, req.params.sortOrder]
+                ],
+            }).then((result) => {
+                res.send(result)
+            })
     } catch (error) {
         res.send(error)
     }
@@ -32,7 +50,13 @@ const getAllCourseName = async(req, res) => {
 }
 
 const getCount = async(req, res) => {
-    const result = await Bot_Courses.count();
+    const result = await Bot_Courses.count({
+        where: {
+            course_name: {
+                [Op.substring]: req.params.search
+            }
+        },
+    });
     res.send(result.toString());
 }
 
