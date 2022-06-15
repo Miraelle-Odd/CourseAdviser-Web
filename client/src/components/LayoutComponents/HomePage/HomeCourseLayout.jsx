@@ -37,22 +37,22 @@ export default function HomeCourseLayout(props) {
                         <ParallelogramBtn
                             img={ielts_img}
                             name="Luyện thi IELTS"
-                            des="test test test. Course luyen thi IELTS, test hover, test length text. Khoong biet vieets cai vao day het tron, lam sao de no dai ra day nhi, da da da da da daayyy gau gau bruh bruh meow">
+                            des="Nội dung chính của khóa học xoay quanh chiến thuật và kỹ năng làm bài để giúp người học tiếp cận một cách hiệu quả nhất đề thi IELTS. Xây dựng kiến thức ngôn ngữ học thuật nền tảng, từ vựng và ngữ pháp, tập trung luyện đề thi">
                         </ParallelogramBtn>
                         <ParallelogramBtn
                             img={toeic_img}
                             name="Luyện thi TOEIC"
-                            des="test test test. Course luyen thi IELTS, test hover, test length text. Khoong biet vieets cai vao day het tron, lam sao de no dai ra day nhi, da da da da da daayyy gau gau bruh bruh meow">
+                            des="Khóa học TOEIC tại trung tâm được thiết kế dành cho nhiều đối tượng học viên với mục đích bất cứ ai, dù người mới bắt đầu chập chững học tiếng Anh cho đến những người đi làm cần nâng cao TOEIC để phát triển sự nghiệp trong thời gian ngắn nhất đều có thể theo học.">
                         </ParallelogramBtn>
                         <ParallelogramBtn
                             img={aldut_img}
                             name="Tiếng anh giao tiếp"
-                            des="test test test. Course luyen thi IELTS, test hover, test length text. Khoong biet vieets cai vao day het tron, lam sao de no dai ra day nhi, da da da da da daayyy gau gau bruh bruh meow">
+                            des="Khóa học tiếng Anh giao tiếp cho người đi làm được thiết kế nhằm giúp học viên nâng cao, rèn luyện khả năng giao tiếp tiếng Anh trong môi trường làm việc, mở rộng thêm cơ hội thăng tiến trong sự nghiệp.">
                         </ParallelogramBtn>
                         <ParallelogramBtn
                             img={kid_img}
                             name="Tiếng anh cho bé"
-                            des="test test test. Course luyen thi IELTS, test hover, test length text. Khoong biet vieets cai vao day het tron, lam sao de no dai ra day nhi, da da da da da daayyy gau gau bruh bruh meow">
+                            des="Đây là khóa học giúp nâng cao trình độ cho các em nhỏ từ 3-11 tuổi với cách học thú vị, kết hợp với sự nhiệt tình và kinh nghiệm của giáo viên sẽ giúp các em nhỏ có được niềm vui và đam mê khi học tiếng Anh.">
                         </ParallelogramBtn>
                     </div>
 

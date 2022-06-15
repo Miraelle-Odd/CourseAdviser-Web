@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
             course_name: "Luyện thi TOEIC",
             course_image: "https:\/\/i.imgur.com\/cESQphA.png",
             course_page: "http:\/\/localhost:3000\/courses\/TOEIC",
-            course_description: "TOEIC Loram Syum dhuahduwi báduhw\r\nđáiidca adasd",
+            course_description: "Khóa học TOEIC tại trung tâm được thiết kế dành cho nhiều đối tượng học viên 🐧\r\nvới mục đích bất cứ ai, dù người mới bắt đầu chập chững học tiếng Anh cho đến những người đi làm 🐧\r\ncần nâng cao TOEIC để phát triển sự nghiệp trong thời gian ngắn nhất đều có thể theo học.",
             course_status: "enabled",
             special_support: true
         },

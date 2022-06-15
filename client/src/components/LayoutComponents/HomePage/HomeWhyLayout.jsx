@@ -10,7 +10,7 @@ export default function HomeWhyLayout() {
             <div className="home-why-layout-content">
                 <div className="home-why-layout-title">
                     <div className="home-why-layout-line"></div>
-                    <p className="home-why-layout-detail">Why should you choose us ?</p>
+                    <p className="home-why-layout-detail">Tại sao nên chọn trung tâm ?</p>
                 </div>
 
                 <div className="home-why-layout-row">
@@ -21,7 +21,7 @@ export default function HomeWhyLayout() {
                     </WhyCard_Rec>
                     <WhyCard_Rec
                         icon={['fas', 'street-view']}
-                        title="Personalized Study Routes"
+                        title="Cá nhân hóa lộ trình học"
                         content="Chuyên gia ngôn ngữ tư vấn trực tiếp, phân tích kỹ lưỡng và đưa ra lộ trình học tập phù hợp với từng cá nhân">
                     </WhyCard_Rec>
                     <WhyCard_Rec
