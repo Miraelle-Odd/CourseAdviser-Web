@@ -19,12 +19,12 @@ export default function QaList() {
             setCountQa(result.data)
         }
         getQaCount().catch(console.error)
+        
     }, [])
     return (
         <div className='qa-page-contain'>
             <QaLayout
             hasResult={true}
-            searchHandle={onSearchClick}
             count={countQa}>
             </QaLayout>
             <Footer> </Footer>

@@ -97,10 +97,10 @@ const levelTypes = [
         longTitle: true,
         long: true,
         subtitle: "Improve communication skills",
-        value: 100,
+        value: 4000000,
         infoContent: renderLevelContent({
-            introParagraph: "Proin ex leo, accumsan eget fermentum mollis, dictum eu tortor. Maecenas vulputate neque vitae aliquam mattis. Ut pretium enim sed tristique luctus. Sed feugiat odio nec quam molestie blandit. Donec et dictum felis, feugiat tincidunt enim. Aenean posuere pulvinar turpis ac bibendum. Nullam pretium tellus porta sapien luctus auctor. Praesent dignissim dictum eros, molestie posuere velit pellentesque sed. Pellentesque viverra tincidunt ipsum, id viverra nibh aliquet at. In condimentum vulputate eros, in lacinia ante volutpat vitae.",
-            purposeParagraph: "Duis quis tortor risus. Cras pellentesque urna sit amet blandit varius. Morbi iaculis diam massa, vitae commodo nunc semper quis. ",
+            introParagraph: "Tại các lớp học giao tiếp của trung tâm, học viên không được ngồi yên, không khí lớp học luôn sôi động, học viên luôn sẵn sàng tinh thần với những câu hỏi PHẢN XẠ từ các sứ giả.",
+            purposeParagraph: "Thông qua Questions and answers, học viên sẽ được tạo phản xạ liên tục Hỏi – Phản xạ - Hỏi – Phạn xạ - Hỏi – Phản xạ để khắc sâu mãi mãi kiến thức đã được học và ứng biến thật nhanh khi gặp các câu hỏi này trong cuộc sống.",
             tuitionFee: "XX XXX"
         })
     },
@@ -109,10 +109,10 @@ const levelTypes = [
         title: "ADVANCE WRITING",
         long: true,
         subtitle: "Upgrade writing skill for work",
-        value: 200,
+        value: 3000000,
         infoContent: renderLevelContent({
-            introParagraph: "Proin ex leo, accumsan eget fermentum mollis, dictum eu tortor. Maecenas vulputate neque vitae aliquam mattis. Ut pretium enim sed tristique luctus. Sed feugiat odio nec quam molestie blandit. Donec et dictum felis, feugiat tincidunt enim. Aenean posuere pulvinar turpis ac bibendum. Nullam pretium tellus porta sapien luctus auctor. Praesent dignissim dictum eros, molestie posuere velit pellentesque sed. Pellentesque viverra tincidunt ipsum, id viverra nibh aliquet at. In condimentum vulputate eros, in lacinia ante volutpat vitae.",
-            purposeParagraph: "Duis quis tortor risus. Cras pellentesque urna sit amet blandit varius. Morbi iaculis diam massa, vitae commodo nunc semper quis. ",
+            introParagraph: "Dù mục tiêu của bạn là thúc đẩy sự nghiệp, chuẩn bị cho việc học hay cải thiện các mối quan hệ xã hội, các khóa học của chúng tôi đều có thể giúp bạn đạt được mục tiêu của mình. Sử dụng tiếng Anh lịch sự chỉ sử dụng cho văn viết, giúp ngôn từ được truyền đạt qua giấy tờ trở nên trang trọng, ý nghĩa hơn",
+            purposeParagraph: "Các giáo viên chuyên nghiệp, có trình độ chuyên môn cao của chúng tôi phụ trách các lớp học và khóa học tiếng Anh trực tuyến hấp dẫn có sự tương tác trực tiếp.",
             tuitionFee: "XX XXX"
         })
     },
@@ -124,7 +124,7 @@ const bonusTypes = [
         title: "SPEEDY",
         subtitle: "Efficient and shortened learning",
         infoContent: renderBonusContent({
-            introParagraph: "Cras id ullamcorper libero. Cras ornare congue porttitor. Maecenas maximus erat quis orci pretium, ut pharetra turpis tempus. Phasellus mattis hendrerit pharetra. Vestibulum sit amet neque elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit felis felis, nec accumsan diam hendrerit vel. Ut efficitur interdum ante at tempus. Sed ipsum erat, tincidunt id urna sit amet, luctus pharetra enim.",
+            introParagraph: "Khóa học Speedy tập trung chuyên sâu vào kỹ năng giao tiếp trong đời sống và công việc. Chúng tôi không dạy lan man mà tập trung trọng tâm kiến thức. Phần học lý thuyết được tinh gọn, ưu tiên phần thực hành giao tiếp liên tục.",
             multiplier: "1.5"
         })
     },
@@ -133,7 +133,7 @@ const bonusTypes = [
         title: "1 vs 1",
         subtitle: "Lecturer attention focus",
         infoContent: renderBonusContent({
-            introParagraph: "Cras id ullamcorper libero. Cras ornare congue porttitor. Maecenas maximus erat quis orci pretium, ut pharetra turpis tempus. Phasellus mattis hendrerit pharetra. Vestibulum sit amet neque elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque hendrerit felis felis, nec accumsan diam hendrerit vel. Ut efficitur interdum ante at tempus. Sed ipsum erat, tincidunt id urna sit amet, luctus pharetra enim.",
+            introParagraph: "Một vấn đề của người đi làm khi đi học tiếng Anh giao tiếp là không muốn học ở lớp quá đông, quá nhiều lứa tuổi khác nhau có cả sinh viên, học sinh… Thì với các lớp học của trung tâm nhận đào tạo 1-1 cho người đi làm. Như vậy học viên sẽ được sứ giả kèm kỹ hơn, sứ giả nhiệt tình bám sát từng học viên, giúp bạn cải thiện kỹ năng và phản xạ với tiếng Anh tự nhiên hơn, nhanh hơn.",
             multiplier: "2.0"
         })
     }
