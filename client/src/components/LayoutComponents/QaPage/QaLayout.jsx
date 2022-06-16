@@ -20,7 +20,7 @@ export default function QaLayout(props) {
 
     let { page } = useParams();
     const [currentPage, setCurrentPage] = useState(page ? page : 1);
-    const itemsPerPage = 2;
+    const itemsPerPage = 8;
     const [listOfPaging, setListOfPaging] = useState([]);
     const [pageCount, setPageCount] = useState(1);
 

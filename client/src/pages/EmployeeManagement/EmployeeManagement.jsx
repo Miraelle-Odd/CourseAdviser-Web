@@ -128,7 +128,7 @@ const sortItems = [
 const EmployeeManagement = props => {
     let { category, page, sort, search } = useParams()
     let navigate = useNavigate()
-    const itemsPerPage = 2;
+    const itemsPerPage = 8;
 
     const [isShowCreate, setIsShowCreate] = useState(false);
     const [isShowUpdate, setIsShowUpdate] = useState(false);
@@ -322,7 +322,10 @@ const EmployeeManagement = props => {
                 shouldCloseOnOverlayClick={false}
                 ariaHideApp={false}>
                 <CreateAccount
-                    handleFormClose={() => handleFormClose()}>
+                    handleFormClose={() => {
+                        handleFormClose()
+                        navigate(0)
+                        }}>
                 </CreateAccount>
             </Modal>
             <Modal

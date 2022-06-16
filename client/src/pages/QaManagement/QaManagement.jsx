@@ -97,7 +97,7 @@ const sortItems = [
 const QaManagement = props => {
     let { category, page, sort, search } = useParams()
     let navigate = useNavigate()
-    const itemsPerPage = 2;
+    const itemsPerPage = 8;
 
     const [isShowCreate, setIsShowCreate] = useState(false);
     const [isShowUpdate, setIsShowUpdate] = useState(false);

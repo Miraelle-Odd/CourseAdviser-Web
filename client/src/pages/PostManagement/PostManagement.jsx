@@ -107,7 +107,7 @@ const sortItems = [
 const PostManagement = props => {
     let navigate = useNavigate()
     let { category, page, sort, search } = useParams()
-    const itemsPerPage = 2
+    const itemsPerPage = 8
 
     const [pageCount, setPageCount] = useState(1)
     const [totalCount, setTotalCount] = useState(0)
