@@ -1,4 +1,5 @@
 const { Accounts, Personal_Infos } = require("../models");
+const { Op } = require("sequelize");
 const bcrypt = require("bcrypt");
 const { sign, verify } = require("jsonwebtoken");
 
@@ -386,19 +387,39 @@ const getListAccountByPosition = async(req, res) => {
     if (req.params.page)
         page = req.params.page
     if (req.params.position == "all")
-        result = await Accounts.findAll({
-            attributes: ['email', 'status'],
-            order: [
-                order
-            ],
-            limit: 2,
-            offset: page * 2,
-            include: {
-                model: Personal_Infos,
-                as: 'Personal_Info',
-            }
-        })
+        if (req.params.search == "all")
+            result = await Accounts.findAll({
+                attributes: ['email', 'status'],
+                order: [
+                    order
+                ],
+                limit: 8,
+                offset: page * 8,
+                include: {
+                    model: Personal_Infos,
+                    as: 'Personal_Info',
+                }
+            })
+        else
+            result = await Accounts.findAll({
+                attributes: ['email', 'status'],
+                include: {
+                    model: Personal_Infos,
+                    as: 'Personal_Info',
+                    where: {
+                        name: {
+                            [Op.substring]: req.params.search
+                        }
+                    }
+                },
+                order: [
+                    order
+                ],
+                limit: 8,
+                offset: page * 8,
+            })
     else
+    if (req.params.search == "all")
         result = await Accounts.findAll({
             attributes: ['email', 'status'],
             where: {
@@ -407,12 +428,33 @@ const getListAccountByPosition = async(req, res) => {
             order: [
                 order
             ],
-            limit: 2,
-            offset: page * 2,
+            limit: 8,
+            offset: page * 8,
             include: {
                 model: Personal_Infos,
                 as: 'Personal_Info'
             }
+        })
+    else
+        result = await Accounts.findAll({
+            attributes: ['email', 'status'],
+            where: {
+                position: req.params.position,
+            },
+            include: {
+                model: Personal_Infos,
+                as: 'Personal_Info',
+                where: {
+                    name: {
+                        [Op.substring]: req.params.search
+                    }
+                }
+            },
+            order: [
+                order
+            ],
+            limit: 8,
+            offset: page * 8,
         })
     res.send(result)
 }
@@ -470,6 +512,53 @@ const updateStatus = async(req, res) => {
         res.send(result);
     });
 }
+
+const getCountBySearch = async(req, res) => {
+    var result
+    let search = req.params.search;
+    let category = req.params.category;
+    if (search == "all") {
+        if (category == "all")
+            result = await Accounts.count();
+        else
+            result = await Accounts.count({
+                where: {
+                    position: category
+                }
+            });
+    } else {
+        if (category == "all")
+            result = await Accounts.count({
+                include: {
+                    model: Personal_Infos,
+                    as: 'Personal_Info',
+                    where: {
+                        name: {
+                            [Op.substring]: req.params.search
+                        }
+                    }
+                },
+            });
+        else
+            result = await Accounts.count({
+                where: {
+                    position: category
+                },
+                include: {
+                    model: Personal_Infos,
+                    as: 'Personal_Info',
+                    where: {
+                        name: {
+                            [Op.substring]: req.params.search
+                        }
+                    }
+                },
+            });
+    }
+
+    res.send(result.toString());
+}
+
 module.exports = {
     findAccountByUsername,
     findAccountByEmail,
@@ -489,4 +578,6 @@ module.exports = {
     updateStatus,
     updatePasswordByUserId,
     findAccountById
+    getCountBySearch
+
 }

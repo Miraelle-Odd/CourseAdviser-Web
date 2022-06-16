@@ -84,10 +84,5 @@ module.exports = (sequelize, DataTypes) => {
             post_type: "event"
         }
     ]
-    list.forEach(element => {
-        Posts.sync().then(async function() {
-            await Posts.findOrCreate({ where: element })
-        })
-    });
     return Posts;
 }

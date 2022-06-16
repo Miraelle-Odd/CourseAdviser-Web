@@ -8,11 +8,11 @@ const TuitionCalculator = (props) => {
     const [bonusCount, setBonusCount] = useState(1.0)
 
     const onCheck = (e) => {
-        setTotal(total + parseInt(e.currentTarget.getAttribute("value")) * bonusCount)
+        setTotal(total + parseInt(e.currentTarget.getAttribute("value")) * bonusCount * 96)
     }
 
     const onUncheck = (e) => {
-        setTotal(total - parseInt(e.currentTarget.getAttribute("value")) * bonusCount)
+        setTotal(total - parseInt(e.currentTarget.getAttribute("value")) * bonusCount * 96)
     }
 
     const onBonusCheck = (e) => {

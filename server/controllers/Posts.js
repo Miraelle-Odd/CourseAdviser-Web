@@ -1,5 +1,5 @@
 const { Posts, sequelize } = require("../models");
-
+const { Op } = require("sequelize");
 
 const getTop2WithType = async(req, res) => {
     const result = await sequelize.query(
@@ -59,10 +59,10 @@ const getInactiveCountAll = async(req, res) => {
 const getItemPaging = async(req, res) => {
     const { page } = req.query
     const result = await sequelize.query(
-        "SELECT DISTINCT post_id, author_id, post_title, post_subtitle, post_content, post_img, post_type, post_status, Posts.createdAt, Posts.updatedAt, name, birthday, location, avatar FROM `Posts` AS `Posts` JOIN `Personal_Infos` AS `Personal_Info` ON `Posts`.`author_id` = `Personal_Info`.`account_id` WHERE `Posts`.`post_type` = :type ORDER BY `Posts`.`post_id` DESC LIMIT :skip, 2", {
+        "SELECT DISTINCT post_id, author_id, post_title, post_subtitle, post_content, post_img, post_type, post_status, Posts.createdAt, Posts.updatedAt, name, birthday, location, avatar FROM `Posts` AS `Posts` JOIN `Personal_Infos` AS `Personal_Info` ON `Posts`.`author_id` = `Personal_Info`.`account_id` WHERE `Posts`.`post_type` = :type ORDER BY `Posts`.`post_id` DESC LIMIT :skip, 6", {
             replacements: {
                 type: req.params.type,
-                skip: page * 2
+                skip: page * 6
             },
             type: sequelize.QueryTypes.SELECT
         }
@@ -93,15 +93,30 @@ const getListPostByCategory = async(req, res) => {
     var result
     if (req.params.page)
         page = req.params.page
-    if (req.params.category == "all")
-        result = await Posts.findAll({
-            order: [
-                [req.params.sortField, req.params.sortOrder]
-            ],
-            limit: 2,
-            offset: page * 2,
-        })
-    else
+    if (req.params.category == "all") {
+        if (req.params.search == "all")
+            result = await Posts.findAll({
+                order: [
+                    [req.params.sortField, req.params.sortOrder]
+                ],
+                limit: 8,
+                offset: page * 8,
+            })
+        else
+            result = await Posts.findAll({
+                where: {
+                    post_title: {
+                        [Op.substring]: req.params.search
+                    }
+                },
+                order: [
+                    [req.params.sortField, req.params.sortOrder]
+                ],
+                limit: 8,
+                offset: page * 8,
+            })
+    } else
+    if (req.params.search == "all")
         result = await Posts.findAll({
             where: {
                 post_type: req.params.category
@@ -109,8 +124,22 @@ const getListPostByCategory = async(req, res) => {
             order: [
                 [req.params.sortField, req.params.sortOrder]
             ],
-            limit: 2,
-            offset: page * 2,
+            limit: 8,
+            offset: page * 8,
+        })
+    else
+        result = await Posts.findAll({
+            where: {
+                post_type: req.params.category,
+                post_title: {
+                    [Op.substring]: req.params.search
+                }
+            },
+            order: [
+                [req.params.sortField, req.params.sortOrder]
+            ],
+            limit: 8,
+            offset: page * 8,
         })
     res.send(result)
 }
@@ -148,14 +177,13 @@ const updatePost = async(req, res) => {
 
     }
 }
-const updateStatus = async (req, res) => {
+const updateStatus = async(req, res) => {
     let itemValues;
     if (req.params.status == "false") {
         itemValues = {
             post_status: "enabled"
         };
-    }
-    else if (req.params.status == "true") {
+    } else if (req.params.status == "true") {
         itemValues = {
             post_status: "disabled"
         };
@@ -165,6 +193,43 @@ const updateStatus = async (req, res) => {
         res.send(result);
     });
 }
+
+const getCountBySearch = async(req, res) => {
+    var result
+    let search = req.params.search;
+    let category = req.params.category;
+    if (search == "all") {
+        if (category == "all")
+            result = await Posts.count();
+        else
+            result = await Posts.count({
+                where: {
+                    post_type: category
+                }
+            });
+    } else {
+        if (category == "all")
+            result = await Posts.count({
+                where: {
+                    post_title: {
+                        [Op.substring]: search
+                    }
+                }
+            });
+        else
+            result = await Posts.count({
+                where: {
+                    post_type: category,
+                    post_title: {
+                        [Op.substring]: search
+                    }
+                }
+            });
+    }
+
+    res.send(result.toString());
+}
+
 module.exports = {
     getTop2WithType,
     getCountAll,
@@ -175,5 +240,6 @@ module.exports = {
     getTop5All,
     getListPostByCategory,
     updatePost,
-    updateStatus
+    updateStatus,
+    getCountBySearch
 }

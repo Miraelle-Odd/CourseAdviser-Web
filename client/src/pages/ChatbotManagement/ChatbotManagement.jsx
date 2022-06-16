@@ -193,7 +193,7 @@ const sortLevelItems = [
 
 const ChatbotManagement = props => {
     let navigate = useNavigate()
-    let { category, page, sort } = useParams()
+    let { category, page, sort, search } = useParams()
     const itemsPerPage = 8
 
     const [isShowCreate, setIsShowCreate] = useState(false);
@@ -233,12 +233,12 @@ const ChatbotManagement = props => {
                     }
                 }
             });
-        axios.get("http://localhost:8080/" + category + "/get-count/")
+        axios.get("http://localhost:8080/" + category + "/get-count/" + search)
             .then((res) => {
                 setPageCount(Math.ceil(res.data / itemsPerPage))
             })
         if (sortItems && sortItems[sortOption])
-            axios.get("http://localhost:8080/" + category + "/get-all-courses/" + sortItems[sortOption].sortField + "/" + sortItems[sortOption].sortOrder + "/" + (page - 1))
+            axios.get("http://localhost:8080/" + category + "/get-all-courses/" + sortItems[sortOption].sortField + "/" + sortItems[sortOption].sortOrder + "/" + search +  "/" + (page - 1))
                 .then((res) => {
                     res.data.map((item, index) => {
                         if (item.course_name) {
@@ -265,28 +265,38 @@ const ChatbotManagement = props => {
                     setBotData(res.data)
                 })
 
-    }, [sortOption, sortItems, category, page, sort])
+    }, [sortOption, sortItems, category, page, sort, search])
 
     const handlePageClick = (event) => {
-        navigate("/workplace/chatbot-management/" + category + "/" + sort + "/" + (event.selected + 1))
+        navigate("/workplace/chatbot-management/" + category + "/" + sort + "/" + search + "/" + (event.selected + 1))
         navigate(0)
     }
     const onCategoryChange = (event) => {
-        navigate("/workplace/chatbot-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/updated-latest/1")
+        navigate("/workplace/chatbot-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/updated-latest/all/1")
         navigate(0)
     }
     const onPageTextChange = (e) => {
         if (e.key === 'Enter')
             if (e.target.value <= pageCount && e.target.value >= 1 && e.target.value !== e.target.defaultValue) {
-                navigate("/workplace/chatbot-management/" + category + "/" + sort + "/" + (e.target.value))
+                navigate("/workplace/chatbot-management/" + category + "/" + sort + "/" + search + "/" + (e.target.value))
                 navigate(0)
             }
     }
 
     const sortHandler = (e) => {
         setSortOption(e.target.value)
-        navigate("/workplace/chatbot-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + page)
+        navigate("/workplace/chatbot-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + search + "/"  + page)
         navigate(0)
+    }
+    const searchHandler = (e) => {
+        if (e.key === "Enter") {
+            var text = "all"
+            if (e.target.value && e.target.value.trim() != "")
+                text = e.target.value
+
+            navigate("/workplace/chatbot-management/" + category + "/" + sort + "/" + text + "/1")
+            navigate(0)
+        }
     }
 
     const onCreateClick = () => {
@@ -388,6 +398,8 @@ const ChatbotManagement = props => {
                 sortItems={sortItems}
                 sortHandler={sortHandler}
                 sortOption={sortOption}
+                searchHandler={searchHandler}
+                currentSearch={search}
             ></WorkplaceLayout>
             <Footer></Footer>
             <Modal

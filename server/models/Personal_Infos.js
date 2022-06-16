@@ -46,68 +46,6 @@ module.exports = (sequelize, DataTypes) => {
             }
         }
     });
-    const list = [{
-            name: "Cao Ngọc Anh",
-            birthday: '2001-03-10 00:00:00',
-            gender: 'female',
-            location: 'Kon Tum',
-            phone: '0000000000',
-            avatar: 'https://i.imgur.com/uKqhZDC.jpg',
-            account_id: 1,
-        },
-        {
-            name: "emptest1",
-            birthday: '2001-03-10 00:00:00',
-            gender: 'female',
-            location: 'Hồ Chí Minh',
-            phone: '0000000000',
-            avatar: 'https://i.imgur.com/acvDZcg.png',
-            account_id: 2,
-        },
-        {
-            name: "mantest1",
-            birthday: '2001-03-10 00:00:00',
-            gender: 'male',
-            location: 'Tokyo',
-            phone: '0000000000',
-            avatar: 'https://i.imgur.com/acvDZcg.png',
-            account_id: 3,
-        },
-        {
-            name: "emptest2",
-            birthday: '2001-03-10 00:00:00',
-            gender: 'male',
-            location: 'Shanghai',
-            phone: '0000000000',
-            avatar: 'https://i.imgur.com/acvDZcg.png',
-            account_id: 4,
-        },
-        {
-            name: "Cao Ngọc Anh",
-            birthday: '2001-03-10 00:00:00',
-            gender: 'female',
-            location: 'Kon Tum',
-            phone: '0000000000',
-            avatar: 'http://i.imgur.com/LSBzGPe.png',
-            account_id: 5,
-        },
-        {
-            name: "Ngọc Anh Cute",
-            birthday: '2001-03-10 00:00:00',
-            gender: 'male',
-            location: 'Kon Tum',
-            phone: '0000000000',
-            avatar: 'http://i.imgur.com/LFBkN8A.png',
-            account_id: 6,
-        },
-    ]
-
-
-    list.forEach(element => {
-        Personal_Infos.sync().then(async function() {
-            await Personal_Infos.findOrCreate({ where: element })
-        })
-    });
 
     Personal_Infos.associate = (models) => {
         Personal_Infos.belongsTo(models.Accounts, {

@@ -3,8 +3,8 @@ import './LocationLayout.css'
 import { Fragment } from 'react/cjs/react.production.min';
 import { useState } from 'react';
 import LocationSwitch from '../../SwitchComponents/AboutPage/LocationSwitch';
-import TKB_HK2 from "../../../assets/icons/TKB_HK2.PNG"
-import course from "../../../assets/icons/course-ielts.png"
+import TKB_HK2 from "../../../assets/icons/About-center1.jpg"
+import course from "../../../assets/icons/About-center2.jpg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default function LocationLayout() {
 
@@ -35,8 +35,8 @@ export default function LocationLayout() {
                         </div>
                         <div className='location-switch-centent-right location-switch-center'>
                             <p className='location-switch-right-text'>
-                                {activeButton === "Chi Nhánh 1" ? "Description blah blah Description blah blah Description blah blah Description blah blah Description blah blah Description blah blah" 
-                                : "Test switch content"}
+                                {activeButton === "Chi Nhánh 1" ? "Trung tâm chính, với không gian rộng lớn tọa lạc tại vị trí đắc địa ngay giữa trung tâm thành phố, thuận lợi cho học viên đi lại" 
+                                : "Chi nhánh phụ, với cách thiết kế địa ốc nhiều tầng, trung tâm có tầm nhìn cao, rộng vượt qua những dãy nhà phố liền kề"}
                             </p>
                         </div>
                     </div>
