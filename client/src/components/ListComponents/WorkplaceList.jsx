@@ -19,7 +19,7 @@ const WorkplaceList = props => {
     let { page } = useParams();
     let { category } = useParams();
 
-    const handlePageClick = (event) => {}
+    const handlePageClick = (event) => { }
     return (
         <div className="workplace-list-container">
             <WorkplaceListCategory
@@ -57,9 +57,13 @@ const WorkplaceList = props => {
                 }
 
             </div>
-            <button className="create-btn" onClick={props.onCreateClick}>
-                + Thêm mới
-            </button>
+            {
+                props.noCreateBtn ? "" :
+                    <button className="create-btn" onClick={props.onCreateClick}>
+                        + Thêm mới
+                    </button>
+            }
+
             <div className="workplace-list">
                 <WorkplaceListItem isHeader fieldFormat={props.fieldFormat}></WorkplaceListItem>
                 {

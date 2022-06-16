@@ -42,6 +42,7 @@ function App() {
 
   var workplace = "post-management"
   var currentUser = null
+  const [currentUserInfo, setCurrentUserInfo] = useState()
 
   if (cookies.get('accessToken')) {
     currentUser = jwt_decode(cookies.get('accessToken'))
@@ -49,7 +50,16 @@ function App() {
       workplace = "employee-management"
     else
       workplace = "post-management"
+    console.log(currentUser)
+    if(!currentUserInfo)
+    axios.get("http://localhost:8080/Accounts/findOneId/1/" + currentUser.account.account_id).then((res) => {
+      setCurrentUserInfo(res.data)
+    })
   }
+
+
+
+
 
   return (
     <div className="App">
@@ -60,9 +70,9 @@ function App() {
 
             window.location.href.includes('workplace') ?
               <LeftMenu
-                avatar={currentUser != null ? (currentUser.account.Personal_Info.avatar ? currentUser.account.Personal_Info.avatar : placeholder) : ""}
-                fullName={currentUser != null ? currentUser.account.Personal_Info.name : ""}
-                email={currentUser != null ? currentUser.account.email : ""}
+                avatar={currentUserInfo != null ? (currentUserInfo.Personal_Info.avatar ? currentUserInfo.Personal_Info.avatar : placeholder) : ""}
+                email={currentUserInfo != null ? currentUserInfo.email : ""}
+                fullName={currentUserInfo ? currentUserInfo.Personal_Info.name : ""}
                 position={currentUser != null ? currentUser.account.position : ""}
               ></LeftMenu>
               :
@@ -70,11 +80,11 @@ function App() {
                 !window.location.href.includes('password-recovery') && !window.location.href.includes('account-activation') ?
                   <NavigationBar
                     isLogin={cookies.get('accessToken')}
-                    userFullname={currentUser != null ? currentUser.account.Personal_Info.name : ""}
-                    userEmail={currentUser != null ? currentUser.account.email : ""}
-                    userAvatar={currentUser != null ? (currentUser.account.Personal_Info.avatar ? currentUser.account.Personal_Info.avatar : placeholder) : ""}
+                  userFullname={currentUserInfo ? currentUserInfo.Personal_Info.name : ""}
+                  userEmail={currentUserInfo != null ? currentUserInfo.email : ""}
+                  userAvatar={currentUserInfo != null ? (currentUserInfo.Personal_Info.avatar ? currentUserInfo.Personal_Info.avatar : placeholder) : ""}
                   ></NavigationBar>
-                  : 
+                  :
                   ""
               )
           }

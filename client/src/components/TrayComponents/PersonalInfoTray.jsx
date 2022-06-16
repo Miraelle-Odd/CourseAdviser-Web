@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './PersonalInfoTray.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import imagePlaceHolder from '../../assets/icons/personal_avatar.png'
@@ -24,6 +24,9 @@ const PersonalInfoItem = props => {
 }
 
 const PersonalInfoTray = props => {
+    const openImageBrowser = () => {
+        document.getElementById('avatar-change-btn_image-browser').click()
+    }
     return (
         <div className='personal-info-tray'>
             <div className='tray-string-info'>
@@ -52,10 +55,19 @@ const PersonalInfoTray = props => {
                 props.image ?
                     <div className='image-container'>
                         <div className='image'>
-                            <img src={imagePlaceHolder} className='image-display'></img>
-                            <span className='image-browse'>
+                            <img src={props.avatar ? props.avatar : imagePlaceHolder} className='image-display'></img>
+                            <span className={'avatar-change-btn'+ (props.avatarBtnShow != "default"? " hide" : "")} onClick={openImageBrowser}>
                                 <FontAwesomeIcon icon={['fas', 'camera']}></FontAwesomeIcon>
                             </span>
+                            <span className={'avatar-confirm-btn' + (props.avatarBtnShow != "changed"? " hide" : "")} onClick={props.onAvatarConfirm}>
+                                <FontAwesomeIcon icon={['fas', 'check']}></FontAwesomeIcon>
+                            </span>
+                            <span className={'avatar-cancel-btn'  + (props.avatarBtnShow != "changed"? " hide" : "")} onClick={props.onAvatarCancel}>
+                                <FontAwesomeIcon icon={['fas', 'times']}></FontAwesomeIcon>
+                            </span>
+                            <input id="avatar-change-btn_image-browser" className='image-browse' type="file" accept="image/*"
+                                onChange={props.onAvatarChange}
+                            ></input>
                         </div>
                         <span className='image-note'>Ảnh đại diện</span>
                     </div>

@@ -9,15 +9,30 @@ import UpdateSelfInfo from '../../components/PopupComponents/UpdateSelfInfo/Upda
 import UpdateSelfContact from '../../components/PopupComponents/UpdateSelfContact/UpdateSelfContact'
 import UpdatePassword from '../../components/PopupComponents/UpdatePassword/UpdatePassword'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import AlertFail from '../../components/PopupComponents/AlertFail/AlertFail'
+import AlertSuccess from '../../components/PopupComponents/AlertSuccess/AlertSuccess'
 
 const AccountSetting = props => {
+    let navigate = useNavigate()
+
     const [isShowUpdateBasicInfo, setIsShowUpdateBasicInfo] = useState(false);
     const [isShowUpdateContactInfo, setIsShowUpdateContactInfo] = useState(false);
     const [isShowUpdatePassword, setIsShowUpdatePassword] = useState(false);
+    const [avatar, setAvatar] = useState()
+    const [avatarURL, setAvatarURL] = useState()
+    const [avatarBtnShow, setAvatarBtnShow] = useState("default")
+    const [failAlert, setFailAlert] = useState(false)
+    const [successAlert, setSuccessAlert] = useState(false)
+    const [message, setMessage] = useState()
+
     const handleFormClose = () => {
         setIsShowUpdateBasicInfo(false);
         setIsShowUpdateContactInfo(false);
         setIsShowUpdatePassword(false);
+        setSuccessAlert(false)
+        setFailAlert(false)
+        setMessage("")
     }
     const openChangePassForm = () => {
         setIsShowUpdatePassword(true)
@@ -32,15 +47,17 @@ const AccountSetting = props => {
     }
 
     const [currentUser, setCurrentUser] = useState();
-    
+
     useEffect(() => {
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0)
     }, [])
 
     useEffect(() => {
         const getAccountById = async () => {
             const result = await axios.get(`http://localhost:8080/Accounts/get-detail/${props.currentId}`)
             setCurrentUser(result.data)
+            // console.log(result.data.Personal_Info.avatar)
+            setAvatarURL(result.data.Personal_Info.avatar)
         }
         getAccountById().catch(console.error)
     }, [props])
@@ -72,16 +89,16 @@ const AccountSetting = props => {
     const contractInfo = [
         {
             fieldName: "Email",
-            fieldValue: currentUser ?currentUser.email : null
+            fieldValue: currentUser ? currentUser.email : null
         },
         {
             fieldName: "Số điện thoại",
-            fieldValue: currentUser ?currentUser.Personal_Info.phone : null,
+            fieldValue: currentUser ? currentUser.Personal_Info.phone : null,
             openForm: true,
             openFormFun: openChangeContractInfoForm,
         }, {
             fieldName: "Ví trí",
-            fieldValue: currentUser ?currentUser.Personal_Info.location : null,
+            fieldValue: currentUser ? currentUser.Personal_Info.location : null,
             openForm: true,
             openFormFun: openChangeContractInfoForm,
             isLast: true
@@ -91,7 +108,7 @@ const AccountSetting = props => {
     const accountInfo = [
         {
             fieldName: "Username",
-            fieldValue: currentUser ?currentUser.username : null,
+            fieldValue: currentUser ? currentUser.username : null,
         },
         {
             fieldName: "Password",
@@ -106,6 +123,29 @@ const AccountSetting = props => {
             isLast: true
         }
     ]
+
+    const onAvatarConfirm = async () => {
+        var data = new FormData()
+        data.append("image", avatar)
+
+        await axios.post("http://localhost:8080/image/upload-to-imgur/", data)
+            .then((res) => {
+                axios.post("http://localhost:8080/personal_infos/update-avatar", {
+                    id: currentUser.account_id,
+                    avatar: res.data.link
+                }).then((ress) => {
+                    if (ress.data[0] == 1) {
+                        setSuccessAlert(true)
+                        setMessage("Your avatar is up to date!")
+                    }
+                    else {
+                        setFailAlert(true)
+                        setMessage("Error happened. Please try again later!")
+                    }
+                })
+            })
+    }
+
     const renderAccountSetting = () => {
         return (
             <div className='acc-set-body'>
@@ -116,7 +156,22 @@ const AccountSetting = props => {
                                 title="Thông tin cơ bản"
                                 subtitle="Một số thông tin cá nhân được dùng để thể hiện"
                                 items={basicInfo}
-                                image>
+                                image
+                                avatar={avatarURL}
+                                avatarBtnShow={avatarBtnShow}
+                                onAvatarChange={(e) => {
+                                    setAvatar(e.target.files[0])
+                                    setAvatarURL(URL.createObjectURL(e.target.files[0]))
+                                    setAvatarBtnShow("changed")
+                                }}
+                                onAvatarConfirm={onAvatarConfirm}
+                                onAvatarCancel={() => {
+                                    setAvatarURL(currentUser.Personal_Info.avatar)
+                                    setAvatar(undefined)
+                                    setAvatarBtnShow("default")
+                                }
+                                }
+                            >
                             </PersonalInfoTray>
                         </div>
                         <div className='contract-tray-container'>
@@ -175,7 +230,7 @@ const AccountSetting = props => {
                     phone={currentUser ? currentUser.Personal_Info.phone : null}
                     location={currentUser ? currentUser.Personal_Info.location : null}
                     idItem={currentUser ? currentUser.account_id : null}
-                    >
+                >
                 </UpdateSelfContact>
             </Modal>
             <Modal
@@ -188,8 +243,33 @@ const AccountSetting = props => {
                 <UpdatePassword
                     handleFormClose={() => handleFormClose()}
                     idItem={currentUser ? currentUser.account_id : null}
-                    >
+                >
                 </UpdatePassword>
+            </Modal>
+            <Modal
+                isOpen={successAlert}
+                onRequestClose={() => navigate(0)}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
+                <AlertSuccess
+                    message={message}
+                    onClose={()=>navigate(0)}
+                ></AlertSuccess>
+            </Modal>
+
+            <Modal
+                isOpen={failAlert}
+                onRequestClose={() => navigate(0)}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
+                <AlertFail
+                    message={message}
+                    onClose={() => navigate(0)}
+                ></AlertFail>
             </Modal>
         </div>
     )

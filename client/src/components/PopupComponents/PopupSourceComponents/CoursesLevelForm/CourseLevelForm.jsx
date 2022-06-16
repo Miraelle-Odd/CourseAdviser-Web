@@ -29,7 +29,7 @@ export default function CourseLevelForm(props) {
                                         className='edit-form-input'
                                         value={props.levelName}
                                         placeholder="Nhập tên cấp học mới..."
-                                        readOnly={props.isView}
+                                        readOnly={true}
                                         onChange={props.levelOnChange}
                                     />
                                 </div>

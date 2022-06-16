@@ -129,10 +129,28 @@ const createLevel = async(req, res) => {
     }
 }
 
+const updateStatus = async(req, res) => {
+    let itemValues;
+    if (req.params.status == "false") {
+        itemValues = {
+            level_status: "enabled"
+        };
+    } else if (req.params.status == "true") {
+        itemValues = {
+            level_status: "disabled"
+        };
+    }
+
+    Bot_CourseLevels.update(itemValues, { where: { level_id: req.params.id } }).then((result) => {
+        res.send(result);
+    });
+}
+
 module.exports = {
     getAllLevels,
     getCount,
     getLevelById,
     updateLevelById,
-    createLevel
+    createLevel,
+    updateStatus
 }

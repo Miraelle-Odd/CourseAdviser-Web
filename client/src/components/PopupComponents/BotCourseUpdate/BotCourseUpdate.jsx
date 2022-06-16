@@ -17,7 +17,7 @@ export default function BotCourseUpdate(props) {
             title: "Tên khóa học:",
             inputHint: "Nhập tên khóa học mới...",
             itemValue: courseName,
-            readOnly: false,
+            readOnly: true,
             onChange: (e) => { setCourseName(e.target.value) }
         },
         {
