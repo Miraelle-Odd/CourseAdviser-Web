@@ -6,13 +6,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from 'rc-time-picker'
 import 'rc-time-picker/assets/index.css';
 import AppoinmentCard from '../../CardComponents/ContactPage/AppoinmentCard';
-import moment from 'moment';
+import moment, { isMoment, now } from 'moment';
 import axios from 'axios'
 import AlertSuccess from '../../PopupComponents/AlertSuccess/AlertSuccess';
 import AlertFail from '../../PopupComponents/AlertFail/AlertFail';
 import Modal from 'react-modal';
 import validator from 'validator'
-
 
 export default function AppoinmentLayout() {
     const [inputName, setInputName] = useState();
@@ -42,12 +41,23 @@ export default function AppoinmentLayout() {
         }
         else {
             if (!validator.isEmail(inputEmail)) {
-                setMessage("Invalid Email")
+                setMessage("Địa chỉ Email không hợp lệ.")
                 setFailAlert(true)
                 return false
             }
-
+            if (!validator.isNumeric(inputPhone)) {
+                setMessage("Số điện thoại không hợp lệ.")
+                setFailAlert(true)
+                return false
+            }
+            if (!validator.isAfter(inputDate.toString(), Date().toString())) {
+                console.log("bnmvnbvnvbm", inputDate.toString(), Date(), validator.isAfter(inputDate.toString(), Date().toString()));
+                setMessage("Ngày đăng ký không hợp lệ.")
+                setFailAlert(true)
+                return false
+            }
         }
+
         const params = {
             appointPurpose: inputService,
             concern: inputCourse,
@@ -97,6 +107,7 @@ export default function AppoinmentLayout() {
                     <div className="appoinment-layout-form-content">
                         <p className='appoinment-form-title'>Nhận tư vấn và Kiểm tra trình độ miễn phí</p>
                         <p className='appoinment-form-context'>Chúng tôi cam kết sử dụng thông tin vào mục đích tư vấn lộ trình học và không kinh doanh dưới mọi hình thức</p>
+                        <p className='appoinment-form-context'>Xin vui lòng đăng ký hẹn trước 1 ngày để chúng tôi có sự chuẩn bị tốt nhất</p>
                         <input
                             className="appoinment-input"
                             placeholder="Họ và tên"
@@ -172,6 +183,7 @@ export default function AppoinmentLayout() {
                                 onChange={
                                     (e) => setInputTime(e._d)
                                 }
+                                showSecond={false}
                             >
                             </TimePicker>
 

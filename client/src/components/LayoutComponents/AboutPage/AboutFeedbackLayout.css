@@ -59,7 +59,9 @@
     align-items: center;
     height: 500px;
 }
-
+.carousel-root{
+    width: 100%;
+}
 .feedback-slider .carousel {
     display: flex;
     justify-content: center;

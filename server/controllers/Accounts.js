@@ -577,7 +577,6 @@ module.exports = {
     updateAccountById,
     updateStatus,
     updatePasswordByUserId,
-    findAccountById
+    findAccountById,
     getCountBySearch
-
 }
