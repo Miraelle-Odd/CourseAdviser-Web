@@ -30,7 +30,7 @@ export default function PostListLayout(props) {
 
     let { postType, page } = useParams();
     const [currentPage, setCurrentPage] = useState(page);
-    const itemsPerPage = 2;
+    const itemsPerPage = 6;
     const [listOfPaging, setListOfPaging] = useState([]);
     const [pageCount, setPageCount] = useState(1);
 

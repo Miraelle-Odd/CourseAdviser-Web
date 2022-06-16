@@ -17,7 +17,7 @@ const fetchedDataValidate = (res) => {
         res.updatedAt
 }
 
-const findAccountByUsername = async (req, res) => {
+const findAccountByUsername = async(req, res) => {
     try {
         const result = await Accounts.findOne({
             where: {
@@ -38,7 +38,7 @@ const findAccountByUsername = async (req, res) => {
 
 }
 
-const findAccountByEmail = async (req, res) => {
+const findAccountByEmail = async(req, res) => {
     try {
         const result = await Accounts.findOne({
             where: {
@@ -57,7 +57,7 @@ const findAccountByEmail = async (req, res) => {
     }
 }
 
-const setAccountToken = async (req, res) => {
+const setAccountToken = async(req, res) => {
     try {
         var plain = req.body.email + new Date().toUTCString()
         var hash = bcrypt.hashSync(plain, saltRounds)
@@ -83,7 +83,7 @@ const setAccountToken = async (req, res) => {
     }
 }
 
-const removeAccountToken = async (req, res) => {
+const removeAccountToken = async(req, res) => {
     try {
         const result = await Accounts.update({
             token: "activated"
@@ -101,7 +101,7 @@ const removeAccountToken = async (req, res) => {
     }
 }
 
-const updatePassword = async (req, res) => {
+const updatePassword = async(req, res) => {
     try {
         var hash = bcrypt.hashSync(req.body.password, saltRounds)
         const result = await Accounts.update({
@@ -121,7 +121,7 @@ const updatePassword = async (req, res) => {
     }
 }
 
-const logIn = async (req, res) => {
+const logIn = async(req, res) => {
     try {
         let account = null
         let message = null
@@ -186,7 +186,7 @@ const logIn = async (req, res) => {
     }
 }
 
-const createAccount = async (req, res) => {
+const createAccount = async(req, res) => {
     try {
         const hashedPassword = bcrypt.hashSync(req.body.password, saltRounds)
         var plain = req.body.email + new Date().toUTCString()
@@ -224,7 +224,7 @@ const createAccount = async (req, res) => {
     }
 }
 
-const activateAccount = async (req, res) => {
+const activateAccount = async(req, res) => {
     try {
         const result = await Accounts.update({
             status: "enabled"
@@ -242,7 +242,7 @@ const activateAccount = async (req, res) => {
     }
 }
 
-const changeStatus = async (req, res) => {
+const changeStatus = async(req, res) => {
     try {
         const result = await Accounts.update({
             status: req.body.status
@@ -260,7 +260,7 @@ const changeStatus = async (req, res) => {
     }
 }
 
-const getCountByPosition = async (req, res) => {
+const getCountByPosition = async(req, res) => {
     var result
     if (req.params.position == "all")
         result = await Accounts.count();
@@ -273,7 +273,7 @@ const getCountByPosition = async (req, res) => {
     res.send(result.toString());
 }
 
-const getActiveCountByPosition = async (req, res) => {
+const getActiveCountByPosition = async(req, res) => {
     var result
     if (req.params.position == "all")
         result = await Accounts.count({
@@ -291,7 +291,7 @@ const getActiveCountByPosition = async (req, res) => {
     res.send(result.toString());
 }
 
-const getInactiveCountByPosition = async (req, res) => {
+const getInactiveCountByPosition = async(req, res) => {
     var result
     if (req.params.position == "all")
         result = await Accounts.count({
@@ -309,7 +309,7 @@ const getInactiveCountByPosition = async (req, res) => {
     res.send(result.toString());
 }
 
-const getListAccountByPosition = async (req, res) => {
+const getListAccountByPosition = async(req, res) => {
     var page = 0;
     var result
     var order
@@ -326,8 +326,8 @@ const getListAccountByPosition = async (req, res) => {
                 order: [
                     order
                 ],
-                limit: 2,
-                offset: page * 2,
+                limit: 8,
+                offset: page * 8,
                 include: {
                     model: Personal_Infos,
                     as: 'Personal_Info',
@@ -348,51 +348,51 @@ const getListAccountByPosition = async (req, res) => {
                 order: [
                     order
                 ],
-                limit: 2,
-                offset: page * 2,
+                limit: 8,
+                offset: page * 8,
             })
     else
-        if (req.params.search == "all")
-            result = await Accounts.findAll({
-                attributes: ['email', 'status'],
+    if (req.params.search == "all")
+        result = await Accounts.findAll({
+            attributes: ['email', 'status'],
+            where: {
+                position: req.params.position
+            },
+            order: [
+                order
+            ],
+            limit: 8,
+            offset: page * 8,
+            include: {
+                model: Personal_Infos,
+                as: 'Personal_Info'
+            }
+        })
+    else
+        result = await Accounts.findAll({
+            attributes: ['email', 'status'],
+            where: {
+                position: req.params.position,
+            },
+            include: {
+                model: Personal_Infos,
+                as: 'Personal_Info',
                 where: {
-                    position: req.params.position
-                },
-                order: [
-                    order
-                ],
-                limit: 2,
-                offset: page * 2,
-                include: {
-                    model: Personal_Infos,
-                    as: 'Personal_Info'
-                }
-            })
-        else
-            result = await Accounts.findAll({
-                attributes: ['email', 'status'],
-                where: {
-                    position: req.params.position,
-                },
-                include: {
-                    model: Personal_Infos,
-                    as: 'Personal_Info',
-                    where: {
-                        name: {
-                            [Op.substring]: req.params.search
-                        }
+                    name: {
+                        [Op.substring]: req.params.search
                     }
-                },
-                order: [
-                    order
-                ],
-                limit: 2,
-                offset: page * 2,
-            })
+                }
+            },
+            order: [
+                order
+            ],
+            limit: 8,
+            offset: page * 8,
+        })
     res.send(result)
 }
 
-const getDetailById = async (req, res) => {
+const getDetailById = async(req, res) => {
     try {
         const result = await Accounts.findOne({
             where: {
@@ -409,7 +409,7 @@ const getDetailById = async (req, res) => {
     }
 }
 
-const updateAccountById = async (req, res) => {
+const updateAccountById = async(req, res) => {
     let accountValues = {
         position: req.body.position,
     };
@@ -424,19 +424,18 @@ const updateAccountById = async (req, res) => {
     Accounts.update(accountValues, { where: { account_id: req.body.account_id } })
         .then(
             Personal_Infos.update(personalValues, { where: { account_id: req.body.account_id } })
-                .then((result) =>
-                    res.send(result)
-                )
+            .then((result) =>
+                res.send(result)
+            )
         );
 }
-const updateStatus = async (req, res) => {
+const updateStatus = async(req, res) => {
     let itemValues;
     if (req.params.status == "false") {
         itemValues = {
             status: "enabled"
         };
-    }
-    else if (req.params.status == "true") {
+    } else if (req.params.status == "true") {
         itemValues = {
             status: "disabled"
         };
@@ -447,7 +446,7 @@ const updateStatus = async (req, res) => {
     });
 }
 
-const getCountBySearch = async (req, res) => {
+const getCountBySearch = async(req, res) => {
     var result
     let search = req.params.search;
     let category = req.params.category;
@@ -460,8 +459,7 @@ const getCountBySearch = async (req, res) => {
                     position: category
                 }
             });
-    }
-    else {
+    } else {
         if (category == "all")
             result = await Accounts.count({
                 include: {
