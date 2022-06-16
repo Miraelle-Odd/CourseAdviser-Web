@@ -4,6 +4,7 @@ import { Fragment } from 'react/cjs/react.production.min';
 import { useState } from 'react';
 import student from '../../../assets/icons/about-student.png'
 import RIPL from '../../../assets/icons/about-RIPL.png'
+import SMART from '../../../assets/icons/About-smart.png'
 import shadow from '../../../assets/icons/shadow.png'
 
 import MethodSwitch from '../../SwitchComponents/AboutPage/MethodSwitch';
@@ -35,7 +36,7 @@ export default function MethodLayout() {
                 </div>
                 <div className='method-layout-black-bg'>
                     <div className='method-layout-white-bg'>
-                        <img className='method-layout-main-img' src={RIPL}></img>
+                        <img className='method-layout-main-img' src={activeButton === "RIPL Method" ? RIPL : SMART}></img>
                     </div>
 
                 </div>

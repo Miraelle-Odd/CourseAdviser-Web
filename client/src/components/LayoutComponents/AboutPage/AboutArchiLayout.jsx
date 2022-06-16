@@ -9,7 +9,7 @@ export default function AboutArchiLayout() {
     return (
         <Fragment>
             <div className="about-archi-layout-content">
-                <p className="about-archi-layout-title">Our Archivements</p>
+                <p className="about-archi-layout-title">Những thành tích nổi bật</p>
                 <div className="about-archi-layout-row-1 about-archi-layout-center">
                     <ArchivementCard_Rou
                         icon={['fas', 'users']}
