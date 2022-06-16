@@ -73,7 +73,7 @@ const PostUpdate = props => {
                         date={postDetail ? moment(postDetail.updatedAt).format("YYYY-MM-DD hh-mm A") : moment().format("YYYY-MM-DD hh-mm A")}
                         img={postDetail ? postDetail.post_img : null}
                         active={postDetail ? postDetail.post_status : true}
-                        type={postDetail ? postDetail.post_type : null}
+                        type={postDetail ? postDetail.post_type : 0}
                     ></WorkplacePostUpdate>
                 }
 

@@ -97,7 +97,7 @@ const levelTypes = [
         longTitle: true,
         long: true,
         subtitle: "Improve communication skills",
-        value: 4000000,
+        value: 160000,
         infoContent: renderLevelContent({
             introParagraph: "Tại các lớp học giao tiếp của trung tâm, học viên không được ngồi yên, không khí lớp học luôn sôi động, học viên luôn sẵn sàng tinh thần với những câu hỏi PHẢN XẠ từ các sứ giả.",
             purposeParagraph: "Thông qua Questions and answers, học viên sẽ được tạo phản xạ liên tục Hỏi – Phản xạ - Hỏi – Phạn xạ - Hỏi – Phản xạ để khắc sâu mãi mãi kiến thức đã được học và ứng biến thật nhanh khi gặp các câu hỏi này trong cuộc sống.",
@@ -109,7 +109,7 @@ const levelTypes = [
         title: "ADVANCE WRITING",
         long: true,
         subtitle: "Upgrade writing skill for work",
-        value: 3000000,
+        value: 160000,
         infoContent: renderLevelContent({
             introParagraph: "Dù mục tiêu của bạn là thúc đẩy sự nghiệp, chuẩn bị cho việc học hay cải thiện các mối quan hệ xã hội, các khóa học của chúng tôi đều có thể giúp bạn đạt được mục tiêu của mình. Sử dụng tiếng Anh lịch sự chỉ sử dụng cho văn viết, giúp ngôn từ được truyền đạt qua giấy tờ trở nên trang trọng, ý nghĩa hơn",
             purposeParagraph: "Các giáo viên chuyên nghiệp, có trình độ chuyên môn cao của chúng tôi phụ trách các lớp học và khóa học tiếng Anh trực tuyến hấp dẫn có sự tương tác trực tiếp.",
