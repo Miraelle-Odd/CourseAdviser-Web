@@ -109,8 +109,8 @@ const levelTypes = [
         infoContent: renderLevelContent({
             introParagraph: "Khóa học TOEIC PREPARE (hay PRE-TOEIC) là một trong khóa học Luyện thi TOEIC chính được phân loại dựa theo mức độ kiến thức sẽ đạt được sau khóa. Theo đó, khóa PRE-TOEIC là khóa cơ sở trong 3 mức độ (PRE, INTER, ADV) với mục đích rèn luyện, tạo nền móng tiếng Anh cho những học viên mới bắt đầu làm quen với tiếng Anh, không có nền tảng ngôn ngữ hoặc có nhu cầu lấy lại gốc tiếng Anh. Chính vì thế mà cấp độ này không có yêu cầu đầu vào. Kiến thức nền tảng có được sau khóa học đủ để học viên tự tin tham gia thi lấy bằng TOEIC trong thực tế.",
             require: "Không",
-            guaranteer: "TOEIC ???+",
-            tuitionFee: "XX XXX"
+            guaranteer: "TOEIC 300+",
+            tuitionFee: "150 000"
         })
     },
     {
@@ -120,9 +120,9 @@ const levelTypes = [
         value: 160000,
         infoContent: renderLevelContent({
             introParagraph: "Khóa học TOEIC INTERMEDIATE (hay INTER-TOEIC) là một trong khóa học Luyện thi TOEIC chính được phân loại dựa theo mức độ kiến thức sẽ đạt được sau khóa. Theo đó, khóa INTER-TOEIC là khóa trung cấp trong 3 mức độ (PRE, INTER, ADV) với mục đích rèn luyện, mài dũa cho những học viên đã có nền tảng tiếng Anh nắm chắc kiến thức và nâng cao khả năng hiểu sâu. Khóa học yêu cầu học viên tham gia thi thử đầu vào hoặc trình diện kết quả TOEIC của mình (nếu có) nhằm đánh giá trình độ hiện tại xem xét đủ khả năng tham gia lớp hay không. Kiến thức có được sau khóa học đảm bảo học viên tự tin tham gia thi lấy bằng TOEIC từ XXX trở lên trong thực tế.",
-            require: "TOEIC ???+",
-            guaranteer: "TOEIC ???+",
-            tuitionFee: "XX XXX"
+            require: "TOEIC 300+",
+            guaranteer: "TOEIC 650+",
+            tuitionFee: "160 000"
         })
     },
     {
@@ -132,9 +132,9 @@ const levelTypes = [
         value: 170000,
         infoContent: renderLevelContent({
             introParagraph: "Khóa học TOEIC ADVANCED (hay ADV-TOEIC) là một trong khóa học Luyện thi TOEIC chính được phân loại dựa theo mức độ kiến thức sẽ đạt được sau khóa. Theo đó, khóa ADV-TOEIC là khóa cao cấp trong 3 mức độ (PRE, INTER, ADV) với mục đích nâng cao khả năng thành thạo ngôn ngữ cho những học viên đã nắm chắc cách sử dụng tiếng Anh. Khóa học yêu cầu học viên tham gia thi thử đầu vào hoặc trình diện kết quả TOEIC của mình (nếu có) nhằm đánh giá trình độ hiện tại xem xét đủ khả năng tham gia lớp hay không. Kiến thức có được sau khóa học đảm bảo học viên tự tin tham gia thi lấy bằng TOEIC từ 8.0 trở lên trong thực tế.",
-            require: "TOEIC ???+",
-            guaranteer: "TOEIC ???+",
-            tuitionFee: "XX XXX"
+            require: "TOEIC 650+",
+            guaranteer: "TOEIC 900+",
+            tuitionFee: "170 000"
         })
     }
 ]

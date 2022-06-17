@@ -45,7 +45,7 @@ export default function QaLayout(props) {
         props.hasResult ?
             (<Fragment>
                 <div className='qa-layout-contain'>
-                    <div className='qa-half-abow qa-layout-center'>
+                    {/* <div className='qa-half-abow qa-layout-center'>
                         <div className='qa-layout-title qa-layout-center'>{"Chúng tôi có thể\r\ngiúp gì cho bạn?"}</div>
                         <div className='qa-layout-search qa-layout-center'>
                             <FontAwesomeIcon icon={['fas', 'magnifying-glass']}></FontAwesomeIcon>
@@ -55,8 +55,8 @@ export default function QaLayout(props) {
                                 placeholder='Mô tả câu hỏi của bạn...' />
                         </div>
                         <button className='qa-button-search' onClick={props.searchHandle}>GO</button>
-                    </div>
-                    <div className='qa-mid-line'></div>
+                    </div> */}
+                    {/* <div className='qa-mid-line'></div> */}
                     <div className='qa-half-below'>
                         <div className='qa-below-body qa-layout-center'>
                             <ul class="qa-list-contain">

@@ -60,9 +60,9 @@ const levelTypes = [
         title: "JUMPSTART",
         subtitle: "Kids from 3 - 6 years old",
         infoContent: renderLevelContent({
-            introParagraph: "Proin ex leo, accumsan eget fermentum mollis, dictum eu tortor. Maecenas vulputate neque vitae aliquam mattis. Ut pretium enim sed tristique luctus. Sed feugiat odio nec quam molestie blandit. Donec et dictum felis, feugiat tincidunt enim. Aenean posuere pulvinar turpis ac bibendum. Nullam pretium tellus porta sapien luctus auctor. Praesent dignissim dictum eros, molestie posuere velit pellentesque sed. Pellentesque viverra tincidunt ipsum, id viverra nibh aliquet at. In condimentum vulputate eros, in lacinia ante volutpat vitae.",
+            introParagraph: "Là một trong 3 chương trình theo độ tuổi của khóa học Tiếng Anh cho bé, JUMPSTART thích hợp cho các em từ 3 đến 6 tuổi muốn tiếp xúc sớm và tạo nền tảng với Anh ngữ, cũng như phát triển kĩ năng giao tiếp và sự tự tin khi nói chuyện bằng ngoại ngữ. Các bé tham gia chương trình sẽ có cơ hội tiếp xúc với các giáo viên bản xứ thân thiện, trải nghiệm các hoạt động ngoại khóa phát triển tiếng Anh cùng các bạn cùng lứa.",
             age: "Thích hợp cho các bé từ 3 đến 6 tuổi",
-            tuitionFee: "XX XXX XXX"
+            tuitionFee: "13 000 000"
         })
     },
     {
@@ -70,9 +70,9 @@ const levelTypes = [
         title: "JUNIOR",
         subtitle: "Kids from 6 - 11 years old",
         infoContent: renderLevelContent({
-            introParagraph: "Proin ex leo, accumsan eget fermentum mollis, dictum eu tortor. Maecenas vulputate neque vitae aliquam mattis. Ut pretium enim sed tristique luctus. Sed feugiat odio nec quam molestie blandit. Donec et dictum felis, feugiat tincidunt enim. Aenean posuere pulvinar turpis ac bibendum. Nullam pretium tellus porta sapien luctus auctor. Praesent dignissim dictum eros, molestie posuere velit pellentesque sed. Pellentesque viverra tincidunt ipsum, id viverra nibh aliquet at. In condimentum vulputate eros, in lacinia ante volutpat vitae.",
+            introParagraph: "Là một trong 3 chương trình theo độ tuổi của khóa học Tiếng Anh cho bé, JUNIOR thích hợp cho các em từ 6 đến 11 tuổi muốn mài dũa khả năng tiếng Anh, cũng như phát triển kĩ năng giao tiếp và sự tự tin khi nói chuyện bằng ngoại ngữ. Các em tham gia chương trình sẽ có cơ hội tiếp xúc với các giáo viên bản xứ thân thiện, trải nghiệm các hoạt động ngoại khóa phát triển tiếng Anh cùng các bạn cùng lứa.",
             age: "Thích hợp cho các bé từ 6 đến 11 tuổi",
-            tuitionFee: "XX XXX XXX"
+            tuitionFee: "1 500 000"
         })
     },
     {
@@ -80,9 +80,9 @@ const levelTypes = [
         title: "TEEN",
         subtitle: "Kids from 11 - 16 years old",
         infoContent: renderLevelContent({
-            introParagraph: "Proin ex leo, accumsan eget fermentum mollis, dictum eu tortor. Maecenas vulputate neque vitae aliquam mattis. Ut pretium enim sed tristique luctus. Sed feugiat odio nec quam molestie blandit. Donec et dictum felis, feugiat tincidunt enim. Aenean posuere pulvinar turpis ac bibendum. Nullam pretium tellus porta sapien luctus auctor. Praesent dignissim dictum eros, molestie posuere velit pellentesque sed. Pellentesque viverra tincidunt ipsum, id viverra nibh aliquet at. In condimentum vulputate eros, in lacinia ante volutpat vitae.",
+            introParagraph: "Là một trong 3 chương trình theo độ tuổi của khóa học Tiếng Anh cho bé, TEEN thích hợp cho các em từ 11 đến 16 tuổi muốn mài dũa khả năng tiếng Anh, chuẩn bị cho các kì thi, cũng như phát triển kĩ năng giao tiếp và sự tự tin khi nói chuyện bằng ngoại ngữ. Các em tham gia chương trình sẽ có cơ hội tiếp xúc với các giáo viên bản xứ thân thiện, trải nghiệm các hoạt động ngoại khóa phát triển tiếng Anh cùng các bạn cùng lứa.",
             age: "Thích hợp cho các bé từ 11 đến 16 tuổi",
-            tuitionFee: "XX XXX XXX"
+            tuitionFee: "1 700 000"
         })
     }
 ]
