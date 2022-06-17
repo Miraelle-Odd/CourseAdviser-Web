@@ -11,7 +11,7 @@
     position: fixed;
     top: 370px;
     right: 0px;
-    z-index: 999;
+    z-index: 990;
     height: 225px;
     display: flex;
     flex-direction: column;
