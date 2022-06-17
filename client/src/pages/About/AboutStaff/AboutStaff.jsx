@@ -43,12 +43,12 @@ export default function AboutStaff(props) {
     return (
         <Fragment>
             <StaffManagerLayout
-                title="Ban tư vấn nhiệt tình"
+                title="Đội ngũ quản lý tâm huyết"
                 listItem={listOfManagers}>
             </StaffManagerLayout>
 
             <StaffEmployeeLayout
-                title="Đội ngũ quản lý tâm huyết"
+                title="Ban tư vấn nhiệt tình"
                 listItem={listOfAdvisers}>
             </StaffEmployeeLayout>
 
