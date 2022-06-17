@@ -62,7 +62,7 @@ const levelTypes = [
         infoContent: renderLevelContent({
             introParagraph: "Là một trong 3 chương trình theo độ tuổi của khóa học Tiếng Anh cho bé, JUMPSTART thích hợp cho các em từ 3 đến 6 tuổi muốn tiếp xúc sớm và tạo nền tảng với Anh ngữ, cũng như phát triển kĩ năng giao tiếp và sự tự tin khi nói chuyện bằng ngoại ngữ. Các bé tham gia chương trình sẽ có cơ hội tiếp xúc với các giáo viên bản xứ thân thiện, trải nghiệm các hoạt động ngoại khóa phát triển tiếng Anh cùng các bạn cùng lứa.",
             age: "Thích hợp cho các bé từ 3 đến 6 tuổi",
-            tuitionFee: "13 000 000"
+            tuitionFee: "1 300 000"
         })
     },
     {
