@@ -23,16 +23,16 @@ export default function Footer(props) {
                     </div>
                     <div className="footer-row-2">
                         <p className='footer-title'>CÁC KHÓA HỌC</p>
-                        <a href="http://localhost:3000/courses/IELTS" className='footer-link'><p className='footer-detail'>Luyện thi IELTS</p></a>
-                        <a href="http://localhost:3000/courses/TOEIC" className='footer-link'><p className='footer-detail'>Luyện thi TOEIC</p></a>
-                        <a href="http://localhost:3000/courses/english-for-speaking" className='footer-link'><p className='footer-detail'>Tiếng Anh cho {'\n'} người đi làm</p></a>
-                        <a href="http://localhost:3000/courses/english-for-kid" className='footer-link'><p className='footer-detail'>Tiếng Anh cho bé</p></a>
+                        <Link to="/courses/IELTS" className='footer-link'><p className='footer-detail'>Luyện thi IELTS</p></Link>
+                        <Link to="/courses/TOEIC" className='footer-link'><p className='footer-detail'>Luyện thi TOEIC</p></Link>
+                        <Link to="/courses/english-for-speaking" className='footer-link'><p className='footer-detail'>Tiếng Anh cho {'\n'} người đi làm</p></Link>
+                        <Link to="/courses/english-for-kid" className='footer-link'><p className='footer-detail'>Tiếng Anh cho bé</p></Link>
                     </div>
                     <div className="footer-row-3">
                         <p className='footer-title'>TÌM HIỂU THÊM</p>
-                        <a href="http://localhost:3000/about/us" className='footer-link'><p className='footer-detail'>Về chúng tôi</p></a>
-                        <a href="http://localhost:3000/main-post" className='footer-link'><p className='footer-detail'>Các bài viết hay</p></a>
-                        <a href="http://localhost:3000/about/contact" className='footer-link'><p className='footer-detail'>Đăng ký thi thử</p></a>
+                        <Link to="/about/us" className='footer-link'><p className='footer-detail'>Về chúng tôi</p></Link>
+                        <Link to="/main-post" className='footer-link'><p className='footer-detail'>Các bài viết hay</p></Link>
+                        <Link to="/about/contact" className='footer-link'><p className='footer-detail'>Đăng ký thi thử</p></Link>
                         <Link to="/temp" className='footer-link'><p className='footer-detail'>Chính sách bảo mật</p></Link>
                         <Link to="/temp" className='footer-link'><p className='footer-detail'>Chính sách thanh toán</p></Link>
                         <Link to="/temp" className='footer-link'><p className='footer-detail'>Điều khoản và quy định chung</p></Link>

@@ -8,7 +8,7 @@ export default function ParallelogramBtn(props) {
     return (
         <Fragment>
             <div className="parallelogram-card-content">
-                <Link to = '/temp' className='parallelogram-card-link'>
+                <Link to = {props.link} className='parallelogram-card-link'>
                     <button className='parallelogram-card-button' style={{background: `url(${props.img})`, backgroundPosition: `right center`}}>
                         <div className="parallelogram-card-modal"></div>
                         <p className='parallelogram-card-name'>{props.name}</p>
