@@ -35,21 +35,25 @@ export default function HomeCourseLayout(props) {
  
                     <div className='home-course-layout-detail'>
                         <ParallelogramBtn
+                            link={'/courses/IELTS'}   
                             img={ielts_img}
                             name="Luyện thi IELTS"
                             des="Nội dung chính của khóa học xoay quanh chiến thuật và kỹ năng làm bài để giúp người học tiếp cận một cách hiệu quả nhất đề thi IELTS. Xây dựng kiến thức ngôn ngữ học thuật nền tảng, từ vựng và ngữ pháp, tập trung luyện đề thi">
                         </ParallelogramBtn>
                         <ParallelogramBtn
+                            link={'/courses/TOEIC'}
                             img={toeic_img}
                             name="Luyện thi TOEIC"
                             des="Khóa học TOEIC tại trung tâm được thiết kế dành cho nhiều đối tượng học viên với mục đích bất cứ ai, dù người mới bắt đầu chập chững học tiếng Anh cho đến những người đi làm cần nâng cao TOEIC để phát triển sự nghiệp trong thời gian ngắn nhất đều có thể theo học.">
                         </ParallelogramBtn>
                         <ParallelogramBtn
+                            link={'/courses/english-for-speaking'}
                             img={aldut_img}
                             name="Tiếng anh giao tiếp"
                             des="Khóa học tiếng Anh giao tiếp cho người đi làm được thiết kế nhằm giúp học viên nâng cao, rèn luyện khả năng giao tiếp tiếng Anh trong môi trường làm việc, mở rộng thêm cơ hội thăng tiến trong sự nghiệp.">
                         </ParallelogramBtn>
                         <ParallelogramBtn
+                            link={'/courses/english-for-kid'}
                             img={kid_img}
                             name="Tiếng anh cho bé"
                             des="Đây là khóa học giúp nâng cao trình độ cho các em nhỏ từ 3-11 tuổi với cách học thú vị, kết hợp với sự nhiệt tình và kinh nghiệm của giáo viên sẽ giúp các em nhỏ có được niềm vui và đam mê khi học tiếng Anh.">
