@@ -1,0 +1,12 @@
+.userpage-container {
+    height: 100vh;
+    min-height: 444px;
+    width: 100%;
+    background-color: #0A093D;
+    min-width: 836px;
+}
+
+.qa-man-body {
+    display: flex;
+    width: 100%;
+}

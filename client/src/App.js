@@ -32,6 +32,7 @@ import PasswordRecovery from './pages/PasswordRecovery/PasswordRecovery';
 import AccountActivation from './pages/AccountActivation/AccountActivation';
 import QaList from './pages/About/Qa/QaList';
 import QaNone from './pages/About/Qa/QaNone';
+import RequestManagement from './pages/RequestManagement/RequestManagement';
 
 
 const history = createBrowserHistory();
@@ -97,7 +98,7 @@ function App() {
             <Route path="/post-details" element={<PostDetails></PostDetails>} />
             <Route path="/about/:aboutType" element={<AboutHolder></AboutHolder>} />
             <Route path="/about/:aboutType/:page" element={<AboutHolder></AboutHolder>} />
-            <Route path="/about/:aboutType/no-result" element={<QaNone></QaNone>} />
+            <Route path="/about/:aboutType/send-request" element={<QaNone></QaNone>} />
 
             <Route path="/password-recovery/" element={<PasswordRecovery></PasswordRecovery>} />
             <Route path="/password-recovery/:token" element={<PasswordRecovery></PasswordRecovery>} />
@@ -112,7 +113,7 @@ function App() {
             <Route path="/workplace/post-management/post-create" element={currentUser != null ? <PostUpdate></PostUpdate> : <Navigate to="/"></Navigate>} />
             <Route path="/workplace/post-management/post-update/:id" element={currentUser != null ? <PostUpdate></PostUpdate> : <Navigate to="/"></Navigate>} />
             <Route path='/workplace/q-and-a-management/:category/:sort/:search/:page' element={currentUser != null ? <QaManagement></QaManagement> : <Navigate to="/"></Navigate>}></Route>
-
+            <Route path='/workplace/request-management/:category/:sort/:search/:page' element={currentUser != null ? <RequestManagement></RequestManagement> : <Navigate to="/"></Navigate>}></Route>
 
             {/* Redirect Links */}
             <Route path="/workplace" element={<Navigate to={"/workplace/" + workplace + "/all/updated-latest/all/1"}></Navigate>} />
@@ -120,10 +121,12 @@ function App() {
             <Route path="/workplace/chatbot-management" element={<Navigate to="/workplace/chatbot-management/bot-courses/updated-latest/all/1"></Navigate>} />
             <Route path="/workplace/post-management" element={<Navigate to="/workplace/post-management/all/updated-latest/all/1"></Navigate>} />
             <Route path="/workplace/q-and-a-management" element={<Navigate to="/workplace/q-and-a-management/all/updated-latest/all/1"></Navigate>} />
+            <Route path="/workplace/request-management" element={<Navigate to="/workplace/request-management/all/updated-latest/all/1"></Navigate>} />
             <Route path="/workplace/employee-management/:category" element={<Navigate to="/workplace/employee-management/:category/updated-latest/all/1"></Navigate>} />
             <Route path="/workplace/chatbot-management/:category" element={<Navigate to="/workplace/chatbot-management/:category/updated-latest/all/1"></Navigate>} />
             <Route path="/workplace/post-management/:category" element={<Navigate to="/workplace/post-management/:category/updated-latest/all/1"></Navigate>} />
             <Route path="/workplace/q-and-a-management/:category" element={<Navigate to="/workplace/q-and-a-management/:category/updated-latest/all/1"></Navigate>} />
+            <Route path="/workplace/request-management/:category" element={<Navigate to="/workplace/request-management/:category/updated-latest/all/1"></Navigate>} />
             <Route path="/workplace/employee-management/:category/:sort" element={<Navigate to="/workplace/employee-management/:category/:sort/all/1"></Navigate>} />
             <Route path="/workplace/post-management/:category/:sort" element={<Navigate to="/workplace/post-management/:category/:sort/all/1"></Navigate>} />
             <Route path="/workplace/q-and-a-management/:category/:sort" element={<Navigate to="/workplace/q-and-a-management/:category/:sort/all/1"></Navigate>} />

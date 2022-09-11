@@ -47,16 +47,19 @@ const WorkplaceListItem = props => {
                                         <div className="action-otp" onClick={props.openFun} value={data.id}>
                                             <FontAwesomeIcon icon={['fas', 'book-open']}></FontAwesomeIcon>
                                         </div>
-                                        <div className="action-otp" onClick={props.editFun} value={data.id}>
-                                            <FontAwesomeIcon icon={['fas', 'pen']}></FontAwesomeIcon>
-                                        </div>
+                                        {
+                                            item.noEdit ? "" : <div className="action-otp" onClick={props.editFun} value={data.id}>
+                                                <FontAwesomeIcon icon={['fas', 'pen']}></FontAwesomeIcon>
+                                            </div>
+                                        }
+
                                     </span>
                                     :
                                     item.statusCell ?
                                         <div onClick={props.statusFun} value={data.id + "/" + data.active}>
                                             <StatusSwitch
                                                 on={data.active}
-                                                onClick={() => {}}
+                                                onClick={() => { }}
                                                 customOn={props.customOn}
                                                 customOff={props.customOff}
                                             ></StatusSwitch>
