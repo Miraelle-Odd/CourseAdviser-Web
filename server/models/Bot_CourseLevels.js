@@ -207,23 +207,8 @@ module.exports = (sequelize, DataTypes) => {
     }
     ]
     list.forEach(element => {
-        Bot_CourseLevels.sync().then(async function () {
-            await sequelize.query("INSERT IGNORE INTO `bot_courselevels` (`level_id`, `course_id`, `level_name`, `level_description`, `requirement`, `guarantee`, `min_age`, `max_age`, `basic_fee`, `fee_unit`, `level_status`) VALUES (:level_id, :course_id, :level_name, :level_description, :requirement, :guarantee, :min_age, :max_age, :basic_fee, :fee_unit, :level_status)",
-                {
-                    replacements: {
-                        level_id: element.level_id, 
-                        course_id: element.course_id, 
-                        level_name: element.level_name,   
-                        level_description: element.level_description, 
-                        requirement: element.requirement, 
-                        guarantee: element.guarantee, 
-                        min_age: element.min_age, 
-                        max_age: element.max_age, 
-                        basic_fee: element.basic_fee, 
-                        fee_unit: element.fee_unit, 
-                        level_status: element.level_status
-                    }
-                })
+        Bot_CourseLevels.sync().then(async function() {
+            await Bot_CourseLevels.findOrCreate({ where: element })
         })
     });
     return Bot_CourseLevels;

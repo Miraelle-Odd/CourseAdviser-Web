@@ -14,11 +14,27 @@ const sendRequest = async (req, res) => {
         res.send("invalid")
     }
 }
-const getCountAll = async(req, res) => {
+const getCountAll = async (req, res) => {
     var result = await Requests.count();
     res.send(result.toString());
 }
-const getItemPaging = async(req, res) => {
+const getActiveCountAll = async (req, res) => {
+    var result = await Requests.count({
+        where: {
+            status: "done",
+        }
+    });
+    res.send(result.toString());
+}
+const getInactiveCountAll = async (req, res) => {
+    var result = await Requests.count({
+        where: {
+            status: "considering",
+        }
+    });
+    res.send(result.toString());
+}
+const getItemPaging = async (req, res) => {
     var page = 0;
     if (req.params.page)
         page = req.params.page;
@@ -31,7 +47,7 @@ const getItemPaging = async(req, res) => {
     })
     res.send(result)
 }
-const getCountByMainSubject = async(req, res) => {
+const getCountByMainSubject = async (req, res) => {
     var result
     if (req.params.category == "all")
         result = await Requests.count();
@@ -39,7 +55,7 @@ const getCountByMainSubject = async(req, res) => {
         result = await Requests.count();
     res.send(result.toString());
 }
-const getListQAByMainSubject = async(req, res) => {
+const getListQAByMainSubject = async (req, res) => {
     var page = 0;
     var result
     if (req.params.page)
@@ -67,27 +83,27 @@ const getListQAByMainSubject = async(req, res) => {
                 offset: page * 8,
             })
     } else
-    if (req.params.search == "all")
-        result = await Requests.findAll({
-            order: [
-                [req.params.sortField, req.params.sortOrder]
-            ],
-            limit: 8,
-            offset: page * 8,
-        })
-    else
-        result = await Requests.findAll({
-            where: {
-                content: {
-                    [Op.substring]: req.params.search
-                }
-            },
-            order: [
-                [req.params.sortField, req.params.sortOrder]
-            ],
-            limit: 8,
-            offset: page * 8,
-        })
+        if (req.params.search == "all")
+            result = await Requests.findAll({
+                order: [
+                    [req.params.sortField, req.params.sortOrder]
+                ],
+                limit: 8,
+                offset: page * 8,
+            })
+        else
+            result = await Requests.findAll({
+                where: {
+                    content: {
+                        [Op.substring]: req.params.search
+                    }
+                },
+                order: [
+                    [req.params.sortField, req.params.sortOrder]
+                ],
+                limit: 8,
+                offset: page * 8,
+            })
     res.send(result)
 }
 
@@ -96,5 +112,7 @@ module.exports = {
     getItemPaging,
     getCountAll,
     getCountByMainSubject,
-    getListQAByMainSubject
+    getListQAByMainSubject,
+    getActiveCountAll,
+    getInactiveCountAll
 }

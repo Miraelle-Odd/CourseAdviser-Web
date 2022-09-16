@@ -42,16 +42,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     ]
     list.forEach(element => {
-        Bot_CourseSpecials.sync().then(async function () {
-            await sequelize.query("INSERT IGNORE INTO `bot_coursespecials` (`special_id`, `special_name`, `special_description`, `multiplier`) VALUES (:special_id, :special_name, :special_description, :multiplier) ",
-            {
-                replacements: {
-                    special_id: element.special_id,
-                    special_name: element.special_id,
-                    special_description: element.special_id,
-                    multiplier: element.multiplier
-                }
-            })
+        Bot_CourseSpecials.sync().then(async function() {
+            await Bot_CourseSpecials.findOrCreate({ where: element })
         })
     });
     return Bot_CourseSpecials;

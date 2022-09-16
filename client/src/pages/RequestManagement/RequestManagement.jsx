@@ -60,7 +60,7 @@ const sortItems = [
         value: 2,
         displayText: "Câu hỏi - A đến Z",
         sortParam: "question-ascend",
-        sortField: "question",
+        sortField: "content",
         sortOrder: "ASC"
 
     },
@@ -68,7 +68,7 @@ const sortItems = [
         value: 3,
         displayText: "Câu hỏi - Z đến A",
         sortParam: "question-descend",
-        sortField: "question",
+        sortField: "content",
         sortOrder: "DESC"
     }
 ]
@@ -116,7 +116,14 @@ const RequestManagement = props => {
                         })
                 }
             })
-
+        const getActiveCount = axios.get("http://localhost:8080/requests/count-active")
+            .then((res) => {
+                setActiveCount(res.data)
+            })
+        const getInactiveCount = axios.get("http://localhost:8080/requests/count-inactive")
+            .then((res) => {
+                setInactiveCount(res.data)
+            })
         if (sortItems[sortOption])
             axios.get("http://localhost:8080/requests/get-list/" + category + "/" + sortItems[sortOption].sortField + "/" + sortItems[sortOption].sortOrder + "/" + search + "/" + (page - 1))
                 .then((res) => {
@@ -219,11 +226,11 @@ const RequestManagement = props => {
                             fieldValue: totalCount
                         },
                         {
-                            fieldName: "Hoạt động",
+                            fieldName: "Đã xử lý",
                             fieldValue: activeCount
                         },
                         {
-                            fieldName: "Khóa",
+                            fieldName: "Chờ xử lý",
                             fieldValue: inactiveCount
                         },
                     ]}
@@ -236,6 +243,8 @@ const RequestManagement = props => {
                     onCategoryChange={onCategoryChange}
                     onPageTextChange={onPageTextChange}
                     statusAction={onStatusClick}
+                    customOn="Done"
+                    customOff="Consider"
                 ></WorkplaceList>
             </div>
         )

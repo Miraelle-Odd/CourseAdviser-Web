@@ -31,14 +31,8 @@ module.exports = (sequelize, DataTypes) => {
         }
     ]
     list.forEach(element => {
-        Requests.sync().then(async function () {
-            await sequelize.query("INSERT IGNORE INTO `requests` (`request_id`, `content`) VALUES (:request_id, :content) ",
-            {
-                replacements: {
-                    request_id: element.request_id,
-                    content: element.content
-                }
-            })
+        Requests.sync().then(async function() {
+            await Requests.findOrCreate({ where: element })
         })
     });
     return Requests;

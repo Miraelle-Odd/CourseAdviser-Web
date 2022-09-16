@@ -108,19 +108,8 @@ module.exports = (sequelize, DataTypes) => {
         }
     ]
     list.forEach(element => {
-        Q_and_as.sync().then(async function () {
-            await sequelize.query("INSERT IGNORE INTO `q_and_as` (`qa_id`, `main_subject`, `sub_subject_a`, `sub_subject_b`, `question`, `answer`, `status`) VALUES (:qa_id, :main_subject, :sub_subject_a, :sub_subject_b, :question, :answer, :status) ",
-            {
-                replacements: {
-                    qa_id: element.qa_id,
-                    main_subject : element.main_subject,
-                    sub_subject_a : element.sub_subject_a, 
-                    sub_subject_b : element.sub_subject_b, 
-                    question : element.question, 
-                    answer : element.answer, 
-                    status : element.status
-                }
-            })
+        Q_and_as.sync().then(async function() {
+            await Q_and_as.findOrCreate({ where: element })
         })
     });
     return Q_and_as;

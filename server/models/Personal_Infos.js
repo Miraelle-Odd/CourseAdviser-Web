@@ -115,20 +115,8 @@ module.exports = (sequelize, DataTypes) => {
     }
     ]
     list.forEach(element => {
-        Personal_Infos.sync().then(async function () {
-            await sequelize.query("INSERT IGNORE INTO `personal_infos` (`personal_id`, `name`, `birthday`, `gender`, `location`, `phone`, `avatar`, `account_id`) VALUES (:personal_id, :name, :birthday, :gender, :location, :phone, :avatar, :account_id)",
-            {
-                replacements: {
-                    personal_id: element.personal_id,
-                    name: element.name,
-                    birthday: element.birthday,
-                    gender: element.gender,
-                    location: element.location,
-                    phone: element.phone,
-                    avatar: element.avatar,
-                    account_id: element.account_id,
-                }
-            })
+        Personal_Infos.sync().then(async function() {
+            await Personal_Infos.findOrCreate({ where: element })
         })
     });
     return Personal_Infos;
