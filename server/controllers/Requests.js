@@ -106,7 +106,57 @@ const getListQAByMainSubject = async (req, res) => {
             })
     res.send(result)
 }
+const getRequestById = async (req, res) => {
+    try {
+        const result = await Requests.findOne({
+            where: {
+                request_id: req.params.id
+            }
+        })
+        res.send(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
+const updateRequest = async (req, res) => {
+    Requests.update(req.body, { where: { request_id: req.body.request_id } }).then((result) => {
+        res.send(result);
+    });
+}
+const updateStatus = async (req, res) => {
+    let itemValues;
+    if (req.params.status == "false") {
+        itemValues = {
+            status: "done"
+        };
+    } else if (req.params.status == "true") {
+        itemValues = {
+            status: "considering"
+        };
+    }
 
+    Requests.update(itemValues, { where: { request_id: req.params.id } }).then((result) => {
+        res.send(result);
+    });
+}
+const getCountBySearch = async (req, res) => {
+    var result
+    let search = req.params.search;
+    if (search == "all") {
+        result = await Requests.count();
+    }
+    else {
+        result = await Requests.count({
+            where: {
+                content: {
+                    [Op.substring]: search
+                }
+            }
+        });
+    }
+
+    res.send(result.toString());
+}
 module.exports = {
     sendRequest,
     getItemPaging,
@@ -114,5 +164,9 @@ module.exports = {
     getCountByMainSubject,
     getListQAByMainSubject,
     getActiveCountAll,
-    getInactiveCountAll
+    getInactiveCountAll,
+    getRequestById,
+    updateStatus,
+    updateRequest,
+    getCountBySearch
 }

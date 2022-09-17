@@ -5,16 +5,19 @@ import WorkplaceLayout from '../../components/LayoutComponents/WorkplacePage/Wor
 import WorkplaceList from '../../components/ListComponents/WorkplaceList'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+import NoteRequest from '../../components/PopupComponents/NoteRequest/NoteRequest'
+import Modal from 'react-modal';
+import AlertConfirm from '../../components/PopupComponents/AlertConfirm/AlertConfirm'
 
 const qaListFormat = [
     {
         name: "question",
-        field: "Câu hỏi",
+        field: "Yêu cầu",
         width: "remain-space"
     },
     {
         name: "answer",
-        field: "Giải đáp",
+        field: "Ghi chú",
         width: "remain-space",
         willDisappear: true
     },
@@ -104,7 +107,6 @@ const RequestManagement = props => {
 
         axios.get("http://localhost:8080/requests/count")
             .then((res) => {
-                console.log(res.data)
                 setPageCount(Math.ceil(res.data / itemsPerPage))
                 setTotalCount(res.data)
             })
@@ -125,26 +127,24 @@ const RequestManagement = props => {
                 setInactiveCount(res.data)
             })
         if (sortItems[sortOption])
-            axios.get("http://localhost:8080/requests/get-list/" + category + "/" + sortItems[sortOption].sortField + "/" + sortItems[sortOption].sortOrder + "/" + search + "/" + (page - 1))
+            axios.get("http://localhost:8080/requests/get-list/all/" + sortItems[sortOption].sortField + "/" + sortItems[sortOption].sortOrder + "/" + search + "/" + (page - 1))
                 .then((res) => {
-                    console.log(res.data)
                     res.data.map((item, index) => {
                         item.id = item.request_id
                         item.question = item.content
-                        item.answer = ""
+                        item.answer = item.note
                         if (item.status == "done")
                             item.active = true
                         else
                             item.active = false
                         item = { item: (delete item['status'], item) };
                     })
-                    console.log(res.data)
                     setQaData(res.data)
                 })
     }, [sortOption])
 
     const handlePageClick = (event) => {
-        navigate("/workplace/request-management/" + category + "/" + sort + "/" + search + "/" + (event.selected + 1))
+        navigate("/workplace/request-management/all/" + sort + "/" + search + "/" + (event.selected + 1))
         navigate(0)
     }
 
@@ -156,18 +156,11 @@ const RequestManagement = props => {
     const onPageTextChange = (e) => {
         if (e.key === 'Enter')
             if (e.target.value <= pageCount && e.target.value >= 1 && e.target.value != e.target.defaultValue) {
-                navigate("/workplace/request-management/" + category + "/" + sort + "/" + search + "/" + (e.target.value))
+                navigate("/workplace/request-management/all/" + sort + "/" + search + "/" + (e.target.value))
                 navigate(0)
             }
     }
-    const onCreateClick = () => {
-        setIsShowCreate(true);
-    }
-    const onUpdateClick = (e) => {
-        const id = e.currentTarget.attributes.getNamedItem("value").value
-        setIdItem(id);
-        setIsShowUpdate(true)
-    }
+
     const onViewClick = (e) => {
         const id = e.currentTarget.attributes.getNamedItem("value").value
         setIdItem(id);
@@ -186,7 +179,7 @@ const RequestManagement = props => {
     }
     const sortHandler = (e) => {
         setSortOption(e.target.value)
-        navigate("/workplace/request-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + search + "/" + page)
+        navigate("/workplace/request-management/all/" + sortItems[e.target.value].sortParam + "/" + search + "/" + page)
         navigate(0)
     }
     const searchHandler = (e) => {
@@ -195,7 +188,7 @@ const RequestManagement = props => {
             if (e.target.value && e.target.value.trim() != "")
                 text = e.target.value
 
-            navigate("/workplace/request-management/" + category + "/" + sort + "/" + text + "/1")
+            navigate("/workplace/request-management/all/" + sort + "/" + text + "/1")
             navigate(0)
         }
     }
@@ -203,7 +196,6 @@ const RequestManagement = props => {
     const handleStatus = (e) => {
         axios.post(`http://localhost:8080/requests/update-status/${updateStatus}`)
             .then((res) => {
-                console.log(res.data)
                 setError("Update success.\n\rReload page after")
                 setTimeout(function () {
                     window.location.reload();
@@ -235,8 +227,6 @@ const RequestManagement = props => {
                         },
                     ]}
                     openAction={onViewClick}
-                    editAction={onUpdateClick}
-                    onCreateClick={onCreateClick}
                     handlePageClick={handlePageClick}
                     pageCount={pageCount}
                     forcePage={parseInt(page) - 1}
@@ -245,6 +235,7 @@ const RequestManagement = props => {
                     statusAction={onStatusClick}
                     customOn="Done"
                     customOff="Consider"
+                    noCreateBtn={true}
                 ></WorkplaceList>
             </div>
         )
@@ -262,6 +253,31 @@ const RequestManagement = props => {
                 currentSearch={search}>
             </WorkplaceLayout>
             <Footer></Footer>
+            <Modal
+                isOpen={isShowView}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
+                <NoteRequest
+                    handleFormClose={() => handleFormClose()}
+                    idItem={idItem}>
+                </NoteRequest>
+            </Modal>
+            <Modal
+                isOpen={isShowAlert}
+                onRequestClose={() => handleFormClose()}
+                className="popup-modal"
+                overlayClassName="popup-overlay"
+                shouldCloseOnOverlayClick={false}
+                ariaHideApp={false}>
+                <AlertConfirm
+                    alert={error}
+                    handleFormClose={() => handleFormClose()}
+                    handleStatus={() => handleStatus()}>
+                </AlertConfirm>
+            </Modal>
         </div>
 
     )

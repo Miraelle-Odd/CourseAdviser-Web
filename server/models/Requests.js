@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.TEXT,
             allowNull: false
         },
+        note: {
+            type: DataTypes.TEXT,
+        },
         status: {
             type: DataTypes.STRING(20),
             allowNull: false,
