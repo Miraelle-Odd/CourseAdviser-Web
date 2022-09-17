@@ -43,7 +43,6 @@ export default function PostListLayout(props) {
         }
         getListPaging().catch(console.error)
     }, [currentPage, props.count])
-    console.log("dfasfsd", postType, listOfPaging)
     return (
         <Fragment>
             <div className={props.typeblue === true ? 'post-list-content for-pg-blue' : 'post-list-content for-pg-org'}>

@@ -53,5 +53,71 @@ module.exports = (sequelize, DataTypes) => {
         });
         models.Accounts.hasOne(Personal_Infos, { foreignKey: 'account_id' });
     };
+    const list = [{
+        personal_id: 1,
+        name: 'Cao Ngọc Em',
+        birthday: '1980-09-11 00:00:00',
+        gender: 'female',
+        location: 'Kon Tum bbbhabab',
+        phone: '093582223988',
+        avatar: 'http://i.imgur.com/QapYgPz.png',
+        account_id: 1,
+    },
+    {
+        personal_id: 2,
+        name:  'Nguyễn Hồ Quỳnh Thư',
+        birthday: '2001-03-10 07:00:00',
+        gender: 'female',
+        location: 'Hồ Chí Minh',
+        phone: '0879999888',
+        avatar: 'https://i.imgur.com/RfCUJ9M.jpg',
+        account_id: 2,
+    },
+    {
+        personal_id: 3,
+        name: 'Hồ Dũng',
+        birthday: '2001-03-10 07:00:00',
+        gender: 'male',
+        location: 'Đà Nẵng',
+        phone:'0123456789',
+        avatar: 'https://i.imgur.com/K7RskP9.jpg',
+        account_id: 3,
+    },
+    {
+        personal_id: 4,
+        name: 'Nguyễn Hồ Gia Trung',
+        birthday: '2001-03-10 07:00:00',
+        gender: 'male',
+        location: 'Đà Nẵng',
+        phone: '0123456789',
+        avatar: 'https://i.imgur.com/0fedxjD.png',
+        account_id: 4,
+    },
+    {
+        personal_id: 5,
+        name: 'Trần Ngọc Mĩ',
+        birthday: '2001-03-10 07:00:00',
+        gender: 'female',
+        location: 'Đà Nẵng',
+        phone:'0123456789',
+        avatar: 'http://i.imgur.com/LFBkN8A.png',
+        account_id: 5,
+    },
+    {
+        personal_id: 6,
+        name: 'Cao Thị Huyền Vũ',
+        birthday: '2001-03-10 07:00:00',
+        gender: 'female',
+        location: 'Đà Nẵng',
+        phone: '0123456789',
+        avatar: 'http://i.imgur.com/LSBzGPe.png',
+        account_id: 6,
+    }
+    ]
+    list.forEach(element => {
+        Personal_Infos.sync().then(async function() {
+            await Personal_Infos.findOrCreate({ where: element })
+        })
+    });
     return Personal_Infos;
 }

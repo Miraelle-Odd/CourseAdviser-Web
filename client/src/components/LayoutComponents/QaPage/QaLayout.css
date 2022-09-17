@@ -248,7 +248,7 @@
     font-family: 'Roboto Light';
     font-size: 14px;
     line-height: 16px;
-    color: rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .qa-below-button-contain {
@@ -270,4 +270,18 @@
     color: #FFFFFF;
     margin: 30px 0 80px 0;
     cursor: pointer;
+}
+.qa-request-button {
+    width: 150px;
+    height: 50px;
+    background: #B62F05;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 18px;
+    font-family: 'Roboto Medium';
+    font-size: 18px;
+    line-height: 21px;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-left: 30%;
 }

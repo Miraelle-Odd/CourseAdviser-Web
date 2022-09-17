@@ -33,10 +33,11 @@ module.exports = (sequelize, DataTypes) => {
         post_status: {
             type: DataTypes.STRING(10),
             defaultValue: "enabled"
-        },
+        }
     });
     const list = [{
-            author_id: 2,
+            post_id:1,
+            author_id: 1,
             post_title: "English Paragraph Everyday",
             post_subtitle: "In this essay, I will tell you about my lovely family",
             post_content: "My name is Phuong Linh. In this essay, I will tell you about my lovely family. My family has 4 people: my mother, my father, my brother and me. My mother is a Maths teacher. She is very smart. My mom makes a lot of important decisions in my home. My dad is a graphic designer. My dad always works with a computer. He is a creative and talented person. People are usually surprised when they hear that my dad cooks very well. My little brother is only 2 years old. He is funny and makes my family happier everyday. I love my family. I hope that my family will always be filled with laughter.",
@@ -44,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
             post_type: "academic"
         },
         {
+            post_id:2,
             author_id: 4,
             post_title: "Test Bài Đăng 1",
             post_subtitle: "Đây là bài đăng dùng để demo cơ sở dữ liệu",
@@ -52,6 +54,7 @@ module.exports = (sequelize, DataTypes) => {
             post_type: "discount"
         },
         {
+            post_id:3,
             author_id: 4,
             post_title: "Test Bài Đăng 2",
             post_subtitle: "Đây là bài đăng dùng để demo cơ sở dữ liệu",
@@ -60,6 +63,7 @@ module.exports = (sequelize, DataTypes) => {
             post_type: "discount"
         },
         {
+            post_id:4,
             author_id: 4,
             post_title: "Quà tặng cuộc sống phần 1",
             post_subtitle: "Cả lớp ngạc nhiên khi thầy phát cho chúng tôi ba loại đề khác nhau",
@@ -68,7 +72,8 @@ module.exports = (sequelize, DataTypes) => {
             post_type: "event"
         },
         {
-            author_id: 2,
+            post_id:5,
+            author_id: 1,
             post_title: "Học IELTS không khó",
             post_subtitle: "Thi IELTS rất khó nhưng cũng ...dễ như ăn bánh. Vì sao lại thế?",
             post_content: "Có thể kết luận thẳng một câu: Thi IELTS rất khó nhưng cũng ...dễ như ăn bánh. Vì sao lại thế? \r\nĐơn giản thôi! Cái gì cũng vậy dễ với người biết và khó với người không biết.\r\nNếu bạn chưa ôn thi IELTS, chưa có kiến thức gì về tiếng Anh IELTS tất nhiên bạn sẽ thấy khó.\r\nNgược lại thì sao, bạn học bạn hiểu IELTS và bạn nắm vững 4 kỹ năng: Nghe, nói, đọc viết thì kỳ thi IELTS đối với bạn dễ dàng và kỳ thi IELTS chỉ như một bài test ngôn ngữ mà thôi!.\r\nKhi bạn biết rằng thi IELTS là bạn phải thi cả 4 kỹ năng bạn sẽ hoang mang và nghĩ rằng thi IELTS sẽ rất khó!\r\nNhưng bạn yên tâm, nếu bạn đã biết rồi, thì thi IELTS dễ dàng lắm nha. Hãy cùng trung tâm Chúng tôi bắt đầu vào quá trình thi IELTS không khó mà dễ nhé!",
@@ -76,6 +81,7 @@ module.exports = (sequelize, DataTypes) => {
             post_type: "academic"
         },
         {
+            post_id:6,
             author_id: 4,
             post_title: "Quà tặng cuộc sống phần 2",
             post_subtitle: "Mẹ ơi, hạnh phúc ở đâu?",
@@ -84,5 +90,10 @@ module.exports = (sequelize, DataTypes) => {
             post_type: "event"
         }
     ]
+    list.forEach(element => {
+        Posts.sync().then(async function() {
+            await Posts.findOrCreate({ where: element })
+        })
+    });
     return Posts;
 }

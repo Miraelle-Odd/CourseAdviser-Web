@@ -32,9 +32,10 @@ module.exports = (sequelize, DataTypes) => {
         status: {
             type: DataTypes.STRING(10),
             defaultValue: "enabled"
-        },
+        }
     });
     const list = [{
+            qa_id: 1,
             main_subject: 'center',
             sub_subject_a: 'contact',
             sub_subject_b: 'none',
@@ -43,6 +44,7 @@ module.exports = (sequelize, DataTypes) => {
             status: 'enabled'
         },
         {
+            qa_id: 2,
             main_subject: 'center',
             sub_subject_a: 'teaching',
             sub_subject_b: 'none',
@@ -51,6 +53,7 @@ module.exports = (sequelize, DataTypes) => {
             status: 'enabled'
         },
         {
+            qa_id: 3,
             main_subject: 'center',
             sub_subject_a: 'register',
             sub_subject_b: 'none',
@@ -59,6 +62,7 @@ module.exports = (sequelize, DataTypes) => {
             status: 'enabled'
         },
         {
+            qa_id: 4,
             main_subject: 'course',
             sub_subject_a: 'IELTS',
             sub_subject_b: 'tuition',
@@ -67,6 +71,7 @@ module.exports = (sequelize, DataTypes) => {
             status: 'enabled'
         },
         {
+            qa_id: 5,
             main_subject: 'course',
             sub_subject_a: 'IELTS',
             sub_subject_b: 'tuition',
@@ -75,6 +80,7 @@ module.exports = (sequelize, DataTypes) => {
             status: 'enabled'
         },
         {
+            qa_id: 6,
             main_subject: 'center',
             sub_subject_a: 'reservation',
             sub_subject_b: 'none',
@@ -83,6 +89,7 @@ module.exports = (sequelize, DataTypes) => {
             status: 'enabled'
         },
         {
+            qa_id: 7,
             main_subject: 'center',
             sub_subject_a: 'teaching',
             sub_subject_b: 'none',
@@ -91,6 +98,7 @@ module.exports = (sequelize, DataTypes) => {
             status: 'enabled'
         },
         {
+            qa_id: 8,
             main_subject: 'course',
             sub_subject_a: 'Adult Course',
             sub_subject_b: 'tuition',
@@ -99,5 +107,10 @@ module.exports = (sequelize, DataTypes) => {
             status: 'enabled'
         }
     ]
+    list.forEach(element => {
+        Q_and_as.sync().then(async function() {
+            await Q_and_as.findOrCreate({ where: element })
+        })
+    });
     return Q_and_as;
 }

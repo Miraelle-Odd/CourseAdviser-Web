@@ -28,6 +28,11 @@ const menuEmpOption = [
         btnName: "Quản lý Q & A",
         icon: ['fas', 'comments']
     },
+    {
+        link: "/workplace/request-management",
+        btnName: "Quản lý yêu cầu",
+        icon: ['fas', 'scroll']
+    },
 ]
 
 const onLogout = () => {

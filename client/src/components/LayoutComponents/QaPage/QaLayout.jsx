@@ -6,13 +6,12 @@ import QaListItem from '../../ListComponents/QaListItem';
 import ReactPaginate from 'react-paginate';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-
+import AlertSuccess from '../../PopupComponents/AlertSuccess/AlertSuccess';
+import AlertFail from '../../PopupComponents/AlertFail/AlertFail';
+import Modal from 'react-modal';
 
 export default function QaLayout(props) {
     let navigate = useNavigate();
-    // const handlePageClick = (event) => {
-    //     navigate("/about/qa/" + (event.selected + 1))
-    // }
     var paginateColor = "qa-li-pagination"
     var paginatePrev = " qa-prev"
     var paginateNext = " qa-next"
@@ -23,12 +22,45 @@ export default function QaLayout(props) {
     const itemsPerPage = 8;
     const [listOfPaging, setListOfPaging] = useState([]);
     const [pageCount, setPageCount] = useState(1);
+    const [content, setContent] = useState();
+    const [message, setMessage] = useState()
+    const [failAlert, setFailAlert] = useState(false)
+    const [successAlert, setSuccessAlert] = useState(false)
 
     const handlePageClick = (event) => {
         navigate("/about/qa/" + (event.selected + 1))
         setCurrentPage(event.selected + 1);
-
         window.scrollTo(0, 0);
+    }
+
+    const handleRequestClick = () => {
+        navigate("/about/qa/send-request")
+        window.scrollTo(0, 0);
+    }
+
+    const sendRequest = async () => {
+        const params = {
+            content: content,
+        }
+        await axios.post(`http://localhost:8080/requests/send-request`, params)
+            .then(res => {
+                console.log(res)
+                if (res.data.errors) {
+                    setMessage("Erros happened. Retry later")
+                    setFailAlert(true)
+                }
+                else {
+                    setMessage("Send request successfully.")
+                    setSuccessAlert(true)
+                }
+            })
+    }
+
+    const handleFormClose = () => {
+        setSuccessAlert(false)
+        setFailAlert(false)
+        setMessage("")
+        window.location.reload();
     }
 
     useEffect(() => {
@@ -40,25 +72,14 @@ export default function QaLayout(props) {
         }
         getListPaging().catch(console.error)
     }, [currentPage, props.count])
-    console.log("dfasfsd", props.count, pageCount)
+
     return (
         props.hasResult ?
             (<Fragment>
                 <div className='qa-layout-contain'>
-                    {/* <div className='qa-half-abow qa-layout-center'>
-                        <div className='qa-layout-title qa-layout-center'>{"Chúng tôi có thể\r\ngiúp gì cho bạn?"}</div>
-                        <div className='qa-layout-search qa-layout-center'>
-                            <FontAwesomeIcon icon={['fas', 'magnifying-glass']}></FontAwesomeIcon>
-                            <input
-                                className='qa-input-search'
-                                type="text"
-                                placeholder='Mô tả câu hỏi của bạn...' />
-                        </div>
-                        <button className='qa-button-search' onClick={props.searchHandle}>GO</button>
-                    </div> */}
-                    {/* <div className='qa-mid-line'></div> */}
                     <div className='qa-half-below'>
                         <div className='qa-below-body qa-layout-center'>
+                            <div className='qa-request-button qa-layout-center' onClick={handleRequestClick}>Gửi câu hỏi</div>
                             <ul class="qa-list-contain">
                                 {
                                     listOfPaging ? listOfPaging.map((item, index) => (
@@ -101,8 +122,8 @@ export default function QaLayout(props) {
                 <Fragment>
                     <div className='qa-layout-contain'>
                         <div className='qa-half-abow qa-layout-center'>
-                            <div className='qa-layout-title'>{"Không tìm thấy kết quả\r\nphù hợp"}</div>
-                            <button className='qa-button-back' onClick={props.backHandle}>Trở về danh sách chính</button>
+                            <div className='qa-layout-title'>{"Không tìm thấy câu trả lời thích hợp cho vấn đề của bạn ?"}</div>
+                            <button className='qa-button-back' onClick={props.backHandle}>Trở lại danh sách câu hỏi</button>
                         </div>
                         <div className='qa-mid-line'>
                             <div className='qa-mid-icon qa-layout-center'>
@@ -111,21 +132,48 @@ export default function QaLayout(props) {
                         </div><div className='qa-half-below'>
                             <div className='qa-below-body qa-layout-center'>
                                 <div className='qa-below-title-contain qa-layout-center'>
-                                    <p className='qa-below-title'>Gửi yêu cầu giải đáp đến chúng tôi</p >
+                                    <p className='qa-below-title'>Hãy gửi yêu cầu giải đáp đến chúng tôi</p >
                                     <p className='qa-below-subtitle'>{"Sau khi ban tư vấn nhận được nội dung này, chúng tôi sẽ tiến hành xem xét\r\nvà gửi lại giải đáp cho bạn trong thời gian nhất định"}</p>
                                 </div >
                                 <textarea
                                     className='qa-below-textarea'
-                                    placeholder='Vui lòng nhập câu hỏi của bạn'>
+                                    placeholder='Vui lòng nhập câu hỏi của bạn'
+                                    value={content}
+                                    onChange={(e) => setContent(e.target.value)}>
                                 </textarea>
                             </div >
                             <div className='qa-below-button-contain'>
-                                <button className='qa-below-send'>
+                                <button className='qa-below-send'  onClick={sendRequest}>
                                     Gửi
                                 </button>
                             </div>
                         </div >
                     </div>
+                    <Modal
+                        isOpen={successAlert}
+                        onRequestClose={() => handleFormClose()}
+                        className="popup-modal"
+                        overlayClassName="popup-overlay"
+                        shouldCloseOnOverlayClick={false}
+                        ariaHideApp={false}>
+                        <AlertSuccess
+                            message={message}
+                            onClose={() => handleFormClose()}
+                        ></AlertSuccess>
+                    </Modal>
+
+                    <Modal
+                        isOpen={failAlert}
+                        onRequestClose={() => handleFormClose()}
+                        className="popup-modal"
+                        overlayClassName="popup-overlay"
+                        shouldCloseOnOverlayClick={false}
+                        ariaHideApp={false}>
+                        <AlertFail
+                            message={message}
+                            onClose={() => handleFormClose()}
+                        ></AlertFail>
+                    </Modal>
                 </Fragment>
             )
     )
