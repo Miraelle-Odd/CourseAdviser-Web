@@ -1,0 +1,26 @@
+.select-item-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select-item-container {
+    display: flex;
+}
+
+.select-item-no {
+    font-family: 'Rounded Mplus 1c Regular';
+    font-size: 14px;
+    line-height: 10px;
+
+    color: rgba(0, 0, 0, 1.5);
+}
+
+.select-item-custom-radio {
+    width: 18px;
+    height: 18px;
+
+    border: 2px solid #D9D9D9;
+    margin: 0px 12px;
+    cursor: pointer;
+}
