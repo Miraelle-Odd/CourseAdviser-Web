@@ -8,10 +8,14 @@ var adviseInfo = {}
 
 const showCourseGeneralInfo = async(agent) => {
     const course = agent.parameters['engcourses'];
-    if (course) {
+    const kidcourse = agent.parameters['kidcourse'];
+    var searchedCourse = course;
+    if (kidcourse)
+        searchedCourse = kidcourse
+    if (course || kidcourse) {
         await Bot_Courses.findOne({
             where: {
-                course_name: course
+                course_name: searchedCourse
             }
         }).then(async(res) => {
             await Bot_CourseLevels.findAll({
@@ -68,8 +72,12 @@ const showCourseGeneralInfo = async(agent) => {
 
 const showCourseLevelInfo = async(agent) => {
     const course = agent.parameters['engcourses'];
+    const kidcourse = agent.parameters['kidcourse'];
     const level = agent.parameters['engcourselevels'];
-    if (course && level) {
+    var searchedCourse = course;
+    if ((course || kidcourse) && level) {
+        if (kidcourse)
+            searchedCourse = kidcourse
         await Bot_CourseLevels.findOne({
                 where: {
                     level_name: level,
@@ -79,7 +87,7 @@ const showCourseLevelInfo = async(agent) => {
                     as: 'Bot_Course',
                     attributes: ['course_name'],
                     where: {
-                        course_name: course
+                        course_name: searchedCourse
                     }
                 }
             })

@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        staff_gender: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         staff_title: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -37,9 +41,9 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    const list = [
-        {
+    const list = [{
             staff_name: "Diluc Ragnvindr",
+            staff_gender: "male",
             staff_title: "CEO",
             staff_introduction: "Listen, as long as you stick to your own path, it doesn't matter what mother nature throws at you.",
             staff_archievement: "Once Upon a Time in Mondstadt",
@@ -48,6 +52,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Hu Tao",
+            staff_gender: "female",
             staff_title: "Lead Marketing",
             staff_introduction: "“We are entrusted by the people to loyally see out their wishes. WFP is special, in that it carries a dual responsibility, to those both of this realm, and the next.”",
             staff_archievement: "Ghostly March",
@@ -56,6 +61,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Kamisato Ayato",
+            staff_gender: "male",
             staff_title: "CEO",
             staff_introduction: "Cultured and polite, he í a man of many ways and means",
             staff_archievement: "Quiet Elegance",
@@ -64,6 +70,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Paimon",
+            staff_gender: "female",
             staff_title: "Mascot",
             staff_introduction: "“Paimon is not EMERGENCY FOOD !\r\n\EHE te nandayo !”",
             staff_archievement: "Emergency Food",
@@ -72,6 +79,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Hồ Hoàn Mỹ",
+            staff_gender: "female",
             staff_title: "IELTS reading",
             staff_introduction: "Thành công không dành cho những kẻ lười biếng",
             staff_archievement: "IELTS reading 8.5 - listening 8.0\r\nMore and more",
@@ -81,6 +89,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Andrew English",
+            staff_gender: "male",
             staff_title: "IELTS speaking",
             staff_introduction: "Anh Ngữ có trong tên của tôi và tôi sẽ truyền nó đến con tim các bạn",
             staff_archievement: "IELTS speaking 9.0\r\nLorem Seum\r\nblam balm",
@@ -90,15 +99,17 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Nguyễn Minh Khải",
+            staff_gender: "male",
             staff_title: "IELTS 4 skills",
             staff_introduction: "Tiềm lực của mỗi người là vô hạn",
             staff_archievement: "IELTS reading 8.5\r\nIELTS listening 8.5\r\nIELTS writing 8.5\r\nIELTS speaking 8.5\r\nKinh nghiệp giảng đạo 20 năm",
             staff_type: "teacher",
             assigned_course: "IELTS",
             staff_img: "https://i.imgur.com/iF40qsx.jpg",
-        },        
+        },
         {
             staff_name: "Lilith Petra",
+            staff_gender: "female",
             staff_title: "TOEIC 4 skills",
             staff_introduction: "TOEIC cấp tốc, học cái đậu liền",
             staff_archievement: "Lorem Ipsum è un testo segnaposto utilizzato nel settore",
@@ -108,6 +119,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Elizabeth Endro",
+            staff_gender: "female",
             staff_title: "IELTS speaking",
             staff_introduction: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
             staff_archievement: "ullamco laboris nisi ut aliquip\r\nex ea commodo consequat.",
@@ -117,6 +129,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Nguyễn Cẩm Quỳnh",
+            staff_gender: "female",
             staff_title: "TOEIC speaking",
             staff_introduction: "Lorem Ipsum è un testo segnaposto utilizzato nel",
             staff_archievement: "Lorem Ipsum è un testo segnaposto utilizzato nel settore",
@@ -126,6 +139,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Anna Alson",
+            staff_gender: "female",
             staff_title: "TOEIC reading - listening",
             staff_introduction: "Lorem Ipsum è un testo segnaposto utilizzato nel",
             staff_archievement: "Lorem Ipsum è un testo segnaposto utilizzato nel settore",
@@ -135,6 +149,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Trần Thị Minh Nguyệt",
+            staff_gender: "female",
             staff_title: "Toeic 4 skills",
             staff_introduction: "Nâng niu trí tuệ Việt",
             staff_archievement: "Lorem Seum\r\nBlah blah\r\nHAHAHA",
@@ -144,6 +159,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Max Wilkhen",
+            staff_gender: "male",
             staff_title: "Khóa luyện giao tiếp",
             staff_introduction: "Lorem Ipsum è un testo segnaposto utilizzato nel",
             staff_archievement: "Lorem Ipsum è un testo segnaposto utilizzato nel settore",
@@ -153,6 +169,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Hilton Alwot",
+            staff_gender: "male",
             staff_title: "Khóa luyện giao tiếp",
             staff_introduction: "Lorem Ipsum è un testo segnaposto utilizzato nel",
             staff_archievement: "Lorem Ipsum è un testo segnaposto utilizzato nel settore",
@@ -162,6 +179,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Sam Olsen",
+            staff_gender: "male",
             staff_title: "Khóa luyện giao tiếp",
             staff_introduction: "Lorem Ipsum è un testo segnaposto utilizzato nel",
             staff_archievement: "Lorem Ipsum è un testo segnaposto utilizzato nel settore",
@@ -171,6 +189,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Hera Thelma",
+            staff_gender: "female",
             staff_title: "Khóa luyện giao tiếp",
             staff_introduction: "Lorem Ipsum è un testo segnaposto utilizzato nel",
             staff_archievement: "Lorem Ipsum è un testo segnaposto utilizzato nel settore",
@@ -180,6 +199,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Jessica Gustin",
+            staff_gender: "female",
             staff_title: "Lead Consultant",
             staff_introduction: "Lorem Ipsum è un testo segnaposto utilizzato nel",
             staff_archievement: "Lorem Seum\r\nBlah blah\r\nHAHAHA",
@@ -188,6 +208,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Lê Thanh Phong",
+            staff_gender: "male",
             staff_title: "Lead Adviser",
             staff_introduction: "Sứ giả truyền cảm hứng",
             staff_archievement: "Lorem Seum\r\nBlah blah\r\nHAHAHA",
@@ -196,6 +217,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Đinh Quang Ngân",
+            staff_gender: "male",
             staff_title: "Lead Adviser",
             staff_introduction: "Tư vấn viên kỳ cựu, xuất sắc nhất",
             staff_archievement: "Lorem Seum\r\nBlah blah\r\nHAHAHA",
@@ -204,6 +226,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             staff_name: "Tholma Nguyễn",
+            staff_gender: "male",
             staff_title: "Lead Event",
             staff_introduction: "Định hướng của tôi là tạo ra môi trường học thân thiện, kết hợp giữa vừa học vừa chơi",
             staff_archievement: "Lorem Seum\r\nBlah blah\r\nHAHAHA",
