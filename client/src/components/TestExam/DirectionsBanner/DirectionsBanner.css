@@ -72,3 +72,6 @@
 .btn-padding{
     padding: 0 45px !important;
 }
+.listening-direction-container{
+    width: max-content;
+}

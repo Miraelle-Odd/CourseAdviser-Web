@@ -33,6 +33,7 @@ import AccountActivation from './pages/AccountActivation/AccountActivation';
 import QaList from './pages/About/Qa/QaList';
 import QaNone from './pages/About/Qa/QaNone';
 import RequestManagement from './pages/RequestManagement/RequestManagement';
+import Exam from './pages/Exam/Exam';
 
 
 const history = createBrowserHistory();
@@ -78,7 +79,7 @@ function App() {
               ></LeftMenu>
               :
               (
-                !window.location.href.includes('password-recovery') && !window.location.href.includes('account-activation') ?
+                !window.location.href.includes('password-recovery') && !window.location.href.includes('account-activation') && !window.location.href.includes('exam') ?
                   <NavigationBar
                     isLogin={cookies.get('accessToken')}
                   userFullname={currentUserInfo ? currentUserInfo.Personal_Info.name : ""}
@@ -99,6 +100,7 @@ function App() {
             <Route path="/about/:aboutType" element={<AboutHolder></AboutHolder>} />
             <Route path="/about/:aboutType/:page" element={<AboutHolder></AboutHolder>} />
             <Route path="/about/:aboutType/send-request" element={<QaNone></QaNone>} />
+            <Route path="/main-exam" element={<Exam></Exam>}/>
 
             <Route path="/password-recovery/" element={<PasswordRecovery></PasswordRecovery>} />
             <Route path="/password-recovery/:token" element={<PasswordRecovery></PasswordRecovery>} />

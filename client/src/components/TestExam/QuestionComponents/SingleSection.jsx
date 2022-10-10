@@ -7,10 +7,10 @@ export default function SingleSection(props) {
         <div className="img-section-container">
             <div className='single-section-border'>
                 <QuestionComponents
-                    type="text">
+                    type="img">
                 </QuestionComponents>
                 <QuestionComponents
-                    type="text">
+                    type="img">
                 </QuestionComponents>
             </div>
         </div>
