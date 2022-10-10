@@ -49,3 +49,6 @@
     font-size: 16px;
     color: rgba(0, 0, 0, 0.7);
 }
+.img-section-container{
+    width: max-content;
+}
