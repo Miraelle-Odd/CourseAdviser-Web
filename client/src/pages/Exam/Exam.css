@@ -1,41 +1,54 @@
-.exam-center{
+.exam-pages {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.exam-center {
     align-items: center;
     justify-content: center;
 }
-.exam-overall-container{
+
+.exam-overall-container {
     display: flex;
     background: #E6E9EB;
     padding-top: 28px;
     padding-bottom: 84px;
+    flex: 1;
 }
-.exam-left-container{
-    width: 78%;
+
+.exam-left-container {
     display: flex;
     align-items: flex-end;
     flex-direction: column;
-    padding: 0 40px 0 0 ;
+    flex: 1;
+    align-items: center;
 }
-.exam-right-container{
-    width: 22%;
+
+.exam-right-container {
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
+    padding: 0px 2%;
 }
-.exam-selection-banner{
+
+.exam-selection-banner {
     width: max-content;
     display: flex;
     flex-direction: column;
 }
-.exam-answer-sheet{
+
+.exam-answer-sheet {
     width: max-content;
     display: flex;
     flex-direction: column;
-    position: sticky;    
+    position: sticky;
     top: 50px;
     z-index: 999;
 }
-.exam-blank-banner{
+
+.exam-blank-banner {
     height: 28px;
     background: #E6E9EB;
     z-index: -10;
+    position: relative;
 }

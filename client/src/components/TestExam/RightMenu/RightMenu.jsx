@@ -19,29 +19,21 @@ export default function RightMenu(props) {
                 </div>
                 <div className='right-menu-select-area right-menu-center'>
                     <p className='right-menu-placeholder'></p>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
-                    <SelectItem></SelectItem>
+                    {
+                        props.indexList?.map((item, index) => {
+                            return (
+                                <SelectItem
+                                    key={index}
+                                    no={item.item_no}
+                                ></SelectItem>
+                            )
+                        })
+                    }
                 </div>
-                
+
             </div>
             <TimeRemain></TimeRemain>
-            <PagingTask></PagingTask>
+            <PagingTask current={props.current} onPrev={props.onPrev} onNext={props.onNext}></PagingTask>
         </div>
 
     )

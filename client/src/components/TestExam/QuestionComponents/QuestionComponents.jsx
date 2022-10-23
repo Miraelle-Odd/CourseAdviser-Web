@@ -1,25 +1,50 @@
 import React from 'react'
-import img from '../../../assets/icons/exam_img_content.png'
 
 export default function QuestionComponents(props) {
-    if (props.type == "text"){
-        return (
-            <div className="question-item-container">
-                <p className='content-text title-text-margin'><b>Question 1:</b> Why is the woman calling? </p>
-                <p className='content-text title-text-margin'>(A) To cancel an order</p>
-                <p className='content-text content-text-margin'>(B) To cancel an order</p>
-                <p className='content-text content-text-margin'>(C) To cancel an order</p>
-                <p className='content-text content-text-margin'>(D) To cancel an order</p> 
+    return (
+        <div className="question-item-container">
+            <div className='content-text title-text-margin question'>
+                {
+                    props.title ? <p><b>{props.title} </b></p> :
+                        <b>Question {props.no ? props.no : 0}: </b>
+                }
+                {
+                    props.question ?
+                        (props.questionIsParagraph ?
+                            <div className="paragraph-container">
+                                {
+                                    props.question.split("/r/n").map((item, index) => {
+                                        return (
+                                            <p key={index}>{item}</p>
+                                        )
+                                    })
+                                }
+                            </div>
+                            : props.question)
+                        : ""
+                }
             </div>
-        )
-    }
-    if (props.type == "img"){
-        return (
-            <div className="question-item-container"> 
-                <p className='content-text title-text-margin'><b>Question 1:</b></p>
-                <img className={props.isMix? 'mix-question-img' : 'content-img content-text-margin'} src={img}></img>
+            <div className={(props.img && props.select_options ? "d-flex" : "") + (props.questionIsParagraph? "" :" custom-css")}>
+                {
+                    props.img ?
+                        <img className={props.select_options ? "" : 'content-img content-text-margin'} src={props.img}></img> : ""
+                }
+                {
+                    props.select_options ?
+                        <div className='select-options'>
+                            {
+                                props.select_options.split("///").map((item, index) => {
+                                    return (
+                                        item.length > 0 ?
+                                            <p key={index} className='content-text title-text-margin'>{item}</p> : ""
+                                    )
+                                })
+                            }
+                        </div>
+                        : ""
+                }
             </div>
-        )
-    }
+        </div>
+    )
 
 }
