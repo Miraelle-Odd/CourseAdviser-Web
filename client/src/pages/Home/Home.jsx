@@ -59,10 +59,11 @@ const Home = props => {
             <AppoinmentLayout> </AppoinmentLayout>
 
             <Footer></Footer>
-            <RightMenu></RightMenu>
+
+            {/* <RightMenu></RightMenu>
             <SubmitBtn></SubmitBtn>
             <div className='text-bg'>
-            <ExamHeader></ExamHeader>
+            <ExamHeader></ExamHeader></div>
             <div className='right-menu-line'></div>
             <ExamSubHeader></ExamSubHeader>
             <div className='right-menu-line'></div>
@@ -74,10 +75,10 @@ const Home = props => {
             <div className='right-menu-line'></div>
             <IntroBanner></IntroBanner>
             <div className='right-menu-line'></div>
-            <SingleSection></SingleSection>
-            <div className='right-menu-line'></div>
-            <MixSection></MixSection>
-            </div>
+            <SingleSection></SingleSection> */}
+            {/* <div className='right-menu-line'></div>
+            <MixSection></MixSection> */}
+
         </div>
         
     )

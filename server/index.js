@@ -51,8 +51,12 @@ const botCourseLevels = require("./routes/Bot_CourseLevels");
 app.use("/bot-course-levels", botCourseLevels)
 const image = require("./routes/Image");
 app.use("/image", image)
-const request= require("./routes/Requests");
+const request = require("./routes/Requests");
 app.use("/requests", request)
+const examAllTest = require("./routes/Exam_AllTests");
+app.use("/exam-all-tests", examAllTest)
+const examDetail = require("./routes/Exam_Details");
+app.use("/exam-details", examDetail)
 
 app.use("", (req, res) => {
     res.send("Ngrok start")
