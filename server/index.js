@@ -57,6 +57,8 @@ const examAllTest = require("./routes/Exam_AllTests");
 app.use("/exam-all-tests", examAllTest)
 const examDetail = require("./routes/Exam_Details");
 app.use("/exam-details", examDetail)
+const examSession = require("./routes/Exam_Sessions");
+app.use("/exam-sessions", examSession)
 
 app.use("", (req, res) => {
     res.send("Ngrok start")
