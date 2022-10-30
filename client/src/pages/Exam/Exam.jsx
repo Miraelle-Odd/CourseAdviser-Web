@@ -51,7 +51,7 @@ const Exam = props => {
             localStorage.setItem("answers", JSON.stringify(insertedIndexes))
         }
     }, [taskRef.current])
-
+    
     const nextTask = () => {
         if ((currentSection === ExamType.Listening && currentTask < ExamTask.ListenPart4) || (currentSection === ExamType.Reading && currentTask < ExamTask.ReadPart3)) {
             setCurrentTask(currentTask + 1)
@@ -82,6 +82,37 @@ const Exam = props => {
         }
     }
 
+    ///////////////// Audio Testing //////////////////////////
+    const [playing, setPlaying] = useState(false);
+    const player = new Audio(
+      "https://docs.google.com/uc?export=download&id=11D05GX-adYLD5pISJOavZHIxveapvwci"
+    );
+  
+    useEffect(() => {
+        console.log(playing)
+      playing ? player.play() : player.pause();
+  
+      // This is cleanup of the effect
+      return () => player.pause();
+    }, [playing]);
+    // ^ Run the effect every time the `playing` is changed
+  
+    function togglePlay() {
+      // Using the callback version of `setState` so you always
+      // toggle based on the latest state
+      setPlaying((s) => !s);
+    }
+    
+    const aa = () => {
+        setCurrentTask(ExamTask.ListenPart1);
+        togglePlay();
+    }
+    const bb = () => {
+        setCurrentTask(ExamTask.IntroRead);
+        togglePlay();
+    }
+    ///////////////// Audio Testing //////////////////////////
+    
     return (
         <div className='exam-pages'>
             <ExamHeader></ExamHeader>
@@ -89,12 +120,12 @@ const Exam = props => {
                 <div className='exam-left-container'>
                     {
                         {
-                            0: <ExamIntro title="LISTENING TEST" section={ExamTask.IntroListen} onStartListening={() => setCurrentTask(ExamTask.ListenPart1)}></ExamIntro>,
+                            0: <ExamIntro title="LISTENING TEST" section={ExamTask.IntroListen} onStartListening={() => aa()}></ExamIntro>,
                             1: <ListenPart1 ref={taskRef} testId={testId}></ListenPart1>,
                             2: <ListenPart2 ref={taskRef} testId={testId}></ListenPart2>,
                             3: <ListenPart3 ref={taskRef} testId={testId}></ListenPart3>,
                             4: <ListenPart4 ref={taskRef} testId={testId}></ListenPart4>,
-                            5: <ExamIntro title="LISTENING TEST" section={ExamTask.EndListen} onEndListening={() => setCurrentTask(ExamTask.IntroRead)}></ExamIntro>,
+                            5: <ExamIntro title="LISTENING TEST" section={ExamTask.EndListen} onEndListening={() => bb()}></ExamIntro>,
                             6: <ExamIntro title="READING TEST" section={ExamTask.IntroRead} onStartReading={() => setCurrentTask(ExamTask.ReadPart1)}></ExamIntro>,
                             7: <ReadPart1 ref={taskRef} testId={testId}></ReadPart1>,
                             8: <ReadPart2 ref={taskRef} testId={testId}></ReadPart2>,
