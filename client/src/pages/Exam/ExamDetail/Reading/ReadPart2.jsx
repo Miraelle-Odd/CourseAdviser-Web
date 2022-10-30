@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useImperativeHandle } from 'react';
 import '../../Exam.css'
 import axios from 'axios';
 
@@ -9,12 +9,20 @@ import ExamFooter from '../../../../components/TestExam/OuterComponents/ExamFoot
 
 import { ExamType, ExamTask } from '../../Task.enum';
 
-const ReadingPart1 = props => {
+const ReadingPart1 = React.forwardRef((props, ref) => {
+    const [initialQuestionList, setInitialQuestionList] = useState([])
     const [questionList, setQuestionList] = useState([]);
+
+    useImperativeHandle(ref, () => ({
+        getAnswerIndex: () => {
+            return initialQuestionList
+        }
+    }), [initialQuestionList]);
 
     useEffect(() => {
         async function fetchQuestionList() {
             await axios.get(`http://localhost:8080/exam-details/${props.testId}/readingPart6`).then(res => {
+                setInitialQuestionList(res.data)
                 const listForView = []
                 const questionGroups = res.data.filter(item => item.title)
                 questionGroups.map((item, index) => {
@@ -60,6 +68,6 @@ const ReadingPart1 = props => {
             </div>
         </div>
     )
-}
+})
 
 export default ReadingPart1

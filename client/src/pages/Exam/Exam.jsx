@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useCallbackRef } from 'use-callback-ref';
 import './Exam.css'
 
 import RightMenu from '../../components/TestExam/RightMenu/RightMenu'
@@ -17,9 +18,23 @@ import ReadPart3 from './ExamDetail/Reading/ReadPart3'
 const Exam = props => {
     const [currentTask, setCurrentTask] = useState(ExamTask.IntroListen)
     const [currentSection, setCurrentSection] = useState(ExamType.Listening)
-    
-    const listen1Ref = useRef();
+    const [currentAnswerIndexList, setCurrentAnswerIndexList] = useState([])
+    const [storedAnswers, setStoredAnswers] = useState([])
 
+    const onRefUpdate = (newValue) => { setCurrentAnswerIndexList(newValue? newValue.getAnswerIndex() : []) }
+    const taskRef = useCallbackRef(null, onRefUpdate);
+
+    useEffect(() => {
+        if(!taskRef.current)
+            return
+        const intersected = storedAnswers?.reduce((acc, curr) => {
+            return [...acc, ...currentAnswerIndexList?.filter(item => item.item_id === curr.item_id)];
+        }, []);
+        const insertedIndexes = currentAnswerIndexList.concat(storedAnswers)
+        if (intersected.length === 0 && insertedIndexes.length > 0)
+            setStoredAnswers(insertedIndexes)
+        localStorage.setItem("answers", JSON.stringify(storedAnswers))
+    }, [taskRef.current, storedAnswers])
 
     const nextTask = () => {
         if ((currentSection === ExamType.Listening && currentTask < ExamTask.ListenPart4) || (currentSection === ExamType.Reading && currentTask < ExamTask.ReadPart3)) {
@@ -54,15 +69,15 @@ const Exam = props => {
                     {
                         {
                             0: <ExamIntro title="LISTENING TEST" section={ExamTask.IntroListen} onStartListening={() => setCurrentTask(ExamTask.ListenPart1)}></ExamIntro>,
-                            1: <ListenPart1 testId={1}></ListenPart1>,
-                            2: <ListenPart2 testId={1}></ListenPart2>,
-                            3: <ListenPart3 testId={1}></ListenPart3>,
-                            4: <ListenPart4 testId={1}></ListenPart4>,
+                            1: <ListenPart1 ref={taskRef} testId={1}></ListenPart1>,
+                            2: <ListenPart2 ref={taskRef} testId={1}></ListenPart2>,
+                            3: <ListenPart3 ref={taskRef} testId={1}></ListenPart3>,
+                            4: <ListenPart4 ref={taskRef} testId={1}></ListenPart4>,
                             5: <ExamIntro title="LISTENING TEST" section={ExamTask.EndListen} onEndListening={() => setCurrentTask(ExamTask.IntroRead)}></ExamIntro>,
                             6: <ExamIntro title="READING TEST" section={ExamTask.IntroRead} onStartReading={() => setCurrentTask(ExamTask.ReadPart1)}></ExamIntro>,
-                            7: <ReadPart1 testId={1}></ReadPart1>,
-                            8: <ReadPart2 testId={1}></ReadPart2>,
-                            9: <ReadPart3 testId={1}></ReadPart3>,
+                            7: <ReadPart1 ref={taskRef} testId={1}></ReadPart1>,
+                            8: <ReadPart2 ref={taskRef} testId={1}></ReadPart2>,
+                            9: <ReadPart3 ref={taskRef} testId={1}></ReadPart3>,
                             10: <ExamIntro title="READING TEST" section={ExamTask.EndRead}></ExamIntro>,
                         }[currentTask]
                     }
@@ -75,6 +90,7 @@ const Exam = props => {
                                     current={currentSection === ExamType.Reading ? currentTask - 6 : currentTask}
                                     onPrev={prevTask}
                                     onNext={nextTask}
+                                    indexList={currentAnswerIndexList}
                                 ></RightMenu>
                                 <SubmitBtn onSubmit={submit}></SubmitBtn>
                             </div>

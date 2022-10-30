@@ -8,8 +8,14 @@ import SingleSection from '../../../../components/TestExam/QuestionComponents/Si
 import ExamFooter from '../../../../components/TestExam/OuterComponents/ExamFooter'
 import { ExamType, ExamTask } from '../../Task.enum';
 
-const ReadingPart1 = props => {
+const ReadingPart1 = React.forwardRef((props, ref) => {
     const [questionList, setQuestionList] = useState([]);
+
+    useImperativeHandle(ref, () => ({
+        getAnswerIndex: () => {
+            return questionList
+        }
+    }), [questionList]);
 
     useEffect(() => {
         async function fetchQuestionList() {
@@ -40,6 +46,6 @@ const ReadingPart1 = props => {
             </div>
         </div>
     )
-}
+})
 
 export default ReadingPart1
