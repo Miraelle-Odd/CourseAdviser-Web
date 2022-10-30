@@ -101,6 +101,7 @@ function App() {
             <Route path="/about/:aboutType/:page" element={<AboutHolder></AboutHolder>} />
             <Route path="/about/:aboutType/send-request" element={<QaNone></QaNone>} />
             <Route path="/main-exam" element={<Exam></Exam>}/>
+            <Route path="/main-exam/:token" element={<Exam></Exam>}/>
 
             <Route path="/password-recovery/" element={<PasswordRecovery></PasswordRecovery>} />
             <Route path="/password-recovery/:token" element={<PasswordRecovery></PasswordRecovery>} />

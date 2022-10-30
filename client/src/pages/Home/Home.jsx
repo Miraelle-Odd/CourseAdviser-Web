@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './Home.css'
 import "../../index.css"
 
@@ -8,17 +8,6 @@ import AppoinmentLayout from '../../components/LayoutComponents/ContactPage/Appo
 import HomeCourseLayout from '../../components/LayoutComponents/HomePage/HomeCourseLayout'
 import Footer from '../../components/Footer/Footer'
 import FloatBtn from '../../components/ButtonComponents/FloatBtn'
-import RightMenu from '../../components/TestExam/RightMenu/RightMenu'
-import SelectItem from '../../components/TestExam/MenuItem/SelectItem'
-import SubmitBtn from '../../components/TestExam/RightMenu/SubmitBtn'
-import ExamFooter from '../../components/TestExam/OuterComponents/ExamFooter'
-import ExamHeader from '../../components/TestExam/OuterComponents/ExamHeader'
-import ExamSubHeader from '../../components/TestExam/OuterComponents/ExamSubHeader'
-import ListeningDirection from '../../components/TestExam/DirectionsBanner/ListeningDirection'
-import ReadingDirection from '../../components/TestExam/DirectionsBanner/ReadingDirection'
-import IntroBanner from '../../components/TestExam/DirectionsBanner/IntroBanner'
-import SingleSection from '../../components/TestExam/QuestionComponents/SingleSection'
-import MixSection from '../../components/TestExam/QuestionComponents/MixSection'
 
 const Home = props => {
     useEffect(() => {
@@ -59,25 +48,6 @@ const Home = props => {
             <AppoinmentLayout> </AppoinmentLayout>
 
             <Footer></Footer>
-
-            {/* <RightMenu></RightMenu>
-            <SubmitBtn></SubmitBtn>
-            <div className='text-bg'>
-            <ExamHeader></ExamHeader></div>
-            <div className='right-menu-line'></div>
-            <ExamSubHeader></ExamSubHeader>
-            <div className='right-menu-line'></div>
-            <ExamFooter></ExamFooter>
-            <div className='right-menu-line'></div>
-            <ListeningDirection></ListeningDirection>
-            <div className='right-menu-line'></div>
-            <ReadingDirection></ReadingDirection>
-            <div className='right-menu-line'></div>
-            <IntroBanner></IntroBanner>
-            <div className='right-menu-line'></div>
-            <SingleSection></SingleSection> */}
-            {/* <div className='right-menu-line'></div>
-            <MixSection></MixSection> */}
 
         </div>
         
