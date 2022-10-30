@@ -18,7 +18,8 @@ const getTestDetailById = async(req, res) => {
                 "title",
                 "image",
                 "question",
-                "select_options"
+                "select_options",
+                "type"
             ],
             where: query
         })
