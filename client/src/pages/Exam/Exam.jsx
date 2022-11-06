@@ -77,6 +77,7 @@ const Exam = props => {
             await axios.post(`http://localhost:8080/exam-sessions/calculate/${token}`, userAnswers).then(res => {
                 console.log(res.data)
                 setCurrentTask(ExamTask.EndRead)
+                localStorage.removeItem("answers")
             })
 
         }
