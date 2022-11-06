@@ -9,14 +9,19 @@ var transporter = nodemailer.createTransport({
 });
 
 const sendAppointment = async(req, res) => {
+    var testOptions = ""
+    if (req.body.purpose.includes("offline"))
+        testOptions = `<div> Click the following link if you want to train with some of our prepared mock tests <div><a href = "http://localhost:3000/main-exam/` + req.body.token + `">Take mock exam</a>`
+    if (req.body.purpose.includes("online"))
+        testOptions = `<div> Click the following link to take your exam and get evaluation <div><a href = "http://localhost:3000/main-exam/` + req.body.token + `">Take mock exam</a>`
     var mailOptions = {
         from: 'hhmsystemda1@gmail.com',
         to: req.body.receiverEmail,
         subject: 'Your appointment with XXX Center have been made',
-        text: "Hello, " + req.body.receiverName + ". It's our pleasure to be working with you. Remember to come to XXX Center (" +
-            req.body.address + ") on " +
-            req.body.time + " for your " +
-            req.body.purpose + "."
+        html: `
+            <div> Hello, ${req.body.receiverName}. <div>
+            <div> It's our pleasure to be working with you. Remember to come to XXX Center (${req.body.address}) on ${req.body.time} for your course consultant.<div>
+            ${testOptions}`
     };
 
     transporter.sendMail(mailOptions, function(error, info) {

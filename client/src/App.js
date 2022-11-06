@@ -1,11 +1,10 @@
 import './App.css';
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
-  Link,
+  Navigate
 } from 'react-router-dom';
 import { createBrowserHistory } from "history";
 import "./assets/fontawesome/fontawesome"
@@ -34,6 +33,7 @@ import QaList from './pages/About/Qa/QaList';
 import QaNone from './pages/About/Qa/QaNone';
 import RequestManagement from './pages/RequestManagement/RequestManagement';
 import Exam from './pages/Exam/Exam';
+import ExamNoToken from './pages/Exam/ExamNoToken';
 
 
 const history = createBrowserHistory();
@@ -100,7 +100,7 @@ function App() {
             <Route path="/about/:aboutType" element={<AboutHolder></AboutHolder>} />
             <Route path="/about/:aboutType/:page" element={<AboutHolder></AboutHolder>} />
             <Route path="/about/:aboutType/send-request" element={<QaNone></QaNone>} />
-            <Route path="/main-exam" element={<Exam></Exam>}/>
+            <Route path="/main-exam" element={<ExamNoToken></ExamNoToken>}/>
             <Route path="/main-exam/:token" element={<Exam></Exam>}/>
 
             <Route path="/password-recovery/" element={<PasswordRecovery></PasswordRecovery>} />

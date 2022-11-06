@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from 'rc-time-picker'
 import 'rc-time-picker/assets/index.css';
 import AppoinmentCard from '../../CardComponents/ContactPage/AppoinmentCard';
-import moment, { isMoment, now } from 'moment';
+import moment from 'moment';
 import axios from 'axios'
 import AlertSuccess from '../../PopupComponents/AlertSuccess/AlertSuccess';
 import AlertFail from '../../PopupComponents/AlertFail/AlertFail';
@@ -67,31 +67,55 @@ export default function AppoinmentLayout() {
             senderEmail: inputEmail,
             senderPhone: inputPhone,
         }
-        console.log(params)
-        const result = axios.post("http://localhost:8080/appointments/create", params)
+
+        axios.post("http://localhost:8080/appointments/create", params)
             .then(res => {
-                var mailResult
-                if (res.data.errors) {
-                    setMessage("Erros happened. Retry later")
-                    setFailAlert(true)
-                }
-                else {
-                    mailResult = axios.post("http://localhost:8080/mail/appointment",
-                        {
-
-                            receiverEmail: params.senderEmail,
-                            receiverName: params.senderName,
-                            address: params.appointAddress,
-                            time: moment(params.appointTime).format('DD/MM/yyyy HH:mm:ss'),
-                            purpose: params.appointPurpose
-
+                if (params.appointPurpose.includes("test"))
+                    axios.get("http://localhost:8080/exam-sessions/create-session/" + params.concern).then(ress => {
+                        if (res.data.errors || ress.data.errors) {
+                            setMessage("Erros happened. Retry later")
+                            setFailAlert(true)
                         }
-                    )
-                        .then(ress => {
-                            setMessage(ress.data)
-                            setSuccessAlert(true)
-                        })
+                        else {
+                            axios.post("http://localhost:8080/mail/appointment",
+                                {
+                                    receiverEmail: params.senderEmail,
+                                    receiverName: params.senderName,
+                                    address: params.appointAddress,
+                                    time: moment(params.appointTime).format('DD/MM/yyyy HH:mm:ss'),
+                                    purpose: params.appointPurpose,
+                                    token: ress.data.token
+                                }
+                            )
+                                .then(resss => {
+                                    setMessage(resss.data)
+                                    setSuccessAlert(true)
+                                })
+                        }
+                    })
+                else {
+                    if (res.data.errors) {
+                        setMessage("Erros happened. Retry later")
+                        setFailAlert(true)
+                    }
+                    else {
+                        axios.post("http://localhost:8080/mail/appointment",
+                            {
+                                receiverEmail: params.senderEmail,
+                                receiverName: params.senderName,
+                                address: params.appointAddress,
+                                time: moment(params.appointTime).format('DD/MM/yyyy HH:mm:ss'),
+                                purpose: params.appointPurpose
+                            }
+                        )
+                            .then(ress => {
+                                setMessage(ress.data)
+                                setSuccessAlert(true)
+                            })
+                    }
                 }
+
+
             })
     }
 
@@ -132,8 +156,11 @@ export default function AppoinmentLayout() {
                             <option value="consultation">
                                 Tư vấn
                             </option>
-                            <option value="mock test">
-                                Thi thử
+                            <option value="online test">
+                                Thi thử online và tư vấn
+                            </option>
+                            <option value="offline test">
+                                Thi thử offline và tư vấn
                             </option>
                         </select>
                         <select
