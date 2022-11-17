@@ -4,6 +4,13 @@ import './DirectionsBanner.css'
 import { ExamTask, ExamType } from '../../../pages/Exam/Task.enum'
 
 export default function IntroBanner(props) {
+
+    var listening = parseInt(props.listeningScore*100/495, 10) + '%'
+    var reading = parseInt(props.readingScore*100/495, 10) + '%'
+    console.log(listening + "  "+ reading + "   " + props.totalScore)
+    const progressStyle = (point) => ({
+        width: (point) ? point : '0',
+    });
     return (
         <div className="intro-banner-container">
             <div className='subheader-border select-item-center'>
@@ -38,7 +45,43 @@ export default function IntroBanner(props) {
                             </Fragment> : ""
                     }
                 </div>
+
             </div>
+            <div className='exam-blank-banner' />
+            {
+                props.section == ExamTask.EndRead ?
+                    <div className='subheader-border'>
+                        <div className='select-item-center left'>
+                            <div className='intro-border result-banner'>
+                                <div className='result-column'>
+                                    <div className='result-item'>
+                                        <p className='intro-text title left'> Listening</p>
+                                        <div className='result-progress'>
+                                            <p className='intro-text test' style={progressStyle(listening)}>{props.listeningScore}</p>
+                                            <progress className='progress-bar' value={props.listeningScore} max="100"></progress>
+                                        </div>
+                                    </div>
+                                    <div className='result-item'>
+                                        <p className='intro-text title left'> Reading</p>
+                                        <div className='result-progress'>
+                                            <p className='intro-text test' style={progressStyle(reading)}>{props.readingScore}</p>
+                                            <progress className='progress-bar' value={props.readingScore} max="100"></progress>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='result-column'>
+                                    <p className='intro-text title'> Total Score</p>
+                                    <div className='score-banner select-item-center'>
+                                        <p className='intro-text total-score'> {props.totalScore}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p className='intro-text receive-result-text'><i>*Click 'here' to receive your result though email</i></p>
+                    </div>
+
+                    : ""
+            }
         </div>
     )
 }

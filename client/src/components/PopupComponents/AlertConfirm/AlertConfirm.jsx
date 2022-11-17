@@ -8,8 +8,8 @@ export default function AlertConfirm(props) {
     return (
         <Fragment>
             <AlertForm
-                title="Thao tác!"
-                subTitle="Bạn có chắc muốn thực hiện cập nhật trạng thái không?"
+                title={props.title? props.title : "Thao tác!"}
+                subTitle={props.text? props.text : "Bạn có chắc muốn thực hiện cập nhật trạng thái không?"}
                 src={alert_confirm}
                 isYesNo={true}
                 onClose={props.handleFormClose}

@@ -3,10 +3,6 @@ import './SectionComponents.css'
 import QuestionComponents from './QuestionComponents'
 
 export default function SingleSection(props) {
-    useEffect(async () => {
-        console.log(props.questionList)
-    }, [])
-
     return (
         <div className="img-section-container">
             <div className='single-section-border'>
