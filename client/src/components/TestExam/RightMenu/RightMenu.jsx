@@ -3,10 +3,16 @@ import PagingTask from '../MenuItem/PagingTask'
 import SelectItem from '../MenuItem/SelectItem'
 import TimeRemain from '../MenuItem/TimeRemain'
 import './RightMenu.css'
-
+import { ExamTask, ExamType } from '../../../pages/Exam/Task.enum'
 
 export default function RightMenu(props) {
-    
+    const [type, setType] = useState('listening')
+    useEffect(() => {
+        if(props.type == ExamType.Reading) {
+            setType('reading')
+        }
+    },[])
+
     return (
         <div className="right-menu-container">
             <div className="right-menu-answer-sheet">
@@ -32,7 +38,7 @@ export default function RightMenu(props) {
                 </div>
 
             </div>
-            <TimeRemain></TimeRemain>
+            <TimeRemain type={type}></TimeRemain>
             <PagingTask current={props.current} onPrev={props.onPrev} onNext={props.onNext}></PagingTask>
         </div>
 

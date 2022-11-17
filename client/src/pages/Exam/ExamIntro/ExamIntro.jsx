@@ -12,6 +12,9 @@ const ExamIntro = props => {
             ></ExamSubHeader>
             <div className='exam-blank-banner'/>
             <IntroBanner
+                listeningScore = {props.listening_score}
+                readingScore = {props.reading_score}
+                totalScore = {props.total_score}
                 onStartListening = {props.onStartListening}
                 onEndListening = {props.onEndListening}
                 onStartReading = {props.onStartReading}

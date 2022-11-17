@@ -8,7 +8,7 @@ const getAudioById = async(req, res) => {
                 "audio_url"
             ],
             where: {
-                test_id: 1
+                test_id: req.params.testId
             }
         })
         res.send(result)
