@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './EmployeeManagement.css'
-import ReactPaginate from 'react-paginate';
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from '../../components/Footer/Footer'
 import WorkplaceLayout from '../../components/LayoutComponents/WorkplacePage/WorkplaceLayout'
 import WorkplaceList from '../../components/ListComponents/WorkplaceList'
-import ava1 from "../../assets/icons/staff-img.png"
 import aManager from "../../assets/icons/active-manager.png"
 import aStaff from "../../assets/icons/active-staff.png"
 import Modal from 'react-modal';
@@ -223,7 +221,6 @@ const EmployeeManagement = props => {
     const onViewClick = (e) => {
         const id = e.currentTarget.attributes.getNamedItem("value").value
         setIdItem(id);
-        console.log(e.currentTarget)
         setIsShowView(true);
     }
     const onStatusClick = (e) => {

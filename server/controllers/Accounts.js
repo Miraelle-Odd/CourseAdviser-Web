@@ -1,4 +1,4 @@
-const { Accounts, Personal_Infos } = require("../models");
+const { Accounts, Personal_Infos, sequelize } = require("../models");
 const { Op } = require("sequelize");
 const bcrypt = require("bcrypt");
 const { sign, verify } = require("jsonwebtoken");
@@ -36,7 +36,6 @@ const findAccountById = async(req, res) => {
     } catch (e) {
         console.log(e)
     }
-
 }
 
 const findAccountByUsername = async(req, res) => {
@@ -559,6 +558,52 @@ const getCountBySearch = async(req, res) => {
     res.send(result.toString());
 }
 
+const getCountsForChart = async(req, res) => {
+    var filter = {}
+    if (!req.params.groupBy)
+        res.send({ error: "No group is selected" })
+    if (req.body)
+        filter = {
+            [req.body.filterField]: {
+                [Op.or]: req.body.filters
+            }
+        }
+    try {
+        const result = await Accounts.findAll({
+            attributes: [req.params.groupBy, [sequelize.fn('COUNT', sequelize.col('account_id')), 'total']],
+            group: [req.params.groupBy],
+            where: filter
+        })
+        res.send(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+const getCountsByTimeForChart = async(req, res) => {
+    try {
+        var filter = {
+            createdAt: sequelize.where(sequelize.fn("YEAR", sequelize.col("createdAt")), req.params.year)
+        }
+        if (req.params.filterField && req.params.filterValue)
+            filter = {
+                createdAt: sequelize.where(sequelize.fn("YEAR", sequelize.col("createdAt")), req.params.year),
+                [req.params.filterField]: req.params.filterValue
+            }
+        const result = await Accounts.findAll({
+            attributes: [
+                [sequelize.fn('MONTH', sequelize.col('createdAt')), 'month'],
+                [sequelize.fn('COUNT', sequelize.col('account_id')), 'total']
+            ],
+            group: ['month'],
+            where: filter
+        })
+        res.send(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 module.exports = {
     findAccountByUsername,
     findAccountByEmail,
@@ -578,5 +623,7 @@ module.exports = {
     updateStatus,
     updatePasswordByUserId,
     findAccountById,
-    getCountBySearch
+    getCountBySearch,
+    getCountsForChart,
+    getCountsByTimeForChart,
 }

@@ -34,6 +34,7 @@ import QaNone from './pages/About/Qa/QaNone';
 import RequestManagement from './pages/RequestManagement/RequestManagement';
 import Exam from './pages/Exam/Exam';
 import ExamNoToken from './pages/Exam/ExamNoToken';
+import StatisticCharts from './pages/StatisticCharts/StatisticCharts';
 
 
 const history = createBrowserHistory();
@@ -52,16 +53,11 @@ function App() {
       workplace = "employee-management"
     else
       workplace = "post-management"
-    console.log(currentUser)
     if(!currentUserInfo)
     axios.get("http://localhost:8080/Accounts/findOneId/1/" + currentUser.account.account_id).then((res) => {
       setCurrentUserInfo(res.data)
     })
   }
-
-
-
-
 
   return (
     <div className="App">
@@ -117,6 +113,7 @@ function App() {
             <Route path="/workplace/post-management/post-update/:id" element={currentUser != null ? <PostUpdate></PostUpdate> : <Navigate to="/"></Navigate>} />
             <Route path='/workplace/q-and-a-management/:category/:sort/:search/:page' element={currentUser != null ? <QaManagement></QaManagement> : <Navigate to="/"></Navigate>}></Route>
             <Route path='/workplace/request-management/:category/:sort/:search/:page' element={currentUser != null ? <RequestManagement></RequestManagement> : <Navigate to="/"></Navigate>}></Route>
+            <Route path="/workplace/statistic-charts/:page" element={currentUser != null ? <StatisticCharts position={currentUser?.account?.position}></StatisticCharts> : <Navigate to="/"></Navigate>}></Route>
 
             {/* Redirect Links */}
             <Route path="/workplace" element={<Navigate to={"/workplace/" + workplace + "/all/updated-latest/all/1"}></Navigate>} />
@@ -138,6 +135,7 @@ function App() {
             <Route path="/workplace/post-management/:category/:sort/:search" element={<Navigate to="/workplace/post-management/:category/:sort/:search/1"></Navigate>} />
             <Route path="/workplace/employee-management/:category/:sort/:search" element={<Navigate to="/workplace/employee-management/:category/:sort/:search/1"></Navigate>} />
             <Route path="/workplace/chatbot-management/:category/:sort/:search" element={<Navigate to="/workplace/chatbot-management/:category/:sort/:search/1"></Navigate>} />
+            <Route path="/workplace/statistic-charts" element={<Navigate to={"/workplace/statistic-charts/" + workplace}></Navigate>} />
           </Routes>
         </React.Suspense>
       </Router>
