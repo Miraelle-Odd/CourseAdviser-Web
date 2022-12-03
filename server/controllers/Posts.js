@@ -230,6 +230,52 @@ const getCountBySearch = async(req, res) => {
     res.send(result.toString());
 }
 
+const getCountsForChart = async(req, res) => {
+    var filter = {}
+    if (!req.params.groupBy)
+        res.send({ error: "No group is selected" })
+    if (req.body.filterField && req.body.filters)
+        filter = {
+            [req.body.filterField]: {
+                [Op.or]: req.body.filters
+            }
+        }
+    try {
+        const result = await Posts.findAll({
+            attributes: [req.params.groupBy, [sequelize.fn('COUNT', sequelize.col('post_id')), 'total']],
+            group: [req.params.groupBy],
+            where: filter
+        })
+        res.send(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+const getCountsByTimeForChart = async(req, res) => {
+    try {
+        var filter = {
+            createdAt: sequelize.where(sequelize.fn("YEAR", sequelize.col("createdAt")), req.params.year)
+        }
+        if (req.params.filterField && req.params.filterValue)
+            filter = {
+                createdAt: sequelize.where(sequelize.fn("YEAR", sequelize.col("createdAt")), req.params.year),
+                [req.params.filterField]: req.params.filterValue
+            }
+        const result = await Posts.findAll({
+            attributes: [
+                [sequelize.fn('MONTH', sequelize.col('createdAt')), 'month'],
+                [sequelize.fn('COUNT', sequelize.col('post_id')), 'total']
+            ],
+            group: ['month'],
+            where: filter
+        })
+        res.send(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 module.exports = {
     getTop2WithType,
     getCountAll,
@@ -241,5 +287,7 @@ module.exports = {
     getListPostByCategory,
     updatePost,
     updateStatus,
-    getCountBySearch
+    getCountBySearch,
+    getCountsForChart,
+    getCountsByTimeForChart
 }

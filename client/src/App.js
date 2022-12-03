@@ -53,10 +53,10 @@ function App() {
       workplace = "employee-management"
     else
       workplace = "post-management"
-    if(!currentUserInfo)
-    axios.get("http://localhost:8080/Accounts/findOneId/1/" + currentUser.account.account_id).then((res) => {
-      setCurrentUserInfo(res.data)
-    })
+    if (!currentUserInfo)
+      axios.get("http://localhost:8080/Accounts/findOneId/1/" + currentUser.account.account_id).then((res) => {
+        setCurrentUserInfo(res.data)
+      })
   }
 
   return (
@@ -78,9 +78,9 @@ function App() {
                 !window.location.href.includes('password-recovery') && !window.location.href.includes('account-activation') && !window.location.href.includes('exam') ?
                   <NavigationBar
                     isLogin={cookies.get('accessToken')}
-                  userFullname={currentUserInfo ? currentUserInfo.Personal_Info.name : ""}
-                  userEmail={currentUserInfo != null ? currentUserInfo.email : ""}
-                  userAvatar={currentUserInfo != null ? (currentUserInfo.Personal_Info.avatar ? currentUserInfo.Personal_Info.avatar : placeholder) : ""}
+                    userFullname={currentUserInfo ? currentUserInfo.Personal_Info.name : ""}
+                    userEmail={currentUserInfo != null ? currentUserInfo.email : ""}
+                    userAvatar={currentUserInfo != null ? (currentUserInfo.Personal_Info.avatar ? currentUserInfo.Personal_Info.avatar : placeholder) : ""}
                   ></NavigationBar>
                   :
                   ""
@@ -96,8 +96,8 @@ function App() {
             <Route path="/about/:aboutType" element={<AboutHolder></AboutHolder>} />
             <Route path="/about/:aboutType/:page" element={<AboutHolder></AboutHolder>} />
             <Route path="/about/:aboutType/send-request" element={<QaNone></QaNone>} />
-            <Route path="/main-exam" element={<ExamNoToken></ExamNoToken>}/>
-            <Route path="/main-exam/:token" element={<Exam></Exam>}/>
+            <Route path="/main-exam" element={<ExamNoToken></ExamNoToken>} />
+            <Route path="/main-exam/:token" element={<Exam></Exam>} />
 
             <Route path="/password-recovery/" element={<PasswordRecovery></PasswordRecovery>} />
             <Route path="/password-recovery/:token" element={<PasswordRecovery></PasswordRecovery>} />
@@ -135,7 +135,7 @@ function App() {
             <Route path="/workplace/post-management/:category/:sort/:search" element={<Navigate to="/workplace/post-management/:category/:sort/:search/1"></Navigate>} />
             <Route path="/workplace/employee-management/:category/:sort/:search" element={<Navigate to="/workplace/employee-management/:category/:sort/:search/1"></Navigate>} />
             <Route path="/workplace/chatbot-management/:category/:sort/:search" element={<Navigate to="/workplace/chatbot-management/:category/:sort/:search/1"></Navigate>} />
-            <Route path="/workplace/statistic-charts" element={<Navigate to={"/workplace/statistic-charts/" + workplace}></Navigate>} />
+            <Route path="/workplace/statistic-charts" element={currentUser != null ? <Navigate to={"/workplace/statistic-charts/" + (currentUser?.account?.position == "manager" ? 'accounts' : 'posts')}></Navigate> : <Navigate to="/"></Navigate>} />
           </Routes>
         </React.Suspense>
       </Router>

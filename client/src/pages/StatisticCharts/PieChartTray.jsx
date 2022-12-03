@@ -25,38 +25,40 @@ const PieChartTray = props => {
     }, [filters])
 
     const getDataSetByCategory = () => {
+        var body = {}
         if (!props.groupBy)
             return
-        if (!filters || filters.length === 0)
-            return
-        else {
-            axios.post(`http://localhost:8080/accounts/get-counts-chart/${props.groupBy}`, {
+        if (filters && filters.length !== 0 && props.filterField && props.filters)
+            body = {
                 filterField: props.filterField,
                 filters: filters
-            })
-                .then(res => {
-                    const data = props.categories.map(pc => {
-                        const pcResult = res.data.find(rd => rd[props.groupBy] === pc.name)
-                        if (pcResult)
-                            return {
-                                label: pc.label,
-                                data: pcResult.total,
-                                color: pc.color,
-                            }
-                        else
-                            return {
-                                label: pc.label,
-                                data: 0,
-                                color: pc.color,
-                            }
-                    })
-                    setCategoryData(data)
+            }
+
+        axios.post(`http://localhost:8080/${props.page}/get-counts-chart/${props.groupBy}`, body)
+            .then(res => {
+                const data = props.categories.map(pc => {
+                    const pcResult = res.data.find(rd => rd[props.groupBy] === pc.name)
+                    if (pcResult)
+                        return {
+                            label: pc.label,
+                            data: pcResult.total,
+                            color: pc.color,
+                        }
+                    else
+                        return {
+                            label: pc.label,
+                            data: 0,
+                            color: pc.color,
+                        }
                 })
-        }
+                console.log(data)
+                console.log(body)
+                setCategoryData(data)
+            })
     }
 
-    const filterOnchange = (e) => {
 
+    const filterOnchange = (e) => {
         if (e.target.checked) {
             setFilters(filters.concat(e.target.value))
         }
@@ -65,8 +67,6 @@ const PieChartTray = props => {
             if (remain.length > 0)
                 setFilters(remain)
         }
-
-        getDataSetByCategory()
     }
 
     const setChecked = (value) => {

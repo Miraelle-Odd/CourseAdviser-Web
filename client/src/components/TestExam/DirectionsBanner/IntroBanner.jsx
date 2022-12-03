@@ -58,14 +58,14 @@ export default function IntroBanner(props) {
                                         <p className='intro-text title left'> Listening</p>
                                         <div className='result-progress'>
                                             <p className='intro-text test' style={progressStyle(listening)}>{props.listeningScore}</p>
-                                            <progress className='progress-bar' value={props.listeningScore} max="100"></progress>
+                                            <progress className='progress-bar' value={props.listeningScore} max="495"></progress>
                                         </div>
                                     </div>
                                     <div className='result-item'>
                                         <p className='intro-text title left'> Reading</p>
                                         <div className='result-progress'>
                                             <p className='intro-text test' style={progressStyle(reading)}>{props.readingScore}</p>
-                                            <progress className='progress-bar' value={props.readingScore} max="100"></progress>
+                                            <progress className='progress-bar' value={props.readingScore} max="495"></progress>
                                         </div>
                                     </div>
                                 </div>

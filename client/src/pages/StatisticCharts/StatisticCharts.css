@@ -63,7 +63,8 @@
     .chart-content {
         display: flex;
         justify-content: center;
-        padding: 20px 40px
+        padding: 20px 40px;
+        max-height: 400px;
     }
     
     .year-select {

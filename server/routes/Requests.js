@@ -12,4 +12,8 @@ router.get("/get-request/:id", Requests.getRequestById)
 router.post("/update-status/:id/:status", Requests.updateStatus)
 router.post("/post-request", Requests.updateRequest)
 router.get("/get-counts/:category/:search", Requests.getCountBySearch)
+router.post("/get-counts-chart/:groupBy", Requests.getCountsForChart)
+router.get("/get-counts-chart-by-time/:year", Requests.getCountsByTimeForChart)
+router.get("/get-counts-chart-by-time/:year/:filterField/:filterValue", Requests.getCountsByTimeForChart)
+
 module.exports = router

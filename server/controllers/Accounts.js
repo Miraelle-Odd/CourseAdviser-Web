@@ -562,7 +562,7 @@ const getCountsForChart = async(req, res) => {
     var filter = {}
     if (!req.params.groupBy)
         res.send({ error: "No group is selected" })
-    if (req.body)
+    if (req.body.filterField && req.body.filters)
         filter = {
             [req.body.filterField]: {
                 [Op.or]: req.body.filters

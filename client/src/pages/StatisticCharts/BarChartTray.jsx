@@ -57,14 +57,12 @@ const BarChartTray = props => {
     };
 
     const yearGenerate = () => {
-        // const years = []
-        // let i = year - 5
-        // for (i; i < year + 5; i++)
-        //     years.push(i)
-        return [2016 ,2021, 2022, 2023]
+        const years = []
+        let temp = new Date().getFullYear()
+        for (let i = temp - 5; i <= temp + 5; i++)
+            years.push(i)
+        return years
     }
-
-    // const [years, setYears] = useState(yearGenerate())
 
     useEffect(() => {
         getDataSet()
@@ -76,7 +74,7 @@ const BarChartTray = props => {
 
     const getDataSet = async () => {
         const datas = {}
-        await axios.get(`http://localhost:8080/accounts/get-counts-chart-by-time/${year}`).then(res => {
+        await axios.get(`http://localhost:8080/${props.page}/get-counts-chart-by-time/${year}`).then(res => {
             const fullData = []
             for (let i = 0; i < 12; i++) {
                 const totalByMonth = res.data.find(item => item.month === i + 1)
@@ -89,7 +87,7 @@ const BarChartTray = props => {
             }
             datas.totals = fullData
             option?.categories?.forEach(async item => {
-                await axios.get(`http://localhost:8080/accounts/get-counts-chart-by-time/${year}/${option.mode}/${item.name}`)
+                await axios.get(`http://localhost:8080/${props.page}/get-counts-chart-by-time/${year}/${option.mode}/${item.name}`)
                     .then(ress => {
                         const fullData = []
                         for (let i = 0; i < 12; i++) {
@@ -110,7 +108,6 @@ const BarChartTray = props => {
 
     const filterOnchange = (e) => {
         setOption(props.options[e.target.value])
-        getDataSet()
     }
 
     const setChecked = (value) => {
@@ -123,7 +120,6 @@ const BarChartTray = props => {
                 {props.title + " năm"}
                 <select className='year-select' defaultValue={year} onChange={(e) => {
                     setYear(e.target.value)
-                    getDataSet()
                 }}>
                     {
                         yearGenerate().map((item, index) => {
