@@ -71,7 +71,7 @@ export default function AppoinmentLayout() {
         axios.post("http://localhost:8080/appointments/create", params)
             .then(res => {
                 if (params.appointPurpose.includes("test"))
-                    axios.get("http://localhost:8080/exam-sessions/create-session/" + params.concern).then(ress => {
+                    axios.post("http://localhost:8080/exam-sessions/create-session/" + params.concern, {email: inputEmail}).then(ress => {
                         if (res.data.errors || ress.data.errors) {
                             setMessage("Erros happened. Retry later")
                             setFailAlert(true)

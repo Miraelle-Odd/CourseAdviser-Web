@@ -10,7 +10,8 @@ const createExamSession = async (req, res) => {
             order: sequelize.random()
         });
         const sessionCreate = await Exam_Sessions.create({
-            test_id: currentAvailableTest?.dataValues?.test_id
+            test_id: currentAvailableTest?.dataValues?.test_id,
+            email: req.body.email
         })
         const testId = sessionCreate.dataValues.session_id
         if (!testId) {
@@ -82,7 +83,8 @@ const calculateScore = async (req, res) => {
                     listening_score: calculateListening(listeningCorrect),
                     reading_correct: readingCorrect,
                     reading_score: calculateReading(readingCorrect),
-                    total_score: calculateListening(listeningCorrect) + calculateReading(readingCorrect)
+                    total_score: calculateListening(listeningCorrect) + calculateReading(readingCorrect),
+                    status: "done"
                 },
                 {
                     where: {

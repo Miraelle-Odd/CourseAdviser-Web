@@ -101,6 +101,7 @@ const PieChartTray = props => {
             }
 
             <div className='chart-content'>
+                <p>Nhấn vào các lựa chọn bên dưới để lọc thành phần</p>
                 <Chart type='pie' className='category-pie' data={dataByCategory} />
             </div>
         </div>

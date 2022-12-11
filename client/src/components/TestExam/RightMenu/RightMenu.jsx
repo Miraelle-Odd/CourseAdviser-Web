@@ -38,7 +38,7 @@ export default function RightMenu(props) {
                 </div>
 
             </div>
-            <TimeRemain type={type}></TimeRemain>
+            <TimeRemain type={type} endTimeHandle={props.endTimeHandle}></TimeRemain>
             <PagingTask current={props.current} onPrev={props.onPrev} onNext={props.onNext}></PagingTask>
         </div>
 

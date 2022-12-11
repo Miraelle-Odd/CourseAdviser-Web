@@ -9,9 +9,14 @@ export default function AlertForm(props) {
     return (
         <Fragment>
             <div className='alert-form-contain'>
-                <div className='alert-form-close' onClick={props.onClose}>
-                    <FontAwesomeIcon className='alert-form-icon' icon={['fas', 'xmark']}></FontAwesomeIcon>
-                </div>
+                {
+                    !props.noClose ?
+                        <div className='alert-form-close' onClick={props.onClose}>
+                            <FontAwesomeIcon className='alert-form-icon' icon={['fas', 'xmark']}></FontAwesomeIcon>
+                        </div>
+                        : ""
+                }
+
                 <div className='alert-form-body'>
                     <p className='alert-form-title'>{props.title}</p>
                     <p className='alert-form-subtitle'>{props.subTitle}</p>
@@ -36,7 +41,10 @@ export default function AlertForm(props) {
                                 <div className='alert-form-yesno' >
 
                                     <button className='alert-form-yes' onClick={props.onYesClick}>Có</button>
-                                    <button className='alert-form-no' onClick={props.onClose}>Không</button>
+                                    {
+                                        !props.noClose ?
+                                            <button className='alert-form-no' onClick={props.onClose}>Không</button> : ""
+                                    }
                                 </div>
                             </div>
 

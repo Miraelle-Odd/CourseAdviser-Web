@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.CHAR(60),
             allowNull: true,
         },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         listening_correct: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -43,6 +47,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: 0
         },
+        status: {
+            type: DataTypes.STRING(4),
+            allowNull: false,
+            defaultValue: "new"
+        }
     });
 
     Exam_Sessions.associate = (models) => {

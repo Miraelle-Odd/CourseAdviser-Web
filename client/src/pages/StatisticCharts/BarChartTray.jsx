@@ -100,7 +100,7 @@ const BarChartTray = props => {
                             }
                         }
                         datas[item.name] = fullData
-                    })     
+                    })
                 setCategoryData(dataSetsGenerate(datas))
             })
         })
@@ -151,6 +151,7 @@ const BarChartTray = props => {
             }
 
             <div className='chart-content'>
+                <p>Nhấn vào các lựa chọn bên dưới để lọc thành phần</p>
                 <Chart type='bar' className='bar' data={dataByCategory} />
             </div>
         </div>
