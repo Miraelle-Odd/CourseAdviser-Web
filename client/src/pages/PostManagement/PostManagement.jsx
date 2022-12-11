@@ -158,11 +158,11 @@ const PostManagement = props => {
                         item.thumbnail = item.post_img
                         item.title = item.post_title
                         item.subtitle = item.post_subtitle
-                        if (item.post_status == "enabled")
+                        if (item.status == "enabled")
                             item.active = true
                         else
                             item.active = false
-                        item = { item: (delete item['post_id'], delete item['post_img'], delete item['post_status'], delete item['post_title'], delete item['post_subtitle'], item) };
+                        item = { item: (delete item['post_id'], delete item['post_img'], delete item['status'], delete item['post_title'], delete item['post_subtitle'], item) };
                     })
                     setPostData(res.data)
                 })

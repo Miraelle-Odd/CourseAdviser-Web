@@ -233,6 +233,10 @@ export default function AppoinmentLayout() {
                             icon={['fas', 'envelope-open-text']}
                             content1="email@gmail.com">
                         </AppoinmentCard>
+                        <AppoinmentCard
+                            icon={['fas', 'gift']}
+                            content1="Đăng kí ngay để nhận bộ đề thi thử miễn phí">
+                        </AppoinmentCard>
                     </div>
                 </div>
             </div>

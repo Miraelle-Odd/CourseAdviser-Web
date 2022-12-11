@@ -10,6 +10,11 @@
     cursor: pointer;
 }
 
+.course-info .active {
+    background-color: #36ADEF;
+    color: white;
+}
+
 .course-info-option .icon {
     height: 68px;
     width: 68px;

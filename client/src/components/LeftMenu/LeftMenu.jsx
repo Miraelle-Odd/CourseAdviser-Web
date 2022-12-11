@@ -18,7 +18,7 @@ const menuManOption = [
     },
     {
         link: "/workplace/statistic-charts",
-        btnName: "Thống kê",
+        btnName: "Thống kê và biểu đồ",
         icon: ['fas', 'chart-column']
     }
 ]
@@ -40,7 +40,7 @@ const menuEmpOption = [
     },
     {
         link: "/workplace/statistic-charts",
-        btnName: "Thống kê",
+        btnName: "Thống kê và biểu đồ",
         icon: ['fas', 'chart-column']
     }
 ]

@@ -65,7 +65,7 @@ const WorkplacePostUpdate = props => {
             post_subtitle: subtitle,
             post_content: content,
             post_type: type_convert,
-            post_status: status_convert,
+            status: status_convert,
             author_id: author,
         }
 

@@ -30,13 +30,13 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(10),
             defaultValue: "academic"
         },
-        post_status: {
+        status: {
             type: DataTypes.STRING(10),
             defaultValue: "enabled"
         }
     });
     const list = [{
-            post_id:1,
+            post_id: 1,
             author_id: 1,
             post_title: "English Paragraph Everyday",
             post_subtitle: "In this essay, I will tell you about my lovely family",
@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
             post_type: "academic"
         },
         {
-            post_id:2,
+            post_id: 2,
             author_id: 4,
             post_title: "Test Bài Đăng 1",
             post_subtitle: "Đây là bài đăng dùng để demo cơ sở dữ liệu",
@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
             post_type: "discount"
         },
         {
-            post_id:3,
+            post_id: 3,
             author_id: 4,
             post_title: "Test Bài Đăng 2",
             post_subtitle: "Đây là bài đăng dùng để demo cơ sở dữ liệu",
@@ -63,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
             post_type: "discount"
         },
         {
-            post_id:4,
+            post_id: 4,
             author_id: 4,
             post_title: "Quà tặng cuộc sống phần 1",
             post_subtitle: "Cả lớp ngạc nhiên khi thầy phát cho chúng tôi ba loại đề khác nhau",
@@ -72,7 +72,7 @@ module.exports = (sequelize, DataTypes) => {
             post_type: "event"
         },
         {
-            post_id:5,
+            post_id: 5,
             author_id: 1,
             post_title: "Học IELTS không khó",
             post_subtitle: "Thi IELTS rất khó nhưng cũng ...dễ như ăn bánh. Vì sao lại thế?",
@@ -81,7 +81,7 @@ module.exports = (sequelize, DataTypes) => {
             post_type: "academic"
         },
         {
-            post_id:6,
+            post_id: 6,
             author_id: 4,
             post_title: "Quà tặng cuộc sống phần 2",
             post_subtitle: "Mẹ ơi, hạnh phúc ở đâu?",

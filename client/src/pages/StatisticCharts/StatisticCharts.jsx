@@ -265,12 +265,12 @@ const StatisticCharts = props => {
                                 {
                                     label: 'Trung tâm',
                                     name: 'center',
-                                    color: 'rgba(234, 92, 43, 0.6)'
+                                    color: 'rgba(66, 194, 255, 0.6)'
                                 },
                                 {
                                     label: 'Khóa học',
                                     name: 'course',
-                                    color: 'rgba(202, 78, 121, 0.8)'
+                                    color: 'rgba(117, 121, 231, 0.6)'
                                 }
                             ]
                         },

@@ -26,10 +26,10 @@ const PostUpdate = props => {
                         if (res.data[0].post_type == "discount")
                             res.data[0].post_type = 2
 
-                        if (res.data[0].post_status == "enabled")
-                            res.data[0].post_status = true
-                        if (res.data[0].post_status == "disabled")
-                            res.data[0].post_status = false
+                        if (res.data[0].status == "enabled")
+                            res.data[0].status = true
+                        if (res.data[0].status == "disabled")
+                            res.data[0].status = false
                         setPostDetail(res.data[0])
                     }
 
@@ -72,7 +72,7 @@ const PostUpdate = props => {
                         name={postDetail ? postDetail.name : currentUser ? currentUser.name : null}
                         date={postDetail ? moment(postDetail.updatedAt).format("YYYY-MM-DD hh-mm A") : moment().format("YYYY-MM-DD hh-mm A")}
                         img={postDetail ? postDetail.post_img : null}
-                        active={postDetail ? postDetail.post_status : true}
+                        active={postDetail ? postDetail.status : true}
                         type={postDetail ? postDetail.post_type : 0}
                     ></WorkplacePostUpdate>
                 }

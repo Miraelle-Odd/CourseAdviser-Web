@@ -7,7 +7,6 @@ import {
 import { useState } from 'react';
 import './NavigationBar.css'
 import logo from "../../assets/icons/app-logo.png";
-import TKB_HK2 from "../../assets/icons/TKB_HK2.PNG";
 import Login from '../PopupComponents/Login/Login';
 import ForgotPassword from '../PopupComponents/ForgotPassword/ForgotPassword';
 import Modal from 'react-modal';
@@ -31,6 +30,7 @@ const adminManageChatbot = "/workplace/chatbot-management";
 const adminManagePost = "/workplace/post-management";
 const adminManageQa = "/workplace/q-and-a-management";
 const userSetting = "/workplace/account-setting";
+const statisticCharts = "/workplace/statistic-charts"
 
 let navbarItems = [
     {
@@ -101,6 +101,10 @@ let managerDropdownItems = [
         displayName: "Cài đặt tài khoản",
         link: userSetting
     },
+    {
+        displayName: "Thống kê và biểu đồ",
+        link: statisticCharts
+    }
 ]
 let employeeDropdownItems = [
     {
@@ -115,6 +119,10 @@ let employeeDropdownItems = [
         displayName: "Cài đặt tài khoản",
         link: userSetting
     },
+    {
+        displayName: "Thống kê và biểu đồ",
+        link: statisticCharts
+    }
 ]
 
 export default function NavigationBar(props) {
