@@ -13,13 +13,13 @@ export default function CountdownExam(props) {
         window.clearInterval(id.current)
     }
     useEffect(() => {
-        if(props.type != 'listening'){
+        if (props.type != 'listening') {
             setTimer(74)
             setDelay(false)
         }
     }, [props.type])
     useEffect(() => {
-        if(props.type != 'listening'){
+        if (props.type != 'listening') {
             setTimer(74)
             setDelay(false)
         }
@@ -30,10 +30,10 @@ export default function CountdownExam(props) {
         }
         else {
             id.current = window.setInterval(() => {
-                setTimer((time) => time - 1)
+                setTimer((time) => time > 0 ? time - 1 : 0)
             }, 60000)
             id.current = window.setInterval(() => {
-                setSecond((second) => second - 1)
+                setSecond((second) => second > 0 ? second - 1 : 0)
             }, 1000)
             return () => clear();
         }
@@ -47,9 +47,19 @@ export default function CountdownExam(props) {
 
     useEffect(() => {
         if (second === 0) {
-            setSecond(60)
+            if (timer !== 0)
+                setSecond(60)
+            else {
+                setSecond(0)
+                setTimer(0)
+                props.endTimeHandle()
+            }
         }
     }, [second])
+
+    useEffect(() => {
+
+    }, [second, timer])
 
     return (
         <p className='time-remain-text'>{timer} : {second}</p>

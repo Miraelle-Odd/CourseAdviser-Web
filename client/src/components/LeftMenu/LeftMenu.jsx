@@ -15,6 +15,11 @@ const menuManOption = [
         link: "/workplace/chatbot-management",
         btnName: "Quản lý Chatbot",
         icon: ['fas', 'robot']
+    },
+    {
+        link: "/workplace/statistic-charts",
+        btnName: "Thống kê và biểu đồ",
+        icon: ['fas', 'chart-column']
     }
 ]
 const menuEmpOption = [
@@ -33,6 +38,11 @@ const menuEmpOption = [
         btnName: "Quản lý yêu cầu",
         icon: ['fas', 'scroll']
     },
+    {
+        link: "/workplace/statistic-charts",
+        btnName: "Thống kê và biểu đồ",
+        icon: ['fas', 'chart-column']
+    }
 ]
 
 const onLogout = () => {

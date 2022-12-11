@@ -44,7 +44,7 @@ const PostView = props => {
         },
         {
             fieldName: "Trạng thái",
-            fieldValue: <StatusSwitch on={postDetail ? postDetail.post_status == 'enabled' ? true : false : true} onClick={()=>{}}></StatusSwitch>
+            fieldValue: <StatusSwitch on={postDetail ? postDetail.status == 'enabled' ? true : false : true} onClick={()=>{}}></StatusSwitch>
         }
     ]
 

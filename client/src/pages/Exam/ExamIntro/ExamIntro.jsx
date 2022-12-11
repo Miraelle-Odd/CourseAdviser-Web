@@ -19,6 +19,7 @@ const ExamIntro = props => {
                 onEndListening = {props.onEndListening}
                 onStartReading = {props.onStartReading}
                 section = {props.section}
+                sendResult= {props.sendResult}
             ></IntroBanner>
         </div>
     )

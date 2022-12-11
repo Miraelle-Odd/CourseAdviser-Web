@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 
 const getTop2WithType = async(req, res) => {
     const result = await sequelize.query(
-        "SELECT DISTINCT post_id, author_id, post_title, post_subtitle, post_content, post_img, post_type, post_status, Posts.createdAt, Posts.updatedAt, name, birthday, location, avatar FROM `Posts` AS `Posts` JOIN `Personal_Infos` AS `Personal_Info` ON `Posts`.`author_id` = `Personal_Info`.`account_id` WHERE `Posts`.`post_type` = :type ORDER BY `Posts`.`post_id` DESC LIMIT 2", {
+        "SELECT DISTINCT post_id, author_id, post_title, post_subtitle, post_content, post_img, post_type, status, Posts.createdAt, Posts.updatedAt, name, birthday, location, avatar FROM `Posts` AS `Posts` JOIN `Personal_Infos` AS `Personal_Info` ON `Posts`.`author_id` = `Personal_Info`.`account_id` WHERE `Posts`.`post_type` = :type ORDER BY `Posts`.`post_id` DESC LIMIT 2", {
             replacements: { type: req.params.type },
             type: sequelize.QueryTypes.SELECT
         }
@@ -27,13 +27,13 @@ const getActiveCountAll = async(req, res) => {
     if (req.params.type == "all")
         result = await Posts.count({
             where: {
-                post_status: "enabled",
+                status: "enabled",
             }
         });
     else
         result = await Posts.count({
             where: {
-                post_status: "enabled",
+                status: "enabled",
                 post_type: req.params.type
             }
         });
@@ -44,13 +44,13 @@ const getInactiveCountAll = async(req, res) => {
     if (req.params.type == "all")
         result = await Posts.count({
             where: {
-                post_status: "disabled",
+                status: "disabled",
             }
         });
     else
         result = await Posts.count({
             where: {
-                post_status: "disabled",
+                status: "disabled",
                 post_type: req.params.type
             }
         });
@@ -59,7 +59,7 @@ const getInactiveCountAll = async(req, res) => {
 const getItemPaging = async(req, res) => {
     const { page } = req.query
     const result = await sequelize.query(
-        "SELECT DISTINCT post_id, author_id, post_title, post_subtitle, post_content, post_img, post_type, post_status, Posts.createdAt, Posts.updatedAt, name, birthday, location, avatar FROM `Posts` AS `Posts` JOIN `Personal_Infos` AS `Personal_Info` ON `Posts`.`author_id` = `Personal_Info`.`account_id` WHERE `Posts`.`post_type` = :type ORDER BY `Posts`.`post_id` DESC LIMIT :skip, 6", {
+        "SELECT DISTINCT post_id, author_id, post_title, post_subtitle, post_content, post_img, post_type, status, Posts.createdAt, Posts.updatedAt, name, birthday, location, avatar FROM `Posts` AS `Posts` JOIN `Personal_Infos` AS `Personal_Info` ON `Posts`.`author_id` = `Personal_Info`.`account_id` WHERE `Posts`.`post_type` = :type ORDER BY `Posts`.`post_id` DESC LIMIT :skip, 6", {
             replacements: {
                 type: req.params.type,
                 skip: page * 6
@@ -71,7 +71,7 @@ const getItemPaging = async(req, res) => {
 }
 const getItemDetail = async(req, res) => {
     const result = await sequelize.query(
-        "SELECT DISTINCT post_id, author_id, post_title, post_subtitle, post_content, post_img, post_type, post_status, Posts.createdAt, Posts.updatedAt, name, birthday, location, avatar FROM `Posts` AS `Posts` JOIN `Personal_Infos` AS `Personal_Info` ON `Posts`.`author_id` = `Personal_Info`.`account_id` WHERE `Posts`.`post_id` = :id", {
+        "SELECT DISTINCT post_id, author_id, post_title, post_subtitle, post_content, post_img, post_type, status, Posts.createdAt, Posts.updatedAt, name, birthday, location, avatar FROM `Posts` AS `Posts` JOIN `Personal_Infos` AS `Personal_Info` ON `Posts`.`author_id` = `Personal_Info`.`account_id` WHERE `Posts`.`post_id` = :id", {
             replacements: {
                 id: req.params.id
             },
@@ -82,7 +82,7 @@ const getItemDetail = async(req, res) => {
 }
 const getTop5All = async(req, res) => {
     const result = await sequelize.query(
-        "SELECT DISTINCT post_id, author_id, post_title, post_subtitle, post_content, post_img, post_type, post_status, Posts.createdAt, Posts.updatedAt, name, birthday, location, avatar FROM `Posts` AS `Posts` JOIN `Personal_Infos` AS `Personal_Info` ON `Posts`.`author_id` = `Personal_Info`.`account_id` ORDER BY `Posts`.`post_id` DESC LIMIT 5", {
+        "SELECT DISTINCT post_id, author_id, post_title, post_subtitle, post_content, post_img, post_type, status, Posts.createdAt, Posts.updatedAt, name, birthday, location, avatar FROM `Posts` AS `Posts` JOIN `Personal_Infos` AS `Personal_Info` ON `Posts`.`author_id` = `Personal_Info`.`account_id` ORDER BY `Posts`.`post_id` DESC LIMIT 5", {
             type: sequelize.QueryTypes.SELECT
         }
     )
@@ -150,7 +150,7 @@ const updatePost = async(req, res) => {
             post_subtitle: req.body.post_subtitle,
             post_content: req.body.post_content,
             post_type: req.body.post_type,
-            post_status: req.body.post_status,
+            status: req.body.status,
             post_img: req.body.post_img
         };
         Posts.update(itemValues, { where: { post_id: req.body.post_id } }).then((result) => {
@@ -163,7 +163,7 @@ const updatePost = async(req, res) => {
             post_subtitle: req.body.post_subtitle,
             post_content: req.body.post_content,
             post_type: req.body.post_type,
-            post_status: req.body.post_status,
+            status: req.body.status,
             post_img: req.body.post_img
         };
         if (itemValues.post_title !== undefined && itemValues.post_subtitle !== undefined && itemValues.post_content !== undefined)
@@ -181,11 +181,11 @@ const updateStatus = async(req, res) => {
     let itemValues;
     if (req.params.status == "false") {
         itemValues = {
-            post_status: "enabled"
+            status: "enabled"
         };
     } else if (req.params.status == "true") {
         itemValues = {
-            post_status: "disabled"
+            status: "disabled"
         };
     }
 
@@ -230,6 +230,52 @@ const getCountBySearch = async(req, res) => {
     res.send(result.toString());
 }
 
+const getCountsForChart = async(req, res) => {
+    var filter = {}
+    if (!req.params.groupBy)
+        res.send({ error: "No group is selected" })
+    if (req.body.filterField && req.body.filters)
+        filter = {
+            [req.body.filterField]: {
+                [Op.or]: req.body.filters
+            }
+        }
+    try {
+        const result = await Posts.findAll({
+            attributes: [req.params.groupBy, [sequelize.fn('COUNT', sequelize.col('post_id')), 'total']],
+            group: [req.params.groupBy],
+            where: filter
+        })
+        res.send(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+const getCountsByTimeForChart = async(req, res) => {
+    try {
+        var filter = {
+            createdAt: sequelize.where(sequelize.fn("YEAR", sequelize.col("createdAt")), req.params.year)
+        }
+        if (req.params.filterField && req.params.filterValue)
+            filter = {
+                createdAt: sequelize.where(sequelize.fn("YEAR", sequelize.col("createdAt")), req.params.year),
+                [req.params.filterField]: req.params.filterValue
+            }
+        const result = await Posts.findAll({
+            attributes: [
+                [sequelize.fn('MONTH', sequelize.col('createdAt')), 'month'],
+                [sequelize.fn('COUNT', sequelize.col('post_id')), 'total']
+            ],
+            group: ['month'],
+            where: filter
+        })
+        res.send(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 module.exports = {
     getTop2WithType,
     getCountAll,
@@ -241,5 +287,7 @@ module.exports = {
     getListPostByCategory,
     updatePost,
     updateStatus,
-    getCountBySearch
+    getCountBySearch,
+    getCountsForChart,
+    getCountsByTimeForChart
 }

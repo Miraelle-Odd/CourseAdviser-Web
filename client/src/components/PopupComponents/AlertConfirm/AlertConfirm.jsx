@@ -14,7 +14,8 @@ export default function AlertConfirm(props) {
                 isYesNo={true}
                 onClose={props.handleFormClose}
                 onYesClick={props.handleStatus}
-                alert={props.alert}>
+                alert={props.alert}
+                noClose={props.noClose}>
             </AlertForm>
         </Fragment>
     )

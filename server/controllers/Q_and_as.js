@@ -1,4 +1,4 @@
-const { Q_and_as } = require("../models");
+const { Q_and_as, sequelize } = require("../models");
 const { Op } = require("sequelize");
 const e = require("express");
 const getCountAll = async(req, res) => {
@@ -208,6 +208,53 @@ const getCountBySearch = async(req, res) => {
     res.send(result.toString());
 }
 
+const getCountsForChart = async(req, res) => {
+    var filter = {}
+    if (!req.params.groupBy)
+        res.send({ error: "No group is selected" })
+    if (req.body.filterField && req.body.filters)
+        filter = {
+            [req.body.filterField]: {
+                [Op.or]: req.body.filters
+            }
+        }
+    console.log(filter)
+    try {
+        const result = await Q_and_as.findAll({
+            attributes: [req.params.groupBy, [sequelize.fn('COUNT', sequelize.col('qa_id')), 'total']],
+            group: [req.params.groupBy],
+            where: filter
+        })
+        res.send(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+const getCountsByTimeForChart = async(req, res) => {
+    try {
+        var filter = {
+            createdAt: sequelize.where(sequelize.fn("YEAR", sequelize.col("createdAt")), req.params.year)
+        }
+        if (req.params.filterField && req.params.filterValue)
+            filter = {
+                createdAt: sequelize.where(sequelize.fn("YEAR", sequelize.col("createdAt")), req.params.year),
+                [req.params.filterField]: req.params.filterValue
+            }
+        const result = await Q_and_as.findAll({
+            attributes: [
+                [sequelize.fn('MONTH', sequelize.col('createdAt')), 'month'],
+                [sequelize.fn('COUNT', sequelize.col('qa_id')), 'total']
+            ],
+            group: ['month'],
+            where: filter
+        })
+        res.send(result)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 module.exports = {
     getCountAll,
     getItemPaging,
@@ -218,5 +265,7 @@ module.exports = {
     getQaById,
     createOrUpdateQa,
     updateStatus,
-    getCountBySearch
+    getCountBySearch,
+    getCountsForChart,
+    getCountsByTimeForChart,
 }

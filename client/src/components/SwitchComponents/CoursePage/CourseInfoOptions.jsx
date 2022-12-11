@@ -13,18 +13,22 @@ const CourseInfoOptions = (props) => {
         )
     }
     const [currentContent, setCurrentContent] = useState(levelTypes[0].infoContent ? levelTypes[0].infoContent : renderNothing)
+    const [currentActiveOpt, setCurrentActiveOpt] = useState(levelTypes[0].title)
 
     const optClickHandler = (e) => {
-        console.log(e.currentTarget.getAttribute("value"))
-        if (e.currentTarget.getAttribute("belong") == "level")
+        if (e.currentTarget.getAttribute("belong") == "level") {
             setCurrentContent(levelTypes[e.currentTarget.getAttribute("value")].infoContent)
-        else
+            setCurrentActiveOpt(levelTypes[e.currentTarget.getAttribute("value")].title)
+        }
+        else {
             setCurrentContent(bonusTypes[e.currentTarget.getAttribute("value")].infoContent)
+            setCurrentActiveOpt(bonusTypes[e.currentTarget.getAttribute("value")].title)
+        }
     }
 
     const CourseInfoOption = (props) => {
         return (
-            <div className="course-info-option" onClick={optClickHandler} value={props.index} belong={props.belong}>
+            <div className={"course-info-option" + (props.title === currentActiveOpt ? " active" : "")} onClick={optClickHandler} value={props.index} belong={props.belong}>
                 <span className="icon">
                     <FontAwesomeIcon icon={props.icon}></FontAwesomeIcon>
                 </span>

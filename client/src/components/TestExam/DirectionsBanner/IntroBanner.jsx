@@ -5,12 +5,13 @@ import { ExamTask, ExamType } from '../../../pages/Exam/Task.enum'
 
 export default function IntroBanner(props) {
 
-    var listening = parseInt(props.listeningScore*100/495, 10) + '%'
-    var reading = parseInt(props.readingScore*100/495, 10) + '%'
-    console.log(listening + "  "+ reading + "   " + props.totalScore)
+    var listening = parseInt(props.listeningScore * 100 / 495, 10) + '%'
+    var reading = parseInt(props.readingScore * 100 / 495, 10) + '%'
+    console.log(listening + "  " + reading + "   " + props.totalScore)
     const progressStyle = (point) => ({
         width: (point) ? point : '0',
     });
+
     return (
         <div className="intro-banner-container">
             <div className='subheader-border select-item-center'>
@@ -41,7 +42,7 @@ export default function IntroBanner(props) {
                     {
                         props.section == ExamTask.EndRead ?
                             <Fragment>
-                                <p className='intro-text'><b>Your answers for the TOEIC reading test have been submitted. Your results for both listening and reading tests will be sent to your email in the nearest future.<br></br>Thank you for take part in this exam.</b></p>
+                                <p className='intro-text'><b>Your answers for both listening and reading TOEIC test have been submitted.<br></br>Thank you for take part in this exam.</b></p>
                             </Fragment> : ""
                     }
                 </div>
@@ -58,14 +59,14 @@ export default function IntroBanner(props) {
                                         <p className='intro-text title left'> Listening</p>
                                         <div className='result-progress'>
                                             <p className='intro-text test' style={progressStyle(listening)}>{props.listeningScore}</p>
-                                            <progress className='progress-bar' value={props.listeningScore} max="100"></progress>
+                                            <progress className='progress-bar' value={props.listeningScore} max="495"></progress>
                                         </div>
                                     </div>
                                     <div className='result-item'>
                                         <p className='intro-text title left'> Reading</p>
                                         <div className='result-progress'>
                                             <p className='intro-text test' style={progressStyle(reading)}>{props.readingScore}</p>
-                                            <progress className='progress-bar' value={props.readingScore} max="100"></progress>
+                                            <progress className='progress-bar' value={props.readingScore} max="495"></progress>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +78,11 @@ export default function IntroBanner(props) {
                                 </div>
                             </div>
                         </div>
-                        <p className='intro-text receive-result-text'><i>*Click 'here' to receive your result though email</i></p>
+                        <p className='intro-text receive-result-text'>
+                            <p>You can re-access the link inside your test email to check your test result. Or</p>
+                            <p>*Click the below to receive another email containing your results</p>
+                            <button className='intro-btn' onClick={props.sendResult}>Send me my results</button>
+                        </p>
                     </div>
 
                     : ""

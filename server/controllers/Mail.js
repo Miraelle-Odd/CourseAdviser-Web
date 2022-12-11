@@ -33,6 +33,30 @@ const sendAppointment = async(req, res) => {
     });
 }
 
+const sendTestResult = async(req, res) => {
+    var mailOptions = {
+        from: 'hhmsystemda1@gmail.com',
+        to: req.body.receiverEmail,
+        subject: 'Results of online English test from XXX Center',
+        html: `
+            <div> It's our honor for us to see you take part in the online English test.<div>
+            <div> Below is the detailed results of your online English test.<div>
+            <h3> Listening Score: ${req.body.listeningScore} </h3>
+            <h3> Reading Score: ${req.body.readingScore} </h3>
+            <h3> Total Score: ${req.body.totalScore} </h3>
+            <p> You can access the link below to take a better look <p>
+            <a href = "http://localhost:3000/main-exam/` + req.params.token + `">View results</a>`
+    };
+
+    transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+            res.send(error)
+        } else {
+            res.send('Please check your email for confirmation');
+        }
+    });
+}
+
 const sendAccountActivation = async(req, res) => {
     var mailOptions = {
         from: 'hhmsystemda1@gmail.com',
@@ -76,5 +100,6 @@ const sendForgetPassword = async(req, res) => {
 module.exports = {
     sendAppointment,
     sendForgetPassword,
-    sendAccountActivation
+    sendAccountActivation,
+    sendTestResult
 }
