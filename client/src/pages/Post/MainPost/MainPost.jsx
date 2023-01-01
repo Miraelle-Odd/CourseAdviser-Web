@@ -3,7 +3,6 @@ import axios from 'axios'
 import './MainPost.css'
 import { Fragment } from 'react/cjs/react.production.min'
 import Footer from '../../../components/Footer/Footer'
-import paimon from '../../../assets/icons/staff-img.png'
 import PostSliderLayout from '../../../components/LayoutComponents/PostPage/PostSliderLayout'
 import PostSpecialLayout from '../../../components/LayoutComponents/PostPage/PostSpecialLayout'
 import FloatBtn from '../../../components/ButtonComponents/FloatBtn'
@@ -46,11 +45,6 @@ export default function MainPost(props) {
         
     }, [])
 
-    // console.log("academic", listOfAcademic)
-    // console.log("event", listOfEvent)
-    // console.log("discount", listOfDiscount)
-    // console.log("slider", listOfSlider)
-    
     return (
         <Fragment>
             <div className='float-btn-container'>
@@ -73,8 +67,8 @@ export default function MainPost(props) {
             <PostSpecialLayout
                 type="blue"
                 listItem={listOfAcademic}
-                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="academic posts"
+                description="Bộ sưu tầm các bài viết học thuật hay nhất từ trung tâm phục vụ cho quá trình học tập của các học viên nè. Còn chờ gì nữa mà không DIVE IN nào các bạn ơi!"
+                title="bài viết học thuật"
                 icon={['fas', 'graduation-cap']}
                 link="/main-post/academic/1">
             </PostSpecialLayout>
@@ -82,8 +76,8 @@ export default function MainPost(props) {
             <PostSpecialLayout
                 type="origin"
                 listItem={listOfEvent}
-                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="special events"
+                description="Tổng hợp các sự kiện đặc sắc đã và đang diễn ra tại trung tâm. Đây là cơ hội để các học viên và giáo viên giao lưu và phát triển kỹ năng thực tế. Mọi người cùng vào chung vui nhé!"
+                title="sự kiện đặc biệt"
                 icon={['fas', 'star']}
                 link="/main-post/event/1">
             </PostSpecialLayout>
@@ -91,8 +85,8 @@ export default function MainPost(props) {
             <PostSpecialLayout
                 type="blue"
                 listItem={listOfDiscount}
-                description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                title="discounts"
+                description="Trung tâm đang tổ chức rất nhiều các chương trình khuyến mãi phục vụ cho con đường học vấn của mọi người đây. Còn chờ gì mà không tham khảo?"
+                title="khuyến mãi"
                 icon={['fas', 'piggy-bank']}
                 link="/main-post/discount/1">
             </PostSpecialLayout>

@@ -144,7 +144,10 @@ export default function UpdateQa(props) {
         getQaDetail().catch(console.error)
     }, [])
     const onConfirmClick = () => {
-        console.log(question + "     " + answer)
+        if(!question || !answer){
+            setError("Vui lòng nhập đủ thông tin")
+            return false;
+        }
         var qa_main
         var qa_sub1
         var qa_sub2

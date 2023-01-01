@@ -4,10 +4,11 @@
     z-index: 999;
 }
 
-a:focus-visible{
+a:focus-visible {
     outline: none;
 }
-.header-center{
+
+.header-center {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -128,7 +129,7 @@ a:focus-visible{
     position: absolute;
     border-radius: 30px;
     top: 70px;
-    width: 207px;
+    width: 218px;
     background: rgb(255, 255, 255);
     height: max-content;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);

@@ -174,21 +174,7 @@ const sortLevelItems = [
         sortParam: "level-descend",
         sortField: "level_name",
         sortOrder: "DESC"
-    },
-    // {
-    //     value: 6,
-    //     displayText: "Học phí cơ bản- thấp đến cao",
-    //     sortParam: "tuition-ascend",
-    //     sortField: "basic_fee",
-    //     sortOrder: "ASC"
-    // },
-    // {
-    //     value: 7,
-    //     displayText: "Học phí cơ bản - cao đến thấp",
-    //     sortParam: "tuition-descend",
-    //     sortField: "basic_fee",
-    //     sortOrder: "DESC"
-    // },
+    }
 ]
 
 const ChatbotManagement = props => {

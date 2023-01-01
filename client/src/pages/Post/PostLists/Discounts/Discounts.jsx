@@ -18,7 +18,7 @@ export default function Discounts(props) {
         getListDiscount().catch(console.error)
 
         const getListCount = async () => {
-            const result = await axios.get("http://localhost:8080/Posts/Discount/Count")
+            const result = await axios.get("http://localhost:8080/Posts/Discount/Count-active")
             setListOfCount(result.data)
         }
         getListCount().catch(console.error)
@@ -30,8 +30,8 @@ export default function Discounts(props) {
                 <PostSpecialLayout
                     type="blue"
                     listItem={listOfDiscount}
-                    description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                    title="discounts"
+                    description="Trung tâm đang tổ chức rất nhiều các chương trình khuyến mãi phục vụ cho con đường học vấn của mọi người đây. Còn chờ gì mà không tham khảo?"
+                    title="khuyến mãi"
                     icon={['fas', 'piggy-bank']}>
                 </PostSpecialLayout>
             </div>

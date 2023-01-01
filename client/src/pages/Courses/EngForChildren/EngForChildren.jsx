@@ -16,7 +16,6 @@ const renderLevelContent = (props) => {
             <div className="info-section">
                 <span className="title">Giới thiệu :</span>
                 <p className="paragraph">
-                    {/* Khóa học IELTS PREPARE (hay PRE-IELTS) là một trong khóa học Luyện thi IELTS chính được phân loại dựa theo mức độ kiến thức sẽ đạt được sau khóa. Theo đó, khóa PRE-IELTS là khóa cơ sở trong 3 mức độ (PRE, INTER, ADV) với mục đích rèn luyện, tạo nền móng tiếng Anh cho những học viên mới bắt đầu làm quen với tiếng Anh, không có nền tảng ngôn ngữ hoặc có nhu cầu lấy lại gốc tiếng Anh. Chính vì thế mà cấp độ này không có yêu cầu đầu vào. Kiến thức nền tảng có được sau khóa học đủ để học viên tự tin tham gia thi lấy bằng IELTS trong thực tế. */}
                     {props.introParagraph}
                 </p>
             </div>
@@ -58,7 +57,7 @@ const levelTypes = [
     {
         icon: ['fas', 'baby'],
         title: "JUMPSTART",
-        subtitle: "Kids from 3 - 6 years old",
+        subtitle: "Các bé từ 3 - 6 tuổi",
         infoContent: renderLevelContent({
             introParagraph: "Là một trong 3 chương trình theo độ tuổi của khóa học Tiếng Anh cho bé, JUMPSTART thích hợp cho các em từ 3 đến 6 tuổi muốn tiếp xúc sớm và tạo nền tảng với Anh ngữ, cũng như phát triển kĩ năng giao tiếp và sự tự tin khi nói chuyện bằng ngoại ngữ. Các bé tham gia chương trình sẽ có cơ hội tiếp xúc với các giáo viên bản xứ thân thiện, trải nghiệm các hoạt động ngoại khóa phát triển tiếng Anh cùng các bạn cùng lứa.",
             age: "Thích hợp cho các bé từ 3 đến 6 tuổi",
@@ -68,7 +67,7 @@ const levelTypes = [
     {
         icon: ['fas', 'child'],
         title: "JUNIOR",
-        subtitle: "Kids from 6 - 11 years old",
+        subtitle: "Các bé từ 6 - 11 tuổi",
         infoContent: renderLevelContent({
             introParagraph: "Là một trong 3 chương trình theo độ tuổi của khóa học Tiếng Anh cho bé, JUNIOR thích hợp cho các em từ 6 đến 11 tuổi muốn mài dũa khả năng tiếng Anh, cũng như phát triển kĩ năng giao tiếp và sự tự tin khi nói chuyện bằng ngoại ngữ. Các em tham gia chương trình sẽ có cơ hội tiếp xúc với các giáo viên bản xứ thân thiện, trải nghiệm các hoạt động ngoại khóa phát triển tiếng Anh cùng các bạn cùng lứa.",
             age: "Thích hợp cho các bé từ 6 đến 11 tuổi",
@@ -78,7 +77,7 @@ const levelTypes = [
     {
         icon: ['fas', 'child-reaching'],
         title: "TEEN",
-        subtitle: "Kids from 11 - 16 years old",
+        subtitle: "Các bé từ 11 - 16 tuổi",
         infoContent: renderLevelContent({
             introParagraph: "Là một trong 3 chương trình theo độ tuổi của khóa học Tiếng Anh cho bé, TEEN thích hợp cho các em từ 11 đến 16 tuổi muốn mài dũa khả năng tiếng Anh, chuẩn bị cho các kì thi, cũng như phát triển kĩ năng giao tiếp và sự tự tin khi nói chuyện bằng ngoại ngữ. Các em tham gia chương trình sẽ có cơ hội tiếp xúc với các giáo viên bản xứ thân thiện, trải nghiệm các hoạt động ngoại khóa phát triển tiếng Anh cùng các bạn cùng lứa.",
             age: "Thích hợp cho các bé từ 11 đến 16 tuổi",

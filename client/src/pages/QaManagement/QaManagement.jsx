@@ -296,8 +296,8 @@ const QaManagement = props => {
                 shouldCloseOnOverlayClick={false}
                 ariaHideApp={false}>
                 <UpdateQa
-                    question="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
-                    answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+                    question="Câu hỏi"
+                    answer="Giải đáp"
                     handleFormClose={() => handleFormClose()}
                     idItem={idItem}>
                 </UpdateQa>
@@ -310,8 +310,8 @@ const QaManagement = props => {
                 shouldCloseOnOverlayClick={false}
                 ariaHideApp={false}>
                 <ViewQa
-                    question="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
-                    answer="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+                    question="Câu hỏi"
+                    answer="Giải đáp"
                     handleFormClose={() => handleFormClose()}
                     idItem={idItem}>
                 </ViewQa>

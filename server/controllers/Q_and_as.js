@@ -11,6 +11,9 @@ const getItemPaging = async(req, res) => {
     if (req.params.page)
         page = req.params.page;
     var result = await Q_and_as.findAll({
+        where: {
+            status: 'enabled'
+        },
         order: [
             ['qa_id', 'DESC']
         ],

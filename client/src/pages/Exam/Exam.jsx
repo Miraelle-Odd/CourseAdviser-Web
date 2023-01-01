@@ -247,7 +247,7 @@ const Exam = props => {
                 shouldCloseOnOverlayClick={false}
                 ariaHideApp={false}>
                 <AlertSuccess
-                    message={"Your result has been sent"}
+                    message={"Kết quả đã được gửi"}
                     onClose={() => handleFormClose()}
                 ></AlertSuccess>
             </Modal>

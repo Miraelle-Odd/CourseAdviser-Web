@@ -50,11 +50,11 @@ export default function ForgotPassword(props) {
         <Fragment>
             <AuthenForm
                 handleFormClose={props.handleFormClose}
-                title="Forgot Password?"
-                subtilte="Please enter your validated email"
+                title="Quên Mật Khẩu?"
+                subtilte="Mời bạn nhập email xác thực"
                 hintIcon={['fas', 'paper-plane']}
-                hintInput="Validated Email"
-                textConfirm="Confirm"
+                hintInput="Email xác thực"
+                textConfirm="Xác nhận"
                 titleStyle="forgot-header-title"
                 inputContainStyle="forgot-input-contain"
                 buttonContainStyle="forgot-button-contain"

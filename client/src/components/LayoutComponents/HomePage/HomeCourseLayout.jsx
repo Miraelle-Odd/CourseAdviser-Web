@@ -19,7 +19,7 @@ export default function HomeCourseLayout(props) {
                 <div className='home-course-layout-background'>
                     <div className='home-course-layout-border'>
                         <div className='home-course-layout-title-content'>
-                            <p className='home-course-layout-title'>FEATURED COURSES</p>
+                            <p className='home-course-layout-title'>KHÓA HỌC TIÊU BIỂU</p>
                         </div>
                     </div>
 
@@ -49,8 +49,8 @@ export default function HomeCourseLayout(props) {
                         <ParallelogramBtn
                             link={'/courses/english-for-speaking'}
                             img={aldut_img}
-                            name="Tiếng anh giao tiếp"
-                            des="Khóa học tiếng Anh giao tiếp cho người đi làm được thiết kế nhằm giúp học viên nâng cao, rèn luyện khả năng giao tiếp tiếng Anh trong môi trường làm việc, mở rộng thêm cơ hội thăng tiến trong sự nghiệp.">
+                            name="Tiếng anh văn phòng"
+                            des="Khóa học tiếng Anh cho người đi làm được thiết kế nhằm giúp học viên nâng cao, rèn luyện khả năng giao tiếp và soạn văn bản tiếng Anh trong môi trường làm việc, mở rộng thêm cơ hội thăng tiến trong sự nghiệp.">
                         </ParallelogramBtn>
                         <ParallelogramBtn
                             link={'/courses/english-for-kid'}

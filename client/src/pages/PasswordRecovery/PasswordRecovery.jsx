@@ -14,15 +14,15 @@ const PasswordRecovery = (props) => {
 
     const onConfirm = () => {
         if (!newPassword) {
-            setMessage("New password required")
+            setMessage("Vui lòng nhập mật khẩu mới")
             return false
         }
         if (!confirmPassword) {
-            setMessage("Confirm password required")
+            setMessage("Vui lòng xác nhận mật khẩu mới")
             return false
         }
         if (newPassword != confirmPassword) {
-            setMessage("Your new password and confirm password do not match")
+            setMessage("Mật khẩu mới và xác nhận mật khẩu không khớp")
             return false
         }
         console.log(token)
@@ -40,7 +40,7 @@ const PasswordRecovery = (props) => {
                             token: token
                         })
                         .then(ress => {
-                            setMessage("Successfull. You can log in with your new password")
+                            setMessage("Thành công. Bạn có thể đăng nhập với mật khẩu mới")
                         })
                 }
             })
@@ -50,12 +50,12 @@ const PasswordRecovery = (props) => {
         <div className="password-recovery">
             <div className="password-recovery-header">
                 <span className="subtitle">Course Adviser</span>
-                <span className="title">Password Recovery</span>
+                <span className="title">Khôi Phục Mật Khẩu</span>
             </div>
             <div class="password-recovery-content">
                 <div class="section column-flex">
-                    <span class="section-bold">Enter your new password : </span>
-                    <span class="section-bold">Confirm your new password : </span>
+                    <span class="section-bold">Nhập mật khẩu mới : </span>
+                    <span class="section-bold">Xác nhận mật khẩu : </span>
 
                 </div>
                 <div class="section column-flex">
@@ -71,7 +71,7 @@ const PasswordRecovery = (props) => {
                 </div>
 
             </div>
-            <button class="confirm-btn" onClick={onConfirm}>Confirm</button>
+            <button class="confirm-btn" onClick={onConfirm}>Xác nhận</button>
         </div>
     )
 }

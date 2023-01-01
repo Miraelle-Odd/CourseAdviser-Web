@@ -38,7 +38,7 @@ export default function PostListLayout(props) {
         setPageCount(Math.ceil(props.count / itemsPerPage))
 
         const getListPaging = async () => {
-            const result = await axios.get(`http://localhost:8080/Posts/${postType}?page=${currentPage - 1}`)
+            const result = await axios.get(`http://localhost:8080/Posts/active/${postType}?page=${currentPage - 1}`)
             setListOfPaging(result.data)
         }
         getListPaging().catch(console.error)

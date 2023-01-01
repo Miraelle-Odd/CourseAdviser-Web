@@ -79,7 +79,7 @@ export default function CreateQa(props) {
 
     const onConfirmClick = () => {
         if(!question || !answer){
-            setError("All fields are required.")
+            setError("Vui lòng nhập đủ thông tin")
             return false;
         }
         var qa_main
@@ -142,7 +142,6 @@ export default function CreateQa(props) {
 
     const sortHandler_Main = (e) => {
         setTypeMain(e.target.value)
-        console.log(e.target.value);
         if (e.target.value == 1) {
             setSub1(sortItems_Sub1_1)
             setSub2(sortItems_Sub2Null)

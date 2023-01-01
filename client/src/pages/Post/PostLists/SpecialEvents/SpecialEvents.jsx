@@ -18,7 +18,7 @@ export default function SpecialEvents(props) {
         getListEvents().catch(console.error)
 
         const getListCount = async () => {
-            const result = await axios.get("http://localhost:8080/Posts/Event/Count")
+            const result = await axios.get("http://localhost:8080/Posts/Event/Count-active")
             setListOfCount(result.data)
         }
         getListCount().catch(console.error)
@@ -31,8 +31,8 @@ export default function SpecialEvents(props) {
                     category="special-events"
                     type="origin"
                     listItem={listOfEvent}
-                    description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                    title="special events"
+                    description="Tổng hợp các sự kiện đặc sắc đã và đang diễn ra tại trung tâm. Đây là cơ hội để các học viên và giáo viên giao lưu và phát triển kỹ năng thực tế. Mọi người cùng vào chung vui nhé!"
+                    title="sự kiện đặc biệt"
                     icon={['fas', 'star']}>
                 </PostSpecialLayout>
             </div>

@@ -14,8 +14,8 @@ export default function Footer(props) {
                             <img className="footer-logo" src={logo}></img>
                             <p className="footer-1-name">English Center</p>
                         </div>
-                        <Link to="/temp" className='footer-link'><p className="footer-1-title">CENTER NAME</p></Link>
-                        <p className="footer-intro-slogan">Slogon slogan slogan</p>
+                        <Link to="/temp" className='footer-link'><p className="footer-1-title">TÊN TRUNG TÂM</p></Link>
+                        <p className="footer-intro-slogan">Châm ngôn giảng dạy</p>
                         <p className="footer-intro-text">XXX luôn được biết đến là
                             tổ chức giáo dục uy tín đem lại sự cải thiện rõ rệt
                             tronng kỹ năng học thuật và điểm số từ các bài thi quốc tế

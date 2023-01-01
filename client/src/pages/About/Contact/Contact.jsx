@@ -1,5 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useEffect } from 'react'
 import './Contact.css'
 import { Fragment } from 'react/cjs/react.production.min'
 import AppoinmentLayout from '../../../components/LayoutComponents/ContactPage/AppoinmentLayout'

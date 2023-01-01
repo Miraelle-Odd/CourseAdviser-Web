@@ -287,7 +287,7 @@ const StatisticCharts = props => {
                     categories: [
                         {
                             label: 'Đã duyệt',
-                            name: 'approved',
+                            name: 'done',
                             color: 'rgba(66, 194, 255, 0.6)'
                         },
                         {
@@ -306,7 +306,7 @@ const StatisticCharts = props => {
                             categories: [
                                 {
                                     label: 'Đã duyệt',
-                                    name: 'approved',
+                                    name: 'done',
                                     color: 'rgba(66, 194, 255, 0.6)'
                                 },
                                 {

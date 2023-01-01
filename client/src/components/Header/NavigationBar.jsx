@@ -34,12 +34,12 @@ const statisticCharts = "/workplace/statistic-charts"
 
 let navbarItems = [
     {
-        displayName: "Home",
+        displayName: "Trang chủ",
         link: homeLink,
         dropDownItems: [],
     },
     {
-        displayName: "Courses",
+        displayName: "Khóa học",
         link: courseLink,
         dropDownItems: [
             {
@@ -51,7 +51,7 @@ let navbarItems = [
                 link: courseToeicLink,
             },
             {
-                displayName: "Tiếng Anh giao tiếp",
+                displayName: "Tiếng Anh văn phòng",
                 link: courseSpeakingLink,
             },
             {
@@ -61,12 +61,12 @@ let navbarItems = [
         ],
     },
     {
-        displayName: "Posts",
+        displayName: "Bài viết",
         link: postLink,
         dropDownItems: [],
     },
     {
-        displayName: "About",
+        displayName: "Thông tin",
         link: aboutLink,
         dropDownItems: [
             {
@@ -261,7 +261,7 @@ export default function NavigationBar(props) {
                             (<li className="navbar-item header-center">
                                 <button className={position === "/" && navbar ? "item-button header-center login-for-home item-login" : 'item-button header-center item-login'}
                                     onClick={handleLoginOpen}>
-                                    Login
+                                    Đăng nhập
                                 </button>
                                 <Modal
                                     isOpen={isShowLogin}

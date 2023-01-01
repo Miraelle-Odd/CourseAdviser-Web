@@ -46,11 +46,11 @@ export default function QaLayout(props) {
             .then(res => {
                 console.log(res)
                 if (res.data.errors) {
-                    setMessage("Erros happened. Retry later")
+                    setMessage("Có lỗi xảy ra. Vui lòng thử lại sau.")
                     setFailAlert(true)
                 }
                 else {
-                    setMessage("Send request successfully.")
+                    setMessage("Gửi yêu cầu thành công.")
                     setSuccessAlert(true)
                 }
             })

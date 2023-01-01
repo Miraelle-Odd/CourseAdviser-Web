@@ -34,35 +34,6 @@ export default function QaForm(props) {
                             }
 
                         </div>
-                        <div className='edit-form-item create-form-item'>
-                            <p className='edit-form-item-title create-form-item-position'>Chủ đề phụ 1</p>
-                            {
-                                props.isView ?
-                                    <div className='qa-form-view'>{props.sortItems_Sub1}</div>
-                                    :
-                                    <SortComboBox
-                                        onChange={props.sortHandler_Sub1}
-                                        customClassName="sort-position margin-right-63 sort-qa"
-                                        items={props.sub1}
-                                        defaultValue={props.typeSub1}>
-                                    </SortComboBox>
-                            }
-
-                        </div>
-                        <div className='edit-form-item create-form-item'>
-                            <p className='edit-form-item-title create-form-item-position'>Chủ đề phụ 2</p>
-                            {
-                                props.isView ?
-                                    <div className='qa-form-view'>{props.sortItems_Sub2}</div>
-                                    :
-                                    <SortComboBox
-                                        onChange={props.sortHandler_Sub2}
-                                        customClassName="sort-position margin-right-63 sort-qa"
-                                        items={props.sub2}
-                                        defaultValue={props.typeSub2}>
-                                    </SortComboBox>
-                            }
-                        </div>
                     </div>
                     <div className='qa-form-right-contain'>
                         <div className='edit-form-item create-form-item'>
@@ -73,7 +44,7 @@ export default function QaForm(props) {
                                     :
                                     <textarea
                                         className='qa-form-input'
-                                        placeholder='XXX xxx XXX'
+                                        placeholder='Viết câu hỏi tại đây'
                                         value={props.question}
                                         onChange={props.inputQuestion}>
                                     </textarea>
@@ -88,7 +59,7 @@ export default function QaForm(props) {
                                     :
                                     <textarea
                                         className='qa-form-input'
-                                        placeholder='XXX xxx XXX'
+                                        placeholder='Viết giải đáp tại đây'
                                         value={props.answer}
                                         onChange={props.inputAnswer}>
                                     </textarea>
