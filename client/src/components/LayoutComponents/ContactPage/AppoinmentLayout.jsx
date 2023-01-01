@@ -35,7 +35,7 @@ export default function AppoinmentLayout() {
             !inputPosition ||
             !inputDate ||
             !inputTime) {
-            setMessage("All fields required")
+            setMessage("Vui lòng điền đủ thông tin")
             setFailAlert(true)
             return false
         }
@@ -73,7 +73,7 @@ export default function AppoinmentLayout() {
                 if (params.appointPurpose.includes("test"))
                     axios.post("http://localhost:8080/exam-sessions/create-session/" + params.concern, {email: inputEmail}).then(ress => {
                         if (res.data.errors || ress.data.errors) {
-                            setMessage("Erros happened. Retry later")
+                            setMessage("Lỗi xảy ra. Vui lòng thử lại sau")
                             setFailAlert(true)
                         }
                         else {
@@ -88,14 +88,14 @@ export default function AppoinmentLayout() {
                                 }
                             )
                                 .then(resss => {
-                                    setMessage(resss.data)
+                                    setMessage("Vui lòng kiểm tra email để xác nhận")
                                     setSuccessAlert(true)
                                 })
                         }
                     })
                 else {
                     if (res.data.errors) {
-                        setMessage("Erros happened. Retry later")
+                        setMessage("Lỗi xảy ra. Vui lòng thử lại sau")
                         setFailAlert(true)
                     }
                     else {
@@ -109,7 +109,7 @@ export default function AppoinmentLayout() {
                             }
                         )
                             .then(ress => {
-                                setMessage(ress.data)
+                                setMessage("Vui lòng kiểm tra email để xác nhận")
                                 setSuccessAlert(true)
                             })
                     }

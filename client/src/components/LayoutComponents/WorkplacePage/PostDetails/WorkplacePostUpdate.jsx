@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './WorkplacePostUpdate.css'
-import WorkplaceStatistic from '../../../ListComponents/WorkplaceStatistic';
 import noimg from '../../../../assets/icons/post-noimg.png';
 import SortComboBox from '../../../ComboBoxComponents/SortComboBox';
 import StatusSwitch from '../../../SwitchComponents/WorkplacePage/StatusSwitch';
@@ -34,6 +33,9 @@ const WorkplacePostUpdate = props => {
     const [error, setError] = useState()
 
     useEffect(() => {
+        setTitle(props.title)
+        setSubtitle(props.subtitle)
+        setContent(props.content)
         setType(props.type)
         setStatus(props.active)
         setAuthor(props.author_id)
@@ -45,6 +47,21 @@ const WorkplacePostUpdate = props => {
     }
 
     const onConfirm = async () => {
+        if(!title || title.length == 0){
+            setError("Vui lòng nhập tiêu đề")
+            return
+        }
+
+        if(!subtitle || subtitle.length == 0){
+            setError("Vui lòng nhập tiêu đề phụ")
+            return
+        }
+
+        if(!content || content.length == 0){
+            setError("Vui lòng nhập nội dung")
+            return
+        }
+
         var type_convert;
         if (type == 0)
             type_convert = "academic"
@@ -69,6 +86,8 @@ const WorkplacePostUpdate = props => {
             author_id: author,
         }
 
+        console.log(params)
+
         var data
 
         if (postImg) {
@@ -78,20 +97,18 @@ const WorkplacePostUpdate = props => {
             await axios.post("http://localhost:8080/image/upload-to-imgur/", data)
                 .then((res) => {
                     params.post_img = res.data.link
-                    console.log(params)
                     const result = axios.post("http://localhost:8080/posts/update-post/", params)
                         .then(res => {
                             console.log("dsadsad", res.data)
-                            setError("Successful!")
+                            setError("Thành công!")
                         })
                 })
         }
         else {
-            console.log(params)
             const result = axios.post("http://localhost:8080/posts/update-post/", params)
                 .then(res => {
                     console.log("dsadsad", res.data)
-                    setError("Successful!")
+                    setError("Thành công!")
                 })
         }
 

@@ -86,7 +86,7 @@ const ManagerChatbot = (props) => {
             <div className="input-area">
                 <input
                     className="chat-input"
-                    placeholder="Try it now"
+                    placeholder="Mời dùng thử"
                     onChange={(e) => setUserInput(e.target.value)}
                     onKeyDown={sendText}
                     value={userInput}
@@ -106,7 +106,7 @@ const ManagerChatbot = (props) => {
                         :
                         <span className="no-input">
                             <FontAwesomeIcon icon={['fas', 'circle-info']}></FontAwesomeIcon>
-                            Please use test console above to try a sentence.
+                            Hãy nhập một câu ở test console phía trên để kiểm thử.
                         </span>
 
                 }

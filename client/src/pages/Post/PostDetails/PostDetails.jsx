@@ -8,24 +8,6 @@ import Footer from '../../../components/Footer/Footer'
 import { useNavigate, useParams } from "react-router-dom";
 import FloatBtn from '../../../components/ButtonComponents/FloatBtn';
 import axios from 'axios'
-const latestPosts = [
-    {
-        postId: "1",
-        title: "Post Title AAAA",
-        subtitle: "Post Subtitle Post Subtitle Post Subtitle Post Subtitle   aaa aaaa",
-        author: "Post Author",
-        uploadTime: "DD/MM/YYYY - hh:mm:ss - hh:mm:ss",
-        thumbnail: ""
-    },
-    {
-        postId: "2",
-        title: "Post Title",
-        subtitle: "Post Subtitle",
-        author: "Post Author",
-        uploadTime: "DD/MM/YYYY - hh:mm:ss",
-        thumbnail: ""
-    }
-]
 
 const PostDetails = () => {
     let navigate = useNavigate();

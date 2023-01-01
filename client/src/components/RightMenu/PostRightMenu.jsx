@@ -1,7 +1,7 @@
 import React from 'react'
 import './PostRightMenu.css'
 import placeholder from '../../assets/icons/post-thumb-placeholder.png'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import moment from 'moment'
 
 const PostRightMenu = props => {

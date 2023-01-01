@@ -1,7 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Fragment } from "react/cjs/react.production.min";
-import BulletCard from "../../../components/CardComponents/CoursePage/BulletCard";
 import Footer from "../../../components/Footer/Footer";
 import AppoinmentLayout from "../../../components/LayoutComponents/ContactPage/AppoinmentLayout";
 import StaffTeacherLayout from "../../../components/LayoutComponents/StaffPage/StaffTeacherLayout";
@@ -15,14 +13,12 @@ const renderLevelContent = (props) => {
             <div className="info-section">
                 <span className="title">Giới thiệu :</span>
                 <p className="paragraph">
-                    {/* Khóa học IELTS PREPARE (hay PRE-IELTS) là một trong khóa học Luyện thi IELTS chính được phân loại dựa theo mức độ kiến thức sẽ đạt được sau khóa. Theo đó, khóa PRE-IELTS là khóa cơ sở trong 3 mức độ (PRE, INTER, ADV) với mục đích rèn luyện, tạo nền móng tiếng Anh cho những học viên mới bắt đầu làm quen với tiếng Anh, không có nền tảng ngôn ngữ hoặc có nhu cầu lấy lại gốc tiếng Anh. Chính vì thế mà cấp độ này không có yêu cầu đầu vào. Kiến thức nền tảng có được sau khóa học đủ để học viên tự tin tham gia thi lấy bằng IELTS trong thực tế. */}
                     {props.introParagraph}
                 </p>
             </div>
             <div className="info-section section-more-margin">
                 <span className="title">Mục tiêu rèn luyện của khóa học :</span>
                 <p className="paragraph">
-                    {/* Khóa học IELTS PREPARE (hay PRE-IELTS) là một trong khóa học Luyện thi IELTS chính được phân loại dựa theo mức độ kiến thức sẽ đạt được sau khóa. Theo đó, khóa PRE-IELTS là khóa cơ sở trong 3 mức độ (PRE, INTER, ADV) với mục đích rèn luyện, tạo nền móng tiếng Anh cho những học viên mới bắt đầu làm quen với tiếng Anh, không có nền tảng ngôn ngữ hoặc có nhu cầu lấy lại gốc tiếng Anh. Chính vì thế mà cấp độ này không có yêu cầu đầu vào. Kiến thức nền tảng có được sau khóa học đủ để học viên tự tin tham gia thi lấy bằng IELTS trong thực tế. */}
                     {props.purposeParagraph}
                 </p>
             </div>
@@ -56,7 +52,6 @@ const renderBonusContent = (props) => {
             <div className="info-section">
                 <span className="title">Giới thiệu :</span>
                 <p className="paragraph">
-                    {/* Khóa học IELTS PREPARE (hay PRE-IELTS) là một trong khóa học Luyện thi IELTS chính được phân loại dựa theo mức độ kiến thức sẽ đạt được sau khóa. Theo đó, khóa PRE-IELTS là khóa cơ sở trong 3 mức độ (PRE, INTER, ADV) với mục đích rèn luyện, tạo nền móng tiếng Anh cho những học viên mới bắt đầu làm quen với tiếng Anh, không có nền tảng ngôn ngữ hoặc có nhu cầu lấy lại gốc tiếng Anh. Chính vì thế mà cấp độ này không có yêu cầu đầu vào. Kiến thức nền tảng có được sau khóa học đủ để học viên tự tin tham gia thi lấy bằng IELTS trong thực tế. */}
                     {props.introParagraph}
                 </p>
             </div>
@@ -64,20 +59,20 @@ const renderBonusContent = (props) => {
                 <span className="title">
                     Áp dụng cho các cấp độ của khóa học :
                 </span>
-                <span className="parameter">IELTS, TOEIC và Tiếng Anh giao tiếp</span>
+                <span className="parameter">IELTS, TOEIC và Tiếng Anh văn phòng</span>
             </div>
             <div className="info-section columns">
                 <div className="column">
                     <span className="title">Thời lượng mỗi khóa học :</span>
                     <span className="paragraph">Mỗi khóa gồm 96 buổi học.</span>
                     <ul className="list">
-                        <li>Cấp tốc : 6 tháng</li>
+                        <li>Thường lượng : {props.courseDuration}</li>
                     </ul>
                 </div>
                 <div className="column">
                     <div className="info-section">
                         <span className="title">Thời lượng mỗi lớp học :</span>
-                        <span className="parameter width235">4 giờ/buổi</span>
+                        <span className="parameter width235">{props.classDuration} giờ/buổi</span>
                     </div>
                     <div className="info-section">
                         <span className="title">Hệ số học phí :</span>
@@ -96,7 +91,7 @@ const levelTypes = [
         title: "SPEAKING FOR COMMUNITY",
         longTitle: true,
         long: true,
-        subtitle: "Improve communication skills",
+        subtitle: "Phát triển kĩ năng giao tiếp",
         value: 160000,
         infoContent: renderLevelContent({
             introParagraph: "Tại các lớp học giao tiếp của trung tâm, học viên không được ngồi yên, không khí lớp học luôn sôi động, học viên luôn sẵn sàng tinh thần với những câu hỏi PHẢN XẠ từ các sứ giả.",
@@ -108,7 +103,7 @@ const levelTypes = [
         icon: ['fas', 'feather-pointed'],
         title: "ADVANCE WRITING",
         long: true,
-        subtitle: "Upgrade writing skill for work",
+        subtitle: "Nâng cao kĩ năng soạn văn bản",
         value: 160000,
         infoContent: renderLevelContent({
             introParagraph: "Dù mục tiêu của bạn là thúc đẩy sự nghiệp, chuẩn bị cho việc học hay cải thiện các mối quan hệ xã hội, các khóa học của chúng tôi đều có thể giúp bạn đạt được mục tiêu của mình. Sử dụng tiếng Anh lịch sự chỉ sử dụng cho văn viết, giúp ngôn từ được truyền đạt qua giấy tờ trở nên trang trọng, ý nghĩa hơn",
@@ -120,10 +115,23 @@ const levelTypes = [
 
 const bonusTypes = [
     {
+        icon: ['fas', 'person'],
+        title: "NORMAL",
+        subtitle: "Dịch vụ cơ bản",
+        infoContent: renderBonusContent({
+            courseDuration: "12 tháng",
+            classDuration: 2,
+            introParagraph: "Đây là khóa học cơ bản không hỗ trợ học cấp tốc và 1 kèm 1. Thời gian giàn trải không gấp gáp với chương trình học và kiến thức chất lượng tiêu chuẩn giúp các học viên tiếp thu hiệu quả theo châm ngôn mưa dầm thấm lâu. Các khóa học đều hoàn toàn đảm bảo về trình độ và kỹ năng sử dụng Anh ngữ trong đời sống và công việc cho học viên",
+            multiplier: "1.0"
+        })
+    },
+    {
         icon: ['fas', 'person-running'],
         title: "SPEEDY",
-        subtitle: "Efficient and shortened learning",
+        subtitle: "Nhanh chóng và hiệu quả",
         infoContent: renderBonusContent({
+            courseDuration: "6 tháng",
+            classDuration: 4,
             introParagraph: "Khóa học Speedy tập trung chuyên sâu vào kỹ năng giao tiếp trong đời sống và công việc. Chúng tôi không dạy lan man mà tập trung trọng tâm kiến thức. Phần học lý thuyết được tinh gọn, ưu tiên phần thực hành giao tiếp liên tục.",
             multiplier: "1.5"
         })
@@ -131,8 +139,10 @@ const bonusTypes = [
     {
         icon: ['fas', 'people-arrows-left-right'],
         title: "1 vs 1",
-        subtitle: "Lecturer attention focus",
+        subtitle: "Kèm cặp cá nhân hóa",
         infoContent: renderBonusContent({
+            courseDuration: "6 tháng",
+            classDuration: 4,
             introParagraph: "Một vấn đề của người đi làm khi đi học tiếng Anh giao tiếp là không muốn học ở lớp quá đông, quá nhiều lứa tuổi khác nhau có cả sinh viên, học sinh… Thì với các lớp học của trung tâm nhận đào tạo 1-1 cho người đi làm. Như vậy học viên sẽ được sứ giả kèm kỹ hơn, sứ giả nhiệt tình bám sát từng học viên, giúp bạn cải thiện kỹ năng và phản xạ với tiếng Anh tự nhiên hơn, nhanh hơn.",
             multiplier: "2.0"
         })
@@ -143,13 +153,13 @@ const shortBonusTypes = [
     {
         icon: ['fas', 'person-running'],
         title: "SPEEDY",
-        subtitle: "Shortened learning",
+        subtitle: "Nhanh chóng và hiệu quả",
         value: 1.5
     },
     {
         icon: ['fas', 'people-arrows-left-right'],
         title: "1 vs 1",
-        subtitle: "Lecturer attention focus",
+        subtitle: "Kèm cặp cá nhân hóa",
         value: 2
     }
 ]

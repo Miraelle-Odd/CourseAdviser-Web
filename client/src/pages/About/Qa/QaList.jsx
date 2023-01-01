@@ -15,7 +15,7 @@ export default function QaList() {
 
     useEffect(() => {
         const getQaCount = async () => {
-            const result = await axios.get(`http://localhost:8080/q-and-as/count`)
+            const result = await axios.get(`http://localhost:8080/q-and-as/get-active-count/all`)
             setCountQa(result.data)
         }
         getQaCount().catch(console.error)

@@ -75,6 +75,8 @@
     font-family: 'Roboto Medium';
     font-size: 20px;
     width: 500px;
+    display: flex;
+    flex-direction: column;
 }
 
 .slider-item .info-layer .author {
@@ -85,14 +87,17 @@
 
 
 /*for customizing carousel */
+
 .post-slider .carousel {
     height: 100%;
     display: flex;
     justify-content: center;
 }
-.carousel .slide{
+
+.carousel .slide {
     background: none!important;
 }
+
 .post-slider .carousel .slider-wrapper {
     height: 100%;
 }

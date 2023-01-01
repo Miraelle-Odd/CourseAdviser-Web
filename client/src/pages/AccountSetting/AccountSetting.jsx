@@ -56,7 +56,6 @@ const AccountSetting = props => {
         const getAccountById = async () => {
             const result = await axios.get(`http://localhost:8080/Accounts/get-detail/${props.currentId}`)
             setCurrentUser(result.data)
-            // console.log(result.data.Personal_Info.avatar)
             setAvatarURL(result.data.Personal_Info.avatar)
         }
         getAccountById().catch(console.error)
@@ -97,7 +96,7 @@ const AccountSetting = props => {
             openForm: true,
             openFormFun: openChangeContractInfoForm,
         }, {
-            fieldName: "Ví trí",
+            fieldName: "Vị trí",
             fieldValue: currentUser ? currentUser.Personal_Info.location : null,
             openForm: true,
             openFormFun: openChangeContractInfoForm,
@@ -136,11 +135,11 @@ const AccountSetting = props => {
                 }).then((ress) => {
                     if (ress.data[0] == 1) {
                         setSuccessAlert(true)
-                        setMessage("Your avatar is up to date!")
+                        setMessage("Đã cập nhập ảnh đại diện!")
                     }
                     else {
                         setFailAlert(true)
-                        setMessage("Error happened. Please try again later!")
+                        setMessage("Lỗi xảy ra. Vui lòng thử lại sau!")
                     }
                 })
             })

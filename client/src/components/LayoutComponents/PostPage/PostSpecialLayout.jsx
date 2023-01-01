@@ -38,7 +38,7 @@ export default function PostSpecialLayout(props) {
                             {props.link ? <Link to={props.link} className='post-special-link'>
                                 <div className='post-special-seeall'>
                                     <FontAwesomeIcon className='orange-context' icon={props.icon}></FontAwesomeIcon>
-                                    <p className='post-special-context orange-context'>See all {props.title}</p>
+                                    <p className='post-special-context orange-context'>Xem tất cả {props.title}</p>
                                     <FontAwesomeIcon className='orange-context' icon={['fas', 'chevron-right']}></FontAwesomeIcon>
                                 </div>
                             </Link> : ""}
@@ -60,7 +60,7 @@ export default function PostSpecialLayout(props) {
                             {props.link ? <Link to={props.link} className='post-special-link'>
                                 <div className='post-special-seeall'>
                                     <FontAwesomeIcon className='blue-context' icon={props.icon}></FontAwesomeIcon>
-                                    <p className='post-special-context blue-context'>See all {props.title}</p>
+                                    <p className='post-special-context blue-context'>Xem tất cả {props.title}</p>
                                     <FontAwesomeIcon className='blue-context' icon={['fas', 'chevron-right']}></FontAwesomeIcon>
                                 </div>
                             </Link> : ""}

@@ -16,19 +16,19 @@ export default function CreateAccount(props) {
 
     const onConfirm = () => {
         if (!username) {
-            setError("Username required")
+            setError("Vui lòng nhập Username")
             return false
         }
         if (!password) {
-            setError("Password required")
+            setError("Vui lòng nhập mật khẩu")
             return false
         }
         if (!email) {
-            setError("Email required")
+            setError("Vui lòng nhập Email")
             return false
         }
         if (!validator.isEmail(email)) {
-            setError("Invalid Email")
+            setError("Email không hợp lệ")
             return false
         }
 
@@ -43,17 +43,17 @@ export default function CreateAccount(props) {
             .then(res => {
                 if (res.data.errors) {
                     if (res.data.errors[0].message.includes("username must be unique"))
-                        setError("This username has existed in the system.")
+                        setError("Username này đã tồn tại trong hệ thống")
                     else
                         if (res.data.errors[0].message.includes("email must be unique"))
-                            setError("This email has been registered for another account")
+                            setError("Email này đã được đăng kí")
                         else
-                            setError("Errors happened. Try again later")
+                            setError("Lỗi xảy ra. Vui lòng thử lại sau")
                 } else {
                     res.data.password = password
                     const activation = axios.post("http://localhost:8080/mail/account-activation", res.data)
                         .then(ress => {
-                            setError("Register success. " + ress.data)
+                            setError("Đăng kí thành công. " + ress.data)
                         })
                 }
             })

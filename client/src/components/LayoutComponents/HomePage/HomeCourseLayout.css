@@ -1,33 +1,36 @@
-.home-course-layout-content{
+.home-course-layout-content {
     width: 100%;
     height: 720px;
 }
-.home-course-layout-content .home-course-layout-background{
+
+.home-course-layout-content .home-course-layout-background {
     width: 100%;
     height: 565px;
     background-color: #FAEEDF;
 }
-.home-course-layout-background .home-course-layout-border{   
+
+.home-course-layout-background .home-course-layout-border {
     width: 762px;
     height: 110px;
-    box-shadow: 0px 15px 0px rgba(250,238,223,1); 
-    
+    box-shadow: 0px 15px 0px rgba(250, 238, 223, 1);
     border-radius: 0px 0px 62.5px 0px;
     z-index: 10;
     position: relative;
 }
-.home-course-layout-border .home-course-layout-title-content{
+
+.home-course-layout-border .home-course-layout-title-content {
     width: 747px;
     height: 110px;
     background-color: #CA6923;
     border-radius: 0px 55px 55px 0px;
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);    
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     align-items: center;
     align-content: center;
     justify-content: center;
     display: flex;
 }
-.home-course-layout-background .home-course-layout-line{
+
+.home-course-layout-background .home-course-layout-line {
     width: 90%;
     height: 50px;
     background-color: #CA6923;
@@ -35,68 +38,74 @@
     justify-items: right;
     right: 8px;
     position: absolute;
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.home-course-layout-background .home-course-layout-shape-1{
-    width: 157px;
 
+.home-course-layout-background .home-course-layout-shape-1 {
+    width: 157px;
     border-bottom: 120px solid #CA6923;
     border-left: 23px solid transparent;
     align-items: right;
     justify-items: right;
-    
     right: 0px;
     position: absolute;
 }
-.home-course-layout-shape-1 .home-course-layout-shape-2{
+
+.home-course-layout-shape-1 .home-course-layout-shape-2 {
     width: 0px;
     height: 0px;
-
     border-top: 150px solid #CA6923;
     border-left: 180px solid transparent;
     right: 0px;
     top: 120px;
     position: absolute;
 }
-.home-course-layout-title-content .home-course-layout-title{
+
+.home-course-layout-title-content .home-course-layout-title {
     width: 505px;
     height: 72px;
     font-family: "Rounded Mplus 1c Extra Bold";
-    font-size: 50px;
+    font-size: 40px;
     line-height: 74.25px;
     color: white;
 }
-.home-course-layout-background .home-course-layout-detail{
+
+.home-course-layout-background .home-course-layout-detail {
     width: 100%;
     height: 532px;
     display: flex;
-
-    margin-top:40px;
+    margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
 }
-.home-course-layout-background .home-course-layout-icon{
+
+.home-course-layout-background .home-course-layout-icon {
     position: absolute;
     display: flex;
 }
-.home-course-layout-background .home-course-layout-fea{
+
+.home-course-layout-background .home-course-layout-fea {
     left: 2%;
     margin-top: 60px;
 }
-.home-course-layout-background .home-course-layout-book{
+
+.home-course-layout-background .home-course-layout-book {
     left: 7%;
-    margin-top: 150px; 
+    margin-top: 150px;
 }
-.home-course-layout-background .home-course-layout-glass{
+
+.home-course-layout-background .home-course-layout-glass {
     left: 2%;
     margin-top: 380px;
 }
-.home-course-layout-background .home-course-layout-cand{
+
+.home-course-layout-background .home-course-layout-cand {
     right: 7%;
     margin-top: 210px;
 }
-.home-course-layout-background .home-course-layout-tea{
+
+.home-course-layout-background .home-course-layout-tea {
     right: 1%;
     margin-top: 350px;
 }

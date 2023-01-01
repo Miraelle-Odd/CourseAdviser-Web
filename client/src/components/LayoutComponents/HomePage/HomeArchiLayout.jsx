@@ -9,18 +9,18 @@ export default function HomeArchiLayout(props) {
             <div className="home-archi-layout-content">
                 <ArchivementCard_Rec
                     icon={['fas', 'trophy']}
-                    title="XX+ Teachers"
-                    content="VietNamese and Native">
+                    title="90+ Giáo viên"
+                    content="Người Việt và bản xứ">
                 </ArchivementCard_Rec>
                 <ArchivementCard_Rec
                     icon={['fas', 'graduation-cap']}
-                    title="XX+ Students"
-                    content="Short Description">
+                    title="84300+ Học viên"
+                    content="Trên toàn quốc">
                 </ArchivementCard_Rec>
                 <ArchivementCard_Rec
                     icon={['fas', 'piggy-bank']}
-                    title="Scholarship"
-                    content="Over 3000000 VND">
+                    title="Học bổng"
+                    content="Trên 300.000.000 VND">
                 </ArchivementCard_Rec>
             </div>
         </Fragment>

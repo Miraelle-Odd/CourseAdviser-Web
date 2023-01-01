@@ -6,16 +6,18 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from 'react-router-dom'
 import moment from 'moment'
+import 'moment/locale/vi';
 
 const SliderItem = (props) => {
+    // moment.locale('fr')
     return (
         <div className='slider-item'>
             <img src={props.img ? props.img : img} className='image'></img>
             <Link className='info-layer' to={props.link ? props.link : "#"}>
-                <span className='title'>{props.title ? props.title : "NO TITLE"}</span>
+                <span className='title'>{props.title ? props.title : "KHÔNG TIÊU ĐỀ"}</span>
                 <span className='date'>
-                    Posted on {props.date ? moment(props.date).format("LL") : " Month DD, YYYY "} by
-                    <span className='author'>{props.author ? props.author : "anomynous"}</span>
+                    Đăng vào {props.date ? moment(props.date).format("LL") : " Month DD, YYYY "} bởi
+                    <span className='author'>{props.author ? props.author : "ẩn danh"}</span>
                 </span>
             </Link>
         </div>

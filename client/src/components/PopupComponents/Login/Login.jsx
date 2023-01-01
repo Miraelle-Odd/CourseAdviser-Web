@@ -26,7 +26,6 @@ export default function Login(props) {
         const result = axios.post("http://localhost:8080/accounts/login", params)
             .then(res => {                              
                 if (!res.data.error) {
-                    console.log(res)
                     setError(res.data.message)
                     window.location.replace("/workplace")
                 }
@@ -41,11 +40,11 @@ export default function Login(props) {
             <AuthenForm
                 isLoginForm={true}
                 handleFormClose={props.handleFormClose}
-                title="Welcome!"
-                subtilte="Log in to continue"
+                title="Xin chào!"
+                subtilte="Mời bạn đăng nhập để tiếp tục"
                 hintIcon={['fas', 'user']}
-                hintInput="Username"
-                textConfirm="Log In"
+                hintInput="Tài khoản"
+                textConfirm="Login"
                 handleForgotFormOpen={props.handleForgotFormOpen}
                 titleStyle="login-header-title"
                 inputContainStyle="login-input-contain"

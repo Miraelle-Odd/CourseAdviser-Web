@@ -65,7 +65,7 @@ export default function AuthenForm(props) {
                                 <FontAwesomeIcon className='authen-form-icon' icon={['fas', 'key']} />
                                 <input className='authen-form-input'
                                     value={props.inputPassword? props.inputPassword : inputPassword}
-                                    placeholder="Password"
+                                    placeholder="Mật khẩu"
                                     type={inputType} 
                                     onChange={props.onPwChange}/>
                                 <button className="authen-form-right-eye" onClick={changeVisibilityHandler}>
@@ -97,7 +97,7 @@ export default function AuthenForm(props) {
                 {
                     props.isLoginForm ?
                         <div className='authen-form-footer-contain authen-form-center'>
-                            <span className='authen-form-footer-context'>Forgot Password?</span>
+                            <span className='authen-form-footer-context'>Quên mật khẩu?</span>
                             <button className='authen-form-footer-button' onClick={props.handleForgotFormOpen}>GO
                             </button>
                         </div> : ""

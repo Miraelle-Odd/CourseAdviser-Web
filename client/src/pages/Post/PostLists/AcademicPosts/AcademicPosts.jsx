@@ -18,7 +18,7 @@ export default function AcademicPosts(props) {
         getListAcademics().catch(console.error)
 
         const getListCount = async () => {
-            const result = await axios.get("http://localhost:8080/Posts/Academic/Count")
+            const result = await axios.get("http://localhost:8080/Posts/Academic/Count-active")
             setListOfCount(result.data)
         }
         getListCount().catch(console.error)
@@ -30,8 +30,8 @@ export default function AcademicPosts(props) {
                 <PostSpecialLayout
                     type="blue"
                     listItem={listOfAcademic}
-                    description="Description or introduction blah blah. Cac bai viet hay nhat blah blah dang de tham khao. Chem gio tam 5 den 6 dong la dep. dkajdksajdksadald dsdsdsdsd sdsdsdsdsds dsdsdsd"
-                    title="academic posts"
+                    description="Bộ sưu tầm các bài viết học thuật hay nhất từ trung tâm phục vụ cho quá trình học tập của các học viên nè. Còn chờ gì nữa mà không DIVE IN nào các bạn ơi!"
+                    title="bài viết học thuật"
                     icon={['fas', 'graduation-cap']}>
                 </PostSpecialLayout>
             </div>

@@ -13,9 +13,9 @@ export default function StaffCard(props) {
                         <p className='staff-card-title-1'>{props.title}</p>
                         <p className='staff-card-title-2'>{props.subtitle}</p>
                         <div className='staff-card-detail'>
-                            <p className='staff-card-text-1'>INTRODUCE</p>
+                            <p className='staff-card-text-1'>GIỚI THIỆU</p>
                             <p className='staff-card-text-2'>{props.content}</p>
-                            <p className='staff-card-text-1 show-when-hover'>ARCHIVEMENTS</p>
+                            <p className='staff-card-text-1 show-when-hover'>THÀNH TỰU</p>
                             <p className='staff-card-text-2 show-when-hover'>{props.more}</p>
                         </div>
                     </div>

@@ -69,14 +69,14 @@
 
 .post-card-detail .post-card-text {
     width: 230px;
-
     font-family: "Rounded Mplus 1c Medium";
     font-size: 16px;
     line-height: 24px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-line-clamp: 3;
+    /* number of lines to show */
     -webkit-box-orient: vertical;
     margin: 8px 0px;
     color: rgba(0, 0, 0, 0.8);
@@ -112,16 +112,17 @@
 
 .post-card-content .post-card-header {
     position: absolute;
-    width: 161px;
+    width: 180px;
+    padding: 0 10px;
     height: 46px;
     top: 211px;
-    left: 70px;
+    left: calc(50% - 100px);
     background: linear-gradient(104.98deg, #EE751D 0%, rgba(238, 117, 29, 0) 52.94%), #FFAB6F;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .post-card-header .post-card-name {
-    width: 138px;
+    width: max-content;
     height: 25px;
     font-family: "Rounded Mplus 1c Extra Bold";
     font-size: 16px;

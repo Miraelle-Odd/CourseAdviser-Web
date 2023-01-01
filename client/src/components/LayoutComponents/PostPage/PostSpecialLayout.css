@@ -39,7 +39,7 @@
 }
 
 .post-special-title {
-    width: 362px;
+    width: max-content;
     height: 54px;
     font-family: "Rounded Mplus 1c Extra Bold";
     font-size: 36px;
@@ -79,7 +79,7 @@
 }
 
 .post-special-seeall .post-special-context {
-    width: 179px;
+    width: max-content;
     height: 17px;
     font-family: "Roboto Medium";
     font-size: 16px;

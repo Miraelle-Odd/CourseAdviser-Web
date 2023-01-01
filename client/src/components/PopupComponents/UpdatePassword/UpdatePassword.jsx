@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './UpdatePassword.css'
 import { Fragment } from 'react/cjs/react.production.min';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SelfEditForm from '../PopupSourceComponents/GenericForm/SelfEditForm';
 import axios from 'axios';
 
@@ -42,11 +41,11 @@ export default function UpdatePassword(props) {
     ]
     const onConfirm = async () => {
         if(!pwOld || !pwNew || !confirm_pwNew){
-            setMessage("All fields required")
+            setMessage("Vui lòng nhập đủ thông tin")
             return 0;
         }
         if(pwNew !== confirm_pwNew){
-            setMessage("Confirm password and new password do not match")
+            setMessage("Mật khẩu mới và xác nhận mật khẩu không khớp")
             return 0;
         }
         const params = {
@@ -55,7 +54,7 @@ export default function UpdatePassword(props) {
             password_new: pwNew,
             confirm_password: confirm_pwNew,
         }
-        console.log(params)
+
         axios.post("http://localhost:8080/Accounts/update-password-directly", params)
                 .then(res => {
                     console.log(res)
@@ -69,7 +68,7 @@ export default function UpdatePassword(props) {
                         }, 3000);
                     }
                     if (res.data == 2) {
-                        setMessage("Your current password is incorrect")
+                        setMessage("Mật khẩu hiện tại của bạn không đúng")
                     }
                 })
     } 
