@@ -87,6 +87,27 @@ const ChatSuggestion = (props) => {
         </div>
     )
 }
+
+const ChatImage = (props) => {
+    return (
+        <div className="chat-content left">
+            {
+                !props.human ?
+                    <span className="chatbot-avatar">
+                        <FontAwesomeIcon icon="robot"></FontAwesomeIcon>
+                    </span>
+                    : ""
+            }
+            <div class='chat-image'>
+                <div onClick={
+                    () => window.open(props.image, "_blank")
+                } target="_blank" class='hover-layer'>Zoom</div>
+                <img src={props.image}></img>
+            </div>
+        </div>
+    )
+}
+
 const Chatbot = (props) => {
     const messagesEndRef = useRef(null)
     const [message, setMessage] = useState("");
@@ -132,15 +153,14 @@ const Chatbot = (props) => {
             const result = await axios.post(`http://localhost:8080/chat/dialogflow/vi/` + req + `/abcd123`)
                 .then(res => {
                     addBotMessage(req, res.data)
-
                 })
         }
     }
 
     const addBotMessage = async (req, res) => {
-        const hiddenMessage = res[res.length - 1]?.text?.text[0];
+        console.log("NA", res.filter(e => e.text?.text[0]?.includes("Hidden:")))
+        const hiddenMessage = res.filter(e => e.text?.text[0]?.includes("Hidden:"))[0]?.text?.text[0];
         const recommendId = hiddenMessage?.split("Hidden:")[1];
-        console.log("aaaaaaaa", recommendId);
         var rawRecommendList = [];
         var dataRecommendList = [];
         if (recommendId) {
@@ -155,14 +175,21 @@ const Chatbot = (props) => {
                 return await axios.get(`http://localhost:8080/bot-recommenders/image-detail/${param[0]}/${param[1]}`).then((res) => {
                     dataRecommendList.push(res.data)
                 })
-            })).then(res => {
-                console.log("ccccccc", dataRecommendList)
+            })).then(async _ => {
+                res.splice(res.indexOf(e => e.text?.text[0]?.includes("Hidden:")), 0, ...dataRecommendList)
+                await setMessageList(messageList.concat(
+                    {
+                        chat: req,
+                        human: true,
+                    },
+                    {
+                        chat: res,
+                    }
+                ))
+                scrollToBottom()
             }
-
             )
-
         }
-
 
         await setMessageList(messageList.concat(
             {
@@ -223,11 +250,12 @@ const Chatbot = (props) => {
                                                         )
                                                     }
                                                     if (chatItem.text) {
-                                                        return (
-                                                            <ChatBubble
-                                                                chat={chatItem.text.text}>
-                                                            </ChatBubble>
-                                                        )
+                                                        if (!chatItem.text.text[0].includes('Hidden:'))
+                                                            return (
+                                                                <ChatBubble
+                                                                    chat={chatItem.text.text}>
+                                                                </ChatBubble>
+                                                            )
                                                     }
                                                     if (chatItem.quickReplies) {
                                                         return (
@@ -237,6 +265,11 @@ const Chatbot = (props) => {
                                                                     addSuggestion(e.target.textContent)
                                                                 }
                                                             ></ChatSuggestion>
+                                                        )
+                                                    }
+                                                    if (chatItem.image) {
+                                                        return (
+                                                            <ChatImage image={chatItem.image}></ChatImage>
                                                         )
                                                     }
                                                 })
