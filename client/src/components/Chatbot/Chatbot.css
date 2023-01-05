@@ -1,5 +1,3 @@
-.chatbox .left {}
-
 .chatbox .right {
     float: right;
     flex-direction: row-reverse;
@@ -21,7 +19,7 @@
 
 .chat-content .chat-bubble {
     display: flex;
-    width: 200px;
+    width: 240px;
     min-height: 30px;
     height: max-content;
     border-radius: 20px;
@@ -53,8 +51,8 @@
 .chatbox {
     outline: none;
     box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.6);
-    height: 460px;
-    width: 340px;
+    height: 520px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -63,7 +61,7 @@
 }
 
 .chatbox-header {
-    width: 406.98px;
+    width: 424px;
     height: 152.26px;
     left: -7.8px;
     top: -94.54px;
@@ -134,7 +132,7 @@
 }
 
 .chat-view {
-    height: 405px;
+    height: 465px;
     overflow-y: auto;
     display: flex;
 }
@@ -157,10 +155,11 @@
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
+    padding: 0 10px;
 }
 
 .chat-input .text-input {
-    width: 266px;
+    flex: 1;
     margin: 10px;
     border: 1.5px solid rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
@@ -290,4 +289,38 @@
 .chat-suggestions .chat-suggestion:hover {
     cursor: pointer;
     background-color: rgb(220, 220, 220);
+}
+
+.chat-image {
+    width: 180px;
+    height: 100px;
+    position: relative;
+    cursor: pointer;
+    background-color: rgb(176, 176, 176);
+    border-radius: 10px;
+}
+
+.chat-image img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.chat-image .hover-layer {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.chat-image:hover .hover-layer {
+    display: flex;
 }
