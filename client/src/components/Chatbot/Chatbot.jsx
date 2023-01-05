@@ -138,6 +138,32 @@ const Chatbot = (props) => {
     }
 
     const addBotMessage = async (req, res) => {
+        const hiddenMessage = res[res.length - 1]?.text?.text[0];
+        const recommendId = hiddenMessage?.split("Hidden:")[1];
+        console.log("aaaaaaaa", recommendId);
+        var rawRecommendList = [];
+        var dataRecommendList = [];
+        if (recommendId) {
+            await axios.get(`https://localhost:7095/Recommend/${recommendId}`).then((res) => {
+                console.log("bbbbbbb", res.data)
+                rawRecommendList = res.data.split(",")
+            })
+
+            Promise.all(rawRecommendList.map(async item => {
+                var param = item.split('');
+
+                return await axios.get(`http://localhost:8080/bot-recommenders/image-detail/${param[0]}/${param[1]}`).then((res) => {
+                    dataRecommendList.push(res.data)
+                })
+            })).then(res => {
+                console.log("ccccccc", dataRecommendList)
+            }
+
+            )
+
+        }
+
+
         await setMessageList(messageList.concat(
             {
                 chat: req,
@@ -207,7 +233,7 @@ const Chatbot = (props) => {
                                                         return (
                                                             <ChatSuggestion
                                                                 quickReplies={chatItem.quickReplies.quickReplies}
-                                                                onClick={(e) => 
+                                                                onClick={(e) =>
                                                                     addSuggestion(e.target.textContent)
                                                                 }
                                                             ></ChatSuggestion>
@@ -226,15 +252,15 @@ const Chatbot = (props) => {
 
                 </div>
                 <div className="chat-input">
-                    <input 
-                    className="text-input" 
-                    onChange={(e) => setMessage(e.target.value)}
-                    onKeyDown={async(e)=>{
-                        if(e.key === 'Enter'){
-                            addMessage()
-                        }
-                    }} 
-                    value={message}
+                    <input
+                        className="text-input"
+                        onChange={(e) => setMessage(e.target.value)}
+                        onKeyDown={async (e) => {
+                            if (e.key === 'Enter') {
+                                addMessage()
+                            }
+                        }}
+                        value={message}
                     ></input>
                     <button className="send-btn" onClick={addMessage}>
                         <FontAwesomeIcon icon={['fas', 'paper-plane']}></FontAwesomeIcon>

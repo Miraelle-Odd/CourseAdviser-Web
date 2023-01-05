@@ -49,6 +49,8 @@ const botCourses = require("./routes/Bot_AllCourses");
 app.use("/bot-courses", botCourses)
 const botCourseLevels = require("./routes/Bot_CourseLevels");
 app.use("/bot-course-levels", botCourseLevels)
+const botRecommenders = require("./routes/Bot_Recommenders");
+app.use("/bot-recommenders", botRecommenders)
 const image = require("./routes/Image");
 app.use("/image", image)
 const request = require("./routes/Requests");
