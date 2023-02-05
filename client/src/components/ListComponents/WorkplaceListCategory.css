@@ -25,6 +25,15 @@
     height: 100%;
     text-decoration: none;
 }
+.css-button{
+    border: none;
+    background-color: white;
+}
+
+.css-active{
+    border-bottom: 3px solid #FFAB6F !important;
+    color: black;
+}
 
 .workplace-lc:hover {
     background-color: #F1F1F1;

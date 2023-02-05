@@ -17,14 +17,17 @@ module.exports = (sequelize, DataTypes) => {
     });
     const list = [
         {
+            test_id: 1,
             test_type: "toeic",
             test_amount: 200
         },
         {
+            test_id: 2,
             test_type: "toeic",
             test_amount: 200
         },
         {
+            test_id: 3,
             test_type: "toeic",
             test_amount: 200
         }

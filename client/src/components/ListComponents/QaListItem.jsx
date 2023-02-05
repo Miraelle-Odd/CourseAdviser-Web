@@ -14,7 +14,7 @@ const QaListItem = props => {
     }
     return (
         <li className='qa-list-item'>
-            <div class="qa-item-question qa-layout-center" >
+            <div className="qa-item-question qa-layout-center" >
                 {props.question}
                 <div className='qa-icon-contain' onClick={handleShowDetail}>
                     <FontAwesomeIcon className='qa-item-icon' icon={isShowDetail ? ['fas', 'chevron-up'] : ['fas', 'chevron-down']} ></FontAwesomeIcon>

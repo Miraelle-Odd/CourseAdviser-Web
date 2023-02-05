@@ -98,10 +98,10 @@ const ChatImage = (props) => {
                     </span>
                     : ""
             }
-            <div class='chat-image'>
+            <div className='chat-image'>
                 <div onClick={
                     () => window.open(props.image, "_blank")
-                } target="_blank" class='hover-layer'>Zoom</div>
+                } target="_blank" className='hover-layer'>Zoom</div>
                 <img src={props.image}></img>
             </div>
         </div>
@@ -176,7 +176,7 @@ const Chatbot = (props) => {
                     dataRecommendList.push(res.data)
                 })
             })).then(async _ => {
-                res.splice(res.indexOf(e => e.text?.text[0]?.includes("Hidden:")), 0, ...dataRecommendList)
+                res.splice(res.findIndex(e => e.text?.text[0]?.includes("Hidden:")), 0, ...dataRecommendList)
                 await setMessageList(messageList.concat(
                     {
                         chat: req,
