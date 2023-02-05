@@ -193,20 +193,17 @@ const EmployeeManagement = props => {
     }, [sortOption])
 
     const handlePageClick = (event) => {
-        navigate("/workplace/employee-management/" + category + "/" + sort + "/" + search + "/" + (event.selected + 1))
-        navigate(0)
+        window.location.replace("/workplace/employee-management/" + category + "/" + sort + "/" + search + "/" + (event.selected + 1))
     }
 
     const onCategoryChange = (event) => {
-        navigate("/workplace/employee-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/" + sort + "/all/1")
-        navigate(0)
+        window.location.replace("/workplace/employee-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/" + sort + "/all/1")
     }
 
     const onPageTextChange = (e) => {
         if (e.key === 'Enter')
             if (e.target.value <= pageCount && e.target.value >= 1 && e.target.value != e.target.defaultValue) {
-                navigate("/workplace/employee-management/" + category + "/" + sort + "/" + search + "/" + (e.target.value))
-                navigate(0)
+                window.location.replace("/workplace/employee-management/" + category + "/" + sort + "/" + search + "/" + (e.target.value))
             }
     }
 
@@ -274,8 +271,7 @@ const EmployeeManagement = props => {
 
     const sortHandler = (e) => {
         setSortOption(e.target.value)
-        navigate("/workplace/employee-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + search + "/" + page)
-        navigate(0)
+        window.location.replace("/workplace/employee-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + search + "/" + page)
     }
     const searchHandler = (e) => {
         if (e.key === "Enter") {
@@ -283,8 +279,7 @@ const EmployeeManagement = props => {
             if (e.target.value && e.target.value.trim() != "")
                 text = e.target.value
 
-            navigate("/workplace/employee-management/" + category + "/" + sort + "/" + text + "/1")
-            navigate(0)
+            window.location.replace("/workplace/employee-management/" + category + "/" + sort + "/" + text + "/1")
         }
     }
 
@@ -322,7 +317,7 @@ const EmployeeManagement = props => {
                     handleFormClose={() => {
                         handleFormClose()
                         navigate(0)
-                        }}>
+                    }}>
                 </CreateAccount>
             </Modal>
             <Modal

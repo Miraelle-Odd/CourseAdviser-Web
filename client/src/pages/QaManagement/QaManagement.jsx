@@ -161,20 +161,17 @@ const QaManagement = props => {
     }, [sortOption])
 
     const handlePageClick = (event) => {
-        navigate("/workplace/q-and-a-management/" + category + "/" + sort + "/" + search + "/" + (event.selected + 1))
-        navigate(0)
+        window.location.replace("/workplace/q-and-a-management/" + category + "/" + sort + "/" + search + "/" + (event.selected + 1))
     }
 
     const onCategoryChange = (event) => {
-        navigate("/workplace/q-and-a-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/" + sort + "/all/1")
-        navigate(0)
+        window.location.replace("/workplace/q-and-a-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/" + sort + "/all/1")
     }
 
     const onPageTextChange = (e) => {
         if (e.key === 'Enter')
             if (e.target.value <= pageCount && e.target.value >= 1 && e.target.value != e.target.defaultValue) {
-                navigate("/workplace/q-and-a-management/" + category + "/" + sort + "/" + search + "/" + (e.target.value))
-                navigate(0)
+                window.location.replace("/workplace/q-and-a-management/" + category + "/" + sort + "/" + search + "/" + (e.target.value))
             }
     }
     const onCreateClick = () => {
@@ -203,8 +200,7 @@ const QaManagement = props => {
     }
     const sortHandler = (e) => {
         setSortOption(e.target.value)
-        navigate("/workplace/q-and-a-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + search + "/" + page)
-        navigate(0)
+        window.location.replace("/workplace/q-and-a-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + search + "/" + page)
     }
     const searchHandler = (e) => {
         if (e.key === "Enter") {
@@ -212,8 +208,7 @@ const QaManagement = props => {
             if (e.target.value && e.target.value.trim() != "")
                 text = e.target.value
 
-            navigate("/workplace/q-and-a-management/" + category + "/" + sort + "/" + text + "/1")
-            navigate(0)
+            window.location.replace("/workplace/q-and-a-management/" + category + "/" + sort + "/" + text + "/1")
         }
     }
 

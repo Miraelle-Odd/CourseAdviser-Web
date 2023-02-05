@@ -224,7 +224,7 @@ const ChatbotManagement = props => {
                 setPageCount(Math.ceil(res.data / itemsPerPage))
             })
         if (sortItems && sortItems[sortOption])
-            axios.get("http://localhost:8080/" + category + "/get-all-courses/" + sortItems[sortOption].sortField + "/" + sortItems[sortOption].sortOrder + "/" + search +  "/" + (page - 1))
+            axios.get("http://localhost:8080/" + category + "/get-all-courses/" + sortItems[sortOption].sortField + "/" + sortItems[sortOption].sortOrder + "/" + search + "/" + (page - 1))
                 .then((res) => {
                     res.data.map((item, index) => {
                         if (item.course_name) {
@@ -258,21 +258,18 @@ const ChatbotManagement = props => {
         navigate(0)
     }
     const onCategoryChange = (event) => {
-        navigate("/workplace/chatbot-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/updated-latest/all/1")
-        navigate(0)
+        window.location.replace("/workplace/chatbot-management/" + event.currentTarget.attributes.getNamedItem("value").value + "/updated-latest/all/1")
     }
     const onPageTextChange = (e) => {
         if (e.key === 'Enter')
             if (e.target.value <= pageCount && e.target.value >= 1 && e.target.value !== e.target.defaultValue) {
-                navigate("/workplace/chatbot-management/" + category + "/" + sort + "/" + search + "/" + (e.target.value))
-                navigate(0)
+                window.location.replace("/workplace/chatbot-management/" + category + "/" + sort + "/" + search + "/" + (e.target.value))
             }
     }
 
     const sortHandler = (e) => {
         setSortOption(e.target.value)
-        navigate("/workplace/chatbot-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + search + "/"  + page)
-        navigate(0)
+        window.location.replace("/workplace/chatbot-management/" + category + "/" + sortItems[e.target.value].sortParam + "/" + search + "/" + page)
     }
     const searchHandler = (e) => {
         if (e.key === "Enter") {
@@ -280,8 +277,7 @@ const ChatbotManagement = props => {
             if (e.target.value && e.target.value.trim() != "")
                 text = e.target.value
 
-            navigate("/workplace/chatbot-management/" + category + "/" + sort + "/" + text + "/1")
-            navigate(0)
+            window.location.replace("/workplace/chatbot-management/" + category + "/" + sort + "/" + text + "/1")
         }
     }
 
@@ -330,13 +326,13 @@ const ChatbotManagement = props => {
     const handleStatus = (e) => {
         console.log(category)
         axios.post(`http://localhost:8080/${category}/update-status/${updateStatus}`)
-        .then((res) => {
-            console.log(res.data)
-            setError("Update success.\n\rReload page after")
-            setTimeout(function () {
-                window.location.reload();
-            }, 3000);
-        })
+            .then((res) => {
+                console.log(res.data)
+                setError("Update success.\n\rReload page after")
+                setTimeout(function () {
+                    window.location.reload();
+                }, 3000);
+            })
     }
 
     const handleFormClose = () => {
