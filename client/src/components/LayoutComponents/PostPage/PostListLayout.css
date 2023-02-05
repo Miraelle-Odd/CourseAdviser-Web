@@ -115,7 +115,7 @@
     align-items: center;
 }
 
-.post-list-pagination .orange {
+.orange {
     border: 1px solid #B62F05;
     color: #B62F05;
 }
@@ -134,4 +134,29 @@
     border: none;
     height: 50px;
     width: 50px;
+}
+
+.sort-in-list-container{
+    width: 1144px;
+    display: flex;
+    justify-content: right;
+    margin-right: 150px;
+    margin-bottom: -10px;
+    margin-top: 15px;
+}
+.sort-in-list-container .sort-in-list{
+    border-radius: 0px;
+    width: 180px;
+    height: 30px;
+    padding: 0 0 0 5px;
+    font-size: 14px;
+    background-color: white !important;
+}
+.sort-in-list-container .sort-in-list-2{
+    border-radius: 0px;
+    width: 180px;
+    height: 30px;
+    padding: 0 0 0 5px;
+    font-size: 14px;
+    background-color: white !important;
 }

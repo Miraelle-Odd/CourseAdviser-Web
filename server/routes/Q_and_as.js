@@ -4,7 +4,7 @@ const { Q_and_as } = require("../controllers")
 
 
 router.get("/count", Q_and_as.getCountAll)
-router.get("/:page", Q_and_as.getItemPaging)
+router.get("/active/:type/:page/:search/:sortField/:sortOrder", Q_and_as.getItemPaging)
 router.get("/get-count/:category", Q_and_as.getCountByMainSubject)
 router.get("/get-active-count/:category", Q_and_as.getActiveCountByMainSubject)
 router.get("/get-inactive-count/:category", Q_and_as.getInactiveCountByMainSubject)

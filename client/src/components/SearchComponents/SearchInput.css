@@ -1,0 +1,12 @@
+.search-in-list{
+    width: 744px;
+    min-width: 580px;
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+}
+.search-input-custom{
+    width: 80% !important;
+    margin: 5px 0;
+    background-color: white !important;
+}

@@ -52,13 +52,13 @@ const PasswordRecovery = (props) => {
                 <span className="subtitle">Course Adviser</span>
                 <span className="title">Khôi Phục Mật Khẩu</span>
             </div>
-            <div class="password-recovery-content">
-                <div class="section column-flex">
-                    <span class="section-bold">Nhập mật khẩu mới : </span>
-                    <span class="section-bold">Xác nhận mật khẩu : </span>
+            <div className="password-recovery-content">
+                <div className="section column-flex">
+                    <span className="section-bold">Nhập mật khẩu mới : </span>
+                    <span className="section-bold">Xác nhận mật khẩu : </span>
 
                 </div>
-                <div class="section column-flex">
+                <div className="section column-flex">
                     <EyeSwitch
                         inputHint="Password"
                         onChange={(e) => setNewPassword(e.target.value)}
@@ -67,11 +67,11 @@ const PasswordRecovery = (props) => {
                         inputHint="Confirm Password"
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     ></EyeSwitch>
-                    <span class="notification">{message}</span>
+                    <span className="notification">{message}</span>
                 </div>
 
             </div>
-            <button class="confirm-btn" onClick={onConfirm}>Xác nhận</button>
+            <button className="confirm-btn" onClick={onConfirm}>Xác nhận</button>
         </div>
     )
 }

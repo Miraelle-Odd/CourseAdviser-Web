@@ -9,6 +9,60 @@ import axios from 'axios';
 import AlertSuccess from '../../PopupComponents/AlertSuccess/AlertSuccess';
 import AlertFail from '../../PopupComponents/AlertFail/AlertFail';
 import Modal from 'react-modal';
+import SearchInput from '../../SearchComponents/SearchInput';
+import WorkplaceListCategory from '../../ListComponents/WorkplaceListCategory';
+import SortComboBox from '../../ComboBoxComponents/SortComboBox';
+import FilterSelect from '../../FilterComponents/FilterSelect';
+const categoryItems = [
+    {
+        display: "Tất cả",
+        awesomeIcon: ['fas', 'address-card'],
+        value: "all"
+    },
+    {
+        display: "Trung tâm",
+        awesomeIcon: ['fas', 'school'],
+        value: "center"
+
+    },
+    {
+        display: "Khóa học",
+        awesomeIcon: ['fas', 'book'],
+        value: "course"
+
+    },
+]
+const sortItems = [
+    {
+        value: 0,
+        displayText: "Tạo mới nhất",
+        sortParam: "updated-latest",
+        sortField: "qa_id",
+        sortOrder: "DESC"
+    },
+    {
+        value: 1,
+        displayText: "Tạo cũ nhất",
+        sortParam: "updated-oldest",
+        sortField: "qa_id",
+        sortOrder: "ASC"
+    },
+    {
+        value: 2,
+        displayText: "Câu hỏi - A đến Z",
+        sortParam: "question-ascend",
+        sortField: "question",
+        sortOrder: "ASC"
+
+    },
+    {
+        value: 3,
+        displayText: "Câu hỏi - Z đến A",
+        sortParam: "question-descend",
+        sortField: "question",
+        sortOrder: "DESC"
+    }
+]
 
 export default function QaLayout(props) {
     let navigate = useNavigate();
@@ -62,16 +116,41 @@ export default function QaLayout(props) {
         setMessage("")
         window.location.reload();
     }
-
+    const [sortOption, setSortOption] = useState(0)
+    const [search, setSearch] = useState('all')
+    const [qaType, setQaType] = useState('all');
+    const [text, setText] = useState();
+    const sortHandler = (e) => {
+        console.log(e.target.value);
+        setSortOption(e.target.value)
+        //Handle chosen sort option code
+    }
+    const onCategoryChange = (e) => {
+        setQaType(e.currentTarget.attributes.getNamedItem("value").value)
+    }
+    const searchHandler = (e) => {
+        if (e.key === "Enter") {
+            setText(e.target.value); 
+        }
+    }
+    useEffect(() => {
+        if (text && text.trim() != "") {
+            setSearch(text);
+        }
+        else {
+            setSearch("all");
+        }
+    }, [text])
     useEffect(() => {
         setPageCount(Math.ceil(props.count / itemsPerPage))
 
         const getListPaging = async () => {
-            const result = await axios.get(`http://localhost:8080/q-and-as/${currentPage - 1}`)
+            const result = await axios.get(`http://localhost:8080/q-and-as/active/${qaType}/${currentPage - 1}/${search}/${sortItems[sortOption].sortField}/${sortItems[sortOption].sortOrder}`)
             setListOfPaging(result.data)
         }
         getListPaging().catch(console.error)
-    }, [currentPage, props.count])
+    }, [currentPage, props.count,qaType, sortOption, search])
+
 
     return (
         props.hasResult ?
@@ -80,7 +159,25 @@ export default function QaLayout(props) {
                     <div className='qa-half-below'>
                         <div className='qa-below-body qa-layout-center'>
                             <div className='qa-request-button qa-layout-center' onClick={handleRequestClick}>Gửi câu hỏi</div>
-                            <ul class="qa-list-contain">
+                            <FilterSelect
+                                type={qaType}
+                                customCss="customCss"
+                                items={categoryItems}
+                                onCategoryChange={onCategoryChange}
+                            ></FilterSelect>
+                            <SearchInput searchHandler={searchHandler}
+                                currentSearch={search}>
+                            </SearchInput>
+
+                            <div className="sort-in-list-container-2">
+                                <SortComboBox
+                                    onChange={props.sortHandler ? props.sortHandler : sortHandler}
+                                    customClassName="sort margin-right-63 sort-in-list-2"
+                                    items={props.sortItems ? props.sortItems : sortItems}
+                                    defaultValue={props.sortOption ? props.sortOption : sortOption}>
+                                </SortComboBox>
+                            </div>
+                            <ul className="qa-list-contain">
                                 {
                                     listOfPaging ? listOfPaging.map((item, index) => (
                                         <QaListItem key={index}
@@ -143,7 +240,7 @@ export default function QaLayout(props) {
                                 </textarea>
                             </div >
                             <div className='qa-below-button-contain'>
-                                <button className='qa-below-send'  onClick={sendRequest}>
+                                <button className='qa-below-send' onClick={sendRequest}>
                                     Gửi
                                 </button>
                             </div>
