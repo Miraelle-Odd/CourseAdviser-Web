@@ -158,14 +158,12 @@ const Chatbot = (props) => {
     }
 
     const addBotMessage = async (req, res) => {
-        console.log("NA", res.filter(e => e.text?.text[0]?.includes("Hidden:")))
         const hiddenMessage = res.filter(e => e.text?.text[0]?.includes("Hidden:"))[0]?.text?.text[0];
         const recommendId = hiddenMessage?.split("Hidden:")[1];
         var rawRecommendList = [];
         var dataRecommendList = [];
         if (recommendId) {
             await axios.get(`https://localhost:7095/Recommend/${recommendId}`).then((res) => {
-                console.log("bbbbbbb", res.data)
                 rawRecommendList = res.data.split(",")
             })
 
@@ -227,7 +225,6 @@ const Chatbot = (props) => {
                     <div className="chat-container">
                         {
                             messageList.map((item, index) => {
-                                console.log(item)
                                 return (
                                     <div key={index}>
                                         {
@@ -307,5 +304,7 @@ const Chatbot = (props) => {
 export default Chatbot
 export {
     ChatCard,
-    ChatSuggestion
+    ChatSuggestion,
+    ChatImage,
+    ChatBubble
 }

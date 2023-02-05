@@ -166,8 +166,8 @@ const askRequirement = async(agent) => {
                         agent.add("Hiện tại, khóa " + course + " của chúng tôi bắt buộc bạn phải có chứng chỉ hoặc đã thi thử tại trung tâm trước đó.")
                         agent.add("🤫 Không biết kết quả cao nhất mà bạn đã đạt được là bao nhiêu nhỉ ? 🤫")
                     }
-                    if (course == "Tiếng Anh giao tiếp") {
-                        agent.add("Tại Tiếng Anh giao tiếp, chúng tôi chuyên môn chính là giúp học viên trau dồi các kĩ năng tiếng Anh thực tế nhắm phát triển công việc, sự nghiệp.")
+                    if (course == "Tiếng Anh văn phòng") {
+                        agent.add("Tại Tiếng Anh văn phòng, chúng tôi chuyên môn chính là giúp học viên trau dồi các kĩ năng tiếng Anh thực tế nhắm phát triển công việc, sự nghiệp.")
                         agent.add("Khóa hiện chia ra các lớp tương ứng đối với các kĩ năng tiếng Anh như :")
                         await Bot_CourseLevels.findAll({
                                 attributes: ['level_name'],
@@ -219,7 +219,7 @@ const askGivenTime = async(agent) => {
         guarantee = agent.parameters['reqielts']
     if (adviseInfo.course == "Luyện thi TOEIC")
         guarantee = agent.parameters['reqtoeic']
-    if (adviseInfo.course == "Tiếng Anh giao tiếp")
+    if (adviseInfo.course == "Tiếng Anh văn phòng")
         skill = agent.parameters['engadultskills'][0]
     if (guarantee || skill) {
         if (guarantee) {

@@ -1,10 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import './ManagerChatbot.css'
-import Modal from 'react-modal';
 import axios from "axios";
-import placeholder from '../../assets/icons/post-noimg.png'
-import { ChatCard, ChatSuggestion } from "./Chatbot";
+import { ChatCard, ChatSuggestion, ChatImage, ChatBubble } from "./Chatbot";
 
 const ManagerChatbot = (props) => {
     const [userInput, setUserInput] = useState()
@@ -35,8 +33,14 @@ const ManagerChatbot = (props) => {
                                     buttons={item.card.buttons}
                                 ></ChatCard>
                             )
-                        if (item.text)
-                            return (item.text.text)
+                        if (item.text) {
+                            if (!item.text.text[0].includes('Hidden:'))
+                                return (
+                                    <div>
+                                        {item.text.text}
+                                    </div>
+                                )
+                        }
                         if (item.quickReplies) {
                             return (
                                 <ChatSuggestion
@@ -44,6 +48,11 @@ const ManagerChatbot = (props) => {
                                     quickReplies={item.quickReplies.quickReplies}
                                     onClick={sendSuggestion}
                                 ></ChatSuggestion>
+                            )
+                        }
+                        if (item.image) {
+                            return (
+                                <ChatImage human image={item.image}></ChatImage>
                             )
                         }
                     }) : <span>No result</span>}
@@ -58,7 +67,31 @@ const ManagerChatbot = (props) => {
             if (userInput && userInput.trim() != "") {
                 const req = userInput
                 await axios.post(`http://localhost:8080/chat/dialogflow/vi/` + req + `/abcd123`)
-                    .then(res => {
+                    .then(async res => {
+                        const hiddenMessage = res.data.filter(e => e.text?.text[0]?.includes("Hidden:"))[0]?.text?.text[0];
+                        const recommendId = hiddenMessage?.split("Hidden:")[1];
+                        var rawRecommendList = [];
+                        var dataRecommendList = [];
+                        if (recommendId) {
+                            await axios.get(`https://localhost:7095/Recommend/${recommendId}`).then((ress) => {
+                                rawRecommendList = ress.data.split(",")
+                            })
+
+                            Promise.all(rawRecommendList.map(async item => {
+                                var param = item.split('');
+
+                                return await axios.get(`http://localhost:8080/bot-recommenders/image-detail/${param[0]}/${param[1]}`).then((res) => {
+                                    dataRecommendList.push(res.data)
+                                })
+                            })).then(async _ => {
+                                res.data.splice(res.data.findIndex(e => e.text?.text[0]?.includes("Hidden:")), 0, ...dataRecommendList)
+                                setResult({
+                                    input: userInput,
+                                    response: res.data,
+                                })
+                            })
+                        }
+
                         setResult({
                             input: userInput,
                             response: res.data,
@@ -73,7 +106,31 @@ const ManagerChatbot = (props) => {
             const req = e.target.textContent
             setUserInput(e.target.textContent)
             await axios.post(`http://localhost:8080/chat/dialogflow/vi/` + req + `/abcd123`)
-                .then(res => {
+                .then(async res => {
+                    const hiddenMessage = res.data.filter(e => e.text?.text[0]?.includes("Hidden:"))[0]?.text?.text[0];
+                    const recommendId = hiddenMessage?.split("Hidden:")[1];
+                    var rawRecommendList = [];
+                    var dataRecommendList = [];
+                    if (recommendId) {
+                        await axios.get(`https://localhost:7095/Recommend/${recommendId}`).then((ress) => {
+                            rawRecommendList = ress.data.split(",")
+                        })
+
+                        Promise.all(rawRecommendList.map(async item => {
+                            var param = item.split('');
+
+                            return await axios.get(`http://localhost:8080/bot-recommenders/image-detail/${param[0]}/${param[1]}`).then((res) => {
+                                dataRecommendList.push(res.data)
+                            })
+                        })).then(async _ => {
+                            res.data.splice(res.data.findIndex(e => e.text?.text[0]?.includes("Hidden:")), 0, ...dataRecommendList)
+                            setResult({
+                                input: userInput,
+                                response: res.data,
+                            })
+                        })
+                    }
+
                     setResult({
                         input: e.target.textContent,
                         response: res.data,
